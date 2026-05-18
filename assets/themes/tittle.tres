@@ -1,0 +1,7 @@
+[gd_resource type="Theme" format=3 uid="uid://b6auoaftr8klq"]
+
+[ext_resource type="FontFile" uid="uid://dqd4nin6qxfwh" path="res://assets/fonts/Creepster-Regular.ttf" id="1_hu4ma"]
+
+[resource]
+default_font = ExtResource("1_hu4ma")
+default_font_size = 100

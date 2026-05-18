@@ -1,0 +1,7 @@
+[gd_resource type="Theme" format=3 uid="uid://df34puejn2vue"]
+
+[ext_resource type="FontFile" uid="uid://dn1ys1ju2gq7m" path="res://assets/fonts/VT323-Regular.ttf" id="1_s6iwt"]
+
+[resource]
+default_font = ExtResource("1_s6iwt")
+default_font_size = 50
