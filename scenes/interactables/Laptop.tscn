@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://cacbqty3x1r5p"]
+
+[ext_resource type="Script" uid="uid://bf3d5dfi8743q" path="res://scenes/interactables/laptop.gd" id="1_3dg3y"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_x5j4q"]
+size = Vector3(0.4, 0.1, 0.3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_e8vmq"]
+size = Vector3(0.4, 0.1, 0.3)
+
+[node name="Laptop" type="StaticBody3D" unique_id=1801455480]
+script = ExtResource("1_3dg3y")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2032717923]
+mesh = SubResource("BoxMesh_x5j4q")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1752130866]
+shape = SubResource("BoxShape3D_e8vmq")

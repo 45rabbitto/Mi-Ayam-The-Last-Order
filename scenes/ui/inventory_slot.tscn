@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://dbgxecu36hs5k"]
+
+[ext_resource type="Script" uid="uid://bp30bokbw0taf" path="res://Scripts/inventory/inventory_slot.gd" id="1_kscix"]
+
+[node name="InventorySlot" type="Button" unique_id=1810481878]
+script = ExtResource("1_kscix")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1729121265]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0

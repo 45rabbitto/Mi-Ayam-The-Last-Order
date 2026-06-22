@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://b70g87n3x5k7v"]
+
+[ext_resource type="PackedScene" uid="uid://cs14om8wf1udr" path="res://scenes/player/player.tscn" id="1_s1xxa"]
+[ext_resource type="PackedScene" uid="uid://du5qu55tt6nvm" path="res://scenes/mi_ayam_item.tscn" id="5_437j5"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_rxkvd"]
+size = Vector3(200, 1, 200)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_s1xxa"]
+size = Vector3(20, 1, 20)
+
+[sub_resource type="Sky" id="Sky_s1xxa"]
+
+[sub_resource type="Environment" id="Environment_18w06"]
+background_mode = 1
+background_color = Color(0, 0, 0.7764706, 1)
+sky = SubResource("Sky_s1xxa")
+
+[node name="Apartment" type="Node3D" unique_id=622315083]
+
+[node name="Floor" type="StaticBody3D" parent="." unique_id=888979510]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor" unique_id=1576608232]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -1.3597069, -1.3122964, -2.691255)
+mesh = SubResource("BoxMesh_rxkvd")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor" unique_id=2092941257]
+shape = SubResource("BoxShape3D_s1xxa")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=961988944]
+transform = Transform3D(0.70710677, -0.49999997, 0.49999997, 0, 0.70710677, 0.70710677, -0.70710677, -0.49999997, 0.49999997, 0, 0, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=219122986]
+environment = SubResource("Environment_18w06")
+
+[node name="Player" parent="." unique_id=187213136 groups=["player"] instance=ExtResource("1_s1xxa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+
+[node name="MiAyamItem" parent="." unique_id=470024752 instance=ExtResource("5_437j5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -2)

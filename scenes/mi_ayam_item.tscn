@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://du5qu55tt6nvm"]
+
+[ext_resource type="Script" uid="uid://ba3lq1ejynvgt" path="res://Scripts/interaction/interactable.gd" id="1_pnc5x"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pnc5x"]
+
+[node name="MiAyamItem" type="Node3D" unique_id=470024752]
+script = ExtResource("1_pnc5x")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1201625173]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=899190105]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1097101395]
+shape = SubResource("BoxShape3D_pnc5x")
+script = ExtResource("1_pnc5x")

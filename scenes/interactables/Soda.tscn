@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://bq0aypk7q8idn"]
+
+[ext_resource type="Script" uid="uid://n602jpm75sd" path="res://scenes/interactables/soda.gd" id="1_ovcwj"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_7uhmx"]
+height = 0.2
+radius = 0.06
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_gigfr"]
+top_radius = 0.06
+bottom_radius = 0.06
+height = 0.2
+
+[node name="Soda" type="StaticBody3D" unique_id=1000097323]
+script = ExtResource("1_ovcwj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=326813702]
+shape = SubResource("CylinderShape3D_7uhmx")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1775843676]
+mesh = SubResource("CylinderMesh_gigfr")

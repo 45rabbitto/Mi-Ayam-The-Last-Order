@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://b5esev6x1gqmj"]
+
+[ext_resource type="Shader" uid="uid://cvd555slfp1mw" path="res://shaders/glitch_shader.gdshader" id="1_krt82"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uk5sc"]
+shader = ExtResource("1_krt82")
+shader_parameter/intensity = 0.0
+shader_parameter/time_speed = 1.0
+shader_parameter/scanline_strength = 0.3
+shader_parameter/rgb_shift = 0.01
+shader_parameter/distortion = 0.05
+
+[node name="GlitchOverlay" type="CanvasLayer" unique_id=2072852783]
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=704414926]
+material = SubResource("ShaderMaterial_uk5sc")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2

@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://dcun817motwb5"]
+
+[ext_resource type="Script" uid="uid://cdnktlg1m1ejn" path="res://scenes/interactables/poster.gd" id="1_7mwtj"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_iap48"]
+size = Vector3(0.3, 0.1, 0.3)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_7mwtj"]
+size = Vector2(1.5, 2)
+
+[node name="Poster" type="StaticBody3D" unique_id=1735435631]
+script = ExtResource("1_7mwtj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=187453031]
+shape = SubResource("BoxShape3D_iap48")
+debug_color = Color(1, 1, 1, 1)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=83875324]
+mesh = SubResource("PlaneMesh_7mwtj")

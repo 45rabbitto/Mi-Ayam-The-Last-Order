@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://emnmj10afchy"]
+
+[ext_resource type="Shader" uid="uid://vqk7avenskig" path="res://shaders/vignette_overlay.gdshader" id="1_mstyu"]
+[ext_resource type="Script" uid="uid://du2tcjubj4ips" path="res://scenes/effects/vignette_overlay.gd" id="1_q0fmg"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q0fmg"]
+shader = ExtResource("1_mstyu")
+shader_parameter/intensity = 0.3
+shader_parameter/radius = 0.75
+shader_parameter/softness = 0.45
+
+[node name="VignetteOverlay" type="CanvasLayer" unique_id=293999398]
+script = ExtResource("1_q0fmg")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=610293232]
+material = SubResource("ShaderMaterial_q0fmg")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2

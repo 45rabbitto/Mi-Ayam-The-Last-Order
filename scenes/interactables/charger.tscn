@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://c85dx16vo1i8d"]
+
+[ext_resource type="Script" uid="uid://bs4g7rtb0lrr0" path="res://scenes/interactables/charger.gd" id="1_ximle"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ximle"]
+size = Vector3(0.5, 0.3, 0.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_fqfet"]
+size = Vector3(0.5, 0.3, 0.3)
+
+[node name="Charger" type="StaticBody3D" unique_id=1194054758]
+script = ExtResource("1_ximle")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=389209917]
+shape = SubResource("BoxShape3D_ximle")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=525376948]
+mesh = SubResource("BoxMesh_fqfet")

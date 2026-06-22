@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://btl7y2h2f5tpq"]
+
+[ext_resource type="Script" uid="uid://cdyk3tceawrq" path="res://scenes/phone_notification.gd" id="1_8u1qo"]
+
+[node name="PhoneNotification" type="Control" unique_id=1688696787]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_8u1qo")
+
+[node name="Panel" type="Panel" parent="." unique_id=572096102]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 300.0
+offset_top = 20.0
+offset_right = 580.0
+offset_bottom = 80.0
+grow_horizontal = 0
+
+[node name="Label" type="Label" parent="Panel" unique_id=746308395]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Empty"

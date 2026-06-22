@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://dddov7n5rqp7q"]
+
+[ext_resource type="Script" uid="uid://ct1ijrdrsysmw" path="res://scenes/interactables/headset.gd" id="1_4hioh"]
+[ext_resource type="Script" uid="uid://dxp4vbn2jvfvo" path="res://scenes/interactables/collision_shape_3d.gd" id="2_pkwcg"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mgk4b"]
+size = Vector3(0.3, 0.1, 0.3)
+
+[sub_resource type="BoxMesh" id="BoxMesh_s76we"]
+size = Vector3(0.3, 0.1, 0.3)
+
+[node name="Headset" type="StaticBody3D" unique_id=1561413822]
+script = ExtResource("1_4hioh")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1895866119]
+shape = SubResource("BoxShape3D_mgk4b")
+debug_color = Color(1, 1, 1, 1)
+script = ExtResource("2_pkwcg")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1901981556]
+mesh = SubResource("BoxMesh_s76we")

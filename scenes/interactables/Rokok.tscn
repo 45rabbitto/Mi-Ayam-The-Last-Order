@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://bacpj6bvsfqer"]
+
+[ext_resource type="Script" uid="uid://wj1cnhki4td0" path="res://scenes/interactables/rokok.gd" id="1_7ipxc"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_is5bh"]
+size = Vector3(0.1, 0.3, 0.1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_eh2n6"]
+size = Vector3(0.1, 0.3, 0.1)
+
+[node name="Rokok" type="StaticBody3D" unique_id=359991127]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0)
+script = ExtResource("1_7ipxc")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1297488604]
+shape = SubResource("BoxShape3D_is5bh")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1680445963]
+mesh = SubResource("BoxMesh_eh2n6")

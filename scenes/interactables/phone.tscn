@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://dddqqwr0ge2at"]
+
+[ext_resource type="Script" uid="uid://dlcdubgpsdx2s" path="res://scenes/interactables/phone.gd" id="1_6e578"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6e578"]
+size = Vector3(0.15, 0.05, 0.08)
+
+[sub_resource type="BoxMesh" id="BoxMesh_rx8pv"]
+size = Vector3(0.15, 0.05, 0.08)
+
+[node name="Phone" type="StaticBody3D" unique_id=1957559852]
+script = ExtResource("1_6e578")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=99485539]
+shape = SubResource("BoxShape3D_6e578")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=479024913]
+mesh = SubResource("BoxMesh_rx8pv")

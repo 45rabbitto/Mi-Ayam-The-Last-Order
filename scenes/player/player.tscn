@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://cs14om8wf1udr"]
+
+[ext_resource type="Script" uid="uid://djudyivcjmaui" path="res://Scripts/player/player_controller.gd" id="1_8afob"]
+[ext_resource type="Script" uid="uid://bt4daiaglu5e8" path="res://Scripts/interaction/interaction_manager.gd" id="2_dovo2"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_x7p2l"]
+radius = 0.4
+height = 1.8
+
+[node name="Player" type="CharacterBody3D" unique_id=187213136]
+script = ExtResource("1_8afob")
+
+[node name="Head" type="Node3D" parent="." unique_id=746067447]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Head" unique_id=676415982]
+current = true
+
+[node name="RayCast3D" type="RayCast3D" parent="Head" unique_id=1696481456]
+target_position = Vector3(0, 0, -5)
+collide_with_areas = true
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=2111442206]
+
+[node name="InteractionManager" type="Node3D" parent="." unique_id=744792763 groups=["interaction_manager"]]
+script = ExtResource("2_dovo2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=613016940]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.22657627, 0)
+shape = SubResource("CapsuleShape3D_x7p2l")
