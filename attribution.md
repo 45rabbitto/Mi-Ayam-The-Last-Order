@@ -13,8 +13,9 @@ ATTRIBUTION
 - Water Dispenser — Francesco Coldesina (CC BY 4.0)
 - Asbak Rokok - Indonesia — ofushgaming (CC BY 4.0)
 - Trash and Debris — mcsteegs
-- Habitacion Modelada en 3D
+- Habitacion Modelada en 3D ON ITCH IO
 - Marin Kitagawa BY Shinichi Fukuda
+- Doors - Asset - ALSTRA INFINITE
 
 
 FONT CREDITS
