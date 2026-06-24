@@ -1,4 +1,4 @@
-##ATTRIBUTION
+ATTRIBUTION
 
 3D ASSET CREDIT
 - Cell Phone — Matt Gilchrist (CC BY 4.0)
