@@ -17,8 +17,6 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-InventoryManager="*uid://uo0k0rvhsan6"
-SaveManager="*uid://dgmjk4klld7ac"
 PhoneNotif="*uid://bm5ywihoy53u3"
 HorrorEvent="*uid://m8dcwak4m7mm"
 GlitchFX="*uid://b5esev6x1gqmj"
@@ -27,6 +25,8 @@ BlurFX="*uid://dhaiva8b2s4k3"
 LevelManager="*uid://drimh4gcy4a3i"
 Hud="*uid://68e31hu4jyuh"
 SaveLoad="*uid://d2milbl14chm4"
+InventoryManager="*uid://dmsto0d2yq1o3"
+SaveManager="*uid://4264q38orybu"
 
 [input]
 

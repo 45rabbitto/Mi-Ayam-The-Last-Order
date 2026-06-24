@@ -75,6 +75,9 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_6yy7v")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_renlo"]
+size = Vector3(7, 0.1, 7)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_caomd"]
 resource_name = "Cama"
 cull_mode = 2
@@ -1317,9 +1320,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6094728, 0.34443736, 0.2442
 [node name="tembok" type="MeshInstance3D" parent="." unique_id=1500119879]
 mesh = SubResource("ArrayMesh_rq2l0")
 
-[node name="tembok2" type="MeshInstance3D" parent="." unique_id=1204435498]
+[node name="tembok2" type="StaticBody3D" parent="." unique_id=1603018958]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -4.877355, 0, -1.1272602)
-mesh = SubResource("ArrayMesh_rq2l0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="tembok2" unique_id=921269712]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, -1)
+shape = SubResource("BoxShape3D_renlo")
 
 [node name="tembok3" type="MeshInstance3D" parent="." unique_id=1849148990]
 transform = Transform3D(1, -1.5285484e-14, -1.7484555e-07, 0, -1, 8.742278e-08, -1.7484555e-07, -8.742278e-08, -1, -0.022614002, 2.6289737, -1.1188002)
