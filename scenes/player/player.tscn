@@ -1,13 +1,14 @@
 [gd_scene format=3 uid="uid://cs14om8wf1udr"]
 
-[ext_resource type="Script" uid="uid://djudyivcjmaui" path="res://Scripts/player/player_controller.gd" id="1_8afob"]
-[ext_resource type="Script" uid="uid://bt4daiaglu5e8" path="res://Scripts/interaction/interaction_manager.gd" id="2_dovo2"]
+[ext_resource type="Script" uid="uid://djudyivcjmaui" path="res://scripts/player/player_controller.gd" id="1_8afob"]
+[ext_resource type="Script" uid="uid://2su8qvwii1g6" path="res://scripts/player/interaction_manager.gd" id="2_dovo2"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_x7p2l"]
 radius = 0.4
 height = 1.8
 
 [node name="Player" type="CharacterBody3D" unique_id=187213136]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 script = ExtResource("1_8afob")
 
 [node name="Head" type="Node3D" parent="." unique_id=746067447]

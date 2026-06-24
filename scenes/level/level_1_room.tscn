@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://lgmqpmn5nvta"]
 
 [ext_resource type="PackedScene" uid="uid://cs14om8wf1udr" path="res://scenes/player/player.tscn" id="1_t3fsw"]
+[ext_resource type="PackedScene" uid="uid://d3p1u7jppj2v7" path="res://assets/3d/bedroom.tscn" id="3_7elja"]
 [ext_resource type="PackedScene" uid="uid://dqqhdv7fnq6xq" path="res://scenes/levels/level_01_controller.tscn" id="13_pnqwa"]
 
 [node name="Level1Room" type="Node3D" unique_id=829822156]
@@ -13,7 +14,7 @@ transform = Transform3D(0.70710677, -0.49999997, 0.49999997, 0, 0.70710677, 0.70
 
 [node name="Player" parent="." unique_id=187213136 instance=ExtResource("1_t3fsw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-script = null
 
 [node name="Level01Controller" parent="." unique_id=270792703 instance=ExtResource("13_pnqwa")]
-script = null
+
+[node name="Habitacion Modelada en 3D" parent="." unique_id=1948344516 instance=ExtResource("3_7elja")]
