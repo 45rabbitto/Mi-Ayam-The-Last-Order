@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://v5o2h0h2ok0o"]
+
+[ext_resource type="PackedScene" uid="uid://0mxilsjn76m1" path="res://assets/3d/Habitacion Modelada en 3D.glb" id="1_iw0c1"]
+
+[node name="Habitacion Modelada en 3D" unique_id=1948344516 instance=ExtResource("1_iw0c1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.397924, 0, 0)
