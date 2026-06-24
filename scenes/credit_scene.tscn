@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://bf6bnqd2krwha"]
+
+[ext_resource type="Texture2D" uid="uid://bkt7u31qsjihu" path="res://assets/textures/Tak_berjudul89_20260518092019.jpg" id="1_e17b7"]
+[ext_resource type="Script" uid="uid://1og2p8h22bfq" path="res://scenes/credit_scene.gd" id="1_ytlwl"]
+[ext_resource type="FontFile" uid="uid://dn1ys1ju2gq7m" path="res://assets/fonts/VT323-Regular.ttf" id="2_ytlwl"]
+
+[node name="CreditScene" type="Control" unique_id=185193003]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ytlwl")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=652687777]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_e17b7")
+
+[node name="Credit" type="VBoxContainer" parent="." unique_id=1309319543]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -264.0
+offset_top = 27.0
+offset_right = 264.0
+offset_bottom = 792.0
+grow_horizontal = 2
+
+[node name="Credit" type="Label" parent="Credit" unique_id=559508715]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ytlwl")
+theme_override_font_sizes/font_size = 20
+text = "- Cell Phone — Matt Gilchrist (CC BY 4.0)
+- Phone Charger Low Poly — vadzaecc (CC BY 4.0)
+- Coca Cola Soda Can — x2w-soda (CC BY 4.0)
+- Lighter — Johnathon Goswick (CC BY 4.0)
+- Procaster Meow Headset — Lassi Kaukonen (CC BY 4.0)
+- Rokok Gudang Garam — ququ (CC BY 4.0)
+- Coffee Cup Vtuber — shandrew (CC BY 4.0)
+- Indomie — Cool 3D 031 (CC BY-SA 4.0)
+- Spoon — Sid Weston (CC BY 4.0)
+- Water Dispenser — Francesco Coldesina (CC BY 4.0)
+- Asbak Rokok - Indonesia — ofushgaming (CC BY 4.0)
+- Trash and Debris — mcsteegs
+- Habitacion Modelada en 3D ON ITCH IO
+- Marin Kitagawa BY Shinichi Fukuda
+- Doors - Asset - ALSTRA INFINITE
+
+- HelpMe Font - Copyright (c) 2021-2023 GGBotNet
+- Licensed under SIL Open Font License, Version 1.1
+- VT323 Font - Licensed under SIL Open Font License, Version 1.1
+
+- Always Fear: Psychological Horror Starter Kit- Pegadance Infinite
+- Contains music © 2025 - Retro Indie Josh (CC BY 4.0)
+
+"
+
+[node name="BackButton" type="Button" parent="Credit" unique_id=293727794]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ytlwl")
+theme_override_font_sizes/font_size = 40
+text = "KEMBALI"
+
+[connection signal="pressed" from="Credit/BackButton" to="." method="_on_back_button_pressed"]

@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://67aj86faw5af"]
+[gd_scene format=3 uid="uid://70vk36aoxasy"]
 
 [ext_resource type="Texture2D" uid="uid://bkt7u31qsjihu" path="res://assets/textures/Tak_berjudul89_20260518092019.jpg" id="1_ekxnf"]
 [ext_resource type="Script" uid="uid://dht10iub2yksy" path="res://scenes/main_menu.gd" id="1_wu84c"]
@@ -45,6 +45,7 @@ _data = {
 }
 
 [node name="Node2D" type="Node2D" unique_id=1057122740]
+visible = false
 script = ExtResource("1_wu84c")
 
 [node name="BackgroundImage" type="TextureRect" parent="." unique_id=2018322699]
@@ -62,7 +63,7 @@ libraries/ = SubResource("AnimationLibrary_3vvtq")
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="title" type="Label" parent="MenuPanel" unique_id=1279756568]
+[node name="tittle" type="Label" parent="MenuPanel" unique_id=1279756568]
 layout_mode = 0
 offset_left = 68.0
 offset_top = 58.0
@@ -78,9 +79,7 @@ offset_left = 218.0
 offset_top = 338.0
 offset_right = 326.0
 offset_bottom = 396.0
-mouse_filter = 1
 theme = ExtResource("3_wu84c")
-action_mode = 0
 text = "START"
 
 [node name="ContinueButton" type="Button" parent="MenuPanel" unique_id=1746953257]
@@ -89,21 +88,17 @@ offset_left = 217.0
 offset_top = 408.0
 offset_right = 385.0
 offset_bottom = 466.0
-mouse_filter = 1
 theme = ExtResource("3_wu84c")
-action_mode = 0
 text = "CONTINUE
 "
 
 [node name="QuitButton" type="Button" parent="MenuPanel" unique_id=2094972905]
 layout_mode = 0
-offset_left = 218.0
-offset_top = 475.0
-offset_right = 306.0
-offset_bottom = 533.0
-mouse_filter = 1
+offset_left = 222.0
+offset_top = 514.0
+offset_right = 310.0
+offset_bottom = 572.0
 theme = ExtResource("3_wu84c")
-action_mode = 0
 text = "QUIT"
 
 [connection signal="pressed" from="MenuPanel/StartButton" to="." method="_on_start_button_pressed"]
