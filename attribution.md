@@ -14,6 +14,7 @@ ATTRIBUTION
 - Asbak Rokok - Indonesia — ofushgaming (CC BY 4.0)
 - Trash and Debris — mcsteegs
 - Habitacion Modelada en 3D
+- Marin Kitagawa BY Shinichi Fukuda
 
 
 FONT CREDITS
