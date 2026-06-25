@@ -11,16 +11,11 @@ func interact(player):
 
 	print("=== LAPTOP INTERACT ===")
 
-	var controllers = get_tree().get_nodes_in_group("level01_controller")
+	var mesh = find_child("MeshInstance3D", true, false)
 
-	if controllers.size() == 0:
-		print("NO CONTROLLER FOUND")
-		return
+	if mesh:
+		mesh.visible = false
+	else:
+		print("MESH TIDAK DITEMUKAN")
 
-	var controller = controllers[0]
-
-	print("Controller =", controller)
-
-	print("Memanggil clue_inspected")
-
-	controller.clue_inspected("Laptop")
+	queue_free()

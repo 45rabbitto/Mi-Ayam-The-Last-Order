@@ -9,7 +9,13 @@ extends CharacterBody3D
 
 var move_input := Vector2.ZERO
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+var inventory = []
 
+func add_item(item_name):
+	inventory.append(item_name)
+	print("ITEM DITAMBAH:", item_name)
+	print("INVENTORY:", inventory)
+	
 func _ready():
 	add_to_group("player")
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)

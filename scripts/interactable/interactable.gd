@@ -1,119 +1,55 @@
 extends StaticBody3D
 class_name Interactable
 
-# =========================
-# INTERACTION DATA
-# =========================
+@export var object_name: String = ""
+@export var inspection_text: String = ""
+@export var is_quest_item: bool = false
+@export var quest_item_name: String = ""
+@export var highlight_color: Color = Color.YELLOW
 
-@export var object_name : String = "Object"
-
-@export_multiline var inspect_text : String = ""
-
-@export var interaction_text : String = "Interact"
-
-@export var can_interact : bool = true
-
-@export var highlight_on_focus : bool = true
-
-
-# =========================
-# VISUAL
-# =========================
-
-@onready var mesh : MeshInstance3D = get_node_or_null("MeshInstance3D")
-
-var original_material : Material
-var highlight_material : StandardMaterial3D
-
-
-# =========================
-# READY
-# =========================
+@onready var highlight_mesh = $HighlightMesh
+var is_highlighted = false
+var is_in_inventory = false
 
 func _ready():
+	if highlight_mesh:
+		highlight_mesh.visible = false
+		highlight_mesh.material_override = StandardMaterial3D.new()
+		highlight_mesh.material_override.emission_enabled = true
+		highlight_mesh.material_override.emission = highlight_color
+		highlight_mesh.material_override.emission_energy = 0.3
 
-	if mesh:
+func _on_mouse_entered():
+	is_highlighted = true
+	if highlight_mesh:
+		highlight_mesh.visible = true
+	# Tampilkan nama objek di UI
+	Global.show_interaction_hint(object_name)
 
-		original_material = mesh.material_override
+func _on_mouse_exited():
+	is_highlighted = false
+	if highlight_mesh:
+		highlight_mesh.visible = false
+	Global.hide_interaction_hint()
 
-		highlight_material = StandardMaterial3D.new()
-
-		highlight_material.albedo_color = Color(1,1,0)
-
-		highlight_material.emission_enabled = true
-
-		highlight_material.emission = Color(1,1,0)
-
-		highlight_material.emission_energy_multiplier = 2.0
-
-
-# =========================
-# FOCUS
-# =========================
-
-func focus():
-
-	if not highlight_on_focus:
+func interact():
+	if is_in_inventory:
 		return
-
-	if mesh:
-		mesh.material_override = highlight_material
-
-
-func unfocus():
-
-	if mesh:
-		mesh.material_override = original_material
-
-
-# =========================
-# MAIN INTERACTION
-# =========================
-
-func interact(player):
-
-	if not can_interact:
-		return
-
-	print("Interacting with: ", object_name)
-
-
-# =========================
-# INSPECT
-# =========================
+	
+	if is_quest_item:
+		add_to_inventory()
+	else:
+		inspect()
+	
+	emit_signal("interacted")
 
 func inspect():
+	# Tampilkan dialog Raka
+	Global.show_dialog(object_name + ": " + inspection_text)
 
-	if inspect_text == "":
-		return
-
-	if UiManager:
-
-		UiManager.notify(inspect_text)
-
-
-# =========================
-# ITEM MATCHING
-# =========================
-
-func use_item(item_name : String):
-
-	pass
-
-
-# =========================
-# PUZZLE OBJECT
-# =========================
-
-func place_object():
-
-	pass
-
-
-# =========================
-# NARRATIVE TRIGGER
-# =========================
-
-func trigger_story():
-
-	pass
+func add_to_inventory():
+	is_in_inventory = true
+	Global.inventory.append(quest_item_name)
+	visible = false
+	Global.show_notification("Item didapat: " + quest_item_name)
+	emit_signal("collected")
