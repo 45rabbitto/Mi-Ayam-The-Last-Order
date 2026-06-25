@@ -30,7 +30,7 @@ func _on_continue_button_pressed():
 func _on_credit_button_pressed():
 	button_press_effect($MenuPanel/CreditButton)
 	await get_tree().create_timer(0.1).timeout
-	get_tree().change_scene_to_file("res://scenes/credit.tscn")  # ← TAMBAHKAN INI!
+	get_tree().change_scene_to_file("res://scenes/credit/credit_scene.tscn")
 
 func _on_quit_button_pressed():
 	button_press_effect($MenuPanel/QuitButton)
