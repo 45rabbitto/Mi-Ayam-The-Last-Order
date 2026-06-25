@@ -16,7 +16,6 @@ func _ready():
 
 func _physics_process(delta):
 	
-	print("PLAYER AKTIF")
 	
 	handle_movement(delta)
 	handle_gravity(delta)
@@ -31,7 +30,7 @@ func handle_movement(delta):
 		"move_forward",
 		"move_backward"
 	)
-	print("INPUT =", input_dir)
+	
 
 	if move_input != Vector2.ZERO:
 		input_dir = move_input
@@ -62,9 +61,12 @@ func handle_gravity(delta):
 		velocity.y = 0
 
 func _input(event):
+	print("ADA INPUT")
 
 	if event is InputEventMouseMotion:
-
+		print("E DITEKAN")
+		var interaction_manager = $InteractionManager
+		
 		rotate_y(
 			-event.relative.x *
 			mouse_sensitivity
@@ -84,7 +86,7 @@ func _input(event):
 	if event.is_action_pressed("interact"):
 
 		var interaction_manager = $InteractionManager
-
+		print("Manager =", interaction_manager)
 		if interaction_manager:
 			interaction_manager.try_interact()
 

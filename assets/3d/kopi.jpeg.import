@@ -2,20 +2,21 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bkt7u31qsjihu"
-path="res://.godot/imported/Tak_berjudul89_20260518092019.jpg-95c09828178b8b8d560d55ec4dc50b51.ctex"
+uid="uid://31udqelf8ixo"
+path.s3tc="res://.godot/imported/kopi.jpeg-6125f9cbd21a6a71ff123526d2b1fb90.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
-source_file="res://assets/textures/Tak_berjudul89_20260518092019.jpg"
-dest_files=["res://.godot/imported/Tak_berjudul89_20260518092019.jpg-95c09828178b8b8d560d55ec4dc50b51.ctex"]
+source_file="res://assets/3d/kopi.jpeg"
+dest_files=["res://.godot/imported/kopi.jpeg-6125f9cbd21a6a71ff123526d2b1fb90.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
@@ -23,7 +24,7 @@ compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=false
+mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
@@ -37,4 +38,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=1
+detect_3d/compress_to=0

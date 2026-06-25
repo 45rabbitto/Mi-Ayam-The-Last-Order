@@ -1,91 +1,115 @@
-extends Node
+extends Node3D
 
-@export var raycast: RayCast3D
+@onready var raycast: RayCast3D = $"../Head/RayCast3D"
 
 var current_target = null
+
+func _ready():
+
+	print("InteractionManager Ready")
+	print("Raycast =", raycast)
 
 func _process(_delta):
 
 	check_interaction()
 
 # =====================================================
-# DETECT OBJECT
+# DETEKSI OBJEK
 # =====================================================
-
 func check_interaction():
 
-	if !raycast:
+	if raycast == null:
 		return
 
 	if !raycast.is_colliding():
-
 		current_target = null
-
-		if Hud:
-			Hud.clear_interaction()
-
+		Hud.hide_interaction()
 		return
 
 	var collider = raycast.get_collider()
 
 	if collider == null:
-
 		current_target = null
-
-		if Hud:
-			Hud.clear_interaction()
-
+		Hud.hide_interaction()
 		return
 
-	if collider.has_method("interact"):
+	var target = collider
 
-		current_target = collider
+	# naik ke parent sampai ketemu interactable
+	while target != null and !target.is_in_group("interactable"):
+		target = target.get_parent()
 
-		if Hud:
-
-			var text = "Interact"
-
-			if collider.has_variable("interaction_name"):
-				text = collider.interaction_name
-
-			Hud.show_interaction(
-				"[E] " + text
-			)
-
-	else:
-
+	if target == null:
 		current_target = null
+		Hud.hide_interaction()
+		return
 
-		if Hud:
-			Hud.clear_interaction()
+	if target.is_in_group("player"):
+		current_target = null
+		Hud.hide_interaction()
+		return
 
+	current_target = target
+
+	var prompt = "Interact"
+
+	if current_target.has_method("get_prompt"):
+		prompt = current_target.get_prompt()
+
+	Hud.show_interaction("[E] " + prompt)
+	
 # =====================================================
-# KEYBOARD
+# INPUT KEYBOARD
 # =====================================================
 
 func _input(event):
 
 	if event.is_action_pressed("interact"):
 
-		perform_interaction()
+		print("TOMBOL INTERACT")
+
+		try_interact()
 
 # =====================================================
-# ANDROID BUTTON
+# SUPPORT PLAYER CONTROLLER
 # =====================================================
 
-func interact_button_pressed():
+func try_interact():
+
+	print("===== TRY INTERACT =====")
+	print("CURRENT TARGET =", current_target)
 
 	perform_interaction()
 
 # =====================================================
-# EXECUTE
+# SUPPORT ANDROID BUTTON
+# =====================================================
+
+func interact_button_pressed():
+
+	try_interact()
+
+# =====================================================
+# EKSEKUSI INTERAKSI
 # =====================================================
 
 func perform_interaction():
 
+	print("PERFORM INTERACTION")
+	print("CURRENT TARGET =", current_target)
+
 	if current_target == null:
+
+		print("TARGET NULL")
 		return
 
-	if current_target.has_method("interact"):
+	print("TARGET =", current_target.name)
+	print("HAS INTERACT =", current_target.has_method("interact"))
 
-		current_target.interact()
+	var player = get_tree().get_first_node_in_group("player")
+
+	print("PLAYER =", player)
+
+	current_target.interact(player)
+
+	print("INTERACT SELESAI")

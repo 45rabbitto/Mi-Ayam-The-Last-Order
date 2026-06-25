@@ -28,6 +28,7 @@
 [ext_resource type="PackedScene" uid="uid://bh6d3lwhni0j8" path="res://assets/3d/asbak_rokok_-_indonesia.glb" id="25_xhfuc"]
 [ext_resource type="PackedScene" uid="uid://cnkwrf2nc0xey" path="res://assets/3d/procaster_meow_headset.glb" id="26_mvrcn"]
 [ext_resource type="Texture2D" uid="uid://d1wy8k1nb1dxv" path="res://icons/sslaptop.png" id="28_pccvf"]
+[ext_resource type="Script" uid="uid://bf3d5dfi8743q" path="res://scenes/interactables/laptop.gd" id="28_ua27e"]
 [ext_resource type="PackedScene" uid="uid://3l5cy7phf3or" path="res://assets/3d/phone_charger_low_poly.glb" id="29_4j4pb"]
 [ext_resource type="PackedScene" uid="uid://f0vvfwyxdab5" path="res://assets/3d/coca_cola_soda_can.glb" id="30_gcr7k"]
 [ext_resource type="PackedScene" uid="uid://d1v30nobc1llj" path="res://assets/3d/indomie.glb" id="31_xhfuc"]
@@ -36,6 +37,9 @@
 [ext_resource type="ArrayMesh" uid="uid://cjmudc0rd40ja" path="res://assets/3d/Door5.obj" id="34_6d0hp"]
 [ext_resource type="Texture2D" uid="uid://drhmyjcjsnnem" path="res://assets/3d/TrashAndDebris_LitterDecal_2.png" id="35_mcgty"]
 [ext_resource type="Texture2D" uid="uid://diu3koe4p1wrq" path="res://assets/3d/TrashAndDebris_Flat Cans.png" id="36_ua27e"]
+[ext_resource type="PackedScene" uid="uid://ceffh0yy737br" path="res://assets/3d/clock.glb" id="37_mcgty"]
+[ext_resource type="Texture2D" uid="uid://31udqelf8ixo" path="res://assets/3d/kopi.jpeg" id="38_ua27e"]
+[ext_resource type="PackedScene" uid="uid://cl8nmbebcayft" path="res://assets/3d/spoon.glb" id="39_80574"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vsc1r"]
 resource_name = "Paredes"
@@ -1315,7 +1319,7 @@ shadow_mesh = SubResource("ArrayMesh_rjgnb")
 [sub_resource type="BoxShape3D" id="BoxShape3D_80574"]
 
 [node name="Habitacion Modelada en 3D" type="Node3D" unique_id=1948344516]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6094728, 0.34443736, 0.24427032)
+transform = Transform3D(0.9996762, -0.025444156, 0, 0.025444156, 0.9996762, 0, 0, 0, 1, 4.1358347, -1.3215475, -2.9775078)
 
 [node name="tembok" type="MeshInstance3D" parent="." unique_id=1500119879]
 mesh = SubResource("ArrayMesh_rq2l0")
@@ -1456,7 +1460,7 @@ transform = Transform3D(0.27764696, 0, 0, 0, 0.27764696, 0, 0, 0, 0.27764696, -4
 mesh = SubResource("ArrayMesh_4eb4e")
 
 [node name="fotokecil" type="Sprite3D" parent="." unique_id=262972824]
-transform = Transform3D(-6.5567085e-09, 0, 0.15, 0, 0.15, 0, -0.15, 0, -6.5567085e-09, 0.4484229, 1.7175585, -1.245022)
+transform = Transform3D(-6.5567085e-09, 0, 0.15, 0, 0.15, 0, -0.15, 0, -6.5567085e-09, 0.4484229, 1.7175585, -1.5212086)
 texture = ExtResource("18_mcgty")
 
 [node name="marin1" type="Sprite3D" parent="." unique_id=834466292]
@@ -1529,6 +1533,7 @@ transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, -0.047831357, 0.7133
 shape = SubResource("BoxShape3D_mcgty")
 
 [node name="laptop" type="Area3D" parent="." unique_id=839492394]
+script = ExtResource("28_ua27e")
 
 [node name="laptop" type="MeshInstance3D" parent="laptop" unique_id=1383451692]
 transform = Transform3D(0.027253255, 0, 0, 0, 0.027253255, 0, 0, 0, 0.027253255, -4.1190863, 1.2339423, 1.0017543)
@@ -1538,8 +1543,8 @@ mesh = SubResource("ArrayMesh_02y8f")
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -4.242808, 1.1697326, 1.0489869)
 shape = SubResource("BoxShape3D_ua27e")
 
-[node name="Sprite3D" type="Sprite3D" parent="." unique_id=339078009]
-transform = Transform3D(0.055, 0, 0, 0, 0.049559236, -0.023851262, 0, 0.023851262, 0.049559236, -4.2269816, 1.2672, 1.1935498)
+[node name="ss" type="Sprite3D" parent="." unique_id=339078009]
+transform = Transform3D(-0.054999985, 2.2118911e-09, -4.307367e-09, 0, 0.04964217, 0.023678109, 4.808252e-09, 0.023678105, -0.049642187, -4.2267537, 1.267194, 1.1935498)
 texture = ExtResource("28_pccvf")
 
 [node name="charger" type="MeshInstance3D" parent="." unique_id=1839862993]
@@ -1567,24 +1572,24 @@ transform = Transform3D(0.06, 0, 0, 0, 0.06, 0, 0, 0, 0.06, -2.3799498, 0.830497
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.14458156)
 
 [node name="Sketchfab_Scene" parent="soda4" unique_id=737234381 instance=ExtResource("30_gcr7k")]
-transform = Transform3D(0.06, 0, 0, 0, 0.06, 0, 0, 0, 0.06, -2.3040156, 0.83049726, 0.44351864)
+transform = Transform3D(0.059999995, 0, 0, 0, 0.059999995, 0, 0, 0, 0.06, -2.3040156, 0.83049726, 0.39530376)
 
 [node name="soda6" type="MeshInstance3D" parent="." unique_id=164785942]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.14458156)
 
 [node name="Sketchfab_Scene" parent="soda6" unique_id=1392598803 instance=ExtResource("30_gcr7k")]
-transform = Transform3D(0.06, 0, 0, 0, 0.06, 0, 0, 0, 0.06, -2.150178, 0.83049726, 0.57037765)
+transform = Transform3D(0.059999995, 0, 0, 0, 0.059999995, 0, 0, 0, 0.06, -2.150178, 0.83049726, 0.30480406)
 
 [node name="soda5" type="MeshInstance3D" parent="." unique_id=186354227]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.14458156)
 
 [node name="Sketchfab_Scene" parent="soda5" unique_id=46427000 instance=ExtResource("30_gcr7k")]
-transform = Transform3D(0.06, 0, 0, 0, 0.06, 0, 0, 0, 0.06, -2.4763808, 0.83049726, 0.54665184)
+transform = Transform3D(0.059999987, 0, 0, 0, 0.059999987, 0, 0, 0, 0.06, -2.1362274, 0.82183945, 0.49659273)
 
 [node name="soda2" type="MeshInstance3D" parent="." unique_id=500078311]
 
 [node name="Sketchfab_Scene" parent="soda2" unique_id=993928601 instance=ExtResource("30_gcr7k")]
-transform = Transform3D(0.06, 0, 0, 0, 0.06, 0, 0, 0, 0.06, -2.2047195, 0.83296955, 0.41231513)
+transform = Transform3D(0.05999999, 0, 0, 0, 0.05999999, 0, 0, 0, 0.06, -2.116263, 0.8307181, 0.24595106)
 
 [node name="indomie" type="MeshInstance3D" parent="." unique_id=767257292]
 
@@ -1636,3 +1641,26 @@ texture = ExtResource("36_ua27e")
 [node name="sampah3" type="Sprite3D" parent="." unique_id=24203818]
 transform = Transform3D(-0.160734, -0.11901505, 5.202313e-09, 0, -8.742278e-09, -0.2, 0.11901505, -0.160734, 7.0259065e-09, -3.5532613, 0.25258017, 0.9164362)
 texture = ExtResource("36_ua27e")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1949536879]
+
+[node name="Sketchfab_Scene" parent="MeshInstance3D" unique_id=2099164268 instance=ExtResource("37_mcgty")]
+transform = Transform3D(-9.75217e-05, -0.08999987, -0.00012066202, -0.0004215412, 0.00012111751, -0.08999894, 0.08999896, -9.695542e-05, -0.00042167178, 0.45471668, 1.7234627, -0.62807083)
+
+[node name="kopi" type="Sprite3D" parent="." unique_id=711406665]
+transform = Transform3D(0.022587307, 0.076745115, 3.3546357e-09, 0, -3.496911e-09, 0.08, 0.076745115, -0.022587307, -9.873224e-10, -2.450025, 0.83329064, 0.7203353)
+texture = ExtResource("38_ua27e")
+
+[node name="kopi2" type="Sprite3D" parent="." unique_id=1668638600]
+transform = Transform3D(0.022587307, 0.076745115, 3.3546357e-09, 0, -3.496911e-09, 0.08, 0.076745115, -0.022587307, -9.873224e-10, -2.450025, 0.83329064, 0.6459735)
+texture = ExtResource("38_ua27e")
+
+[node name="kopi3" type="Sprite3D" parent="." unique_id=1480134055]
+transform = Transform3D(0.022587307, 0.076745115, 3.4924597e-09, 0, -3.4924597e-09, 0.08, 0.076745115, -0.022587307, -9.873224e-10, -2.5075853, 0.83475566, 0.57570165)
+texture = ExtResource("38_ua27e")
+
+[node name="sendok" type="MeshInstance3D" parent="." unique_id=695955029]
+transform = Transform3D(0.09999919, -2.8144568e-05, -0.00037745014, -2.814061e-05, 0.098894194, -0.01482965, 0.00037745014, 0.014829638, 0.09889358, -2.6983376, 0.76097316, 0.50430006)
+
+[node name="Sketchfab_Scene" parent="sendok" unique_id=754651236 instance=ExtResource("39_80574")]
+transform = Transform3D(1.0000001, -1.4551915e-09, 0, 4.656613e-10, 1, 0, 4.656613e-10, 1.4901161e-08, 1.0000001, 0.0144460425, 0.56757545, -0.008114696)
