@@ -1541,8 +1541,8 @@ mesh = SubResource("ArrayMesh_02y8f")
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -4.242808, 1.1697326, 1.0489869)
 shape = SubResource("BoxShape3D_ua27e")
 
-[node name="Sprite3D" type="Sprite3D" parent="." unique_id=339078009]
-transform = Transform3D(0.055, 0, 0, 0, 0.049559236, -0.023851262, 0, 0.023851262, 0.049559236, -4.2269816, 1.2672, 1.1935498)
+[node name="ss" type="Sprite3D" parent="." unique_id=339078009]
+transform = Transform3D(-0.054999985, 2.2118911e-09, -4.307367e-09, 0, 0.04964217, 0.023678109, 4.808252e-09, 0.023678105, -0.049642187, -4.2267537, 1.267194, 1.1935498)
 texture = ExtResource("28_pccvf")
 
 [node name="charger" type="MeshInstance3D" parent="." unique_id=1839862993]

@@ -27,6 +27,7 @@ Hud="*uid://68e31hu4jyuh"
 SaveLoad="*uid://d2milbl14chm4"
 InventoryManager="*uid://dmsto0d2yq1o3"
 SaveManager="*uid://4264q38orybu"
+Global="*uid://cl2vafnc1swoy"
 
 [input]
 
