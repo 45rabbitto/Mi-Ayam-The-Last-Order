@@ -9,14 +9,19 @@ extends CharacterBody3D
 
 var move_input := Vector2.ZERO
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+var inventory = []
 
+func add_item(item_name):
+	inventory.append(item_name)
+	print("ITEM DITAMBAH:", item_name)
+	print("INVENTORY:", inventory)
+	
 func _ready():
 	add_to_group("player")
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 func _physics_process(delta):
 	
-	print("PLAYER AKTIF")
 	
 	handle_movement(delta)
 	handle_gravity(delta)
@@ -31,7 +36,7 @@ func handle_movement(delta):
 		"move_forward",
 		"move_backward"
 	)
-	print("INPUT =", input_dir)
+	
 
 	if move_input != Vector2.ZERO:
 		input_dir = move_input
@@ -62,9 +67,12 @@ func handle_gravity(delta):
 		velocity.y = 0
 
 func _input(event):
+	print("ADA INPUT")
 
 	if event is InputEventMouseMotion:
-
+		print("E DITEKAN")
+		var interaction_manager = $InteractionManager
+		
 		rotate_y(
 			-event.relative.x *
 			mouse_sensitivity
@@ -84,7 +92,7 @@ func _input(event):
 	if event.is_action_pressed("interact"):
 
 		var interaction_manager = $InteractionManager
-
+		print("Manager =", interaction_manager)
 		if interaction_manager:
 			interaction_manager.try_interact()
 

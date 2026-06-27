@@ -1,7 +1,7 @@
 extends Node
 
 @export var total_clues := 5
-@export var next_level_scene := "res://scenes/levels/level_02.tscn"
+@export var next_level_scene := "res://scenes/level/level_02.tscn"
 
 var inspected_count := 0
 
@@ -23,7 +23,7 @@ var inspected_objects = []
 
 func _ready():
 
-	add_to_group("level_controller")
+	add_to_group("level01_controller")
 
 	print("LEVEL 01 READY")
 
@@ -39,7 +39,10 @@ func _ready():
 # =====================================================
 
 func clue_inspected(object_name: String):
-
+	
+	print("=== clue_inspected DIPANGGIL ===")
+	print("Objek =", object_name)
+	
 	if chapter_completed:
 		return
 

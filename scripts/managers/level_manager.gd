@@ -1,156 +1,175 @@
 extends Node
 
 # =====================================
+# LEVEL SCENES
+# =====================================
+
+const LEVEL_1 = "res://scenes/level/level-1_room.tscn"
+const LEVEL_2 = "res://scenes/level/level_2_glitch-room.tscn"
+const LEVEL_3 = "res://scenes/levels/level_3_flashback.tscn"
+const LEVEL_4 = "res://scenes/levels/level_4_order.tscn"
+const LEVEL_5 = "res://scenes/levels/level_5_ending.tscn"
+
+# =====================================
 # LEVEL DATA
 # =====================================
 
-var current_level := 1
+var current_level : int = 1
+var current_checkpoint : int = 0
 
 # =====================================
-# CHAPTER 1 STATES
+# LOAD LEVEL
 # =====================================
 
-enum Level1State {
+func load_level(level:int):
 
-	ENTER_ROOM,
-	INSPECT_OBJECTS,
-	TAKE_PHONE,
-	FIND_CHARGER,
-	CHARGE_PHONE,
-	PHONE_ON,
-	CHECK_MISSED_CALL,
-	FINISHED
-}
+	current_level = level
 
-var level1_state = Level1State.ENTER_ROOM
+	match level:
 
-# =====================================
-# OBJECTIVES
-# =====================================
+		1:
+			get_tree().change_scene_to_file(LEVEL_1)
 
-var objectives = {
+		2:
+			get_tree().change_scene_to_file(LEVEL_2)
 
-	Level1State.ENTER_ROOM:
-	"Masuk ke kamar",
+		3:
+			get_tree().change_scene_to_file(LEVEL_3)
 
-	Level1State.INSPECT_OBJECTS:
-	"Periksa semua benda di kamar",
+		4:
+			get_tree().change_scene_to_file(LEVEL_4)
 
-	Level1State.TAKE_PHONE:
-	"Ambil HP",
+		5:
+			get_tree().change_scene_to_file(LEVEL_5)
 
-	Level1State.FIND_CHARGER:
-	"Cari charger",
-
-	Level1State.CHARGE_PHONE:
-	"Gunakan charger ke HP",
-
-	Level1State.PHONE_ON:
-	"HP menyala",
-
-	Level1State.CHECK_MISSED_CALL:
-	"Periksa panggilan dari Beni",
-
-	Level1State.FINISHED:
-	"Chapter selesai"
-}
-
-# =====================================
-# SET STATE
-# =====================================
-
-func set_level1_state(new_state):
-
-	level1_state = new_state
-
-	print(
-		"LEVEL 1 STATE -> ",
-		level1_state
-	)
-
-	update_hud()
-
-# =====================================
-# GET OBJECTIVE
-# =====================================
-
-func get_current_objective() -> String:
-
-	if objectives.has(level1_state):
-
-		return objectives[level1_state]
-
-	return "-"
-
-# =====================================
-# UPDATE HUD
-# =====================================
-
-func update_hud():
-
-	if Hud:
-
-		Hud.set_objective(
-			get_current_objective()
-		)
+	print("Load Level:", level)
 
 # =====================================
 # NEXT LEVEL
 # =====================================
 
-func load_level(level_number:int):
+func next_level():
 
-	current_level = level_number
+	current_level += 1
 
-	match level_number:
+	load_level(current_level)
+
+# =====================================
+# RESTART LEVEL
+# =====================================
+
+func restart_level():
+
+	load_level(current_level)
+
+# =====================================
+# CHECKPOINT
+# =====================================
+
+func set_checkpoint(id:int):
+
+	current_checkpoint = id
+
+	print("Checkpoint:", id)
+
+func load_checkpoint():
+
+	load_level(current_level)
+
+# =====================================
+# LEVEL SETUP
+# =====================================
+
+func initialize_level():
+
+	match current_level:
 
 		1:
-			get_tree().change_scene_to_file(
-				"res://scenes/levels/level_1_room.tscn"
-			)
+			setup_level_1()
 
 		2:
-			get_tree().change_scene_to_file(
-				"res://scenes/levels/level_2_glitch.tscn"
-			)
+			setup_level_2()
 
 		3:
-			get_tree().change_scene_to_file(
-				"res://scenes/levels/level_3_flashback.tscn"
-			)
+			setup_level_3()
 
 		4:
-			get_tree().change_scene_to_file(
-				"res://scenes/levels/level_4_order.tscn"
-			)
+			setup_level_4()
 
 		5:
-			get_tree().change_scene_to_file(
-				"res://scenes/levels/level_5_ending.tscn"
-			)
+			setup_level_5()
 
 # =====================================
-# SAVE DATA
+# LEVEL 1
+# Eksplorasi Kamar
 # =====================================
 
-func get_save_data() -> Dictionary:
+func setup_level_1():
 
-	return {
+	ObjectiveManager.set_objective(
+		"Periksa seluruh kamar"
+	)
 
-		"current_level": current_level,
-		"level1_state": level1_state
-	}
+	UiManager.notify(
+		"HP mati. Cari tahu apa yang terjadi."
+	)
 
 # =====================================
-# LOAD DATA
+# LEVEL 2
+# Posisikan Objek
 # =====================================
 
-func load_save_data(data: Dictionary):
+func setup_level_2():
 
-	if data.has("current_level"):
-		current_level = data["current_level"]
+	ObjectiveManager.set_objective(
+		"Kembalikan benda ke posisi awal"
+	)
 
-	if data.has("level1_state"):
-		level1_state = data["level1_state"]
+	UiManager.notify(
+		"Ada yang berbeda dengan kamar ini..."
+	)
 
-	update_hud()
+# =====================================
+# LEVEL 3
+# Flashback
+# =====================================
+
+func setup_level_3():
+
+	ObjectiveManager.set_objective(
+		"Selesaikan rutinitas malam"
+	)
+
+	UiManager.notify(
+		"Ingat kembali malam terakhir..."
+	)
+
+# =====================================
+# LEVEL 4
+# Pesan Mi Ayam
+# =====================================
+
+func setup_level_4():
+
+	ObjectiveManager.set_objective(
+		"Pesan Mi Ayam"
+	)
+
+	UiManager.notify(
+		"Pandangan mulai kabur..."
+	)
+
+# =====================================
+# LEVEL 5
+# Setelah Sunyi
+# =====================================
+
+func setup_level_5():
+
+	ObjectiveManager.set_objective(
+		"Jawab Telepon"
+	)
+
+	UiManager.notify(
+		"Kenapa semuanya terasa berbeda?"
+	)
