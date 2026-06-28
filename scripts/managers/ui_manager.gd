@@ -1,26 +1,27 @@
-extends Node
+extends CanvasLayer
 
-var hud = null
 
-func register_hud(hud_node):
-	hud = hud_node
+@onready var dialog_panel = $DialogBox
+@onready var dialog_label = $DialogBox/Label
 
-func notify(text):
-	if hud:
-		hud.notify(text)
+@onready var hint_panel = $InteractionHint
+@onready var hint_label = $InteractionHint/Label
 
-func show_interaction(text):
-	if hud:
-		hud.show_interaction(text)
+@onready var notification_panel = $NotificationPanel
+@onready var notification_label = $NotificationPanel/Label
 
-func hide_interaction():
-	if hud:
-		hud.hide_interaction()
 
-func set_objective(text):
-	if hud:
-		hud.set_objective(text)
+func _ready():
 
-func update_condition(text):
-	if hud:
-		hud.update_condition(text)
+	Global.dialog_panel = dialog_panel
+	Global.dialog_label = dialog_label
+
+	Global.hint_panel = hint_panel
+	Global.hint_label = hint_label
+
+	Global.notification_panel = notification_panel
+	Global.notification_label = notification_label
+
+	dialog_panel.visible = false
+	hint_panel.visible = false
+	notification_panel.visible = false

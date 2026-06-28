@@ -1,49 +1,45 @@
 extends Node
 
-@onready var raycast = get_node_or_null("../Head/RayCast3D")
+@onready var raycast = $"../Head/Camera3D/RayCast3D"
 
-var current_target = null
+var current_object: Interactable = null
 
-func _process(delta):
-	check_interaction()
 
-func check_interaction():
+func _process(_delta):
+	check_object()
 
-	if raycast == null:
+
+func check_object():
+
+	# Matikan highlight objek sebelumnya
+	if current_object:
+		current_object.hide_highlight()
+
+	current_object = null
+
+	# Tidak mengenai apa pun
+	if !raycast.is_colliding():
+		Global.hide_interaction_hint()
 		return
 
-	if raycast.is_colliding():
+	var collider = raycast.get_collider()
 
-		var collider = raycast.get_collider()
+	if collider is Interactable:
 
-		if collider:
+		current_object = collider
 
-			var parent = collider.get_parent()
+		current_object.show_highlight()
 
-			if parent is Interactable:
+		Global.show_interaction_hint("Tekan E untuk inspeksi")
 
-				current_target = parent
-				show_ui()
-				return
+	else:
 
-	current_target = null
-	hide_ui()
+		Global.hide_interaction_hint()
 
-func show_ui():
-
-	var ui = get_tree().get_first_node_in_group("interaction_ui")
-
-	if ui and current_target:
-		ui.show_interaction(current_target.interaction_name)
-
-func hide_ui():
-
-	var ui = get_tree().get_first_node_in_group("interaction_ui")
-
-	if ui:
-		ui.hide_interaction()
 
 func try_interact():
 
-	if current_target:
-		current_target.interact()
+	if current_object == null:
+		return
+
+	current_object.interact()

@@ -18,7 +18,7 @@ func add_item(item_name):
 	
 func _ready():
 	add_to_group("player")
-	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _physics_process(delta):
 	
@@ -67,7 +67,7 @@ func handle_gravity(delta):
 		velocity.y = 0
 
 func _input(event):
-	print("ADA INPUT")
+	print("E DITEKAN")
 
 	if event is InputEventMouseMotion:
 		print("E DITEKAN")

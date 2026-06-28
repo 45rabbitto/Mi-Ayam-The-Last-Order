@@ -28,9 +28,10 @@ SaveLoad="*uid://d2milbl14chm4"
 InventoryManager="*uid://dmsto0d2yq1o3"
 SaveManager="*uid://4264q38orybu"
 Global="*uid://cl2vafnc1swoy"
-UiManager="*uid://b1m4dfbfgl1wf"
 ObjectiveManager="*uid://cd82u1q701xhk"
 GameManager="*uid://c0ncnyvmof1mr"
+AudioManager="*uid://vqleleew87f8"
+UiManager="*uid://dc3kq7h5nc3e1"
 
 [input]
 

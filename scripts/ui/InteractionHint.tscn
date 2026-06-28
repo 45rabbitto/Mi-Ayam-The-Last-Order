@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://m8g5j3xi1rwe"]
+
+[node name="InteractionHint" type="CanvasLayer" unique_id=1593302451]
+
+[node name="Label" type="Label" parent="." unique_id=263899581]
+offset_left = -32.0
+offset_top = -25.0
+offset_right = 40.0
+offset_bottom = 23.0

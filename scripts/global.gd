@@ -1,52 +1,101 @@
-extends Area3D
-class_name GlobalManager
+extends Node
 
-signal interacted
-signal collected
+# ==========================
+# INVENTORY
+# ==========================
+var inventory: Array[String] = []
 
-@export var object_name: String = ""
-@export_multiline var inspection_text: String = ""
-@export var is_quest_item: bool = false
-@export var quest_item_name: String = ""
+# ==========================
+# UI REFERENCES
+# ==========================
+var dialog_label: Label
+var dialog_panel: Control
 
-@onready var highlight_mesh = get_node_or_null("HighlightMesh")
+var hint_label: Label
+var hint_panel: Control
 
-var is_in_inventory = false
+var notification_label: Label
+var notification_panel: Control
 
-func _ready():
-	mouse_entered.connect(_on_mouse_entered)
-	mouse_exited.connect(_on_mouse_exited)
+# ==========================
+# INVENTORY
+# ==========================
 
-	if highlight_mesh:
-		highlight_mesh.visible = false
+func add_item(item_id: String):
 
-func _on_mouse_entered():
-	if highlight_mesh:
-		highlight_mesh.visible = true
-
-	print("Lihat:", object_name)
-
-func _on_mouse_exited():
-	if highlight_mesh:
-		highlight_mesh.visible = false
-
-func interact():
-	if is_in_inventory:
+	if inventory.has(item_id):
 		return
 
-	if is_quest_item:
-		add_to_inventory()
-	else:
-		inspect()
+	inventory.append(item_id)
 
-func inspect():
-	print(object_name + ": " + inspection_text)
+	show_notification("Item diperoleh : " + item_id)
 
-func add_to_inventory():
-	is_in_inventory = true
 
-	print("Item didapat:", quest_item_name)
+func has_item(item_id: String) -> bool:
 
-	hide()
+	return inventory.has(item_id)
 
-	emit_signal("collected")
+
+func remove_item(item_id: String):
+
+	if inventory.has(item_id):
+		inventory.erase(item_id)
+
+
+# ==========================
+# DIALOG
+# ==========================
+
+func show_dialog(text:String):
+
+	if dialog_panel == null:
+		return
+
+	dialog_panel.visible = true
+	dialog_label.text = text
+
+
+func hide_dialog():
+
+	if dialog_panel == null:
+		return
+
+	dialog_panel.visible = false
+
+
+# ==========================
+# INTERACTION HINT
+# ==========================
+
+func show_interaction_hint(text:String):
+
+	if hint_panel == null:
+		return
+
+	hint_panel.visible = true
+	hint_label.text = text
+
+
+func hide_interaction_hint():
+
+	if hint_panel == null:
+		return
+
+	hint_panel.visible = false
+
+
+# ==========================
+# NOTIFICATION
+# ==========================
+
+func show_notification(text:String):
+
+	if notification_panel == null:
+		return
+
+	notification_panel.visible = true
+	notification_label.text = text
+
+	await get_tree().create_timer(2.0).timeout
+
+	notification_panel.visible = false

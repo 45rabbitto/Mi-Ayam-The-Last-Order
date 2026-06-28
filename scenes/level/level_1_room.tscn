@@ -2,7 +2,27 @@
 
 [ext_resource type="PackedScene" uid="uid://cs14om8wf1udr" path="res://scenes/player/player.tscn" id="1_t3fsw"]
 [ext_resource type="PackedScene" uid="uid://d3p1u7jppj2v7" path="res://assets/3d/bedroom.tscn" id="3_7elja"]
+[ext_resource type="Script" uid="uid://b1m4dfbfgl1wf" path="res://scripts/managers/ui_manager.gd" id="4_wrfhh"]
 [ext_resource type="PackedScene" uid="uid://dqqhdv7fnq6xq" path="res://scenes/levels/level_01_controller.tscn" id="13_pnqwa"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hiukc"]
+bg_color = Color(0, 0, 0, 0.003921569)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dra5f"]
+bg_color = Color(0, 0, 0, 0.003921569)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wc4i0"]
+bg_color = Color(0, 0, 0, 0.003921569)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hikuk"]
+bg_color = Color(0.14901961, 0.14901961, 0.14901961, 0.003921569)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nplht"]
+bg_color = Color(0, 0, 0, 0.003921569)
 
 [node name="Level1Room" type="Node3D" unique_id=829822156]
 
@@ -10,8 +30,194 @@
 transform = Transform3D(0.70710677, -0.49999997, 0.49999997, 0, 0.70710677, 0.70710677, -0.70710677, -0.49999997, 0.49999997, 0, 0, 0)
 
 [node name="Player" parent="." unique_id=187213136 instance=ExtResource("1_t3fsw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -3)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -1.0740939, -3.370984)
 
 [node name="Level01Controller" parent="." unique_id=270792703 instance=ExtResource("13_pnqwa")]
 
 [node name="bedroom" parent="." unique_id=1948344516 instance=ExtResource("3_7elja")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1822523251]
+script = ExtResource("4_wrfhh")
+
+[node name="DialogBox" type="Panel" parent="CanvasLayer" unique_id=939725745]
+custom_minimum_size = Vector2(800, 150)
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -352.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_hiukc")
+
+[node name="Label" type="Label" parent="CanvasLayer/DialogBox" unique_id=1297343050]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/DialogBox" unique_id=1069334175]
+
+[node name="InteractionHint" type="Panel" parent="CanvasLayer" unique_id=25795704]
+custom_minimum_size = Vector2(400, 50)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 380.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_dra5f")
+
+[node name="Label" type="Label" parent="CanvasLayer/InteractionHint" unique_id=1989755241]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "klik untuk inspeksi"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/InteractionHint" unique_id=787376756]
+
+[node name="NotificationPanel" type="Panel" parent="CanvasLayer" unique_id=137465329]
+custom_minimum_size = Vector2(450, 60)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 430.0
+offset_bottom = 60.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_wc4i0")
+
+[node name="Label" type="Label" parent="CanvasLayer/NotificationPanel" unique_id=647639348]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "notification"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/NotificationPanel" unique_id=521305084]
+
+[node name="InventoryUI" type="HBoxContainer" parent="CanvasLayer" unique_id=811087050]
+offset_right = 420.0
+offset_bottom = 80.0
+
+[node name="slot1" type="Panel" parent="CanvasLayer/InventoryUI" unique_id=675190750]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_hikuk")
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/InventoryUI/slot1" unique_id=2063371189]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="slot2" type="Panel" parent="CanvasLayer/InventoryUI" unique_id=1459359531]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_hikuk")
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/InventoryUI/slot2" unique_id=144075629]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="slot3" type="Panel" parent="CanvasLayer/InventoryUI" unique_id=472136327]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_hikuk")
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/InventoryUI/slot3" unique_id=755462692]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="slot4" type="Panel" parent="CanvasLayer/InventoryUI" unique_id=520868208]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_hikuk")
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/InventoryUI/slot4" unique_id=1736784660]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="slot5" type="Panel" parent="CanvasLayer/InventoryUI" unique_id=1632003566]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_hikuk")
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/InventoryUI/slot5" unique_id=583542436]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PauseMenu" type="Panel" parent="CanvasLayer" unique_id=2072957156]
+custom_minimum_size = Vector2(500, 350)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_nplht")
+
+[node name="menu" type="VBoxContainer" parent="CanvasLayer/PauseMenu" unique_id=1849644729]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="pause" type="Label" parent="CanvasLayer/PauseMenu/menu" unique_id=158433461]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "PAUSE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="resume" type="Button" parent="CanvasLayer/PauseMenu/menu" unique_id=2073081658]
+layout_mode = 2
+text = "RESUME"
+
+[node name="main menu" type="Button" parent="CanvasLayer/PauseMenu/menu" unique_id=679044894]
+layout_mode = 2
+text = "MAIN MENU"
+
+[node name="quit button" type="Button" parent="CanvasLayer/PauseMenu/menu" unique_id=891120580]
+layout_mode = 2
+text = "QUIT"
+
+[node name="CrossHair" type="TextureRect" parent="CanvasLayer" unique_id=304906398]
+custom_minimum_size = Vector2(20, 20)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/CrossHair" unique_id=574941246]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 24
+text = "+"
+horizontal_alignment = 1
+vertical_alignment = 1
