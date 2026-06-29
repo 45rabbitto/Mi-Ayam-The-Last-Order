@@ -12,9 +12,6 @@ extends CanvasLayer
 func _ready() -> void:
 	add_to_group("hud")
 
-	if objective_label:
-		objective_label.text = "TEST OBJECTIVE"
-
 	show_notification("TEST NOTIFICATION")
 	hide_interaction()
 

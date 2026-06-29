@@ -21,14 +21,11 @@ var notification_panel: Control
 # INVENTORY
 # ==========================
 
-func add_item(item_id: String):
+func add_item(item):
 
-	if inventory.has(item_id):
-		return
+	inventory.append(item)
 
-	inventory.append(item_id)
-
-	show_notification("Item diperoleh : " + item_id)
+	print(inventory)
 
 
 func has_item(item_id: String) -> bool:

@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="The Last Order: My Ayam"
-run/main_scene="uid://lgmqpmn5nvta"
+run/main_scene="uid://dlfd7yya67tyb"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 

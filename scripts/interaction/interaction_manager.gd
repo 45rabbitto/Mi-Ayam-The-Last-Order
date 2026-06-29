@@ -39,7 +39,12 @@ func check_object():
 
 func try_interact():
 
+	print("E ditekan")
+
 	if current_object == null:
+		print("Tidak ada objek")
 		return
+
+	print("Objek =", current_object.name)
 
 	current_object.interact()

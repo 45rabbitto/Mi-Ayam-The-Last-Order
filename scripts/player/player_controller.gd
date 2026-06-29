@@ -95,6 +95,18 @@ func _input(event):
 		print("Manager =", interaction_manager)
 		if interaction_manager:
 			interaction_manager.try_interact()
+			
+	if event.is_action_pressed("pause"):
+
+		if get_tree().paused:
+
+			get_tree().paused = false
+			$CanvasLayer/PauseMenu.visible = false
+
+		else:
+
+			get_tree().paused = true
+			$CanvasLayer/PauseMenu.visible = true
 
 func set_move_input(value: Vector2):
 	move_input = value
