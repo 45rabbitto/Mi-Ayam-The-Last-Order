@@ -1,19 +1,23 @@
 extends CanvasLayer
 
-@onready var blur_material: ShaderMaterial = $ColorRect.material
+@onready var color_rect = $ColorRect
+@onready var blur_material: ShaderMaterial = color_rect.material
 
 var current_blur := 0.0
 
 func _ready():
+	color_rect.hide()
 	set_blur(0)
 
-# =========================
-# SET BLUR
-# =========================
+func enable():
+	color_rect.show()
+
+func disable():
+	color_rect.hide()
+
 func set_blur(value: float):
 
 	value = clamp(value, 0.0, 100.0)
-
 	current_blur = value
 
 	blur_material.set_shader_parameter(
@@ -21,39 +25,27 @@ func set_blur(value: float):
 		value / 100.0
 	)
 
-# =========================
-# GET BLUR
-# =========================
 func get_blur() -> float:
 	return current_blur
 
-# =========================
-# FADE BLUR
-# =========================
-func fade_to(
-	target: float,
-	duration: float = 1.0
-):
+func fade_to(target: float, duration: float = 1.0):
+
+	enable()
 
 	target = clamp(target, 0.0, 100.0)
 
 	var tween = get_tree().create_tween()
 
 	tween.tween_method(
-		func(v):
-			set_blur(v),
+		func(v): set_blur(v),
 		current_blur,
 		target,
 		duration
 	)
 
-# =========================
-# PULSE BLUR
-# =========================
-func pulse(
-	amount: float = 80,
-	duration: float = 0.5
-):
+func pulse(amount: float = 80, duration: float = 0.5):
+
+	enable()
 
 	var old_blur = current_blur
 

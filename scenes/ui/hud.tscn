@@ -1,73 +1,265 @@
-[gd_scene format=3 uid="uid://68e31hu4jyuh"]
+[gd_scene format=3 uid="uid://crkuelg6fyyas"]
 
 [ext_resource type="Script" uid="uid://cjry7grut7adw" path="res://scenes/ui/hud.gd" id="1_0mwgc"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_7elja"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hqnrr"]
+bg_color = Color(1, 1, 1, 0)
 
-[node name="HUD" type="CanvasLayer" unique_id=1702602757 groups=["Hud"]]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dra5f"]
+bg_color = Color(0, 0, 0, 0.003921569)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wc4i0"]
+bg_color = Color(0, 0, 0, 0.003921569)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hikuk"]
+bg_color = Color(0.14901961, 0.14901961, 0.14901961, 0.003921569)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nplht"]
+bg_color = Color(0, 0, 0, 0.003921569)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0mwgc"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0, 0, 0, 0)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[node name="Hud" type="CanvasLayer" unique_id=291386691]
 script = ExtResource("1_0mwgc")
 
-[node name="Crosshair" type="Label" parent="." unique_id=739961356]
+[node name="DialogBox" type="Panel" parent="." unique_id=318431777]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -352.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 0
+pivot_offset = Vector2(0, -150)
+theme_override_styles/panel = SubResource("StyleBoxFlat_hqnrr")
+
+[node name="Label" type="Label" parent="DialogBox" unique_id=1007041427]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="DialogBox" unique_id=1696579216]
+
+[node name="InteractionHint" type="Panel" parent="." unique_id=355563445]
+custom_minimum_size = Vector2(400, 50)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 380.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_dra5f")
+
+[node name="Label" type="Label" parent="InteractionHint" unique_id=1499994084]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "klik untuk inspeksi"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="InteractionHint" unique_id=1305167386]
+
+[node name="NotificationPanel" type="Panel" parent="." unique_id=273644083]
+custom_minimum_size = Vector2(450, 60)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 430.0
+offset_bottom = 60.0
+grow_horizontal = 2
+pivot_offset = Vector2(40, 0)
+theme_override_styles/panel = SubResource("StyleBoxFlat_wc4i0")
+
+[node name="Label" type="Label" parent="NotificationPanel" unique_id=459499769]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "notification"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="NotificationPanel" unique_id=1657116243]
+
+[node name="InventoryUI" type="HBoxContainer" parent="." unique_id=407913438]
+offset_left = 20.0
+offset_top = 90.0
+offset_right = 440.0
+offset_bottom = 170.0
+
+[node name="slot1" type="Panel" parent="InventoryUI" unique_id=1622221432]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_hikuk")
+
+[node name="TextureRect" type="TextureRect" parent="InventoryUI/slot1" unique_id=1338510517]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 0
+offset_right = 48.0
+offset_bottom = 48.0
+
+[node name="slot2" type="Panel" parent="InventoryUI" unique_id=767711567]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_hikuk")
+
+[node name="TextureRect" type="TextureRect" parent="InventoryUI/slot2" unique_id=1575568731]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="slot3" type="Panel" parent="InventoryUI" unique_id=426782573]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_hikuk")
+
+[node name="TextureRect" type="TextureRect" parent="InventoryUI/slot3" unique_id=309936197]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="slot4" type="Panel" parent="InventoryUI" unique_id=9762128]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_hikuk")
+
+[node name="TextureRect" type="TextureRect" parent="InventoryUI/slot4" unique_id=1614125237]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="slot5" type="Panel" parent="InventoryUI" unique_id=1116420149]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_hikuk")
+
+[node name="TextureRect" type="TextureRect" parent="InventoryUI/slot5" unique_id=1471371837]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ConditionLabel" type="Label" parent="." unique_id=1473699331]
+offset_left = 20.0
+offset_top = 50.0
+offset_right = 192.0
+offset_bottom = 76.0
+pivot_offset = Vector2(20, 105)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_outline_size = 2
+theme_override_font_sizes/font_size = 18
+text = "Kondisi Raka : 100%"
+
+[node name="PauseMenu" type="Panel" parent="." unique_id=836726900]
+custom_minimum_size = Vector2(500, 350)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -20.0
-offset_top = -23.5
-offset_right = 4.0
-offset_bottom = -0.5
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 24
-text = "+"
-label_settings = SubResource("LabelSettings_7elja")
+theme_override_styles/panel = SubResource("StyleBoxFlat_nplht")
+
+[node name="menu" type="VBoxContainer" parent="PauseMenu" unique_id=70323031]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="pause" type="Label" parent="PauseMenu/menu" unique_id=1229410928]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "PAUSE"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ObjectiveLabel" type="Label" parent="." unique_id=292577552]
-offset_left = 20.0
-offset_top = 20.0
-offset_right = 248.0
-offset_bottom = 48.0
-theme_override_font_sizes/font_size = 20
-text = "Objective : Cari Charger"
+[node name="resume" type="Button" parent="PauseMenu/menu" unique_id=932982886]
+layout_mode = 2
+text = "RESUME"
 
-[node name="InteractionLabel" type="Label" parent="." unique_id=551886501]
-anchors_preset = 7
+[node name="main menu" type="Button" parent="PauseMenu/menu" unique_id=1392890076]
+layout_mode = 2
+text = "MAIN MENU"
+
+[node name="quit button" type="Button" parent="PauseMenu/menu" unique_id=1703543470]
+layout_mode = 2
+text = "QUIT"
+
+[node name="CrossHair" type="TextureRect" parent="." unique_id=1606344262]
+custom_minimum_size = Vector2(20, 20)
+anchors_preset = 8
 anchor_left = 0.5
-anchor_top = 1.0
+anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -67.5
-offset_top = -23.0
-offset_right = 67.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
 grow_horizontal = 2
-grow_vertical = 0
-pivot_offset = Vector2(0, -80)
-text = "[E] Ambil Charger"
+grow_vertical = 2
 
-[node name="NotificationPanel" type="Panel" parent="." unique_id=1486377428]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -300.0
-offset_bottom = 60.0
-grow_horizontal = 0
-pivot_offset = Vector2(-20, 20)
-
-[node name="NotificationText" type="Label" parent="NotificationPanel" unique_id=303367809]
+[node name="Label" type="Label" parent="CrossHair" unique_id=502558827]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
+theme_override_font_sizes/font_size = 24
+text = "+"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="ConditionLabel" type="Label" parent="." unique_id=851595557]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -1372.0
-offset_top = 20.0
-offset_right = -1303.0
-offset_bottom = 43.0
-grow_horizontal = 0
-text = "Raka : Se"
+[node name="ObjectivePanel" type="PanelContainer" parent="." unique_id=1270338779]
+custom_minimum_size = Vector2(300, 80)
+offset_left = 10.0
+offset_top = 3.0
+offset_right = 310.0
+offset_bottom = 83.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_0mwgc")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ObjectivePanel" unique_id=245228947]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ObjectivePanel/VBoxContainer" unique_id=1026158473]
+layout_mode = 2
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 2
+theme_override_constants/shadow_outline_size = 2
+theme_override_font_sizes/font_size = 20
+text = "Objective : Cari Charger "

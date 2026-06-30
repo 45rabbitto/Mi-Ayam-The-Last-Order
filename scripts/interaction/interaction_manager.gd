@@ -3,6 +3,8 @@ extends Node
 @onready var raycast = $"../Head/Camera3D/RayCast3D"
 
 var current_object: Interactable = null
+var locked_object: Interactable = null
+var lose_timer: float = 0.0
 
 
 func _process(_delta):
@@ -11,30 +13,44 @@ func _process(_delta):
 
 func check_object():
 
-	# Matikan highlight objek sebelumnya
-	if current_object:
+	raycast.force_raycast_update()
+
+	var new_object: Interactable = null
+
+	if raycast.is_colliding():
+		var collider = raycast.get_collider()
+
+		if collider is Interactable:
+			new_object = collider
+	if locked_object == null:
+		_set_current_object(new_object)
+
+
+func _set_current_object(new_object: Interactable):
+
+	if new_object == current_object:
+		return
+
+	if new_object != null:
+		lose_timer = 0.0
+
+	if new_object == null:
+		lose_timer += get_process_delta_time()
+		if lose_timer < 0.15:
+			return
+
+	if is_instance_valid(current_object):
 		current_object.hide_highlight()
 
-	current_object = null
+	current_object = new_object
 
-	# Tidak mengenai apa pun
-	if !raycast.is_colliding():
+	if current_object == null:
 		Global.hide_interaction_hint()
 		return
 
-	var collider = raycast.get_collider()
+	current_object.show_highlight()
 
-	if collider is Interactable:
-
-		current_object = collider
-
-		current_object.show_highlight()
-
-		Global.show_interaction_hint("Tekan E untuk inspeksi")
-
-	else:
-
-		Global.hide_interaction_hint()
+	Global.show_interaction_hint("TEKAN E")
 
 
 func try_interact():
@@ -45,6 +61,10 @@ func try_interact():
 		print("Tidak ada objek")
 		return
 
-	print("Objek =", current_object.name)
+	# LOCK supaya tidak hilang saat frame ini
+	locked_object = current_object
 
 	current_object.interact()
+
+	# unlock setelah selesai
+	locked_object = null

@@ -8,7 +8,7 @@ radius = 0.4
 height = 1.8
 
 [node name="Player" type="CharacterBody3D" unique_id=187213136]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25489163, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.77698565, -1.8893654, 0)
 script = ExtResource("1_8afob")
 
 [node name="Head" type="Node3D" parent="." unique_id=746067447]

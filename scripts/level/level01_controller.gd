@@ -10,6 +10,22 @@ var hp_charged := false
 
 func _ready():
 
+	# ==========================================
+	# OBJECTIVE
+	# ==========================================
+
+	ObjectiveManager.reset()
+
+	ObjectiveManager.add_objective("Ambil Charger")
+	ObjectiveManager.add_objective("Ambil HP")
+	ObjectiveManager.add_objective("Nyalakan HP")
+
+	ObjectiveManager.start()
+
+	# ==========================================
+	# HP MODEL
+	# ==========================================
+
 	if hp_off_mesh:
 		hp_off_mesh.visible = true
 
@@ -17,42 +33,56 @@ func _ready():
 		hp_on_mesh.visible = false
 
 
+# ==========================================================
+# DIPANGGIL SAAT ITEM BERHASIL DIAMBIL
+# ==========================================================
+
 func on_item_collected(item_id:String):
 
 	match item_id:
 
-		"hp_mati":
-			hp_found = true
-
-			Global.show_notification("HP ditemukan")
-
-			if charger_found:
-				Global.show_dialog("Sekarang gunakan charger ke HP.")
-
 		"charger":
+
 			charger_found = true
 
 			Global.show_notification("Charger ditemukan")
 
-			if hp_found:
-				Global.show_dialog("Sekarang gunakan charger ke HP.")
+			ObjectiveManager.complete_if_match("charger")
 
+			if hp_found:
+				Global.show_dialog("Sekarang nyalakan HP.")
+
+		"phone":
+
+			hp_found = true
+
+			Global.show_notification("HP ditemukan")
+
+			ObjectiveManager.complete_if_match("hp")
+
+			if charger_found:
+				Global.show_dialog("Sekarang nyalakan HP.")
+
+
+# ==========================================================
+# MENYALAKAN HP
+# ==========================================================
 
 func charge_hp():
 
 	if hp_charged:
 		return
 
-	if !Global.has_item("hp_mati"):
+	if !InventoryManager.has_item("phone"):
 		return
 
-	if !Global.has_item("charger"):
+	if !InventoryManager.has_item("charger"):
 		return
 
 	hp_charged = true
 
-	Global.remove_item("hp_mati")
-	Global.remove_item("charger")
+	InventoryManager.remove_item("phone")
+	InventoryManager.remove_item("charger")
 
 	if hp_off_mesh:
 		hp_off_mesh.visible = false
@@ -60,26 +90,32 @@ func charge_hp():
 	if hp_on_mesh:
 		hp_on_mesh.visible = true
 
-	AudioManager.play_voice_key("missed_call",1)
+	ObjectiveManager.complete_if_match("nyalakan")
+
+	AudioManager.play_voice_key("missed_call", 1)
 
 	Global.show_notification("HP berhasil dinyalakan!")
 
 	await get_tree().create_timer(1.5).timeout
 
 	Global.show_dialog(
-		"Missed call banyak banget... siapa ya? Nanti aja lah."
+		"Missed call banyak banget... siapa ya? Nanti saja dicek."
 	)
 
-	await get_tree().create_timer(3)
+	await get_tree().create_timer(3.0).timeout
 
 	level_complete()
 
+
+# ==========================================================
+# CHAPTER SELESAI
+# ==========================================================
 
 func level_complete():
 
 	Global.show_notification("Chapter 1 selesai!")
 
-	await get_tree().create_timer(2)
+	await get_tree().create_timer(2.0).timeout
 
 	get_tree().change_scene_to_file(
 		"res://scenes/level/level_02.tscn"

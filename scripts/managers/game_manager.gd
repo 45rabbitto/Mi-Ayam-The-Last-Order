@@ -1,14 +1,22 @@
 extends Node
 
-# =====================================
-# PLAYER CONDITION
-# =====================================
+# =====================================================
+# GAME MANAGER
+# Menyimpan seluruh state permainan
+# =====================================================
+
+# =====================================================
+# PLAYER
+# =====================================================
 
 var raka_condition : int = 100
+var current_chapter : int = 1
+var game_completed : bool = false
 
-# =====================================
-# LEVEL 1 PROGRESS
-# =====================================
+# =====================================================
+# CHAPTER 1
+# KAMAR KOS
+# =====================================================
 
 var inspected_objects : Array[String] = []
 
@@ -25,195 +33,336 @@ var required_objects : Array[String] = [
 var phone_taken : bool = false
 var charger_found : bool = false
 var phone_charged : bool = false
+var chapter1_completed : bool = false
 
-# =====================================
-# GAME STATE
-# =====================================
+# =====================================================
+# CHAPTER 2
+# UDAH BIASA KOK
+# =====================================================
 
-var game_completed : bool = false
+var chapter2_completed : bool = false
 
-# =====================================
-# REGISTER INSPECTION
-# =====================================
+var object_positions := {
+	"phone": false,
+	"headset": false,
+	"soda": false,
+	"rokok": false,
+	"charger": false
+}
+
+var chapter2_fail_count : int = 0
+
+# =====================================================
+# CHAPTER 3
+# SEBELUM TERLAMBAT
+# =====================================================
+
+var skripsi_done : bool = false
+var coffee_done : bool = false
+var mabar_done : bool = false
+var order_prompt : bool = false
+
+var chapter3_completed : bool = false
+
+# =====================================================
+# CHAPTER 4
+# SERANGAN
+# =====================================================
+
+var food_app_opened : bool = false
+var spam_click_count : int = 0
+var hold_confirm_done : bool = false
+var order_success : bool = false
+
+var chapter4_completed : bool = false
+
+# =====================================================
+# GLOBAL FUNCTIONS
+# =====================================================
+
+func set_condition(value:int):
+
+	raka_condition = clamp(value,0,100)
+
+	if UiManager:
+		UiManager.update_condition(str(raka_condition) + "%")
+
+
+func damage_condition(amount:int):
+
+	raka_condition -= amount
+
+	raka_condition = clamp(raka_condition,0,100)
+
+	UiManager.update_condition(str(raka_condition)+"%")
+
+	if raka_condition <= 70:
+		EffectManager.enable_vignette()
+
+	if raka_condition <= 50:
+		EffectManager.enable_blur()
+
+	if raka_condition <= 30:
+		EffectManager.enable_glitch()
+
+	if raka_condition <= 10:
+		EffectManager.flash_red()
+
+
+func heal_condition(amount:int):
+
+	set_condition(raka_condition + amount)
+
+# =====================================================
+# CHAPTER
+# =====================================================
+
+func next_chapter():
+
+	current_chapter += 1
+
+	match current_chapter:
+
+		2:
+			LevelManager.load_level(2)
+
+		3:
+			LevelManager.load_level(3)
+
+		4:
+			LevelManager.load_level(4)
+
+		5:
+			LevelManager.load_level(5)
+
+		_:
+			game_completed = true
+
+
+func load_chapter(chapter:int):
+
+	current_chapter = chapter
+	LevelManager.load_level(chapter)
+
+# =====================================================
+# CHAPTER 1
+# =====================================================
 
 func register_inspection(object_name:String):
 
-	print("=== DEBUG ===")
-	print("Objek:", object_name)
-	print("Sebelum:", inspected_objects)
-	
 	if object_name not in inspected_objects:
 
 		inspected_objects.append(object_name)
 
-		print("Sudah diperiksa:", object_name)
-
-		print("Progress:",
-			inspected_objects.size(),
-			"/",
-			required_objects.size()
-		)
-
-		check_level_1_progress()
-
-# =====================================
-# CHECK OBJECTS
-# =====================================
 
 func all_objects_inspected() -> bool:
 
 	for object_name in required_objects:
 
 		if object_name not in inspected_objects:
-
 			return false
 
 	return true
 
-# =====================================
-# LEVEL 1 LOGIC
-# =====================================
 
-func check_level_1_progress():
+func complete_chapter1():
 
-	if all_objects_inspected():
+	chapter1_completed = true
 
-		UiManager.notify(
-			"Aku sudah memeriksa semuanya."
-		)
+	next_chapter()
 
-		ObjectiveManager.set_objective(
-			"Ambil HP"
-		)
+# =====================================================
+# CHAPTER 2
+# =====================================================
 
-# =====================================
-# PHONE
-# =====================================
+func place_object(object_name:String):
 
-func take_phone():
+	if object_positions.has(object_name):
 
-	if not all_objects_inspected():
+		object_positions[object_name] = true
 
-		UiManager.notify(
-			"Aku harus melihat sekeliling dulu."
-		)
 
-		return false
+func object_correct(object_name:String) -> bool:
 
-	phone_taken = true
+	if object_positions.has(object_name):
 
-	ObjectiveManager.set_objective(
-		"Cari Charger"
-	)
+		return object_positions[object_name]
+
+	return false
+
+
+func all_objects_positioned() -> bool:
+
+	for value in object_positions.values():
+
+		if !value:
+			return false
 
 	return true
 
-# =====================================
-# CHARGER
-# =====================================
 
-func find_charger():
+func wrong_position():
 
-	charger_found = true
+	chapter2_fail_count += 1
 
-	UiManager.notify(
-		"Charger ditemukan."
-	)
 
-	ObjectiveManager.set_objective(
-		"Gunakan Charger ke HP"
-	)
+func complete_chapter2():
 
-# =====================================
-# CHARGE PHONE
-# =====================================
+	chapter2_completed = true
 
-func charge_phone():
+	next_chapter()
 
-	if not charger_found:
+# =====================================================
+# CHAPTER 3
+# =====================================================
 
-		UiManager.notify(
-			"Aku belum punya charger."
-		)
+func finish_skripsi():
 
-		return
+	skripsi_done = true
 
-	phone_charged = true
 
-	UiManager.notify(
-		"HP berhasil dinyalakan."
-	)
+func finish_coffee():
 
-	await get_tree().create_timer(2.0).timeout
+	coffee_done = true
 
-	UiManager.notify(
-		"1 Missed Call dari Beni"
-	)
 
-	await get_tree().create_timer(2.0).timeout
+func finish_mabar():
 
-	UiManager.notify(
-		"3 Pesan Belum Dibaca"
-	)
+	mabar_done = true
 
-	ObjectiveManager.set_objective(
-		"Periksa pesan dari Beni"
-	)
 
-# =====================================
-# LEVEL COMPLETE
-# =====================================
+func chapter3_ready() -> bool:
 
-func complete_level_1():
+	return skripsi_done and coffee_done and mabar_done
 
-	UiManager.notify(
-		"Menuju level berikutnya..."
-	)
 
-	await get_tree().create_timer(2.0).timeout
+func complete_chapter3():
 
-	LevelManager.next_level()
+	chapter3_completed = true
 
-# =====================================
-# CONDITION SYSTEM
-# =====================================
+	order_prompt = true
 
-func damage_condition(amount:int):
+	next_chapter()
 
-	raka_condition -= amount
+# =====================================================
+# CHAPTER 4
+# =====================================================
 
-	raka_condition = clamp(
-		raka_condition,
-		0,
-		100
-	)
+func open_food_app():
 
-	UiManager.update_condition(
-		str(raka_condition) + "%"
-	)
+	food_app_opened = true
 
-# =====================================
-# RESET LEVEL
-# =====================================
 
-func reset_level_data():
+func add_spam_click():
+
+	spam_click_count += 1
+
+
+func finish_hold_confirm():
+
+	hold_confirm_done = true
+
+
+func complete_order():
+
+	order_success = true
+
+
+func complete_chapter4():
+
+	chapter4_completed = true
+
+	next_chapter()
+
+# =====================================================
+# RESET
+# =====================================================
+
+func reset_chapter1():
 
 	inspected_objects.clear()
 
 	phone_taken = false
-
 	charger_found = false
-
 	phone_charged = false
+	chapter1_completed = false
 
-# =====================================
+
+func reset_chapter2():
+
+	object_positions = {
+		"phone": false,
+		"headset": false,
+		"soda": false,
+		"rokok": false,
+		"charger": false
+	}
+
+	chapter2_fail_count = 0
+	chapter2_completed = false
+
+
+func reset_chapter3():
+
+	skripsi_done = false
+	coffee_done = false
+	mabar_done = false
+	order_prompt = false
+	chapter3_completed = false
+
+
+func reset_chapter4():
+
+	food_app_opened = false
+	spam_click_count = 0
+	hold_confirm_done = false
+	order_success = false
+	chapter4_completed = false
+
+
+func reset_all():
+
+	reset_chapter1()
+	reset_chapter2()
+	reset_chapter3()
+	reset_chapter4()
+
+	raka_condition = 100
+	current_chapter = 1
+	game_completed = false
+
+# =====================================================
 # NEW GAME
-# =====================================
+# =====================================================
 
 func new_game():
 
-	raka_condition = 100
-
-	reset_level_data()
+	reset_all()
 
 	LevelManager.load_level(1)
+
+# =====================================================
+# SAVE DATA
+# =====================================================
+
+func get_save_data() -> Dictionary:
+
+	return {
+		"condition": raka_condition,
+		"chapter": current_chapter,
+		"chapter1": chapter1_completed,
+		"chapter2": chapter2_completed,
+		"chapter3": chapter3_completed,
+		"chapter4": chapter4_completed
+	}
+
+
+func load_save_data(data:Dictionary):
+
+	raka_condition = data.get("condition",100)
+	current_chapter = data.get("chapter",1)
+
+	chapter1_completed = data.get("chapter1",false)
+	chapter2_completed = data.get("chapter2",false)
+	chapter3_completed = data.get("chapter3",false)
+	chapter4_completed = data.get("chapter4",false)

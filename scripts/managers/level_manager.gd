@@ -1,31 +1,36 @@
 extends Node
 
-# =====================================
-# LEVEL SCENES
-# =====================================
+# =====================================================
+# LEVEL MANAGER
+# Mengatur perpindahan chapter dan checkpoint
+# =====================================================
 
-const LEVEL_1 = "res://scenes/level/level-1_room.tscn"
-const LEVEL_2 = "res://scenes/level/level_2_glitch-room.tscn"
-const LEVEL_3 = "res://scenes/levels/level_3_flashback.tscn"
-const LEVEL_4 = "res://scenes/levels/level_4_order.tscn"
-const LEVEL_5 = "res://scenes/levels/level_5_ending.tscn"
+# -----------------------------------------------------
+# SCENE PATH
+# -----------------------------------------------------
 
-# =====================================
-# LEVEL DATA
-# =====================================
+const LEVEL_1 = "res://scenes/level/level_1_room.tscn"
+const LEVEL_2 = "res://scenes/level/level_2_glitch_room.tscn"
+const LEVEL_3 = "res://scenes/level/level_3_flashback.tscn"
+const LEVEL_4 = "res://scenes/level/level_4_order.tscn"
+const LEVEL_5 = "res://scenes/level/level_5_ending.tscn"
+
+# -----------------------------------------------------
+# DATA
+# -----------------------------------------------------
 
 var current_level : int = 1
 var current_checkpoint : int = 0
 
-# =====================================
+# =====================================================
 # LOAD LEVEL
-# =====================================
+# =====================================================
 
 func load_level(level:int):
 
-	current_level = level
+	current_level = clamp(level, 1, 5)
 
-	match level:
+	match current_level:
 
 		1:
 			get_tree().change_scene_to_file(LEVEL_1)
@@ -42,43 +47,76 @@ func load_level(level:int):
 		5:
 			get_tree().change_scene_to_file(LEVEL_5)
 
-	print("Load Level:", level)
+	print("====================")
+	print("LOAD LEVEL :", current_level)
+	print("====================")
 
-# =====================================
+	call_deferred("initialize_level")
+
+
+# =====================================================
 # NEXT LEVEL
-# =====================================
+# =====================================================
 
 func next_level():
 
-	current_level += 1
+	if current_level >= 5:
 
-	load_level(current_level)
+		print("GAME FINISHED")
 
-# =====================================
-# RESTART LEVEL
-# =====================================
+		GameManager.game_completed = true
+
+		UiManager.notify("Terima kasih telah bermain.")
+
+		return
+
+	load_level(current_level + 1)
+
+
+# =====================================================
+# PREVIOUS LEVEL
+# =====================================================
+
+func previous_level():
+
+	if current_level <= 1:
+		return
+
+	load_level(current_level - 1)
+
+
+# =====================================================
+# RESTART
+# =====================================================
 
 func restart_level():
 
+	print("Restart Level :", current_level)
+
 	load_level(current_level)
 
-# =====================================
+
+# =====================================================
 # CHECKPOINT
-# =====================================
+# =====================================================
 
 func set_checkpoint(id:int):
 
 	current_checkpoint = id
 
-	print("Checkpoint:", id)
+	print("Checkpoint :", id)
+
 
 func load_checkpoint():
 
+	print("Load Checkpoint :", current_checkpoint)
+
 	load_level(current_level)
 
-# =====================================
-# LEVEL SETUP
-# =====================================
+
+# =====================================================
+# INITIALIZE LEVEL
+# =====================================================
 
 func initialize_level():
 
@@ -99,42 +137,60 @@ func initialize_level():
 		5:
 			setup_level_5()
 
-# =====================================
+
+# =====================================================
 # LEVEL 1
-# Eksplorasi Kamar
-# =====================================
+# =====================================================
 
 func setup_level_1():
+
+	GameManager.reset_level_data()
 
 	ObjectiveManager.set_objective(
 		"Periksa seluruh kamar"
 	)
 
 	UiManager.notify(
-		"HP mati. Cari tahu apa yang terjadi."
+		"HP mati..."
 	)
 
-# =====================================
+	await get_tree().create_timer(2).timeout
+
+	UiManager.notify(
+		"Cari tahu apa yang terjadi."
+	)
+
+
+# =====================================================
 # LEVEL 2
-# Posisikan Objek
-# =====================================
+# =====================================================
 
 func setup_level_2():
+
+	GameManager.reset_chapter2()
 
 	ObjectiveManager.set_objective(
 		"Kembalikan benda ke posisi awal"
 	)
 
 	UiManager.notify(
-		"Ada yang berbeda dengan kamar ini..."
+		"Kamar ini terasa berbeda..."
 	)
 
-# =====================================
+	await get_tree().create_timer(2).timeout
+
+	UiManager.notify(
+		"Ingat posisi semua benda."
+	)
+
+
+# =====================================================
 # LEVEL 3
-# Flashback
-# =====================================
+# =====================================================
 
 func setup_level_3():
+
+	GameManager.reset_chapter3()
 
 	ObjectiveManager.set_objective(
 		"Selesaikan rutinitas malam"
@@ -144,12 +200,20 @@ func setup_level_3():
 		"Ingat kembali malam terakhir..."
 	)
 
-# =====================================
+	await get_tree().create_timer(2).timeout
+
+	UiManager.notify(
+		"Selesaikan semuanya sebelum terlambat."
+	)
+
+
+# =====================================================
 # LEVEL 4
-# Pesan Mi Ayam
-# =====================================
+# =====================================================
 
 func setup_level_4():
+
+	GameManager.reset_chapter4()
 
 	ObjectiveManager.set_objective(
 		"Pesan Mi Ayam"
@@ -159,10 +223,16 @@ func setup_level_4():
 		"Pandangan mulai kabur..."
 	)
 
-# =====================================
+	await get_tree().create_timer(2).timeout
+
+	UiManager.notify(
+		"Aku harus cepat..."
+	)
+
+
+# =====================================================
 # LEVEL 5
-# Setelah Sunyi
-# =====================================
+# =====================================================
 
 func setup_level_5():
 
@@ -171,5 +241,37 @@ func setup_level_5():
 	)
 
 	UiManager.notify(
-		"Kenapa semuanya terasa berbeda?"
+		"Kenapa semuanya terasa sunyi?"
 	)
+
+	await get_tree().create_timer(2).timeout
+
+	UiManager.notify(
+		"Aku tidak bisa menggerakkan tubuhku..."
+	)
+
+
+# =====================================================
+# SAVE DATA
+# =====================================================
+
+func get_current_level() -> int:
+	return current_level
+
+
+func get_checkpoint() -> int:
+	return current_checkpoint
+
+
+# =====================================================
+# DEBUG
+# =====================================================
+
+func debug_skip_level():
+
+	next_level()
+
+
+func debug_load_level(level:int):
+
+	load_level(level)
