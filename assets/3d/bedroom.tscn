@@ -87,7 +87,7 @@ size = Vector3(7, 0.1, 7)
 resource_name = "Cama"
 cull_mode = 2
 albedo_texture = ExtResource("2_djvgi")
-roughness = 0.5
+roughness = 0.9
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_fopc7"]
 _surfaces = [{
@@ -204,6 +204,7 @@ resource_name = "Lampara"
 cull_mode = 2
 albedo_texture = ExtResource("5_lpbpm")
 roughness = 0.5
+grow = true
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_kdwxs"]
 _surfaces = [{
@@ -1351,7 +1352,7 @@ transform = Transform3D(1, -1.5285484e-14, -1.7484555e-07, 0, -1, 8.742278e-08, 
 mesh = SubResource("ArrayMesh_rq2l0")
 
 [node name="Cama" type="MeshInstance3D" parent="." unique_id=183624287]
-transform = Transform3D(-0.18618822, 0, 0, 0, -0.18618822, 0, 0, 0, -0.18618822, 0.22788137, 0.6288495, 1.0602814)
+transform = Transform3D(-0.18618822, -4.656613e-10, 0, 4.656613e-10, -0.18618822, 0, 0, 0, -0.18618822, 0.22788143, 0.6288495, 1.0602814)
 mesh = SubResource("ArrayMesh_supot")
 
 [node name="Cofre de los pies" type="MeshInstance3D" parent="." unique_id=458263506]
@@ -1557,7 +1558,7 @@ object_name = "hp_mati"
 inspection_text = "hah? hp gw mati? pantes dari tadi gaada notif"
 voice_key = "hp_mati"
 is_pickupable = true
-item_id = "hp_mati"
+item_id = "phone"
 
 [node name="hp" type="MeshInstance3D" parent="hp" unique_id=398048452]
 transform = Transform3D(0.17861575, 0, 0, 0, 0.17861575, 0, 0, 0, 0.17861575, 0, 0.87543654, -0.1561169)

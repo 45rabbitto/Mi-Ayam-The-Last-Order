@@ -193,20 +193,10 @@ func _hide_notification() -> void:
 # OBJECTIVE
 # ==========================================================
 
-<<<<<<< HEAD
-func set_objective(text:String):
-
-	print("SET OBJECTIVE DIPANGGIL:", text)
-	print("OBJECTIVE LABEL =", objective_label)
-
-	if objective_label:
-		objective_label.text = "Objective : " + text
-=======
 func set_objective(text: String) -> void:
 
 	if objective_label:
 		objective_label.text = "Objective : %s" % text
->>>>>>> cf8358babe02ec3f6b4dc47ee364d3047e8e4b83
 
 # ==========================================================
 # CONDITION
