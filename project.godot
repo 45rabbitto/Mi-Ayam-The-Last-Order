@@ -24,7 +24,6 @@ SaveLoad="*uid://d2milbl14chm4"
 InventoryManager="*uid://dmsto0d2yq1o3"
 SaveManager="*uid://4264q38orybu"
 Global="*uid://cl2vafnc1swoy"
-ObjectiveManager="*uid://cd82u1q701xhk"
 GameManager="*uid://c0ncnyvmof1mr"
 AudioManager="*uid://vqleleew87f8"
 UiManager="*uid://dc3kq7h5nc3e1"
@@ -32,6 +31,7 @@ EffectManager="*uid://dw3s237k1c0j6"
 BlurOverlay="*uid://dhaiva8b2s4k3"
 GlitchOverlay="*uid://b5esev6x1gqmj"
 VignetteOverlay="*uid://emnmj10afchy"
+ObjectiveManager="*uid://xjyenqws7pxm"
 
 [input]
 

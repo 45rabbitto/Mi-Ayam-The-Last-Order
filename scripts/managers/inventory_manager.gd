@@ -1,9 +1,27 @@
 extends Node
 
-signal inventory_changed(items: Array)
+signal inventory_changed(items: Array[String])
 
 # ==========================================================
-# INVENTORY DATA
+# ITEM DATABASE
+# ==========================================================
+
+const ITEM_DATABASE := {
+
+	"charger": {
+		"name": "Phone Charger",
+		"model": preload("res://assets/3d/phone_charger_low_poly.glb")
+	},
+
+	"phone": {
+		"name": "Phone",
+		"model": preload("res://assets/3d/cell_phone.glb")
+	}
+
+}
+
+# ==========================================================
+# INVENTORY
 # ==========================================================
 
 var items: Array[String] = []
@@ -12,78 +30,98 @@ var items: Array[String] = []
 # ADD ITEM
 # ==========================================================
 
-func add_item(item_name: String) -> bool:
+func add_item(item_id: String) -> bool:
 
-	item_name = item_name.strip_edges()
+	item_id = item_id.strip_edges().to_lower()
 
-	if item_name.is_empty():
+	if item_id.is_empty():
 		return false
 
-	# Jangan boleh item ganda
-	if has_item(item_name):
+	if has_item(item_id):
 		return false
 
-	items.append(item_name)
+	if !ITEM_DATABASE.has(item_id):
+		push_warning("Unknown item : " + item_id)
+		return false
 
-	print("ADD ITEM -> ", item_name)
+	items.append(item_id)
 
 	_emit_inventory_changed()
 
 	return true
-
 
 # ==========================================================
 # REMOVE ITEM
 # ==========================================================
 
-func remove_item(item_name: String) -> bool:
+func remove_item(item_id: String) -> bool:
 
-	if !has_item(item_name):
+	item_id = item_id.to_lower()
+
+	if !has_item(item_id):
 		return false
 
-	items.erase(item_name)
-
-	print("REMOVE ITEM -> ", item_name)
+	items.erase(item_id)
 
 	_emit_inventory_changed()
 
 	return true
 
-
 # ==========================================================
-# CHECK ITEM
-# ==========================================================
-
-func has_item(item_name: String) -> bool:
-	return items.has(item_name)
-
-
-# ==========================================================
-# GET ITEMS
+# CLEAR
 # ==========================================================
 
-func get_items() -> Array[String]:
-	return items.duplicate()
-
-
-# ==========================================================
-# ITEM COUNT
-# ==========================================================
-
-func get_item_count() -> int:
-	return items.size()
-
-
-# ==========================================================
-# CLEAR INVENTORY
-# ==========================================================
-
-func clear_inventory():
+func clear_inventory() -> void:
 
 	items.clear()
 
 	_emit_inventory_changed()
 
+# ==========================================================
+# CHECK
+# ==========================================================
+
+func has_item(item_id: String) -> bool:
+
+	return item_id.to_lower() in items
+
+# ==========================================================
+# GET INVENTORY
+# ==========================================================
+
+func get_items() -> Array[String]:
+
+	return items.duplicate()
+
+func get_item_count() -> int:
+
+	return items.size()
+
+# ==========================================================
+# ITEM DATA
+# ==========================================================
+
+func has_item_data(item_id: String) -> bool:
+
+	return ITEM_DATABASE.has(item_id)
+
+func get_item_data(item_id: String) -> Dictionary:
+
+	return ITEM_DATABASE.get(item_id, {})
+
+func get_item_name(item_id: String) -> String:
+
+	if !ITEM_DATABASE.has(item_id):
+		return item_id
+
+	return ITEM_DATABASE[item_id]["name"]
+
+func get_item_model(item_id: String):
+
+	if !ITEM_DATABASE.has(item_id):
+		return null
+
+	return ITEM_DATABASE[item_id]["model"]
 
 # ==========================================================
 # SAVE
@@ -95,25 +133,23 @@ func get_save_data() -> Dictionary:
 		"items": items.duplicate()
 	}
 
-
 # ==========================================================
 # LOAD
 # ==========================================================
 
-func load_save_data(data: Dictionary):
+func load_save_data(data: Dictionary) -> void:
 
 	items.clear()
 
-	if data.has("items") and data["items"] is Array:
-		items = data["items"].duplicate()
+	if data.has("items"):
+		items.assign(data["items"])
 
 	_emit_inventory_changed()
-
 
 # ==========================================================
 # SIGNAL
 # ==========================================================
 
-func _emit_inventory_changed():
+func _emit_inventory_changed() -> void:
 
 	inventory_changed.emit(items.duplicate())
