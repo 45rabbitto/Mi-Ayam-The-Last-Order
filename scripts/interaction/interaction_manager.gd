@@ -1,70 +1,108 @@
 extends Node
 
-@onready var raycast = $"../Head/Camera3D/RayCast3D"
+# ==========================================================
+# REFERENCES
+# ==========================================================
+
+@onready var raycast: RayCast3D = $"../Head/Camera3D/RayCast3D"
+
+# ==========================================================
+# STATE
+# ==========================================================
 
 var current_object: Interactable = null
 var locked_object: Interactable = null
-var lose_timer: float = 0.0
 
+# ==========================================================
+# PROCESS
+# ==========================================================
 
-func _process(_delta):
+func _process(_delta: float) -> void:
 	check_object()
 
+# ==========================================================
+# DETECT OBJECT
+# ==========================================================
 
-func check_object():
+func check_object() -> void:
 
 	raycast.force_raycast_update()
 
 	var new_object: Interactable = null
 
 	if raycast.is_colliding():
+
 		var collider = raycast.get_collider()
 
 		if collider is Interactable:
 			new_object = collider
+
+	# Saat sedang interact jangan ganti object
 	if locked_object == null:
 		_set_current_object(new_object)
 
+# ==========================================================
+# CHANGE CURRENT OBJECT
+# ==========================================================
 
-func _set_current_object(new_object: Interactable):
+func _set_current_object(new_object: Interactable) -> void:
 
+	# Tidak berubah
 	if new_object == current_object:
 		return
 
-	if new_object != null:
-		lose_timer = 0.0
-
-	if new_object == null:
-		lose_timer += get_process_delta_time()
-		if lose_timer < 0.15:
-			return
-
+	# Hilangkan highlight object lama
 	if is_instance_valid(current_object):
 		current_object.hide_highlight()
 
 	current_object = new_object
 
-	if current_object == null:
-		Global.hide_interaction_hint()
+	# Object baru
+	if is_instance_valid(current_object):
+
+		current_object.show_highlight()
+
+		UiManager.show_hint(
+			current_object.get_prompt()
+		)
+
+	# Tidak melihat object
+	else:
+
+		UiManager.hide_hint()
+
+# ==========================================================
+# INTERACT
+# ==========================================================
+
+func try_interact() -> void:
+
+	if !is_instance_valid(current_object):
 		return
 
-	current_object.show_highlight()
-
-	Global.show_interaction_hint("TEKAN E")
-
-
-func try_interact():
-
-	print("E ditekan")
-
-	if current_object == null:
-		print("Tidak ada objek")
-		return
-
-	# LOCK supaya tidak hilang saat frame ini
+	# Lock object agar tidak berubah saat interact
 	locked_object = current_object
 
 	current_object.interact()
 
-	# unlock setelah selesai
+	# Object pickup kemungkinan queue_free()
 	locked_object = null
+	current_object = null
+
+	UiManager.hide_hint()
+
+	# Update ulang raycast
+	check_object()
+
+# ==========================================================
+# CLEAR
+# ==========================================================
+
+func clear_current_object() -> void:
+
+	if is_instance_valid(current_object):
+		current_object.hide_highlight()
+
+	current_object = null
+
+	UiManager.hide_hint()

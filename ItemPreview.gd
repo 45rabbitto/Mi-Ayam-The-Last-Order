@@ -5,25 +5,23 @@ extends SubViewport
 var current_model: Node3D
 
 
-func load_item(scene_path:String):
+func load_item(scene: PackedScene) -> void:
 
 	if current_model:
 		current_model.queue_free()
 
-	var packed := load(scene_path) as PackedScene
-
-	if packed == null:
-		push_error("Gagal load: " + scene_path)
+	if scene == null:
+		push_error("PackedScene kosong.")
 		return
 
-	current_model = packed.instantiate()
+	current_model = scene.instantiate()
 
 	holder.add_child(current_model)
 
 	_fit_camera()
 
 
-func _fit_camera():
+func _fit_camera() -> void:
 
 	if current_model == null:
 		return
@@ -34,5 +32,4 @@ func _fit_camera():
 
 
 func get_preview() -> Texture2D:
-
 	return get_texture()

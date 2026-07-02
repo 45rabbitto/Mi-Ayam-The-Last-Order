@@ -1,7 +1,7 @@
 extends Area3D
 class_name Interactable
 
-signal interacted
+signal interacted(item_id: String)
 
 @export var object_name: String = ""
 @export_multiline var inspection_text: String = ""
@@ -11,18 +11,19 @@ signal interacted
 @export var is_pickupable: bool = false
 @export var item_id: String = ""
 
-@export var objective_after_pickup: String = ""
-
 @export var chapter: int = 1
 
 @export var highlight_material: Material
 
 var original_material: Material
 
+
 func get_prompt() -> String:
 	return "Tekan E"
-	
+
+
 func _ready():
+
 	var mesh = get_node_or_null("MeshInstance3D")
 
 	if mesh:
@@ -31,24 +32,32 @@ func _ready():
 
 func interact():
 
+	# Dialog
 	if inspection_text != "":
 		UiManager.show_dialog(inspection_text)
 
+	# Voice
 	if voice_key != "":
 		AudioManager.play_voice_key(voice_key, chapter)
 
+	# Pickup Item
 	if is_pickupable:
 
-		InventoryManager.add_item(item_id)
+		if InventoryManager.add_item(item_id):
 
-		UiManager.show_notification(object_name + " diperoleh")
+			UiManager.show_notification(object_name + " diperoleh")
 
-		if objective_after_pickup != "":
-			UiManager.set_objective(objective_after_pickup)
+			# Selesaikan objective jika cocok
+			ObjectiveManager.complete_if_match(item_id)
 
-		queue_free()
+			interacted.emit(item_id)
 
-	interacted.emit()
+			queue_free()
+
+			return
+
+	interacted.emit("")
+
 
 func show_highlight():
 

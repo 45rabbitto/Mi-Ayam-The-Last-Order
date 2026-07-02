@@ -26,6 +26,16 @@ func _ready():
 
 	print("Current Objective =", ObjectiveManager.get_current_objective())
 
+func _connect_interactables():
+
+	var objects = get_tree().get_nodes_in_group("interactable")
+
+	for obj in objects:
+
+		if obj.interacted.is_connected(on_item_collected):
+			continue
+
+		obj.interacted.connect(on_item_collected)
 	# ==========================================
 	# HP MODEL
 	# ==========================================

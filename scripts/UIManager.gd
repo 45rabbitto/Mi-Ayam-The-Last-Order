@@ -5,6 +5,7 @@ signal dialog_closed
 # ==========================================================
 # UI REFERENCES
 # ==========================================================
+var preview_scene = preload("res://scenes/ItemPreview.tscn")
 
 var dialog_panel: Control
 var dialog_label: Label
@@ -22,7 +23,7 @@ var inventory_ui: Control
 
 var pause_menu: Control
 var crosshair: Control
-var fade_rect: Control
+var fade_rect: ColorRect
 
 # ==========================================================
 # TIMER
@@ -32,22 +33,26 @@ var dialog_timer: Timer
 var notification_timer: Timer
 
 # ==========================================================
-# ITEM ICON
-# ==========================================================
-var preview_scene = preload("res://scenes/ItemPreview.tscn")
-var item_models = {
-
-	"charger":"res://assets/3d/phone_charger_low_poly.glb",
-
-	"phone":"res://assets/3d/cell_phone.glb",
-
-}
-
-# ==========================================================
 # READY
 # ==========================================================
 
-func _ready():
+func _ready() -> void:
+
+	_create_timers()
+
+	if InventoryManager:
+		if !InventoryManager.inventory_changed.is_connected(update_inventory):
+			InventoryManager.inventory_changed.connect(update_inventory)
+
+	if ObjectiveManager:
+		if !ObjectiveManager.objective_changed.is_connected(set_objective):
+			ObjectiveManager.objective_changed.connect(set_objective)
+
+# ==========================================================
+# INITIALIZATION
+# ==========================================================
+
+func _create_timers() -> void:
 
 	dialog_timer = Timer.new()
 	dialog_timer.one_shot = true
@@ -61,29 +66,24 @@ func _ready():
 	notification_timer.timeout.connect(_hide_notification)
 	add_child(notification_timer)
 
-	if InventoryManager:
-
-		if !InventoryManager.inventory_changed.is_connected(_on_inventory_changed):
-			InventoryManager.inventory_changed.connect(_on_inventory_changed)
-
 # ==========================================================
-# REGISTER UI
+# REGISTER HUD
 # ==========================================================
 
 func register_ui(
-	p_dialog_panel,
-	p_dialog_label,
-	p_hint_panel,
-	p_hint_label,
-	p_notification_panel,
-	p_notification_label,
-	p_objective_label,
-	p_condition_label,
-	p_inventory_ui,
-	p_pause_menu,
-	p_crosshair,
-	p_fade_rect
-):
+	p_dialog_panel: Control,
+	p_dialog_label: Label,
+	p_hint_panel: Control,
+	p_hint_label: Label,
+	p_notification_panel: Control,
+	p_notification_label: Label,
+	p_objective_label: Label,
+	p_condition_label: Label,
+	p_inventory_ui: Control,
+	p_pause_menu: Control,
+	p_crosshair: Control,
+	p_fade_rect: ColorRect
+) -> void:
 
 	dialog_panel = p_dialog_panel
 	dialog_label = p_dialog_label
@@ -103,6 +103,20 @@ func register_ui(
 	crosshair = p_crosshair
 	fade_rect = p_fade_rect
 
+	_initialize_ui()
+
+	if InventoryManager:
+		update_inventory(InventoryManager.get_items())
+
+	if ObjectiveManager:
+		set_objective(ObjectiveManager.get_objective())
+
+# ==========================================================
+# INITIAL UI STATE
+# ==========================================================
+
+func _initialize_ui() -> void:
+
 	if dialog_panel:
 		dialog_panel.hide()
 
@@ -116,42 +130,23 @@ func register_ui(
 		pause_menu.hide()
 
 	if fade_rect:
-		fade_rect.modulate.a = 0
-
-	_on_inventory_changed(InventoryManager.get_items())
-
-# ==========================================================
-# INVENTORY SIGNAL
-# ==========================================================
-
-func _on_inventory_changed(items: Array):
-
-	update_inventory(items)
+		fade_rect.modulate.a = 0.0
 
 # ==========================================================
 # DIALOG
 # ==========================================================
 
-func show_dialog(text:String):
-
-	print("SHOW DIALOG")
-	print(dialog_panel)
-	print(dialog_label)
+func show_dialog(text: String) -> void:
 
 	if dialog_panel == null:
-		print("dialog_panel NULL")
 		return
 
-	dialog_panel.visible = true
-	dialog_panel.modulate.a = 1.0
-
-	dialog_label.visible = true
+	dialog_panel.show()
 	dialog_label.text = text
 
-	print("VISIBLE =", dialog_panel.visible)
-	print("TEXT =", dialog_label.text)
+	dialog_timer.start()
 
-func _hide_dialog():
+func _hide_dialog() -> void:
 
 	if dialog_panel:
 		dialog_panel.hide()
@@ -162,7 +157,7 @@ func _hide_dialog():
 # HINT
 # ==========================================================
 
-func show_hint(text:String):
+func show_hint(text: String) -> void:
 
 	if hint_panel == null:
 		return
@@ -170,7 +165,7 @@ func show_hint(text:String):
 	hint_panel.show()
 	hint_label.text = text
 
-func hide_hint():
+func hide_hint() -> void:
 
 	if hint_panel:
 		hint_panel.hide()
@@ -179,19 +174,17 @@ func hide_hint():
 # NOTIFICATION
 # ==========================================================
 
-func show_notification(text:String):
+func show_notification(text: String) -> void:
 
 	if notification_panel == null:
 		return
 
 	notification_panel.show()
-
-	if notification_label:
-		notification_label.text = text
+	notification_label.text = text
 
 	notification_timer.start()
 
-func _hide_notification():
+func _hide_notification() -> void:
 
 	if notification_panel:
 		notification_panel.hide()
@@ -200,27 +193,25 @@ func _hide_notification():
 # OBJECTIVE
 # ==========================================================
 
-func set_objective(text:String):
-
-	print("SET OBJECTIVE DIPANGGIL:", text)
+func set_objective(text: String) -> void:
 
 	if objective_label:
-		objective_label.text = "Objective : " + text
-		print("TEXT SET =", objective_label.text)
+		objective_label.text = "Objective : %s" % text
 
 # ==========================================================
 # CONDITION
 # ==========================================================
 
-func set_condition(text:String):
+func set_condition(text: String) -> void:
 
 	if condition_label:
-		condition_label.text = "Kondisi Raka : " + text
+		condition_label.text = "Kondisi Raka : %s" % text
 
 # ==========================================================
-# INVENTORY
+# INVENTORY UI
 # ==========================================================
-func update_inventory(items: Array):
+
+func update_inventory(items: Array) -> void:
 
 	if inventory_ui == null:
 		return
@@ -229,45 +220,49 @@ func update_inventory(items: Array):
 
 	# Bersihkan semua slot
 	for slot in slots:
-		var icon = slot.get_node_or_null("TextureRect")
+
+		var icon := slot.get_node_or_null("TextureRect")
+
 		if icon:
 			icon.texture = null
 			icon.visible = false
 
-	# Isi slot sesuai item
+	# Isi inventory
 	for i in range(min(items.size(), slots.size())):
 
-		var item_name = items[i].to_lower()
+		var item_id: String = items[i]
 
-		if !item_models.has(item_name):
+		var model: PackedScene = InventoryManager.get_item_model(item_id)
+
+		if model == null:
 			continue
 
 		var preview = preview_scene.instantiate()
 		add_child(preview)
 
-		preview.load_item(item_models[item_name])
+		preview.load_item(model)
 
+		# Tunggu viewport selesai merender
 		await get_tree().process_frame
 		await get_tree().process_frame
 
-		var icon = slots[i].get_node_or_null("TextureRect")
+		var icon: TextureRect = slots[i].get_node_or_null("TextureRect")
 
 		if icon:
 			icon.texture = preview.get_preview()
 			icon.visible = true
 
 		preview.queue_free()
-
 # ==========================================================
 # CROSSHAIR
 # ==========================================================
 
-func show_crosshair():
+func show_crosshair() -> void:
 
 	if crosshair:
 		crosshair.show()
 
-func hide_crosshair():
+func hide_crosshair() -> void:
 
 	if crosshair:
 		crosshair.hide()
@@ -276,37 +271,51 @@ func hide_crosshair():
 # PAUSE
 # ==========================================================
 
-func show_pause():
+func show_pause() -> void:
 
 	if pause_menu:
 		pause_menu.show()
 
-func hide_pause():
+func hide_pause() -> void:
 
 	if pause_menu:
 		pause_menu.hide()
 
-func toggle_pause():
+func toggle_pause() -> void:
+
+	get_tree().paused = !get_tree().paused
 
 	if pause_menu:
-		pause_menu.visible = !pause_menu.visible
+		pause_menu.visible = get_tree().paused
 
 # ==========================================================
 # FADE
 # ==========================================================
 
-func fade_in():
+func fade_in(duration: float = 1.0) -> void:
 
 	if fade_rect == null:
 		return
 
-	var tween = create_tween()
-	tween.tween_property(fade_rect,"modulate:a",1.0,1.0)
+	var tween := create_tween()
 
-func fade_out():
+	tween.tween_property(
+		fade_rect,
+		"modulate:a",
+		1.0,
+		duration
+	)
+
+func fade_out(duration: float = 1.0) -> void:
 
 	if fade_rect == null:
 		return
 
-	var tween = create_tween()
-	tween.tween_property(fade_rect,"modulate:a",0.0,1.0)
+	var tween := create_tween()
+
+	tween.tween_property(
+		fade_rect,
+		"modulate:a",
+		0.0,
+		duration
+	)
