@@ -23,9 +23,6 @@ func set_objective(text:String):
 
 	UiManager.set_objective(text)
 
-	if PhoneNotif:
-		PhoneNotif.push("Objective : " + text)
-
 	print("OBJECTIVE SET :", text)
 
 

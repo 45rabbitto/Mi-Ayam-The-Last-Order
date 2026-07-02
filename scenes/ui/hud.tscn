@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cjry7grut7adw" path="res://scenes/ui/hud.gd" id="1_0mwgc"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hqnrr"]
-bg_color = Color(1, 1, 1, 0)
+bg_color = Color(0.14509805, 0.14509805, 0.14509805, 0.93333334)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dra5f"]
 bg_color = Color(0, 0, 0, 0.003921569)
@@ -36,12 +36,15 @@ corner_radius_bottom_left = 12
 script = ExtResource("1_0mwgc")
 
 [node name="DialogBox" type="Panel" parent="." unique_id=318431777]
+z_index = 100
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -352.0
-offset_bottom = 150.0
+offset_left = 350.0
+offset_top = -108.0
+offset_right = -302.0
+offset_bottom = -38.0
 grow_horizontal = 2
 grow_vertical = 0
 pivot_offset = Vector2(0, -150)
@@ -262,4 +265,4 @@ theme_override_constants/shadow_offset_y = 2
 theme_override_constants/outline_size = 2
 theme_override_constants/shadow_outline_size = 2
 theme_override_font_sizes/font_size = 20
-text = "Objective : Cari Charger "
+text = "Objective :"

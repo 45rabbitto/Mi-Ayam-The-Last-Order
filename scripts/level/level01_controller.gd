@@ -10,6 +10,8 @@ var hp_charged := false
 
 func _ready():
 
+	print("LEVEL READY")
+
 	# ==========================================
 	# OBJECTIVE
 	# ==========================================
@@ -22,6 +24,8 @@ func _ready():
 
 	ObjectiveManager.start()
 
+	print("Current Objective =", ObjectiveManager.get_current_objective())
+
 	# ==========================================
 	# HP MODEL
 	# ==========================================
@@ -31,7 +35,6 @@ func _ready():
 
 	if hp_on_mesh:
 		hp_on_mesh.visible = false
-
 
 # ==========================================================
 # DIPANGGIL SAAT ITEM BERHASIL DIAMBIL

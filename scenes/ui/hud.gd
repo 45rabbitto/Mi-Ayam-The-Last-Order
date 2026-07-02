@@ -51,7 +51,7 @@ func _ready():
 	print("DialogBox dari UiManager =", dialog_panel)
 
 	# Hide default
-	dialog_panel.hide()
+	#dialog_panel.hide()
 	hint_panel.hide()
 	notification_panel.hide()
 	pause_menu.hide()

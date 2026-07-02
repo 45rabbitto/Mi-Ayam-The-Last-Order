@@ -134,13 +134,22 @@ func _on_inventory_changed(items: Array):
 
 func show_dialog(text:String):
 
+	print("SHOW DIALOG")
+	print(dialog_panel)
+	print(dialog_label)
+
 	if dialog_panel == null:
+		print("dialog_panel NULL")
 		return
 
-	dialog_panel.show()
+	dialog_panel.visible = true
+	dialog_panel.modulate.a = 1.0
+
+	dialog_label.visible = true
 	dialog_label.text = text
 
-	dialog_timer.start()
+	print("VISIBLE =", dialog_panel.visible)
+	print("TEXT =", dialog_label.text)
 
 func _hide_dialog():
 
@@ -193,8 +202,11 @@ func _hide_notification():
 
 func set_objective(text:String):
 
+	print("SET OBJECTIVE DIPANGGIL:", text)
+
 	if objective_label:
 		objective_label.text = "Objective : " + text
+		print("TEXT SET =", objective_label.text)
 
 # ==========================================================
 # CONDITION
