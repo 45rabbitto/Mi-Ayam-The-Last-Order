@@ -1317,6 +1317,18 @@ shadow_mesh = SubResource("ArrayMesh_rjgnb")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ua27e"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_80574"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_renlo"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kxaf6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wntd7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jcpsk"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kkueg"]
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_kxaf6"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_80574"]
@@ -1343,7 +1355,7 @@ transform = Transform3D(-0.18618822, 0, 0, 0, -0.18618822, 0, 0, 0, -0.18618822,
 mesh = SubResource("ArrayMesh_supot")
 
 [node name="Cofre de los pies" type="MeshInstance3D" parent="." unique_id=458263506]
-transform = Transform3D(0.32514632, 0, 0, 0, 0.32514632, 0, 0, 0, 0.32514632, -2.3189974, 0.59293646, 0.9900219)
+transform = Transform3D(0.32514632, 0, 0, 0, 0.32514632, 0, 0, 0, 0.32514632, -2.3189974, 0.59293646, 0.99002194)
 mesh = SubResource("ArrayMesh_2ygvj")
 
 [node name="Mesa de Luz" type="MeshInstance3D" parent="." unique_id=1459018009]
@@ -1427,7 +1439,7 @@ transform = Transform3D(0.05941475, 0, 0.10670773, 0, 0.12213373, 0, -0.10670773
 mesh = SubResource("ArrayMesh_ar4lk")
 
 [node name="Escritorio en L" type="MeshInstance3D" parent="." unique_id=320823364]
-transform = Transform3D(0.28651446, 0, 0, 0, 0.28651446, 0, 0, 0, 0.28651446, -5.0916443, 0.82198983, 1.0261111)
+transform = Transform3D(0.2865144, -4.656613e-10, 0, 4.656613e-10, 0.2865144, 0, 0, 0, 0.28651446, -5.0916452, 0.82198995, 1.0261111)
 mesh = SubResource("ArrayMesh_b25eu")
 
 [node name="Monitor izq" type="MeshInstance3D" parent="." unique_id=1265662903]
@@ -1541,13 +1553,18 @@ shape = SubResource("BoxShape3D_6d0hp")
 
 [node name="hp" type="Area3D" parent="." unique_id=1795947470]
 script = ExtResource("23_80574")
+object_name = "hp_mati"
+inspection_text = "hah? hp gw mati? pantes dari tadi gaada notif"
+voice_key = "hp_mati"
+is_pickupable = true
+item_id = "hp_mati"
 
 [node name="hp" type="MeshInstance3D" parent="hp" unique_id=398048452]
 transform = Transform3D(0.17861575, 0, 0, 0, 0.17861575, 0, 0, 0, 0.17861575, 0, 0.87543654, -0.1561169)
 mesh = SubResource("ArrayMesh_ev0lo")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="hp" unique_id=596411902]
-transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, -0.047831357, 0.71338975, -0.15447299)
+transform = Transform3D(0.19999996, -9.313226e-10, 0, 9.313226e-10, 0.19999996, 0, 0, 0, 0.2, -0.080266476, 0.741096, -0.15447307)
 shape = SubResource("BoxShape3D_mcgty")
 
 [node name="laptop" type="Area3D" parent="." unique_id=839492394]
@@ -1640,7 +1657,7 @@ texture = ExtResource("38_ua27e")
 transform = Transform3D(0.09999919, -2.8144568e-05, -0.00037745014, -2.814061e-05, 0.098894194, -0.01482965, 0.00037745014, 0.014829638, 0.09889358, -2.6983376, 0.76097316, 0.50430006)
 
 [node name="Sketchfab_Scene" parent="sendok" unique_id=754651236 instance=ExtResource("39_80574")]
-transform = Transform3D(1.0000001, -1.4551915e-09, 0, 4.656613e-10, 1, 0, 4.656613e-10, 1.4901161e-08, 1.0000001, 0.0144460425, 0.56757545, -0.008114696)
+transform = Transform3D(0.338451, -0.12314512, -0.93289375, 0.15607966, 0.98501354, -0.07340032, 0.9279502, -0.12076297, 0.35260004, -25.587006, 0.98752975, -16.133423)
 
 [node name="cocacola" type="Area3D" parent="." unique_id=748219981]
 script = ExtResource("23_80574")
@@ -1649,48 +1666,54 @@ inspection_text = "minuman kesukaan..."
 highlight_material = ExtResource("28_80574")
 
 [node name="soda" type="MeshInstance3D" parent="cocacola" unique_id=1333473615]
+material_override = SubResource("StandardMaterial3D_80574")
 
 [node name="Sketchfab_Scene" parent="cocacola/soda" unique_id=1922765648 instance=ExtResource("30_gcr7k")]
 transform = Transform3D(0.06, 0, 0, 0, 0.06, 0, 0, 0, 0.06, -2.3799498, 0.83049726, 0.24652797)
 
 [node name="soda3" type="MeshInstance3D" parent="cocacola" unique_id=664014846]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.14458156)
+material_override = SubResource("StandardMaterial3D_renlo")
 
 [node name="Sketchfab_Scene" parent="cocacola/soda3" unique_id=711873660 instance=ExtResource("30_gcr7k")]
 transform = Transform3D(0.06, 0, 0, 0, 0.06, 0, 0, 0, 0.06, -2.3799498, 0.83049726, 0.24652797)
 
 [node name="soda4" type="MeshInstance3D" parent="cocacola" unique_id=1462348327]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.14458156)
+material_override = SubResource("StandardMaterial3D_kxaf6")
 
 [node name="Sketchfab_Scene" parent="cocacola/soda4" unique_id=737234381 instance=ExtResource("30_gcr7k")]
 transform = Transform3D(0.059999995, 0, 0, 0, 0.059999995, 0, 0, 0, 0.06, -2.3040156, 0.83049726, 0.39530376)
 
 [node name="soda6" type="MeshInstance3D" parent="cocacola" unique_id=164785942]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.14458156)
+material_override = SubResource("StandardMaterial3D_wntd7")
 
 [node name="Sketchfab_Scene" parent="cocacola/soda6" unique_id=1392598803 instance=ExtResource("30_gcr7k")]
 transform = Transform3D(0.059999995, 0, 0, 0, 0.059999995, 0, 0, 0, 0.06, -2.150178, 0.83049726, 0.30480406)
 
 [node name="soda5" type="MeshInstance3D" parent="cocacola" unique_id=186354227]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.14458156)
+material_override = SubResource("StandardMaterial3D_jcpsk")
 
 [node name="Sketchfab_Scene" parent="cocacola/soda5" unique_id=46427000 instance=ExtResource("30_gcr7k")]
 transform = Transform3D(0.059999987, 0, 0, 0, 0.059999987, 0, 0, 0, 0.06, -2.1362274, 0.82183945, 0.49659273)
 
 [node name="soda2" type="MeshInstance3D" parent="cocacola" unique_id=500078311]
+material_override = SubResource("StandardMaterial3D_kkueg")
 
 [node name="Sketchfab_Scene" parent="cocacola/soda2" unique_id=993928601 instance=ExtResource("30_gcr7k")]
 transform = Transform3D(0.05999999, 0, 0, 0, 0.05999999, 0, 0, 0, 0.06, -2.116263, 0.8307181, 0.24595106)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="cocacola" unique_id=459023155]
-transform = Transform3D(0.3999999, -3.7252903e-09, 0, 3.7252903e-09, 0.3999999, 0, 0, 0, 0.4, -2.2286267, 0.89511454, 0.38826942)
+transform = Transform3D(0.5, -5.5879354e-09, 0, 5.5879354e-09, 0.5, 0, 0, 0, 0.5, -2.2432165, 0.9396678, 0.38826942)
 shape = SubResource("BoxShape3D_kxaf6")
 
 [node name="charger" type="Area3D" parent="." unique_id=1539879272]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00020647049, 0.31268537, -0.7662208)
 script = ExtResource("23_80574")
 object_name = "Charger"
-inspection_text = "Harusnya ada di sekitar sini..."
+inspection_text = "nah ketemu chargernya"
 voice_key = "cari_charger"
 is_pickupable = true
 item_id = "charger"
@@ -1700,5 +1723,5 @@ highlight_material = ExtResource("28_80574")
 transform = Transform3D(0.014999999, 0, 0, 0, 0.014999999, 0, 0, 0, 0.015, 0.22934008, -0.12541056, 0.38242793)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="charger" unique_id=1907415217]
-transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0.14297628, -0.16112804, 0.26359296)
+transform = Transform3D(0.39999995, -1.8626451e-09, 0, 1.8626451e-09, 0.39999995, 0, 0, 0, 0.4, 0.1589222, -0.09042466, 0.26359296)
 shape = SubResource("BoxShape3D_80574")
