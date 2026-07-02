@@ -203,10 +203,10 @@ func _hide_notification():
 func set_objective(text:String):
 
 	print("SET OBJECTIVE DIPANGGIL:", text)
+	print("OBJECTIVE LABEL =", objective_label)
 
 	if objective_label:
 		objective_label.text = "Objective : " + text
-		print("TEXT SET =", objective_label.text)
 
 # ==========================================================
 # CONDITION
