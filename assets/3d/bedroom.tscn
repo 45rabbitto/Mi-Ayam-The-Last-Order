@@ -1726,3 +1726,14 @@ transform = Transform3D(0.014999999, 0, 0, 0, 0.014999999, 0, 0, 0, 0.015, 0.229
 [node name="CollisionShape3D" type="CollisionShape3D" parent="charger" unique_id=1907415217]
 transform = Transform3D(0.39999995, -1.8626451e-09, 0, 1.8626451e-09, 0.39999995, 0, 0, 0, 0.4, 0.1589222, -0.09042466, 0.26359296)
 shape = SubResource("BoxShape3D_80574")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1740105838]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.027, -1.963, -3.25)
+light_color = Color(0.89059, 0.89059, 0.8905901, 1)
+omni_range = 10.0
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="." unique_id=1819764192]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8497896, 2.0477865, 0.79302955)
+light_color = Color(0.2509804, 0.2509804, 0.2509804, 1)
+light_energy = 3.0
+omni_range = 12.0

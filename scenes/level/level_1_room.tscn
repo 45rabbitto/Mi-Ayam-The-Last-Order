@@ -8,11 +8,6 @@
 
 [node name="Level1Room" type="Node3D" unique_id=829822156]
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1241051751]
-transform = Transform3D(0.7071068, -0.5, 0.5, 0, 0.7071068, 0.7071068, -0.7071068, -0.5, 0.5, -0.6255522, -0.08865404, 0.5506029)
-light_energy = 0.1
-light_negative = true
-
 [node name="Player" parent="." unique_id=187213136 instance=ExtResource("1_t3fsw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -1.0740939, -3.370984)
 wall_min_slide_angle = 0.017453292
