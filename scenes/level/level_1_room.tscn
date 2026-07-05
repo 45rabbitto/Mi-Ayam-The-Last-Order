@@ -2,16 +2,20 @@
 
 [ext_resource type="PackedScene" uid="uid://cs14om8wf1udr" path="res://scenes/player/player.tscn" id="1_t3fsw"]
 [ext_resource type="PackedScene" uid="uid://d3p1u7jppj2v7" path="res://assets/3d/bedroom.tscn" id="3_7elja"]
+[ext_resource type="PackedScene" uid="uid://crkuelg6fyyas" path="res://scenes/ui/hud.tscn" id="4_wrfhh"]
+[ext_resource type="PackedScene" uid="uid://v74ay2xypcw0" path="res://scenes/events/node_3d.tscn" id="5_aumrr"]
 [ext_resource type="PackedScene" uid="uid://dqqhdv7fnq6xq" path="res://scenes/levels/level_01_controller.tscn" id="13_pnqwa"]
 
 [node name="Level1Room" type="Node3D" unique_id=829822156]
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1241051751]
-transform = Transform3D(0.70710677, -0.49999997, 0.49999997, 0, 0.70710677, 0.70710677, -0.70710677, -0.49999997, 0.49999997, 0, 0, 0)
-
 [node name="Player" parent="." unique_id=187213136 instance=ExtResource("1_t3fsw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -3)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -1.0740939, -3.370984)
+wall_min_slide_angle = 0.017453292
 
 [node name="Level01Controller" parent="." unique_id=270792703 instance=ExtResource("13_pnqwa")]
 
 [node name="bedroom" parent="." unique_id=1948344516 instance=ExtResource("3_7elja")]
+
+[node name="hud" parent="." unique_id=291386691 instance=ExtResource("4_wrfhh")]
+
+[node name="WorldEnvironment" parent="." unique_id=23361280 instance=ExtResource("5_aumrr")]

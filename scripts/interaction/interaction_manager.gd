@@ -1,115 +1,108 @@
-extends Node3D
+extends Node
 
-@onready var raycast: RayCast3D = $"../Head/RayCast3D"
+# ==========================================================
+# REFERENCES
+# ==========================================================
 
-var current_target = null
+@onready var raycast: RayCast3D = $"../Head/Camera3D/RayCast3D"
 
-func _ready():
+# ==========================================================
+# STATE
+# ==========================================================
 
-	print("InteractionManager Ready")
-	print("Raycast =", raycast)
+var current_object: Interactable = null
+var locked_object: Interactable = null
 
-func _process(_delta):
+# ==========================================================
+# PROCESS
+# ==========================================================
 
-	check_interaction()
+func _process(_delta: float) -> void:
+	check_object()
 
-# =====================================================
-# DETEKSI OBJEK
-# =====================================================
-func check_interaction():
+# ==========================================================
+# DETECT OBJECT
+# ==========================================================
 
-	if raycast == null:
+func check_object() -> void:
+
+	raycast.force_raycast_update()
+
+	var new_object: Interactable = null
+
+	if raycast.is_colliding():
+
+		var collider = raycast.get_collider()
+
+		if collider is Interactable:
+			new_object = collider
+
+	# Saat sedang interact jangan ganti object
+	if locked_object == null:
+		_set_current_object(new_object)
+
+# ==========================================================
+# CHANGE CURRENT OBJECT
+# ==========================================================
+
+func _set_current_object(new_object: Interactable) -> void:
+
+	# Tidak berubah
+	if new_object == current_object:
 		return
 
-	if !raycast.is_colliding():
-		current_target = null
-		Hud.hide_interaction()
+	# Hilangkan highlight object lama
+	if is_instance_valid(current_object):
+		current_object.hide_highlight()
+
+	current_object = new_object
+
+	# Object baru
+	if is_instance_valid(current_object):
+
+		current_object.show_highlight()
+
+		UiManager.show_hint(
+			current_object.get_prompt()
+		)
+
+	# Tidak melihat object
+	else:
+
+		UiManager.hide_hint()
+
+# ==========================================================
+# INTERACT
+# ==========================================================
+
+func try_interact() -> void:
+
+	if !is_instance_valid(current_object):
 		return
 
-	var collider = raycast.get_collider()
+	# Lock object agar tidak berubah saat interact
+	locked_object = current_object
 
-	if collider == null:
-		current_target = null
-		Hud.hide_interaction()
-		return
+	current_object.interact()
 
-	var target = collider
+	# Object pickup kemungkinan queue_free()
+	locked_object = null
+	current_object = null
 
-	# naik ke parent sampai ketemu interactable
-	while target != null and !target.is_in_group("interactable"):
-		target = target.get_parent()
+	UiManager.hide_hint()
 
-	if target == null:
-		current_target = null
-		Hud.hide_interaction()
-		return
+	# Update ulang raycast
+	check_object()
 
-	if target.is_in_group("player"):
-		current_target = null
-		Hud.hide_interaction()
-		return
+# ==========================================================
+# CLEAR
+# ==========================================================
 
-	current_target = target
+func clear_current_object() -> void:
 
-	var prompt = "Interact"
+	if is_instance_valid(current_object):
+		current_object.hide_highlight()
 
-	if current_target.has_method("get_prompt"):
-		prompt = current_target.get_prompt()
+	current_object = null
 
-	Hud.show_interaction("[E] " + prompt)
-	
-# =====================================================
-# INPUT KEYBOARD
-# =====================================================
-
-func _input(event):
-
-	if event.is_action_pressed("interact"):
-
-		print("TOMBOL INTERACT")
-
-		try_interact()
-
-# =====================================================
-# SUPPORT PLAYER CONTROLLER
-# =====================================================
-
-func try_interact():
-
-	print("===== TRY INTERACT =====")
-	print("CURRENT TARGET =", current_target)
-
-	perform_interaction()
-
-# =====================================================
-# SUPPORT ANDROID BUTTON
-# =====================================================
-
-func interact_button_pressed():
-
-	try_interact()
-
-# =====================================================
-# EKSEKUSI INTERAKSI
-# =====================================================
-
-func perform_interaction():
-
-	print("PERFORM INTERACTION")
-	print("CURRENT TARGET =", current_target)
-
-	if current_target == null:
-
-		print("TARGET NULL")
-		return
-
-	print("TARGET =", current_target.name)
-	print("HAS INTERACT =", current_target.has_method("interact"))
-
-	var player = get_tree().get_first_node_in_group("player")
-
-	print("PLAYER =", player)
-
-	current_target.interact(player)
-
-	print("INTERACT SELESAI")
+	UiManager.hide_hint()

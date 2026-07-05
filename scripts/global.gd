@@ -1,52 +1,103 @@
-extends Area3D
-class_name GlobalManager
+extends Node
 
-signal interacted
-signal collected
+# ==========================
+# INVENTORY
+# ==========================
+var inventory: Array[String] = []
 
-@export var object_name: String = ""
-@export_multiline var inspection_text: String = ""
-@export var is_quest_item: bool = false
-@export var quest_item_name: String = ""
+# ==========================
+# UI REFERENCES (DI-ASSIGN DARI SCENE)
+# ==========================
+var dialog_label: Label
+var dialog_panel: Control
 
-@onready var highlight_mesh = get_node_or_null("HighlightMesh")
+var hint_label: Label
+var hint_panel: Control
 
-var is_in_inventory = false
+var notification_label: Label
+var notification_panel: Control
 
-func _ready():
-	mouse_entered.connect(_on_mouse_entered)
-	mouse_exited.connect(_on_mouse_exited)
 
-	if highlight_mesh:
-		highlight_mesh.visible = false
+# ==========================
+# INIT UI BINDING
+# ==========================
+func bind_ui(dialog_p: Control, dialog_l: Label,
+			 hint_p: Control, hint_l: Label,
+			 notif_p: Control, notif_l: Label):
 
-func _on_mouse_entered():
-	if highlight_mesh:
-		highlight_mesh.visible = true
+	dialog_panel = dialog_p
+	dialog_label = dialog_l
 
-	print("Lihat:", object_name)
+	hint_panel = hint_p
+	hint_label = hint_l
 
-func _on_mouse_exited():
-	if highlight_mesh:
-		highlight_mesh.visible = false
+	notification_panel = notif_p
+	notification_label = notif_l
 
-func interact():
-	if is_in_inventory:
+
+# ==========================
+# INVENTORY SYSTEM
+# ==========================
+func add_item(item: String):
+	inventory.append(item)
+	print("ADD ITEM ->", item)
+	print(inventory)
+
+
+func has_item(item_id: String) -> bool:
+	return inventory.has(item_id)
+
+
+func remove_item(item_id: String):
+	if inventory.has(item_id):
+		inventory.erase(item_id)
+
+
+# ==========================
+# DIALOG SYSTEM
+# ==========================
+func show_dialog(text: String):
+	if dialog_panel == null or dialog_label == null:
 		return
 
-	if is_quest_item:
-		add_to_inventory()
-	else:
-		inspect()
+	dialog_panel.visible = true
+	dialog_label.text = text
 
-func inspect():
-	print(object_name + ": " + inspection_text)
 
-func add_to_inventory():
-	is_in_inventory = true
+func hide_dialog():
+	if dialog_panel == null:
+		return
 
-	print("Item didapat:", quest_item_name)
+	dialog_panel.visible = false
 
-	hide()
 
-	emit_signal("collected")
+# ==========================
+# INTERACTION HINT SYSTEM
+# ==========================
+func show_interaction_hint(text: String):
+	if hint_panel == null or hint_label == null:
+		return
+
+	hint_panel.visible = true
+	hint_label.text = text
+
+
+func hide_interaction_hint():
+	if hint_panel == null:
+		return
+
+	hint_panel.visible = false
+
+
+# ==========================
+# NOTIFICATION SYSTEM
+# ==========================
+func show_notification(text: String):
+	if notification_panel == null or notification_label == null:
+		return
+
+	notification_panel.visible = true
+	notification_label.text = text
+
+	await get_tree().create_timer(2.0).timeout
+	notification_panel.visible = false

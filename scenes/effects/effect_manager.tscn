@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://eluchxxn0ht2"]
+
+[ext_resource type="Script" uid="uid://dw3s237k1c0j6" path="res://scripts/effects/effect_manager.gd" id="1_8c30v"]
+[ext_resource type="PackedScene" uid="uid://dhaiva8b2s4k3" path="res://scenes/effects/blur_overlay.tscn" id="2_qujk4"]
+[ext_resource type="PackedScene" uid="uid://emnmj10afchy" path="res://scenes/effects/vignette_overlay.tscn" id="3_j3ogt"]
+[ext_resource type="PackedScene" uid="uid://b5esev6x1gqmj" path="res://scenes/effects/glitch_overlay.tscn" id="4_f6xsy"]
+
+[node name="EffectManager" type="CanvasLayer" unique_id=338876907]
+script = ExtResource("1_8c30v")
+
+[node name="BlurOverlay" parent="." unique_id=1873237884 instance=ExtResource("2_qujk4")]
+
+[node name="VignetteOverlay" parent="." unique_id=293999398 instance=ExtResource("3_j3ogt")]
+
+[node name="GlitchOverlay" parent="." unique_id=2072852783 instance=ExtResource("4_f6xsy")]

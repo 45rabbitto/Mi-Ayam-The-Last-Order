@@ -1,73 +1,67 @@
 extends CanvasLayer
 
-@onready var objective_label: Label = $ObjectiveLabel
-@onready var interaction_label: Label = $InteractionLabel
+# ==========================================================
+# UI REFERENCES
+# ==========================================================
+
+@onready var dialog_panel = $DialogBox
+@onready var dialog_label = $DialogBox/Label
+
+@onready var hint_panel = $InteractionHint
+@onready var hint_label = $InteractionHint/Label
+
 @onready var notification_panel = $NotificationPanel
-@onready var notification_text: Label = $NotificationPanel/NotificationText
-@onready var condition_label: Label = $ConditionLabel
+@onready var notification_label = $NotificationPanel/Label
 
-@onready var crosshair = $Crosshair
+@onready var objective_label = $ObjectivePanel/VBoxContainer/Label
+@onready var condition_label = $ConditionLabel
 
+@onready var inventory_ui = $InventoryUI
 
-func _ready() -> void:
-	add_to_group("hud")
+@onready var pause_menu = $PauseMenu
+@onready var crosshair = $CrossHair
+@onready var fade_rect = get_node_or_null("Fade")
 
-	if objective_label:
-		objective_label.text = "TEST OBJECTIVE"
+# ==========================================================
+# READY
+# ==========================================================
 
-	show_notification("TEST NOTIFICATION")
-	hide_interaction()
+func _ready():
 
+	_stop_animations()
 
-# =====================================
-# OBJECTIVE
-# =====================================
-func set_objective(text: String) -> void:
-	if objective_label:
-		objective_label.text = text
+	UiManager.register_ui(
+		dialog_panel,
+		dialog_label,
+		hint_panel,
+		hint_label,
+		notification_panel,
+		notification_label,
+		objective_label,
+		condition_label,
+		inventory_ui,
+		pause_menu,
+		crosshair,
+		fade_rect
+	)
 
+# ==========================================================
+# PRIVATE
+# ==========================================================
 
-# =====================================
-# INTERACTION
-# =====================================
-func show_interaction(text: String = "Press E to interact") -> void:
-	if interaction_label:
-		interaction_label.text = text
-		interaction_label.visible = true
+func _stop_animations():
 
-
-func hide_interaction() -> void:
-	if interaction_label:
-		interaction_label.visible = false
-
-
-# =====================================
-# NOTIFICATION
-# =====================================
-func show_notification(text: String) -> void:
-	if notification_text:
-		notification_text.text = text
-
-	if notification_panel:
-		notification_panel.visible = true
-
-	await get_tree().create_timer(3.0).timeout
-
-	if notification_panel:
-		notification_panel.visible = false
+	_stop_animation(dialog_panel)
+	_stop_animation(hint_panel)
+	_stop_animation(notification_panel)
 
 
-# =====================================
-# CROSSHAIR
-# =====================================
-func set_crosshair(state: bool) -> void:
-	if crosshair:
-		crosshair.visible = state
+func _stop_animation(node: Node):
 
+	if node == null:
+		return
 
-# =====================================
-# CONDITION
-# =====================================
-func set_raka_state(text: String) -> void:
-	if condition_label:
-		condition_label.text = text
+	var animation = node.get_node_or_null("AnimationPlayer")
+
+	if animation:
+		animation.stop()

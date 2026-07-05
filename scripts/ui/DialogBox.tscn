@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://cdts7p266o3s7"]
+
+[node name="DialogBox" type="CanvasLayer" unique_id=1971507700]
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1542171008]
+offset_right = 459.0
+offset_bottom = 67.0
+
+[node name="Label" type="Label" parent="PanelContainer" unique_id=1720373311]
+layout_mode = 2

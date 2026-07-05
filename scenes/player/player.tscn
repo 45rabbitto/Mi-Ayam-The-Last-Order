@@ -8,18 +8,27 @@ radius = 0.4
 height = 1.8
 
 [node name="Player" type="CharacterBody3D" unique_id=187213136]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.77698565, -1.8893654, 0)
 script = ExtResource("1_8afob")
 
 [node name="Head" type="Node3D" parent="." unique_id=746067447]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Head" unique_id=676415982]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.0103817, 0)
 current = true
 
-[node name="RayCast3D" type="RayCast3D" parent="Head" unique_id=1696481456]
-target_position = Vector3(0, 0, -5)
+[node name="RayCast3D" type="RayCast3D" parent="Head/Camera3D" unique_id=1696481456]
+target_position = Vector3(0, 0, -3)
 collide_with_areas = true
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Head/Camera3D" unique_id=222859333]
+light_color = Color(0.92099476, 0.9209946, 0.9209946, 1)
+light_energy = 3.0
+light_volumetric_fog_energy = 0.1
+shadow_enabled = true
+spot_range = 100.0
+spot_angle_attenuation = 3.0
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=2111442206]
 
