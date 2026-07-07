@@ -18,13 +18,6 @@ border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hikuk"]
-bg_color = Color(0.14901961, 0.14901961, 0.14901961, 0.003921569)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nplht"]
 bg_color = Color(0, 0, 0, 0.003921569)
 
@@ -149,46 +142,60 @@ custom_minimum_size = Vector2(48, 48)
 layout_mode = 0
 offset_right = 62.0
 offset_bottom = 62.0
+expand_mode = 1
+stretch_mode = 5
 
-[node name="slot2" type="Panel" parent="InventoryUI" unique_id=767711567]
+[node name="slot2" type="Panel" parent="InventoryUI" unique_id=156314598]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_hikuk")
+theme_override_styles/panel = SubResource("StyleBoxFlat_bo48s")
 
-[node name="TextureRect" type="TextureRect" parent="InventoryUI/slot2" unique_id=1575568731]
+[node name="TextureRect" type="TextureRect" parent="InventoryUI/slot2" unique_id=1167162118]
+custom_minimum_size = Vector2(48, 48)
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 62.0
+offset_bottom = 62.0
+expand_mode = 1
+stretch_mode = 5
 
-[node name="slot3" type="Panel" parent="InventoryUI" unique_id=426782573]
+[node name="slot3" type="Panel" parent="InventoryUI" unique_id=1893699578]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_hikuk")
+theme_override_styles/panel = SubResource("StyleBoxFlat_bo48s")
 
-[node name="TextureRect" type="TextureRect" parent="InventoryUI/slot3" unique_id=309936197]
+[node name="TextureRect" type="TextureRect" parent="InventoryUI/slot3" unique_id=1609899913]
+custom_minimum_size = Vector2(48, 48)
 layout_mode = 0
-offset_right = 63.0
-offset_bottom = 63.0
+offset_right = 62.0
+offset_bottom = 62.0
+expand_mode = 1
+stretch_mode = 5
 
-[node name="slot4" type="Panel" parent="InventoryUI" unique_id=9762128]
+[node name="slot4" type="Panel" parent="InventoryUI" unique_id=1331529808]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_hikuk")
+theme_override_styles/panel = SubResource("StyleBoxFlat_bo48s")
 
-[node name="TextureRect" type="TextureRect" parent="InventoryUI/slot4" unique_id=1614125237]
+[node name="TextureRect" type="TextureRect" parent="InventoryUI/slot4" unique_id=876623222]
+custom_minimum_size = Vector2(48, 48)
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 62.0
+offset_bottom = 62.0
+expand_mode = 1
+stretch_mode = 5
 
-[node name="slot5" type="Panel" parent="InventoryUI" unique_id=1116420149]
+[node name="slot5" type="Panel" parent="InventoryUI" unique_id=810000652]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_hikuk")
+theme_override_styles/panel = SubResource("StyleBoxFlat_bo48s")
 
-[node name="TextureRect" type="TextureRect" parent="InventoryUI/slot5" unique_id=1471371837]
+[node name="TextureRect" type="TextureRect" parent="InventoryUI/slot5" unique_id=1711885147]
+custom_minimum_size = Vector2(48, 48)
 layout_mode = 0
-offset_right = 63.0
-offset_bottom = 63.0
+offset_right = 62.0
+offset_bottom = 62.0
+expand_mode = 1
+stretch_mode = 5
 
 [node name="ConditionLabel" type="Label" parent="." unique_id=1473699331]
 offset_left = 20.0

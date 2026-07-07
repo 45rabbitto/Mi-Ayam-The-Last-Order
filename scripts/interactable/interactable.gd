@@ -43,11 +43,19 @@ func interact():
 	# Pickup Item
 	if is_pickupable:
 
-		if InventoryManager.add_item(item_id):
+		print("=== PICKUP ===")
+		print("Item ID :", item_id)
+
+		var success = InventoryManager.add_item(item_id)
+
+		print("Success :", success)
+
+		if success:
+
+			print("ITEM MASUK INVENTORY")
 
 			UiManager.show_notification(object_name + " diperoleh")
 
-			# Selesaikan objective jika cocok
 			ObjectiveManager.complete_if_match(item_id)
 
 			interacted.emit(item_id)
@@ -56,8 +64,11 @@ func interact():
 
 			return
 
-	interacted.emit("")
+		else:
 
+			print("GAGAL MASUK INVENTORY")
+
+	interacted.emit("")
 
 func show_highlight():
 

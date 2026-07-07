@@ -18,8 +18,8 @@ func _ready():
 
 	ObjectiveManager.reset()
 
-	ObjectiveManager.add_objective("Ambil Charger")
-	ObjectiveManager.add_objective("Ambil HP")
+	ObjectiveManager.add_objective("jelajahi kamar")
+	ObjectiveManager.add_objective("Ambil charger")
 	ObjectiveManager.add_objective("Nyalakan HP")
 
 	ObjectiveManager.start()
