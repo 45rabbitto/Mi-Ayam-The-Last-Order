@@ -80,8 +80,20 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_6yy7v")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_wntd7"]
+size = Vector3(0.1, 3.841705, 4.079)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_renlo"]
 size = Vector3(7, 0.1, 7)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jcpsk"]
+size = Vector3(6.993164, 4.056198, 0.20996094)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kkueg"]
+size = Vector3(7.1791153, 3.4445496, 0.09765625)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pqjy1"]
+size = Vector3(0.13513184, 4.073059, 7.4067335)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_caomd"]
 resource_name = "Cama"
@@ -1340,6 +1352,10 @@ transform = Transform3D(0.9996762, -0.025444156, 0, 0.025444156, 0.9996762, 0, 0
 [node name="tembok" type="MeshInstance3D" parent="." unique_id=1500119879]
 mesh = SubResource("ArrayMesh_rq2l0")
 
+[node name="CollisionShape3D" type="CollisionShape3D" parent="tembok" unique_id=681030811]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.046113968, 0.7318562, -0.576149)
+shape = SubResource("BoxShape3D_wntd7")
+
 [node name="tembok2" type="StaticBody3D" parent="." unique_id=1603018958]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -4.877355, 0, -1.1272602)
 
@@ -1350,6 +1366,18 @@ shape = SubResource("BoxShape3D_renlo")
 [node name="tembok3" type="MeshInstance3D" parent="." unique_id=1849148990]
 transform = Transform3D(1, -1.5285484e-14, -1.7484555e-07, 0, -1, 8.742278e-08, -1.7484555e-07, -8.742278e-08, -1, -0.022614002, 2.6289737, -1.1188002)
 mesh = SubResource("ArrayMesh_rq2l0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="tembok3" unique_id=572560974]
+transform = Transform3D(1, 1.5286785e-14, 0, 1.5286133e-14, 1, 0, 7.460699e-12, 7.460699e-12, 1, -2.29737, 1.934655, -1.7468171)
+shape = SubResource("BoxShape3D_jcpsk")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="tembok3" unique_id=1385045011]
+transform = Transform3D(0.99999994, 1.5287681e-14, 0, 1.528658e-14, 1, 0, 1.2590817e-11, 1.2590817e-11, 1, -2.5392852, 1.527655, 0.6475992)
+shape = SubResource("BoxShape3D_kkueg")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="tembok3" unique_id=660839980]
+transform = Transform3D(1, 1.5286837e-14, 0, 1.5286158e-14, 1, 0, 7.759127e-12, 7.759127e-12, 1, -4.2882643, 2.045755, -1.0035653)
+shape = SubResource("BoxShape3D_pqjy1")
 
 [node name="Cama" type="MeshInstance3D" parent="." unique_id=183624287]
 transform = Transform3D(-0.18618822, -4.656613e-10, 0, 4.656613e-10, -0.18618822, 0, 0, 0, -0.18618822, 0.22788143, 0.6288495, 1.0602814)
