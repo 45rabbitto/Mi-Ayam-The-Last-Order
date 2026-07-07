@@ -10,12 +10,12 @@ const ITEM_DATABASE := {
 
 	"charger": {
 		"name": "Phone Charger",
-		"icon": preload("res://scenes/ui/items/charger.png")
+		"icon": preload("res://scenes/ui/items/charger.jpeg")
 	},
 
 	"phone": {
 		"name": "Phone",
-		"icon": preload("res://scenes/ui/items/phone.png")
+		"icon": preload("res://scenes/ui/items/phone.jpeg")
 	}
 
 }

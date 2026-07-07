@@ -32,7 +32,7 @@ func try_use_item():
 		if controller:
 			controller.charge_hp()
 	else:
-		# Gagal
 		if use_fail_sfx:
 			AudioManager.play_sfx(use_fail_sfx)
-		UIManager.show_dialog("Butuh charger untuk menyalakan HP", "")
+
+		UiManager.show_dialog("Butuh charger untuk menyalakan HP")

@@ -42,59 +42,6 @@
 [ext_resource type="Texture2D" uid="uid://31udqelf8ixo" path="res://assets/3d/kopi.jpeg" id="38_ua27e"]
 [ext_resource type="PackedScene" uid="uid://cl8nmbebcayft" path="res://assets/3d/spoon.glb" id="39_80574"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vsc1r"]
-resource_name = "Paredes"
-cull_mode = 2
-albedo_texture = ExtResource("1_q23e8")
-roughness = 0.5
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_6yy7v"]
-_surfaces = [{
-"aabb": AABB(-5.3773227, 0.1825074, -2.4432454, 5.885898, 2.2511687, 3.7704618),
-"format": 34896613377,
-"index_count": 24,
-"index_data": PackedByteArray("AAABAAIAAAADAAEAAwAEAAEABQADAAAAAwAGAAQABQAGAAMABQAHAAYABQAIAAcA"),
-"name": "Paredes",
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 9,
-"vertex_data": PackedByteArray("//8AAAAAAAD//93///8AAP//3f8AAAAA//8AAP//AAAAAN3///8AAAAAAAAAAAAAAAAAAP//AAAAAP////8AAAAA//8AAAAA")
-}]
-blend_shape_mode = 0
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_rq2l0"]
-resource_name = "Habitacion Modelada en 3D_Cubo"
-_surfaces = [{
-"aabb": AABB(-5.3773227, 0.1825074, -2.4432454, 5.885898, 2.2511687, 3.7704618),
-"attribute_data": PackedByteArray("Z6cyZw26jUkNujJnZ6eNSWenjUkNukYbDbqNSWenRhteNjvkXnY7pF52O+ReNjukucwyZxC6jUm5zI1JELoyZw=="),
-"format": 34896613399,
-"index_count": 24,
-"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0A"),
-"material": SubResource("StandardMaterial3D_vsc1r"),
-"name": "Paredes",
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 16,
-"vertex_data": PackedByteArray("//8AAAAAVNX//93///9U1f//3f8AAFTV//8AAP//VNX//wAA////vwAA3f////+////d/////78AAAAA////vwAAAAAAAP+///8AAP///7///wAAAAD/vwAAAAD///+/AAAAAAAAVNUAAP////9U1QAAAAD//1TVAAD//wAAVNWqKqoqqiqqKqoqqiqqKqoq/////////////////////wAA/38AAP9/AAD/fwAA/39UVaqqVFWqqlRVqqpUVaqq")
-}]
-blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_6yy7v")
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_wntd7"]
-size = Vector3(0.1, 3.841705, 4.079)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_renlo"]
-size = Vector3(7, 0.1, 7)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_jcpsk"]
-size = Vector3(6.993164, 4.056198, 0.20996094)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_kkueg"]
-size = Vector3(7.1791153, 3.4445496, 0.09765625)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_pqjy1"]
-size = Vector3(0.13513184, 4.073059, 7.4067335)
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_caomd"]
 resource_name = "Cama"
 cull_mode = 2
@@ -1346,38 +1293,61 @@ shadow_mesh = SubResource("ArrayMesh_rjgnb")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_80574"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vsc1r"]
+resource_name = "Paredes"
+cull_mode = 2
+albedo_texture = ExtResource("1_q23e8")
+roughness = 0.5
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_6yy7v"]
+_surfaces = [{
+"aabb": AABB(-5.3773227, 0.1825074, -2.4432454, 5.885898, 2.2511687, 3.7704618),
+"format": 34896613377,
+"index_count": 24,
+"index_data": PackedByteArray("AAABAAIAAAADAAEAAwAEAAEABQADAAAAAwAGAAQABQAGAAMABQAHAAYABQAIAAcA"),
+"name": "Paredes",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 9,
+"vertex_data": PackedByteArray("//8AAAAAAAD//93///8AAP//3f8AAAAA//8AAP//AAAAAN3///8AAAAAAAAAAAAAAAAAAP//AAAAAP////8AAAAA//8AAAAA")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_rq2l0"]
+resource_name = "Habitacion Modelada en 3D_Cubo"
+_surfaces = [{
+"aabb": AABB(-5.3773227, 0.1825074, -2.4432454, 5.885898, 2.2511687, 3.7704618),
+"attribute_data": PackedByteArray("Z6cyZw26jUkNujJnZ6eNSWenjUkNukYbDbqNSWenRhteNjvkXnY7pF52O+ReNjukucwyZxC6jUm5zI1JELoyZw=="),
+"format": 34896613399,
+"index_count": 24,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0A"),
+"material": SubResource("StandardMaterial3D_vsc1r"),
+"name": "Paredes",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 16,
+"vertex_data": PackedByteArray("//8AAAAAVNX//93///9U1f//3f8AAFTV//8AAP//VNX//wAA////vwAA3f////+////d/////78AAAAA////vwAAAAAAAP+///8AAP///7///wAAAAD/vwAAAAD///+/AAAAAAAAVNUAAP////9U1QAAAAD//1TVAAD//wAAVNWqKqoqqiqqKqoqqiqqKqoq/////////////////////wAA/38AAP9/AAD/fwAA/39UVaqqVFWqqlRVqqpUVaqq")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_6yy7v")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wntd7"]
+size = Vector3(0.1, 2.7675323, 4.079)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jcpsk"]
+size = Vector3(6.727539, 2.9172592, 0.20996094)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kkueg"]
+size = Vector3(7.1791153, 2.923935, 0.09765625)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pqjy1"]
+size = Vector3(0.13513184, 2.778595, 4.562027)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_renlo"]
+size = Vector3(6.617676, 0.1, 4.2251587)
+
 [node name="Habitacion Modelada en 3D" type="Node3D" unique_id=1948344516]
 transform = Transform3D(0.9996762, -0.025444156, 0, 0.025444156, 0.9996762, 0, 0, 0, 1, 4.1358347, -1.3215475, -2.9775078)
-
-[node name="tembok" type="MeshInstance3D" parent="." unique_id=1500119879]
-mesh = SubResource("ArrayMesh_rq2l0")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="tembok" unique_id=681030811]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.046113968, 0.7318562, -0.576149)
-shape = SubResource("BoxShape3D_wntd7")
-
-[node name="tembok2" type="StaticBody3D" parent="." unique_id=1603018958]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -4.877355, 0, -1.1272602)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="tembok2" unique_id=921269712]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, -1)
-shape = SubResource("BoxShape3D_renlo")
-
-[node name="tembok3" type="MeshInstance3D" parent="." unique_id=1849148990]
-transform = Transform3D(1, -1.5285484e-14, -1.7484555e-07, 0, -1, 8.742278e-08, -1.7484555e-07, -8.742278e-08, -1, -0.022614002, 2.6289737, -1.1188002)
-mesh = SubResource("ArrayMesh_rq2l0")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="tembok3" unique_id=572560974]
-transform = Transform3D(1, 1.5286785e-14, 0, 1.5286133e-14, 1, 0, 7.460699e-12, 7.460699e-12, 1, -2.29737, 1.934655, -1.7468171)
-shape = SubResource("BoxShape3D_jcpsk")
-
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="tembok3" unique_id=1385045011]
-transform = Transform3D(0.99999994, 1.5287681e-14, 0, 1.528658e-14, 1, 0, 1.2590817e-11, 1.2590817e-11, 1, -2.5392852, 1.527655, 0.6475992)
-shape = SubResource("BoxShape3D_kkueg")
-
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="tembok3" unique_id=660839980]
-transform = Transform3D(1, 1.5286837e-14, 0, 1.5286158e-14, 1, 0, 7.759127e-12, 7.759127e-12, 1, -4.2882643, 2.045755, -1.0035653)
-shape = SubResource("BoxShape3D_pqjy1")
 
 [node name="Cama" type="MeshInstance3D" parent="." unique_id=183624287]
 transform = Transform3D(-0.18618822, -4.656613e-10, 0, 4.656613e-10, -0.18618822, 0, 0, 0, -0.18618822, 0.22788143, 0.6288495, 1.0602814)
@@ -1761,7 +1731,39 @@ light_color = Color(0.89059, 0.89059, 0.8905901, 1)
 omni_range = 10.0
 
 [node name="OmniLight3D2" type="OmniLight3D" parent="." unique_id=1819764192]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8497896, 2.0477865, 0.79302955)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.84978986, 2.0477865, 0.6448715)
 light_color = Color(0.2509804, 0.2509804, 0.2509804, 1)
 light_energy = 3.0
 omni_range = 12.0
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=354070247]
+
+[node name="tembok" type="MeshInstance3D" parent="StaticBody3D" unique_id=1500119879]
+mesh = SubResource("ArrayMesh_rq2l0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=681030811]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3314023, 1.2593341, -0.576149)
+shape = SubResource("BoxShape3D_wntd7")
+
+[node name="tembok3" type="MeshInstance3D" parent="StaticBody3D" unique_id=1849148990]
+transform = Transform3D(1, 0, -1.7484554e-07, 0, -1, 8.742276e-08, -1.7484555e-07, -8.742278e-08, -1, -0.022614002, 2.628974, -1.1187999)
+mesh = SubResource("ArrayMesh_rq2l0")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D" unique_id=572560974]
+transform = Transform3D(1, 0, -1.7484551e-07, 0, -1, 8.742274e-08, -1.748539e-07, -8.743112e-08, -1, -2.4527977, 1.2637888, 1.4858208)
+shape = SubResource("BoxShape3D_jcpsk")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticBody3D" unique_id=1385045011]
+transform = Transform3D(0.99999994, 0, -1.7484551e-07, 0, -1, 8.742274e-08, -1.7485836e-07, -8.7435595e-08, -1, -2.5618992, 1.3616263, -2.3190029)
+shape = SubResource("BoxShape3D_kkueg")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="StaticBody3D" unique_id=660839980]
+transform = Transform3D(1, 0, -1.7484551e-07, 0, -1, 8.742274e-08, -1.7485505e-07, -8.743227e-08, -1, -5.4709835, 1.2599782, -0.51621103)
+shape = SubResource("BoxShape3D_pqjy1")
+
+[node name="tembok2" type="StaticBody3D" parent="StaticBody3D" unique_id=1603018958]
+transform = Transform3D(-1, 0, -8.742277e-08, 0, 1, -2.220446e-16, 8.742278e-08, 0, -1, -4.877355, 0, -1.12726)
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="StaticBody3D" unique_id=921269712]
+transform = Transform3D(-1, 0, -8.742276e-08, 0, 1, -2.220446e-16, 8.7423814e-08, 3.2418512e-14, -1, -2.5685174, 1.3113022e-06, -0.44204903)
+shape = SubResource("BoxShape3D_renlo")

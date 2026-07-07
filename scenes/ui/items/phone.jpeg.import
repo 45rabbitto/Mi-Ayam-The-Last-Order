@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bnkjl321e1rhk"
-path="res://.godot/imported/charger.png-483447e0b969529cd220e487a1154b51.ctex"
+uid="uid://ccuwdogdsplne"
+path="res://.godot/imported/phone.jpeg-e25b1532ff303a8d738c3d0296da8dde.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/ui/items/charger.png"
-dest_files=["res://.godot/imported/charger.png-483447e0b969529cd220e487a1154b51.ctex"]
+source_file="res://scenes/ui/items/phone.jpeg"
+dest_files=["res://.godot/imported/phone.jpeg-e25b1532ff303a8d738c3d0296da8dde.ctex"]
 
 [params]
 
