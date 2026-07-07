@@ -5,8 +5,6 @@ signal dialog_closed
 # ==========================================================
 # UI REFERENCES
 # ==========================================================
-var preview_scene = preload("res://scenes/ItemPreview.tscn")
-
 var dialog_panel: Control
 var dialog_label: Label
 
@@ -221,7 +219,7 @@ func update_inventory(items: Array) -> void:
 	# Bersihkan semua slot
 	for slot in slots:
 
-		var icon := slot.get_node_or_null("TextureRect")
+		var icon: TextureRect = slot.get_node_or_null("TextureRect")
 
 		if icon:
 			icon.texture = null
@@ -230,29 +228,12 @@ func update_inventory(items: Array) -> void:
 	# Isi inventory
 	for i in range(min(items.size(), slots.size())):
 
-		var item_id: String = items[i]
-
-		var model: PackedScene = InventoryManager.get_item_model(item_id)
-
-		if model == null:
-			continue
-
-		var preview = preview_scene.instantiate()
-		add_child(preview)
-
-		preview.load_item(model)
-
-		# Tunggu viewport selesai merender
-		await get_tree().process_frame
-		await get_tree().process_frame
-
 		var icon: TextureRect = slots[i].get_node_or_null("TextureRect")
 
 		if icon:
-			icon.texture = preview.get_preview()
-			icon.visible = true
 
-		preview.queue_free()
+			icon.texture = InventoryManager.get_item_icon(items[i])
+			icon.visible = true
 # ==========================================================
 # CROSSHAIR
 # ==========================================================
