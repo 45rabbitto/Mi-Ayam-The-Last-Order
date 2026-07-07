@@ -10,12 +10,12 @@ const ITEM_DATABASE := {
 
 	"charger": {
 		"name": "Phone Charger",
-		"model": preload("res://assets/3d/phone_charger_low_poly.glb")
+		"icon": preload("res://scenes/ui/items/charger.jpeg")
 	},
 
 	"phone": {
 		"name": "Phone",
-		"model": preload("res://assets/3d/cell_phone.glb")
+		"icon": preload("res://scenes/ui/items/phone.jpeg")
 	}
 
 }
@@ -116,13 +116,12 @@ func get_item_name(item_id: String) -> String:
 
 	return ITEM_DATABASE[item_id]["name"]
 
-func get_item_model(item_id: String):
+func get_item_icon(item_id: String) -> Texture2D:
 
 	if !ITEM_DATABASE.has(item_id):
 		return null
 
-	return ITEM_DATABASE[item_id]["model"]
-
+	return ITEM_DATABASE[item_id]["icon"]
 # ==========================================================
 # SAVE
 # ==========================================================
