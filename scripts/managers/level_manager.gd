@@ -64,7 +64,8 @@ func next_level():
 
 		print("GAME FINISHED")
 
-		GameManager.game_completed = true
+		GameManager.is_game_completed = true
+		GameManager.game_completed.emit()
 
 		UiManager.notify("Terima kasih telah bermain.")
 
