@@ -43,14 +43,25 @@ func interact():
 	# Pickup Item
 	if is_pickupable:
 
+	# ==========================================
+	# CHARGER BELUM BOLEH DIAMBIL
+	# ==========================================
+		if item_id == "charger" and !InventoryManager.has_item("phone"):
+
+			UiManager.show_dialog("Cari HP dulu.")
+
+			return
+
 		print("=== PICKUP ===")
 		print("Item ID :", item_id)
-
+	
 		var success = InventoryManager.add_item(item_id)
 
 		print("Success :", success)
 
 		if success:
+
+			AudioManager.play_sfx("pickup")
 
 			print("ITEM MASUK INVENTORY")
 
@@ -67,8 +78,6 @@ func interact():
 		else:
 
 			print("GAGAL MASUK INVENTORY")
-
-	interacted.emit("")
 
 func show_highlight():
 

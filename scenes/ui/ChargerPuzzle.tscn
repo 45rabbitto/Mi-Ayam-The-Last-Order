@@ -1,0 +1,103 @@
+[gd_scene format=3 uid="uid://x2hw8kil16nv"]
+
+[ext_resource type="FontFile" uid="uid://dn1ys1ju2gq7m" path="res://assets/fonts/VT323-Regular.ttf" id="1_ee6se"]
+[ext_resource type="Script" uid="uid://ch3qbcquoys5h" path="res://scripts/ui/ChargerPuzzle.gd" id="1_pyy4l"]
+[ext_resource type="Texture2D" uid="uid://daba70wagkg41" path="res://ui/usb_a.png" id="3_re10a"]
+[ext_resource type="Texture2D" uid="uid://dvrdnnqktx6lp" path="res://ui/usb_c.png" id="4_38b4k"]
+[ext_resource type="Texture2D" uid="uid://cye11v3s5ju10" path="res://ui/micro_usc.png" id="5_i2wee"]
+[ext_resource type="Texture2D" uid="uid://cqdkasl8ajukk" path="res://ui/usb_ip.png" id="6_xvjve"]
+
+[node name="ChargerPuzzle" type="CanvasLayer" unique_id=1117171786]
+script = ExtResource("1_pyy4l")
+
+[node name="shadow" type="ColorRect" parent="." unique_id=192859574]
+offset_right = 1163.0
+offset_bottom = 656.0
+color = Color(0, 0, 0, 0.7490196)
+
+[node name="Panel" type="Panel" parent="." unique_id=1901899309]
+offset_right = 1165.0
+offset_bottom = 658.0
+
+[node name="Title" type="Label" parent="Panel" unique_id=81437777]
+layout_mode = 0
+offset_left = 482.0
+offset_top = 39.0
+offset_right = 658.0
+offset_bottom = 79.0
+theme_override_fonts/font = ExtResource("1_ee6se")
+theme_override_font_sizes/font_size = 40
+text = "Nyalakan HP"
+
+[node name="Info" type="Label" parent="Panel" unique_id=595941130]
+layout_mode = 0
+offset_left = 431.0
+offset_top = 104.0
+offset_right = 731.0
+offset_bottom = 167.0
+theme_override_fonts/font = ExtResource("1_ee6se")
+theme_override_font_sizes/font_size = 30
+text = "Perhatikan urutan lampu, 
+lalu ulangi urutannya."
+
+[node name="Progress" type="Label" parent="Panel" unique_id=1953687496]
+layout_mode = 0
+offset_left = 491.0
+offset_top = 462.0
+offset_right = 635.0
+offset_bottom = 492.0
+theme_override_fonts/font = ExtResource("1_ee6se")
+theme_override_font_sizes/font_size = 30
+text = "Menghafal..."
+
+[node name="USBContainer" type="GridContainer" parent="Panel" unique_id=7227389]
+layout_mode = 0
+offset_left = 167.0
+offset_top = 204.0
+offset_right = 979.0
+offset_bottom = 423.0
+columns = 4
+
+[node name="USB_A" type="TextureButton" parent="Panel/USBContainer" unique_id=871954351]
+custom_minimum_size = Vector2(200, 120)
+layout_mode = 2
+texture_normal = ExtResource("3_re10a")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="USB_C" type="TextureButton" parent="Panel/USBContainer" unique_id=574462138]
+custom_minimum_size = Vector2(200, 110)
+layout_mode = 2
+texture_normal = ExtResource("4_38b4k")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="MICRO_USB" type="TextureButton" parent="Panel/USBContainer" unique_id=1283146211]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+texture_normal = ExtResource("5_i2wee")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="USB_IP" type="TextureButton" parent="Panel/USBContainer" unique_id=619007343]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+texture_normal = ExtResource("6_xvjve")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="CloseButton" type="Button" parent="Panel" unique_id=456410968]
+layout_mode = 0
+offset_left = 1007.0
+offset_top = 47.0
+offset_right = 1085.0
+offset_bottom = 90.0
+theme_override_fonts/font = ExtResource("1_ee6se")
+theme_override_font_sizes/font_size = 35
+text = "Tutup"
+
+[connection signal="pressed" from="Panel/USBContainer/USB_A" to="." method="_on_usb_a_pressed"]
+[connection signal="pressed" from="Panel/USBContainer/USB_C" to="." method="_on_usb_c_pressed"]
+[connection signal="pressed" from="Panel/USBContainer/MICRO_USB" to="." method="_on_micro_usb_pressed"]
+[connection signal="pressed" from="Panel/USBContainer/USB_IP" to="." method="_on_usb_ip_pressed"]
+[connection signal="pressed" from="Panel/CloseButton" to="." method="_on_close_button_pressed"]

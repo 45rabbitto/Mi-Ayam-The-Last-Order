@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://crkuelg6fyyas"]
 
 [ext_resource type="Script" uid="uid://cjry7grut7adw" path="res://scenes/ui/hud.gd" id="1_0mwgc"]
+[ext_resource type="Script" uid="uid://baf4vuovb27ie" path="res://scripts/ui/inventory_slot.gd" id="2_hqnrr"]
+[ext_resource type="FontFile" uid="uid://dn1ys1ju2gq7m" path="res://assets/fonts/VT323-Regular.ttf" id="3_bo48s"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hqnrr"]
 bg_color = Color(0.14509805, 0.14509805, 0.14509805, 0.93333334)
@@ -56,11 +58,11 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 2.0
-offset_top = 1.0
-offset_bottom = 2.0
+offset_top = -1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 20
+theme_override_fonts/font = ExtResource("3_bo48s")
+theme_override_font_sizes/font_size = 28
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
@@ -95,6 +97,8 @@ offset_right = 63.800003
 offset_bottom = 23.000015
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_bo48s")
+theme_override_font_sizes/font_size = 27
 text = "Tekan E"
 horizontal_alignment = 1
 vertical_alignment = 2
@@ -120,6 +124,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_bo48s")
+theme_override_font_sizes/font_size = 27
 text = "notification"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -136,6 +142,7 @@ offset_bottom = 618.0
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_bo48s")
+script = ExtResource("2_hqnrr")
 
 [node name="TextureRect" type="TextureRect" parent="InventoryUI/slot1" unique_id=1338510517]
 custom_minimum_size = Vector2(48, 48)
@@ -149,6 +156,7 @@ stretch_mode = 5
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_bo48s")
+script = ExtResource("2_hqnrr")
 
 [node name="TextureRect" type="TextureRect" parent="InventoryUI/slot2" unique_id=1167162118]
 custom_minimum_size = Vector2(48, 48)
@@ -162,6 +170,7 @@ stretch_mode = 5
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_bo48s")
+script = ExtResource("2_hqnrr")
 
 [node name="TextureRect" type="TextureRect" parent="InventoryUI/slot3" unique_id=1609899913]
 custom_minimum_size = Vector2(48, 48)
@@ -175,6 +184,7 @@ stretch_mode = 5
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_bo48s")
+script = ExtResource("2_hqnrr")
 
 [node name="TextureRect" type="TextureRect" parent="InventoryUI/slot4" unique_id=876623222]
 custom_minimum_size = Vector2(48, 48)
@@ -188,6 +198,7 @@ stretch_mode = 5
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_bo48s")
+script = ExtResource("2_hqnrr")
 
 [node name="TextureRect" type="TextureRect" parent="InventoryUI/slot5" unique_id=1711885147]
 custom_minimum_size = Vector2(48, 48)
@@ -206,7 +217,8 @@ pivot_offset = Vector2(20, 105)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
 theme_override_constants/shadow_outline_size = 2
-theme_override_font_sizes/font_size = 18
+theme_override_fonts/font = ExtResource("3_bo48s")
+theme_override_font_sizes/font_size = 29
 text = "Kondisi Raka : 100%"
 
 [node name="PauseMenu" type="Panel" parent="." unique_id=836726900]
@@ -232,6 +244,7 @@ offset_bottom = 40.0
 [node name="pause" type="Label" parent="PauseMenu/menu" unique_id=1229410928]
 visible = false
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_bo48s")
 theme_override_font_sizes/font_size = 30
 text = "PAUSE"
 horizontal_alignment = 1
@@ -239,14 +252,20 @@ vertical_alignment = 1
 
 [node name="resume" type="Button" parent="PauseMenu/menu" unique_id=932982886]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_bo48s")
+theme_override_font_sizes/font_size = 25
 text = "RESUME"
 
 [node name="main menu" type="Button" parent="PauseMenu/menu" unique_id=1392890076]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_bo48s")
+theme_override_font_sizes/font_size = 25
 text = "MAIN MENU"
 
 [node name="quit button" type="Button" parent="PauseMenu/menu" unique_id=1703543470]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_bo48s")
+theme_override_font_sizes/font_size = 25
 text = "QUIT"
 
 [node name="CrossHair" type="TextureRect" parent="." unique_id=1606344262]
@@ -267,7 +286,8 @@ grow_vertical = 2
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
-theme_override_font_sizes/font_size = 24
+theme_override_fonts/font = ExtResource("3_bo48s")
+theme_override_font_sizes/font_size = 33
 text = "+"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -289,5 +309,6 @@ theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
 theme_override_constants/outline_size = 2
 theme_override_constants/shadow_outline_size = 2
-theme_override_font_sizes/font_size = 20
+theme_override_fonts/font = ExtResource("3_bo48s")
+theme_override_font_sizes/font_size = 30
 text = "Objective :"

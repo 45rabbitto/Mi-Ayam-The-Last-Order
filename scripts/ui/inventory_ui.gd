@@ -18,7 +18,7 @@ func _ready():
 	update_inventory(InventoryManager.get_items())
 
 func update_inventory(items:Array[String]):
-
+ 
 	# Kosongkan semua slot
 	for slot in slots:
 

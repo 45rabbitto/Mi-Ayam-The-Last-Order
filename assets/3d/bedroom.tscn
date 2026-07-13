@@ -1493,7 +1493,7 @@ texture = ExtResource("21_renlo")
 transform = Transform3D(-2.6226832e-09, 0, 0.06, 0, 0.06, 0, -0.06, 0, -2.6226832e-09, -5.3665867, 1.8988596, -0.13950807)
 texture = ExtResource("22_kxaf6")
 
-[node name="poster" type="Area3D" parent="." unique_id=353275029]
+[node name="poster" type="Area3D" parent="." unique_id=353275029 groups=["interactable"]]
 script = ExtResource("23_80574")
 object_name = "Poster I Love Mi Ayam"
 inspection_text = "Dari kemarin pengen mi ayam..."
@@ -1513,7 +1513,7 @@ shape = SubResource("BoxShape3D_81drg")
 [node name="Sketchfab_Scene" parent="korek" unique_id=850504328 instance=ExtResource("23_000hn")]
 transform = Transform3D(-1.7484555e-10, -0.004, 0, 0.004, -1.7484555e-10, 0, 0, 0, 0.004, -4.741863, 1.1319091, 0.60384136)
 
-[node name="rokok" type="Area3D" parent="." unique_id=409465918]
+[node name="rokok" type="Area3D" parent="." unique_id=409465918 groups=["interactable"]]
 script = ExtResource("23_80574")
 object_name = "rokok"
 inspection_text = "ini semua gue yang bikin juga si...."
@@ -1534,23 +1534,23 @@ shape = SubResource("BoxShape3D_vj5d5")
 [node name="Sketchfab_Scene" parent="asbak" unique_id=970241004 instance=ExtResource("25_xhfuc")]
 transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, -4.8297153, 1.1210625, 0.3320795)
 
-[node name="headset2" type="Area3D" parent="." unique_id=114443582]
+[node name="headset" type="Area3D" parent="." unique_id=114443582 groups=["interactable"]]
 script = ExtResource("23_80574")
 object_name = "headset"
 inspection_text = "headset buat mabar..."
 highlight_material = ExtResource("28_80574")
 
-[node name="headset" type="MeshInstance3D" parent="headset2" unique_id=1054376489]
+[node name="headset" type="MeshInstance3D" parent="headset" unique_id=1054376489]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.8985274, 1.0523809, 0.17712641)
 
-[node name="Sketchfab_Scene" parent="headset2/headset" unique_id=400541327 instance=ExtResource("26_mvrcn")]
+[node name="Sketchfab_Scene" parent="headset/headset" unique_id=400541327 instance=ExtResource("26_mvrcn")]
 transform = Transform3D(0.048595928, -0.07496947, 0.0108634755, -0.0020547812, -0.014206467, -0.08884793, 0.0757246, 0.047725834, -0.00938247, -0.985157, 0.13508707, -0.27390152)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="headset2" unique_id=659164988]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="headset" unique_id=659164988]
 transform = Transform3D(0.3, -4.656613e-10, 0, 4.656613e-10, 0.3, 0, 0, 0, 0.3, -5.012019, 1.1088519, -0.0441792)
 shape = SubResource("BoxShape3D_6d0hp")
 
-[node name="hp" type="Area3D" parent="." unique_id=1795947470]
+[node name="hp" type="Area3D" parent="." unique_id=1795947470 groups=["interactable"]]
 script = ExtResource("23_80574")
 object_name = "phone"
 inspection_text = "hah? hp gw mati? pantes dari tadi gaada notif"
@@ -1566,7 +1566,7 @@ mesh = SubResource("ArrayMesh_ev0lo")
 transform = Transform3D(0.19999996, -9.313226e-10, 0, 9.313226e-10, 0.19999996, 0, 0, 0, 0.2, -0.080266476, 0.741096, -0.15447307)
 shape = SubResource("BoxShape3D_mcgty")
 
-[node name="laptop" type="Area3D" parent="." unique_id=839492394]
+[node name="laptop" type="Area3D" parent="." unique_id=839492394 groups=["interactable"]]
 script = ExtResource("23_80574")
 object_name = "laptop"
 inspection_text = "Skripsi belum kelar...."
@@ -1580,8 +1580,8 @@ mesh = SubResource("ArrayMesh_02y8f")
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -4.242808, 1.1697326, 1.0489869)
 shape = SubResource("BoxShape3D_ua27e")
 
-[node name="ss" type="Sprite3D" parent="." unique_id=339078009]
-transform = Transform3D(-0.054999985, 2.2118911e-09, -4.307367e-09, 0, 0.04964217, 0.023678109, 4.808252e-09, 0.023678105, -0.049642187, -4.2267537, 1.267194, 1.1935498)
+[node name="ss" type="Sprite3D" parent="laptop" unique_id=339078009]
+transform = Transform3D(-0.05499998, 2.2118911e-09, -4.307367e-09, 0, 0.049642168, 0.023678109, 4.808252e-09, 0.023678105, -0.049642187, -4.2267537, 1.267194, 1.1935498)
 texture = ExtResource("28_pccvf")
 
 [node name="indomie" type="MeshInstance3D" parent="." unique_id=767257292]
@@ -1658,7 +1658,7 @@ transform = Transform3D(0.09999919, -2.8144568e-05, -0.00037745014, -2.814061e-0
 [node name="Sketchfab_Scene" parent="sendok" unique_id=754651236 instance=ExtResource("39_80574")]
 transform = Transform3D(0.338451, -0.12314512, -0.93289375, 0.15607966, 0.98501354, -0.07340032, 0.9279502, -0.12076297, 0.35260004, -25.587006, 0.98752975, -16.133423)
 
-[node name="cocacola" type="Area3D" parent="." unique_id=748219981]
+[node name="cocacola" type="Area3D" parent="." unique_id=748219981 groups=["interactable"]]
 script = ExtResource("23_80574")
 object_name = "soda"
 inspection_text = "minuman kesukaan..."
@@ -1708,7 +1708,7 @@ transform = Transform3D(0.05999999, 0, 0, 0, 0.05999999, 0, 0, 0, 0.06, -2.11626
 transform = Transform3D(0.5, -5.5879354e-09, 0, 5.5879354e-09, 0.5, 0, 0, 0, 0.5, -2.2432165, 0.9396678, 0.38826942)
 shape = SubResource("BoxShape3D_kxaf6")
 
-[node name="charger" type="Area3D" parent="." unique_id=1539879272]
+[node name="charger" type="Area3D" parent="." unique_id=1539879272 groups=["interactable"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00020647049, 0.31268537, -0.7662208)
 script = ExtResource("23_80574")
 object_name = "Charger"
