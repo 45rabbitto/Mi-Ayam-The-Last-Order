@@ -32,6 +32,7 @@ BlurOverlay="*uid://dhaiva8b2s4k3"
 GlitchOverlay="*uid://b5esev6x1gqmj"
 VignetteOverlay="*uid://emnmj10afchy"
 ObjectiveManager="*uid://xjyenqws7pxm"
+Transition="*uid://b4xbp7s678est"
 
 [input]
 

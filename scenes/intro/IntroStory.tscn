@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://dn2ytygygml74"]
+
+[ext_resource type="FontFile" uid="uid://dn1ys1ju2gq7m" path="res://assets/fonts/VT323-Regular.ttf" id="1_hfpxk"]
+[ext_resource type="Script" uid="uid://dysctryt3g471" path="res://scenes/intro/IntroStory.gd" id="1_jm4qa"]
+
+[node name="IntroStory" type="CanvasLayer" unique_id=1555896781]
+script = ExtResource("1_jm4qa")
+
+[node name="FullScreen" type="ColorRect" parent="." unique_id=168240239]
+offset_right = 1162.0
+offset_bottom = 657.0
+color = Color(0, 0, 0, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1470127440]
+offset_left = 92.0
+offset_top = 53.0
+offset_right = 1081.0
+offset_bottom = 599.0
+theme_override_fonts/normal_font = ExtResource("1_hfpxk")
+theme_override_font_sizes/normal_font_size = 30

@@ -3,6 +3,7 @@ extends Node
 @onready var bgm_player: AudioStreamPlayer = AudioStreamPlayer.new()
 @onready var sfx_player: AudioStreamPlayer = AudioStreamPlayer.new()
 @onready var voice_player: AudioStreamPlayer = AudioStreamPlayer.new()
+@onready var typing_player: AudioStreamPlayer = AudioStreamPlayer.new()
 
 signal voice_finished
 
@@ -21,7 +22,7 @@ var voice_clips_ch1 = {
 	"cari_charger": preload("res://assets/audio/Chapter1/voices/ch1_cari_charger.ogg"),
 
 	"missed_call": preload("res://assets/audio/Chapter1/voices/ch1_missed_call.ogg"),
-	
+
 	"pengen_mi_ayam": preload("res://assets/audio/Chapter1/voices/ch1_pengen_mi_ayam.ogg")
 
 }
@@ -66,22 +67,60 @@ var sfx = {
 
 	"puzzle_success": preload("res://assets/audio/Chapter1/sfx/puzzle_success.ogg"),
 
+	"typing": preload("res://assets/audio/Chapter1/sfx/typewriter.mp3"),
+
 	"transition": preload("res://assets/audio/Chapter1/sfx/transition.mp3")
 
 }
+
+#==========================
+# TYPING
+#==========================
+
+var typing_loop := false
+
+func start_typing():
+
+	if !sfx.has("typing"):
+		return
+
+	typing_loop = true
+
+	typing_player.stop()
+	typing_player.stream = sfx["typing"]
+	typing_player.play()
+
+
+func stop_typing():
+
+	typing_loop = false
+	typing_player.stop()
+
+
+func _on_typing_finished():
+
+	if typing_loop:
+		typing_player.play()
+
+#==========================
+# READY
+#==========================
 
 func _ready():
 
 	add_child(bgm_player)
 	add_child(sfx_player)
 	add_child(voice_player)
+	add_child(typing_player)
 
 	bgm_player.bus = "Music"
 	sfx_player.bus = "SFX"
 	voice_player.bus = "Voice"
+	typing_player.bus = "SFX"
 
 	voice_player.finished.connect(_on_voice_finished)
-	
+	typing_player.finished.connect(_on_typing_finished)
+
 #==========================
 # BGM
 #==========================
@@ -97,7 +136,8 @@ func play_bgm(key:String):
 	bgm_player.stop()
 	bgm_player.stream = bgm[key]
 	bgm_player.play()
-	
+
+
 func stop_bgm():
 
 	bgm_player.stop()
@@ -114,7 +154,7 @@ func play_ui(key:String):
 	sfx_player.stop()
 	sfx_player.stream = ui[key]
 	sfx_player.play()
-	
+
 #==========================
 # SFX
 #==========================
@@ -127,7 +167,8 @@ func play_sfx(key:String):
 	sfx_player.stop()
 	sfx_player.stream = sfx[key]
 	sfx_player.play()
-	
+
+
 func stop_sfx():
 
 	sfx_player.stop()
@@ -138,15 +179,18 @@ func stop_sfx():
 
 func play_voice(stream: AudioStream):
 
-	if stream:
+	if stream == null:
+		return
 
-		voice_player.stop()
-		voice_player.stream = stream
-		voice_player.play()
+	voice_player.stop()
+	voice_player.stream = stream
+	voice_player.play()
+
 
 func stop_voice():
 
 	voice_player.stop()
+
 
 func play_voice_key(key:String, chapter:int):
 
@@ -155,7 +199,11 @@ func play_voice_key(key:String, chapter:int):
 		1:
 			if voice_clips_ch1.has(key):
 				play_voice(voice_clips_ch1[key])
-				
+
+#==========================
+# SIGNAL
+#==========================
+
 func _on_voice_finished():
 
 	voice_finished.emit()

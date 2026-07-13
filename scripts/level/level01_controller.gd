@@ -14,7 +14,7 @@ func _ready():
 	ObjectiveManager.add_objective("Ambil Charger")
 	ObjectiveManager.add_objective("Nyalakan HP")
 
-	AudioManager.play_bgm("chapter1_room")
+	AudioManager.play_bgm("phone")
 
 	ObjectiveManager.start()
 
@@ -22,8 +22,8 @@ func _ready():
 
 	print("Current Objective =", ObjectiveManager.get_current_objective())
 
-	# Jika ada voice opening
-	# AudioManager.play_voice_key("opening", 1)
+	# Voice opening
+	AudioManager.play_voice_key("kamar_berat", 1)
 
 
 func _connect_interactables():

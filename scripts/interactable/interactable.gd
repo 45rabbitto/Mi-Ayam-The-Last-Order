@@ -31,7 +31,13 @@ func _ready():
 
 
 func interact():
+	
+	# Khusus charger
+	if item_id == "charger" and !InventoryManager.has_item("phone"):
 
+		UiManager.show_dialog("Cari HP dulu.")
+		return 
+		
 	# Dialog
 	if inspection_text != "":
 		UiManager.show_dialog(inspection_text)
@@ -66,8 +72,6 @@ func interact():
 			print("ITEM MASUK INVENTORY")
 
 			UiManager.show_notification(object_name + " diperoleh")
-
-			ObjectiveManager.complete_if_match(item_id)
 
 			interacted.emit(item_id)
 

@@ -65,7 +65,7 @@ func play_sequence():
 
 		var button = get_button(value)
 
-		button.modulate = Color(2,2,2)
+		button.modulate = Color(1.0, 0.067, 0.067, 1.0)
 
 		await get_tree().create_timer(0.8).timeout
 

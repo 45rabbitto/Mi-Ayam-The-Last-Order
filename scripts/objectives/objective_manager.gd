@@ -122,6 +122,7 @@ func complete_current():
 	print("===== COMPLETE CURRENT =====")
 	print("Current Index :", current_index)
 	print("Objective List :", objective_list)
+	print_stack()
 	print("Objective Size :", objective_list.size())
 
 	if current_index < 0:
