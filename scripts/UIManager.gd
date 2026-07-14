@@ -300,3 +300,19 @@ func fade_out(duration: float = 1.0) -> void:
 		0.0,
 		duration
 	)
+
+func select_inventory_slot(index:int):
+
+	if inventory_ui == null:
+		return
+
+	var slots = inventory_ui.get_children()
+
+	for i in range(slots.size()):
+
+		var slot = slots[i]
+
+		if i == index:
+			slot.self_modulate = Color.YELLOW
+		else:
+			slot.self_modulate = Color.WHITE
