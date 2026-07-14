@@ -12,12 +12,18 @@ func button_press_effect(button):
 	tween.tween_property(button, "scale", Vector2(1, 1), 0.1)
 
 func _on_start_button_pressed():
+	
+	AudioManager.play_ui("click")
+
 	button_press_effect($MenuPanel/StartButton)
 	await get_tree().create_timer(0.1).timeout
 	DirAccess.remove_absolute("user://savegame.save")
-	get_tree().change_scene_to_file("res://scenes/level/level_1_room.tscn")
+	get_tree().change_scene_to_file("res://scenes/intro/IntroStory.tscn")
 
 func _on_continue_button_pressed():
+	
+	AudioManager.play_ui("click")
+
 	button_press_effect($MenuPanel/ContinueButton)
 	await get_tree().create_timer(0.1).timeout
 	var file = FileAccess.open("user://savegame.save", FileAccess.READ)
@@ -28,11 +34,17 @@ func _on_continue_button_pressed():
 			get_tree().change_scene_to_file(saved_scene)
 
 func _on_credit_button_pressed():
+	
+	AudioManager.play_ui("click")
+
 	button_press_effect($MenuPanel/CreditButton)
 	await get_tree().create_timer(0.1).timeout
 	get_tree().change_scene_to_file("res://scenes/credit/credit_scene.tscn")
 
 func _on_quit_button_pressed():
+	
+	AudioManager.play_ui("click")
+
 	button_press_effect($MenuPanel/QuitButton)
 	await get_tree().create_timer(0.1).timeout
 	get_tree().quit()

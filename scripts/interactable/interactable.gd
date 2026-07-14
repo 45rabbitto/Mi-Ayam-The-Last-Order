@@ -31,7 +31,13 @@ func _ready():
 
 
 func interact():
+	
+	# Khusus charger
+	if item_id == "charger" and !InventoryManager.has_item("phone"):
 
+		UiManager.show_dialog("Cari HP dulu.")
+		return 
+		
 	# Dialog
 	if inspection_text != "":
 		UiManager.show_dialog(inspection_text)
@@ -43,20 +49,29 @@ func interact():
 	# Pickup Item
 	if is_pickupable:
 
+	# ==========================================
+	# CHARGER BELUM BOLEH DIAMBIL
+	# ==========================================
+		if item_id == "charger" and !InventoryManager.has_item("phone"):
+
+			UiManager.show_dialog("Cari HP dulu.")
+
+			return
+
 		print("=== PICKUP ===")
 		print("Item ID :", item_id)
-
+	
 		var success = InventoryManager.add_item(item_id)
 
 		print("Success :", success)
 
 		if success:
 
+			AudioManager.play_sfx("pickup")
+
 			print("ITEM MASUK INVENTORY")
 
 			UiManager.show_notification(object_name + " diperoleh")
-
-			ObjectiveManager.complete_if_match(item_id)
 
 			interacted.emit(item_id)
 
@@ -67,8 +82,6 @@ func interact():
 		else:
 
 			print("GAGAL MASUK INVENTORY")
-
-	interacted.emit("")
 
 func show_highlight():
 

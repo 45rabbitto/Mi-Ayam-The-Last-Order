@@ -1,11 +1,10 @@
 extends Node
 
-var current_story: int = 0
-
 signal story_changed(story_id)
 
-func advance_story():
+var current_story: int = 0
 
+func advance_story() -> void:
 	current_story += 1
 
 	print("Story:", current_story)
@@ -14,75 +13,45 @@ func advance_story():
 
 	story_changed.emit(current_story)
 
-# =====================================
+
+# =====================================================
 # STORY EVENTS
-# =====================================
-func _apply_story_effects():
+# =====================================================
+func _apply_story_effects() -> void:
 
 	match current_story:
 
-		# ------------------------
-		# INTRO
-		# ------------------------
+		# =====================================================
+		# STORY 1
+		# =====================================================
 		1:
-			Hud.set_objective("Cari charger HP")
+			if Engine.has_singleton("PhoneNotif"):
+				PhoneNotif.push("Pesan baru dari Beni")
 
-			PhoneNotif.push(
-				"Pesan baru dari Beni"
-			)
-
-		# ------------------------
-		# PERTAMA KALI RAKA MUNCUL
-		# ------------------------
+		# =====================================================
+		# STORY 2
+		# =====================================================
 		2:
-			Hud.set_raka_state(
-				"Terlihat di ujung lorong"
-			)
+			if Engine.has_singleton("PhoneNotif"):
+				PhoneNotif.push("Missed Call dari Beni")
 
-			GlitchFX.set_intensity(25)
-
-			PhoneNotif.push(
-				"Missed Call dari Beni"
-			)
-
-		# ------------------------
-		# RAKA MENDEKAT
-		# ------------------------
+		# =====================================================
+		# STORY 3
+		# =====================================================
 		3:
-			Hud.set_raka_state(
-				"Mulai mengawasimu"
-			)
+			if Engine.has_singleton("PhoneNotif"):
+				PhoneNotif.push("Aku melihatmu...")
 
-			GlitchFX.set_intensity(50)
-
-			PhoneNotif.push(
-				"Aku melihatmu..."
-			)
-
-		# ------------------------
-		# HORROR EVENT
-		# ------------------------
+		# =====================================================
+		# STORY 4
+		# =====================================================
 		4:
-			Hud.set_raka_state(
-				"Tepat di belakangmu"
-			)
+			if Engine.has_singleton("PhoneNotif"):
+				PhoneNotif.push("JANGAN MENENGOK")
 
-			GlitchFX.pulse(80, 0.5)
-
-			PhoneNotif.push(
-				"JANGAN MENENGOK"
-			)
-
-		# ------------------------
-		# HAMPIR MATI
-		# ------------------------
+		# =====================================================
+		# STORY 5
+		# =====================================================
 		5:
-			Hud.set_raka_state(
-				"Dia ada di dalam kepalamu"
-			)
-
-			GlitchFX.set_intensity(100)
-
-			PhoneNotif.push(
-				"AKU SUDAH MASUK"
-			)
+			if Engine.has_singleton("PhoneNotif"):
+				PhoneNotif.push("AKU SUDAH MASUK")

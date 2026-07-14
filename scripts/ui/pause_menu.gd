@@ -4,34 +4,62 @@ func _ready():
 
 	visible = false
 
-func _input(event):
-
-	if event.is_action_pressed("ui_cancel"):
-
-		if visible:
-			resume_game()
-		else:
-			pause_game()
+# =====================================================
+# PAUSE
+# =====================================================
 
 func pause_game():
 
 	visible = true
+
 	get_tree().paused = true
+
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+
 
 func resume_game():
 
 	visible = false
+
 	get_tree().paused = false
+
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
+# =====================================================
+# BUTTON
+# =====================================================
 
 func _on_resume_button_pressed():
 
+	AudioManager.play_ui("click")
+
 	resume_game()
+
 
 func _on_restart_button_pressed():
 
+	AudioManager.play_ui("click")
+
 	get_tree().paused = false
+
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
 	get_tree().reload_current_scene()
 
+
+func _on_main_menu_button_pressed():
+
+	AudioManager.play_ui("click")
+
+	get_tree().paused = false
+
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+
+	get_tree().change_scene_to_file("res://scenes/menu/main_menu.tscn")
+
+
 func _on_quit_button_pressed():
+
+	AudioManager.play_ui("click")
 
 	get_tree().quit()
