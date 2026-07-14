@@ -10,7 +10,7 @@ var phone_on = preload("res://scenes/ui/items/phone_on.png")
 var phone_is_on := false
 
 func _ready():
-	
+	add_to_group("phone_ui")
 	AudioManager.play_bgm("phone")
 
 
@@ -53,30 +53,42 @@ func _on_CloseButton_pressed():
 	print("BUTTON CLOSE DITEKAN")
 	close()
 
-func _on_TurnOnButton_pressed():
-	
+func turn_on_phone():
+
 	AudioManager.play_ui("click")
 
 	if phone_is_on:
 		return
 
-	# Belum punya charger
+
+	# cek charger
 	if !InventoryManager.has_item("charger"):
 
-		UiManager.show_dialog("Aku harus mencari charger dulu.")
+		UiManager.show_dialog(
+			"Aku harus mencari charger dulu."
+		)
 
 		return
 
-	# Charger sudah ada
-	var puzzle = preload("res://scenes/ui/ChargerPuzzle.tscn").instantiate()
+
+	# buka puzzle charger
+	var puzzle = preload(
+		"res://scenes/ui/ChargerPuzzle.tscn"
+	).instantiate()
+
 
 	get_tree().current_scene.add_child(puzzle)
 
+
 	hide()
+
 
 	puzzle.start()
 
-	puzzle.puzzle_finished.connect(_on_puzzle_finished)
+
+	puzzle.puzzle_finished.connect(
+		_on_puzzle_finished
+	)
 		
 func _on_puzzle_finished():
 	
@@ -91,3 +103,27 @@ func _on_puzzle_finished():
 	phone_on.open()
 
 	queue_free()
+
+func toggle_phone():
+
+	if visible:
+		close()
+	else:
+		open()
+
+func _unhandled_input(event):
+
+	if !visible:
+		return
+
+
+	if event.is_action_pressed("ui_cancel"):
+
+		close()
+
+
+	if event.is_action_pressed("turn_on_phone"):
+
+		print("F ditekan - Nyalakan HP")
+
+		turn_on_phone()

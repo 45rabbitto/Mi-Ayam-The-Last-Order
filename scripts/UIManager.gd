@@ -23,6 +23,7 @@ var pause_menu: Control
 var crosshair: Control
 var fade_rect: ColorRect
 
+var phone_ui
 # ==========================================================
 # TIMER
 # ==========================================================
@@ -205,37 +206,16 @@ func set_condition(text: String) -> void:
 	if condition_label:
 		condition_label.text = "Kondisi Raka : %s" % text
 
-# ==========================================================
-# INVENTORY UI
-# ==========================================================
+#==========================================================
+#inventory
+#==========================================================
+func update_inventory(items:Array):
 
-func update_inventory(items: Array) -> void:
+	if inventory_ui and inventory_ui.has_method("update_inventory"):
+		inventory_ui.update_inventory(items)
 
-	if inventory_ui == null:
-		return
 
-	var slots = inventory_ui.get_children()
-
-	# Bersihkan semua slot
-	for slot in slots:
-
-		var icon: TextureRect = slot.get_node_or_null("TextureRect")
-
-		if icon:
-			icon.texture = null
-			icon.visible = false
-
-	# Isi inventory
-	for i in range(min(items.size(), slots.size())):
-
-		var icon: TextureRect = slots[i].get_node_or_null("TextureRect")
-
-		if icon:
-
-			icon.texture = InventoryManager.get_item_icon(items[i])
-			icon.visible = true
-			
-		slots[i].set_meta("item_id", items[i])
+		
 # ==========================================================
 # CROSSHAIR
 # ==========================================================
@@ -264,12 +244,17 @@ func hide_pause() -> void:
 	if pause_menu:
 		pause_menu.hide()
 
-func toggle_pause() -> void:
+func toggle_pause():
 
 	get_tree().paused = !get_tree().paused
 
 	if pause_menu:
 		pause_menu.visible = get_tree().paused
+
+	if get_tree().paused:
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	else:
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 # ==========================================================
 # FADE
@@ -318,3 +303,17 @@ func select_inventory_slot(index:int):
 			slot.self_modulate = Color.YELLOW
 		else:
 			slot.self_modulate = Color.WHITE
+
+func use_inventory_item(index:int):
+
+	InventoryManager.select_slot(index)
+
+	var item = InventoryManager.get_selected_item()
+
+	match item:
+
+		"charger":
+			Global.show_notification("Charger dipilih")
+
+		"phone":
+			Global.show_notification("HP dipilih")

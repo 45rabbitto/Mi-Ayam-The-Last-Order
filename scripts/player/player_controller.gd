@@ -9,7 +9,7 @@ extends CharacterBody3D
 @export var mouse_sensitivity: float = 0.003
 
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
-
+var cursor_visible := false
 # ==========================================================
 # NODE
 # ==========================================================
@@ -84,12 +84,26 @@ func handle_gravity(delta):
 # ==========================================================
 
 func _unhandled_input(event):
+	
+	# ==========================================
+	# TOGGLE CURSOR (alt)
+	# ==========================================
+
+	if event is InputEventKey and event.pressed and event.keycode == KEY_ALT:
+
+		cursor_visible = !cursor_visible
+
+		if cursor_visible:
+			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		else:
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 	# -------------------------
 	# Mouse Look
 	# -------------------------
 
-	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
+	if event is InputEventMouseMotion \
+	and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 
 		rotate_y(-event.relative.x * mouse_sensitivity)
 
@@ -101,28 +115,33 @@ func _unhandled_input(event):
 			deg_to_rad(80)
 		)
 
+
 	# -------------------------
 	# Inventory Slot (1-5)
 	# -------------------------
+	var inv = get_tree().get_first_node_in_group("inventory_ui")
 
-	if event is InputEventKey and event.pressed:
+	if inv:
 
-		match event.keycode:
+		if event.is_action_pressed("slot1"):
+			InventoryManager.select_slot(0)
+			inv.use_selected_slot()
 
-			KEY_1:
-				InventoryManager.select_slot(0)
+		if event.is_action_pressed("slot2"):
+			InventoryManager.select_slot(1)
+			inv.use_selected_slot()
 
-			KEY_2:
-				InventoryManager.select_slot(1)
+		if event.is_action_pressed("slot3"):
+			InventoryManager.select_slot(2)
+			inv.use_selected_slot()
 
-			KEY_3:
-				InventoryManager.select_slot(2)
+		if event.is_action_pressed("slot4"):
+			InventoryManager.select_slot(3)
+			inv.use_selected_slot()
 
-			KEY_4:
-				InventoryManager.select_slot(3)
-
-			KEY_5:
-				InventoryManager.select_slot(4)
+		if event.is_action_pressed("slot5"):
+			InventoryManager.select_slot(4)
+			inv.use_selected_slot()
 
 	# -------------------------
 	# Interact (E)
@@ -130,24 +149,17 @@ func _unhandled_input(event):
 
 	if event.is_action_pressed("interact"):
 
-		interaction_manager.try_interact()
+		print("E ditekan")
 
+		if interaction_manager:
+			interaction_manager.try_interact()
 	# -------------------------
 	# Pause
 	# -------------------------
 
 	if event.is_action_pressed("pause"):
 
-		get_tree().paused = !get_tree().paused
-
 		if UiManager:
-
 			UiManager.toggle_pause()
 
-		if get_tree().paused:
-
-			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-
-		else:
-
-			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		return

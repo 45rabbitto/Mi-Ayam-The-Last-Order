@@ -1,3 +1,29 @@
 [gd_scene format=3 uid="uid://dglprx427nonb"]
 
-[node name="PauseMenu" type="Node3D" unique_id=657784671]
+[ext_resource type="Script" uid="uid://003ynk0spu4y" path="res://scripts/ui/pause_menu.gd" id="1_6tw0m"]
+
+[node name="PauseMenu" type="Control" unique_id=782990274]
+process_mode = 2
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_6tw0m")
+
+[node name="Panel" type="Panel" parent="." unique_id=69290051]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ResumeButton" type="Button" parent="Panel" unique_id=869720440]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="RestartButton" type="Button" parent="Panel" unique_id=1990422844]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="QuitButton" type="Button" parent="Panel" unique_id=288800662]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0

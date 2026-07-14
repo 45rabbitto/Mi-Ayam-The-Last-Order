@@ -65,3 +65,27 @@ func _stop_animation(node: Node):
 
 	if animation:
 		animation.stop()
+
+
+func _on_resume_pressed():
+
+	AudioManager.play_ui("click")
+	pause_menu.resume_game()
+
+
+func _on_main_menu_pressed():
+
+	AudioManager.play_ui("click")
+
+	get_tree().paused = false
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+
+	get_tree().change_scene_to_file(
+		"res://scenes/mainmenu/mainmenu.tscn"
+	)
+
+func _on_quit_button_pressed():
+
+	AudioManager.play_ui("click")
+
+	get_tree().quit()

@@ -1,7 +1,7 @@
 extends CanvasLayer
 
-@onready var animation = $AnimationPlayer   # Pastikan node ini ada sebagai anak langsung
-@onready var rect = $ColorRect              # Pastikan node ini ada sebagai anak langsung
+@onready var animation: AnimationPlayer = get_node_or_null("AnimationPlayer")
+@onready var rect: ColorRect = get_node_or_null("ColorRect")            # Pastikan node ini ada sebagai anak langsung
 
 func _ready():
 

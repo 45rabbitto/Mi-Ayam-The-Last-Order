@@ -2,7 +2,9 @@
 
 [ext_resource type="Script" uid="uid://cjry7grut7adw" path="res://scenes/ui/hud.gd" id="1_0mwgc"]
 [ext_resource type="Script" uid="uid://baf4vuovb27ie" path="res://scripts/ui/inventory_slot.gd" id="2_hqnrr"]
+[ext_resource type="Script" uid="uid://db3uhmib87d28" path="res://scripts/ui/inventory_ui.gd" id="3_8qguk"]
 [ext_resource type="FontFile" uid="uid://dn1ys1ju2gq7m" path="res://assets/fonts/VT323-Regular.ttf" id="3_bo48s"]
+[ext_resource type="Script" uid="uid://003ynk0spu4y" path="res://scripts/ui/pause_menu.gd" id="5_136eg"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hqnrr"]
 bg_color = Color(0.14509805, 0.14509805, 0.14509805, 0.93333334)
@@ -19,9 +21,6 @@ border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nplht"]
-bg_color = Color(0, 0, 0, 0.003921569)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0mwgc"]
 content_margin_left = 10.0
@@ -137,6 +136,7 @@ offset_left = 411.0
 offset_top = 554.0
 offset_right = 747.0
 offset_bottom = 618.0
+script = ExtResource("3_8qguk")
 
 [node name="slot1" type="Panel" parent="InventoryUI" unique_id=1622221432]
 custom_minimum_size = Vector2(64, 64)
@@ -221,28 +221,30 @@ theme_override_fonts/font = ExtResource("3_bo48s")
 theme_override_font_sizes/font_size = 29
 text = "Kondisi Raka : 100%"
 
-[node name="PauseMenu" type="Panel" parent="." unique_id=836726900]
+[node name="PauseMenu" type="Control" parent="." unique_id=181471884]
+process_mode = 2
 custom_minimum_size = Vector2(500, 350)
+layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -250.0
+offset_top = -175.0
+offset_right = 250.0
+offset_bottom = 175.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_nplht")
+script = ExtResource("5_136eg")
 
 [node name="menu" type="VBoxContainer" parent="PauseMenu" unique_id=70323031]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_top = 52.0
+offset_right = 482.0
+offset_bottom = 212.0
 
 [node name="pause" type="Label" parent="PauseMenu/menu" unique_id=1229410928]
-visible = false
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_bo48s")
 theme_override_font_sizes/font_size = 30
@@ -312,3 +314,7 @@ theme_override_constants/shadow_outline_size = 2
 theme_override_fonts/font = ExtResource("3_bo48s")
 theme_override_font_sizes/font_size = 30
 text = "Objective :"
+
+[connection signal="pressed" from="PauseMenu/menu/resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="PauseMenu/menu/main menu" to="." method="_on_main_menu_pressed"]
+[connection signal="pressed" from="PauseMenu/menu/quit button" to="." method="_on_quit_button_pressed"]
