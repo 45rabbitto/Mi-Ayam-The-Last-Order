@@ -24,14 +24,20 @@ func resume_game():
 	get_tree().paused = false
 
 func _on_resume_button_pressed():
+	
+	AudioManager.play_ui("click")
 
 	resume_game()
 
 func _on_restart_button_pressed():
+	
+	AudioManager.play_ui("click")
 
 	get_tree().paused = false
 	get_tree().reload_current_scene()
 
 func _on_quit_button_pressed():
+	
+	AudioManager.play_ui("click")
 
 	get_tree().quit()

@@ -234,6 +234,8 @@ func update_inventory(items: Array) -> void:
 
 			icon.texture = InventoryManager.get_item_icon(items[i])
 			icon.visible = true
+			
+		slots[i].set_meta("item_id", items[i])
 # ==========================================================
 # CROSSHAIR
 # ==========================================================

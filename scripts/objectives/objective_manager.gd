@@ -77,10 +77,6 @@ func add_objective(text: String):
 
 	objective_list.append(text)
 
-	if current_index == -1:
-		next_objective()
-
-
 func start():
 
 	current_index = -1
@@ -92,14 +88,21 @@ func next_objective():
 
 	current_index += 1
 
+	print("NEXT OBJECTIVE")
+	print("Index =", current_index)
+	print("Size =", objective_list.size())
+
 	if current_index >= objective_list.size():
+
+		print("OBJECTIVE HABIS")
 
 		clear()
 
 		return
 
-	set_objective(objective_list[current_index])
+	print("OBJECTIVE BARU =", objective_list[current_index])
 
+	set_objective(objective_list[current_index])
 
 func set_step(index: int):
 
@@ -116,6 +119,12 @@ func set_step(index: int):
 
 func complete_current():
 
+	print("===== COMPLETE CURRENT =====")
+	print("Current Index :", current_index)
+	print("Objective List :", objective_list)
+	print_stack()
+	print("Objective Size :", objective_list.size())
+
 	if current_index < 0:
 		return
 
@@ -124,13 +133,14 @@ func complete_current():
 
 	var completed = objective_list[current_index]
 
+	print("Completed :", completed)
+
 	if completed not in objective_completed_list:
 		objective_completed_list.append(completed)
 
 	objective_completed.emit()
 
 	next_objective()
-
 
 func complete_if_match(item_name: String):
 
