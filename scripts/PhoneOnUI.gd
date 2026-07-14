@@ -65,8 +65,11 @@ func _on_close_button_pressed():
 func _on_continue_button_pressed():
 	
 	AudioManager.play_sfx("transition")
+
+	await Transition.fade_out()
+
+	get_tree().change_scene_to_file("res://scenes/level/level_2_glitch_room.tscn")
+
+
+	await Transition.fade_in()
 	
-	await get_tree().create_timer(0.7).timeout
-
-
-	get_tree().change_scene_to_file("res://scenes/Level2.tscn")
