@@ -50,9 +50,6 @@ func add_item(item_id:String) -> bool:
 
 	items.append(item_id)
 
-	if selected_slot == -1:
-		selected_slot = 0
-
 	_emit_inventory_changed()
 
 	print("Inventory :", items)
@@ -262,5 +259,4 @@ func _emit_inventory_changed():
 
 		UiManager.update_inventory(items)
 
-		if selected_slot != -1:
-			UiManager.select_inventory_slot(selected_slot)
+		UiManager.select_inventory_slot(selected_slot)

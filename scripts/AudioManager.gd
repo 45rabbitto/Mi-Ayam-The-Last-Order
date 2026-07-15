@@ -207,3 +207,20 @@ func play_voice_key(key:String, chapter:int):
 func _on_voice_finished():
 
 	voice_finished.emit()
+
+#==========================
+#RESET
+#==========================
+func reset_audio():
+
+	bgm_player.stop()
+	sfx_player.stop()
+	voice_player.stop()
+	typing_player.stop()
+
+	bgm_player.stream = null
+	sfx_player.stream = null
+	voice_player.stream = null
+	typing_player.stream = null
+
+	typing_loop = false

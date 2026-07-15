@@ -1,18 +1,22 @@
 extends CanvasLayer
 
+
 @onready var phone_image: TextureRect = $Panel/PhoneImage
 @onready var status_label: Label = $Panel/StatusLabel
 @onready var turn_on_button: Button = $Panel/TurnOnButton
 
+
 var phone_off = preload("res://scenes/ui/items/phone_off.png")
 var phone_on = preload("res://scenes/ui/items/phone_on.png")
 
+
 var phone_is_on := false
+
 
 func _ready():
 	add_to_group("phone_ui")
-	AudioManager.play_bgm("phone")
 
+	AudioManager.play_bgm("phone")
 
 	hide()
 
@@ -30,16 +34,23 @@ func open():
 
 	show()
 
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+
 	print("Visible =", visible)
 	print("Panel Visible =", $Panel.visible)
-	
+
+
 func close():
 	print("CLOSE DIPANGGIL")
+
 	hide()
-	
+
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
+
 func _input(event):
 
-	if !visible:
+	if not visible:
 		return
 
 	if event.is_action_pressed("ui_cancel"):
@@ -47,11 +58,13 @@ func _input(event):
 
 
 func _on_CloseButton_pressed():
-	
+
 	AudioManager.play_ui("click")
-	
+
 	print("BUTTON CLOSE DITEKAN")
+
 	close()
+
 
 func turn_on_phone():
 
@@ -61,8 +74,8 @@ func turn_on_phone():
 		return
 
 
-	# cek charger
-	if !InventoryManager.has_item("charger"):
+	# CEK CHARGER
+	if not InventoryManager.has_item("charger"):
 
 		UiManager.show_dialog(
 			"Aku harus mencari charger dulu."
@@ -71,7 +84,7 @@ func turn_on_phone():
 		return
 
 
-	# buka puzzle charger
+	# BUKA PUZZLE CHARGER
 	var puzzle = preload(
 		"res://scenes/ui/ChargerPuzzle.tscn"
 	).instantiate()
@@ -79,30 +92,32 @@ func turn_on_phone():
 
 	get_tree().current_scene.add_child(puzzle)
 
-
 	hide()
 
-
 	puzzle.start()
-
 
 	puzzle.puzzle_finished.connect(
 		_on_puzzle_finished
 	)
-		
+
+
 func _on_puzzle_finished():
-	
+
 	ObjectiveManager.complete_current()
-	
+
 	hide()
 
-	var phone_on = preload("res://scenes/ui/PhoneOnUI.tscn").instantiate()
+	var phone_on_ui = preload(
+		"res://scenes/ui/PhoneOnUI.tscn"
+	).instantiate()
 
-	get_tree().current_scene.add_child(phone_on)
 
-	phone_on.open()
+	get_tree().current_scene.add_child(phone_on_ui)
+
+	phone_on_ui.open()
 
 	queue_free()
+
 
 func toggle_phone():
 
@@ -111,9 +126,10 @@ func toggle_phone():
 	else:
 		open()
 
+
 func _unhandled_input(event):
 
-	if !visible:
+	if not visible:
 		return
 
 
@@ -125,5 +141,11 @@ func _unhandled_input(event):
 	if event.is_action_pressed("turn_on_phone"):
 
 		print("F ditekan - Nyalakan HP")
+
+		turn_on_phone()
+	
+func _on_TurnOnButton_pressed():
+
+		print("TOMBOL TURN ON DITEKAN")
 
 		turn_on_phone()
