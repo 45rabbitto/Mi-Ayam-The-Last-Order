@@ -27,6 +27,22 @@ var voice_clips_ch1 = {
 
 }
 
+var voice_clips_ch2 = {
+	
+	"aneh": preload("res://assets/audio/Chapter2/voices/ch2_aneh.ogg"),
+
+	"jam_glitch": preload("res://assets/audio/Chapter2/voices/Ch2_jam_glitch.ogg"),
+
+	"kembali_awal": preload("res://assets/audio/Chapter2/voices/Ch2_kembali_awal.ogg"),
+
+	"sepi": preload("res://assets/audio/Chapter2/voices/ch2_sepi.ogg"),
+
+	"sunyi": preload("res://assets/audio/Chapter2/voices/ch2_sunyi.ogg"),
+
+	"udah_ambil": preload("res://assets/audio/Chapter2/voices/ch2_udah_ambil.ogg"),
+
+}
+
 #==========================
 # BGM
 #==========================
@@ -49,7 +65,11 @@ var ui = {
 
 	"click": preload("res://assets/audio/Chapter1/ui/click.ogg"),
 
-	"inventory_open": preload("res://assets/audio/Chapter1/ui/inventory_open.mp3")
+	"inventory_open": preload("res://assets/audio/Chapter1/ui/inventory_open.mp3"),
+
+	"correct": preload("res://assets/audio/Chapter2/ui/correct.ogg"),
+	
+	"wrong": preload("res://assets/audio/Chapter2/ui/wrong.ogg")
 
 }
 
@@ -69,7 +89,15 @@ var sfx = {
 
 	"typing": preload("res://assets/audio/Chapter1/sfx/typewriter.mp3"),
 
-	"transition": preload("res://assets/audio/Chapter1/sfx/transition.mp3")
+	"transition": preload("res://assets/audio/Chapter1/sfx/transition.mp3"),
+	
+	"clock": preload("res://assets/audio/Chapter2/sfx/Clock_Tick.mp3"),
+
+	"glitch": preload("res://assets/audio/Chapter2/sfx/glitch.ogg"),
+	
+	"heartbeat": preload("res://assets/audio/Chapter2/sfx/heartbeat.mp3"),
+	
+	"notification": preload("res://assets/audio/Chapter2/sfx/notification.ogg"),
 
 }
 
@@ -199,6 +227,10 @@ func play_voice_key(key:String, chapter:int):
 		1:
 			if voice_clips_ch1.has(key):
 				play_voice(voice_clips_ch1[key])
+				
+		2:
+			if voice_clips_ch2.has(key):
+				play_voice(voice_clips_ch2[key])
 
 #==========================
 # SIGNAL
