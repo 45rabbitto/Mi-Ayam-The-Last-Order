@@ -66,7 +66,8 @@ func _on_continue_button_pressed():
 
 	AudioManager.play_sfx("transition")
 
-	InventoryManager.select_slot(-1)
+	# RESET INVENTORY CHAPTER 2
+	InventoryManager.reset_inventory()
 
 	await Transition.fade_out()
 

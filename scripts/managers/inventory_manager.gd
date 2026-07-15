@@ -262,3 +262,17 @@ func _emit_inventory_changed():
 		UiManager.update_inventory(items)
 
 		UiManager.select_inventory_slot(selected_slot)
+
+# ==========================================================
+# RESET INVENTORY
+# ==========================================================
+
+func reset_inventory():
+
+	items.clear()
+
+	selected_slot = -1
+
+	_emit_inventory_changed()
+
+	print("INVENTORY RESET")
