@@ -6,7 +6,9 @@ const TOTAL_OBJECT := 5
 func _ready():
 
 	print("=== LEVEL 2 READY ===")
+	await get_tree().process_frame
 
+	Transition.fade_in()
 	ObjectiveManager.reset()
 
 	ObjectiveManager.add_objective("Cari tahu apa yang berubah")

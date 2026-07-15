@@ -63,13 +63,13 @@ func _on_close_button_pressed():
 
 
 func _on_continue_button_pressed():
-	
+
 	AudioManager.play_sfx("transition")
+
+	InventoryManager.select_slot(-1)
 
 	await Transition.fade_out()
 
-	get_tree().change_scene_to_file("res://scenes/level/level_2_glitch_room.tscn")
-
-
-	await Transition.fade_in()
-	
+	get_tree().change_scene_to_file(
+		"res://scenes/level/level_2_glitch_room.tscn"
+	)
