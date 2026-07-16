@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://jftlj8222yye"]
+
+[ext_resource type="Script" uid="uid://biruivsjau27w" path="res://qte_panel.gd" id="1_bub5b"]
+
+[node name="QTEPanel" type="Control" unique_id=77831502]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bub5b")
+
+[node name="PromptLabel" type="Label" parent="." unique_id=102210482]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 40
+text = "Tekan E!
+"
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=1920913541]
+layout_mode = 0
+offset_right = 4.0
+offset_bottom = 27.0

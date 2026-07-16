@@ -1,32 +1,27 @@
 extends CanvasLayer
 
-@onready var animation: AnimationPlayer = get_node_or_null("AnimationPlayer")
-@onready var rect: ColorRect = get_node_or_null("ColorRect")            # Pastikan node ini ada sebagai anak langsung
+@onready var rect: ColorRect = get_node_or_null("ColorRect")
 
 func _ready():
-
 	if rect:
-		rect.color.a = 0
+		rect.modulate.a = 0
 	else:
 		print("Peringatan: ColorRect tidak ditemukan!")
 
-	if not animation:
-		print("Peringatan: AnimationPlayer tidak ditemukan!")
-
-func fade_out():
-
+func fade_out(duration := 1.0) -> void:
+	if rect == null:
+		print("Gagal fade_out: ColorRect tidak ada.")
+		return
 	show()
-	if animation:
-		animation.play("FadeOut")
-		await animation.animation_finished
-	else:
-		print("Gagal memutar FadeOut: AnimationPlayer tidak ada.")
+	var tween := create_tween()
+	tween.tween_property(rect, "modulate:a", 1.0, duration)
+	await tween.finished
 
-func fade_in():
-
-	if animation:
-		animation.play("FadeIn")
-		await animation.animation_finished
-	else:
-		print("Gagal memutar FadeIn: AnimationPlayer tidak ada.")
+func fade_in(duration := 1.0) -> void:
+	if rect == null:
+		print("Gagal fade_in: ColorRect tidak ada.")
+		return
+	var tween := create_tween()
+	tween.tween_property(rect, "modulate:a", 0.0, duration)
+	await tween.finished
 	hide()

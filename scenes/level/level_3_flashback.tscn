@@ -1,5 +1,6 @@
 [gd_scene format=4 uid="uid://byrcx1ypp6idl"]
 
+[ext_resource type="Script" uid="uid://dsfjksnikmtfn" path="res://scripts/level/level03_controller.gd" id="1_k3fi6"]
 [ext_resource type="Texture2D" uid="uid://dsk7iqn683yfg" path="res://assets/3d/Habitacion Modelada en 3D_Paredes.png" id="1_q23e8"]
 [ext_resource type="Texture2D" uid="uid://c1o3853d6pfbm" path="res://assets/3d/Habitacion Modelada en 3D_Cama.png" id="2_djvgi"]
 [ext_resource type="Texture2D" uid="uid://lv1okkfqka6g" path="res://assets/3d/Habitacion Modelada en 3D_Cofre.png" id="3_7ajvu"]
@@ -42,6 +43,9 @@
 [ext_resource type="Texture2D" uid="uid://31udqelf8ixo" path="res://assets/3d/kopi.jpeg" id="38_ua27e"]
 [ext_resource type="PackedScene" uid="uid://cl8nmbebcayft" path="res://assets/3d/spoon.glb" id="39_80574"]
 [ext_resource type="PackedScene" uid="uid://cs14om8wf1udr" path="res://scenes/player/player.tscn" id="42_yxfnf"]
+[ext_resource type="PackedScene" uid="uid://78eigtpk74pi" path="res://scenes/Transition.tscn" id="44_2cqc7"]
+[ext_resource type="PackedScene" uid="uid://crkuelg6fyyas" path="res://scenes/ui/hud.tscn" id="45_2yfhq"]
+[ext_resource type="PackedScene" uid="uid://jftlj8222yye" path="res://qte_popup.tscn" id="46_3ekeh"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_caomd"]
 resource_name = "Cama"
@@ -1320,6 +1324,7 @@ size = Vector3(6.617676, 0.1, 4.2251587)
 
 [node name="Habitacion Modelada en 3D" type="Node3D" unique_id=1948344516]
 transform = Transform3D(0.9996762, -0.025444156, 0, 0.025444156, 0.9996762, 0, 0, 0, 1, 4.1358347, -1.3215475, -2.9775078)
+script = ExtResource("1_k3fi6")
 
 [node name="Cama" type="MeshInstance3D" parent="." unique_id=183624287]
 transform = Transform3D(-0.18618822, -4.656613e-10, 0, 4.656613e-10, -0.18618822, 0, 0, 0, -0.18618822, 0.22788143, 0.6288495, 1.0602814)
@@ -1550,7 +1555,7 @@ shape = SubResource("BoxShape3D_mcgty")
 [node name="laptop" type="Area3D" parent="." unique_id=839492394]
 script = ExtResource("23_80574")
 object_name = "laptop"
-inspection_text = "Skripsi belum kelar...."
+inspection_text = "Oke fokus skripsi dulu…"
 item_id = "laptop_skripsi"
 chapter = 3
 highlight_material = ExtResource("28_80574")
@@ -1608,7 +1613,7 @@ metadata/_custom_type_script = "uid://cyng42bevcjqg"
 transform = Transform3D(0.03, 0, 0, 0, 0.03, 0, 0, 0, 0.03, -4.4022064, 1.2182081, -1.9190204)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="dispenser" unique_id=1815247677]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.2648797, 1.2657399, -1.9935014)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.262, 0.8, -2.116)
 shape = SubResource("BoxShape3D_2cqc7")
 debug_color = Color(0.92149174, 0, 0.17418346, 0.41960785)
 
@@ -1782,3 +1787,9 @@ shape = SubResource("BoxShape3D_renlo")
 
 [node name="Player" parent="." unique_id=187213136 instance=ExtResource("42_yxfnf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, 1, -1)
+
+[node name="Transition" parent="." unique_id=897795786 instance=ExtResource("44_2cqc7")]
+
+[node name="Hud" parent="." unique_id=291386691 instance=ExtResource("45_2yfhq")]
+
+[node name="QTEPanel" parent="." unique_id=77831502 instance=ExtResource("46_3ekeh")]
