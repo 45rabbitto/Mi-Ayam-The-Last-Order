@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="The Last Order: My Ayam"
-run/main_scene="uid://lgmqpmn5nvta"
+run/main_scene="uid://dlfd7yya67tyb"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 PhoneNotif="*uid://bm5ywihoy53u3"
 HorrorEvent="*uid://m8dcwak4m7mm"
+LevelManager="*uid://cwc53adrbe667"
 SaveLoad="*uid://d2milbl14chm4"
 InventoryManager="*uid://dmsto0d2yq1o3"
 SaveManager="*uid://4264q38orybu"
@@ -32,7 +33,6 @@ GlitchOverlay="*uid://b5esev6x1gqmj"
 VignetteOverlay="*uid://emnmj10afchy"
 ObjectiveManager="*uid://xjyenqws7pxm"
 Transition="*uid://b4xbp7s678est"
-LevelManager="*uid://cwc53adrbe667"
 
 [input]
 

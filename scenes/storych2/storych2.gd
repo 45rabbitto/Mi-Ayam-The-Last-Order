@@ -6,10 +6,6 @@ var story := """
 Setelah berhasil menyalakan handphone, Raka merasa ada sesuatu yang tidak beres.
 Saat menoleh ke sekeliling, ia membeku.
 
-HP yang baru saja ia ambil...
-
-kini kembali berada di tempat semula.
-
 Jam di dinding berputar tidak beraturan.
 
 Raka memegang perutnya sesaat.
@@ -43,6 +39,10 @@ func show_story():
 
 	await get_tree().create_timer(2.0).timeout
 
+	print("PINDAH KE LEVEL2 GLITCH")
+
 	get_tree().change_scene_to_file(
 		"res://scenes/level/level_2_glitch_room.tscn"
 	)
+
+	print("SELESAI PINDAH")

@@ -1,29 +1,88 @@
 extends Node3D
 
-var restored_object := 0
-const TOTAL_OBJECT := 5
+var collected := 0
+const TOTAL_ITEMS := 4
 
 func _ready():
 
-	print("=== LEVEL 2 READY ===")
-	await get_tree().process_frame
+	print("===== MASUK LEVEL2 GLITCH =====")
+	print("Scene =", get_tree().current_scene.name)
 
-	Transition.fade_in()
+	print(get_tree().current_scene.get_tree_string_pretty())
+
+	Global.current_level = 2
+
 	ObjectiveManager.reset()
 
-	ObjectiveManager.add_objective("Cari tahu apa yang berubah")
-	ObjectiveManager.add_objective("Kembalikan semua benda")
-	ObjectiveManager.add_objective("Periksa Jam")
-	ObjectiveManager.add_objective("Baca Pesan Beni")
+	ObjectiveManager.add_objective("Jelajahi Kamar")
+	ObjectiveManager.add_objective("Kumpulkan Barang")
+	ObjectiveManager.add_objective("Tata Ulang Kamar")
+	ObjectiveManager.add_objective("Buka HP")
 
 	ObjectiveManager.start()
+	
+	var hud = get_tree().current_scene.get_node("Hud")
 
-	AudioManager.play_bgm("phone")
+	print("HUD =", hud)
+	print("Children HUD = ", hud.get_children())
 
-	await get_tree().create_timer(1.0).timeout
+	var level2ui = hud.get_node("level2ui")
 
-	UiManager.show_dialog(
-		"Kenapa posisi barang-barang ini berubah?"
+	print("LEVEL2UI =", level2ui)
+	print("Children LEVEL2UI = ", level2ui.get_children())
+
+	var explore = level2ui.get_node_or_null("ButtonExplore")
+	print("Explore =", explore)
+
+	var rearrange = get_node_or_null("Hud/level2ui/ButtonRearrange")
+
+	if explore:
+		explore.show()
+
+	if rearrange:
+		rearrange.hide()
+
+	_connect_interactables()
+
+func _connect_interactables():
+
+	var objects = get_tree().get_nodes_in_group("interactable")
+
+	for obj in objects:
+
+		if obj.interacted.is_connected(on_item_collected):
+			continue
+
+		obj.interacted.connect(on_item_collected)
+
+
+func on_item_collected(item_id:String):
+
+	match item_id:
+
+		"laptop", "headset", "rokok", "poster":
+
+			collected += 1
+
+			print("Collected :", collected)
+
+			if collected >= TOTAL_ITEMS:
+
+				if ObjectiveManager.get_current_objective() == "Kumpulkan Barang":
+
+					ObjectiveManager.complete_current()
+
+					show_rearrange_button()
+
+func show_rearrange_button():
+	var btn = get_tree().current_scene.get_node_or_null(
+		"Hud/level2ui/ButtonRearrange"
 	)
-
-	AudioManager.play_voice_key("aneh", 2)
+	if btn:
+		btn.show()
+	
+	var world_label = get_tree().current_scene.get_node_or_null(
+		"PATH/KE/ButtonRearrange"  # ganti sesuai path asli
+	)
+	if world_label:
+		world_label.show()

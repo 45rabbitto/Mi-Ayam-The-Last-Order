@@ -89,3 +89,28 @@ func _on_quit_button_pressed():
 	AudioManager.play_ui("click")
 
 	get_tree().quit()
+
+
+func _on_ButtonExplore_pressed():
+
+	AudioManager.play_ui("click")
+
+	ObjectiveManager.complete_current()
+
+	$level2ui/ButtonExplore.hide()
+
+func _on_ButtonRearrange_pressed():
+	
+	print("=== BUTTON REARRANGE DIPENCET ===")
+	
+	if AudioManager:
+		AudioManager.play_ui("click")
+	
+	if ObjectiveManager:
+		ObjectiveManager.complete_current()
+	
+	var err = get_tree().change_scene_to_file("res://scenes/LoadingUI.tscn")
+	if err != OK:
+		print("GAGAL PINDAH SCENE! Error code: ", err)
+	else:
+		print("Berhasil request pindah ke LoadingUI")

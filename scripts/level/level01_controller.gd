@@ -15,6 +15,8 @@ var charger_found := false
 
 func _ready():
 
+	Global.current_level = 1
+		
 	print("=== LEVEL 1 READY ===")
 
 	ObjectiveManager.reset()

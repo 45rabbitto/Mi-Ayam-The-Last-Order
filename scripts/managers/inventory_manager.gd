@@ -17,6 +17,26 @@ const ITEM_DATABASE := {
 	"phone": {
 		"name": "Phone",
 		"icon": preload("res://scenes/ui/items/phone.png")
+	},
+
+	"laptop": {
+		"name": "Laptop",
+		"icon": preload("res://scenes/ui/items/laptop.png")
+	},
+
+	"headset": {
+		"name": "Headset",
+		"icon": preload("res://scenes/ui/items/headset.png")
+	},
+
+	"rokok": {
+		"name": "Rokok",
+		"icon": preload("res://scenes/ui/items/rokok.png")
+	},
+
+	"poster": {
+		"name": "Poster",
+		"icon": preload("res://scenes/ui/items/poster.png")
 	}
 
 }

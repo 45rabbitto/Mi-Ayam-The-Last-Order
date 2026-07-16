@@ -20,15 +20,26 @@ func _gui_input(event):
 
 			print("HP diklik")
 
-			var phone_ui = get_tree().current_scene.get_node_or_null("PhoneUi")
+			if Global.current_level == 1:
 
-			print("PhoneUI =", phone_ui)
+				var phone_ui = get_tree().current_scene.get_node_or_null("PhoneUi")
 
-			if phone_ui:
-				print("Membuka Phone UI")
-				phone_ui.open()
-			else:
-				print("PhoneUi TIDAK DITEMUKAN")
+				print("PhoneUI =", phone_ui)
 
-		elif item == "charger":
-			print("Charger diklik")
+				if phone_ui:
+					print("Membuka Phone UI")
+					phone_ui.open()
+				else:
+					print("PhoneUi TIDAK DITEMUKAN")
+
+			elif Global.current_level == 2:
+
+				var phone_notif = get_tree().current_scene.get_node_or_null("PhoneNotif")
+
+				print("PhoneNotif =", phone_notif)
+
+				if phone_notif:
+					print("Membuka PhoneNotif")
+					phone_notif.open()
+				else:
+					print("PhoneNotif TIDAK DITEMUKAN")

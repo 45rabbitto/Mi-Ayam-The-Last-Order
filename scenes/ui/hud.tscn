@@ -343,6 +343,30 @@ theme_override_fonts/font = ExtResource("3_bo48s")
 theme_override_font_sizes/font_size = 30
 text = "Objective :"
 
+[node name="level2ui" type="CanvasLayer" parent="." unique_id=102338988]
+
+[node name="ButtonExplore" type="Button" parent="level2ui" unique_id=206359829]
+visible = false
+offset_left = 506.0
+offset_top = 380.0
+offset_right = 664.0
+offset_bottom = 413.0
+theme_override_fonts/font = ExtResource("3_bo48s")
+theme_override_font_sizes/font_size = 25
+text = "Selesai Jelajah"
+
+[node name="ButtonRearrange" type="Button" parent="level2ui" unique_id=1701961129]
+visible = false
+offset_left = 484.0
+offset_top = 376.0
+offset_right = 684.0
+offset_bottom = 414.0
+theme_override_fonts/font = ExtResource("3_bo48s")
+theme_override_font_sizes/font_size = 25
+text = "Tata Ulang Kamar"
+
 [connection signal="pressed" from="PauseMenu/menu/resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="PauseMenu/menu/main menu" to="." method="_on_main_menu_pressed"]
 [connection signal="pressed" from="PauseMenu/menu/quit button" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="level2ui/ButtonExplore" to="." method="_on_ButtonExplore_pressed"]
+[connection signal="pressed" from="level2ui/ButtonRearrange" to="." method="_on_ButtonRearrange_pressed"]

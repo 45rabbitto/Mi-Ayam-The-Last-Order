@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://d2qrvogr5msbh"]
+
+[ext_resource type="Script" uid="uid://dvrefay4u2s81" path="res://scripts/PhoneNotif.gd" id="1_wcgtv"]
+[ext_resource type="Texture2D" uid="uid://duyygae1lgnf6" path="res://scenes/ui/items/phone_on.png" id="2_tfcip"]
+[ext_resource type="Texture2D" uid="uid://dcrm87byr34nb" path="res://ui/Missed_Call.jpeg" id="3_ckv0b"]
+[ext_resource type="FontFile" uid="uid://dn1ys1ju2gq7m" path="res://assets/fonts/VT323-Regular.ttf" id="4_ox1hw"]
+
+[node name="PhoneNotif" type="CanvasLayer" unique_id=813213517]
+script = ExtResource("1_wcgtv")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1873942968]
+offset_left = -5.0
+offset_top = -3.0
+offset_right = 1192.0
+offset_bottom = 678.0
+color = Color(0, 0, 0, 0.6666667)
+
+[node name="Panel" type="Panel" parent="." unique_id=833532020]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="phonenotif" type="TextureRect" parent="Panel" unique_id=776075510]
+layout_mode = 0
+offset_left = 403.0
+offset_top = 30.0
+offset_right = 756.0
+offset_bottom = 605.0
+texture = ExtResource("2_tfcip")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="NotifBeni" type="TextureRect" parent="Panel/phonenotif" unique_id=1491825060]
+layout_mode = 0
+offset_left = 47.0
+offset_top = 20.0
+offset_right = 321.0
+offset_bottom = 504.0
+texture = ExtResource("3_ckv0b")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="lanjutch3" type="Button" parent="Panel" unique_id=1142810663]
+layout_mode = 0
+offset_left = 815.0
+offset_top = 286.0
+offset_right = 1015.0
+offset_bottom = 324.0
+theme_override_fonts/font = ExtResource("4_ox1hw")
+theme_override_font_sizes/font_size = 30
+text = "Lanjut Chapter 3"
+
+[connection signal="pressed" from="Panel/lanjutch3" to="." method="_on_lanjutch_3_pressed"]

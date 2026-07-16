@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://dctev4jmumyup"]
+
+[ext_resource type="Script" uid="uid://b2ptcf0qyhm8h" path="res://scripts/LoadingUI.gd" id="1_akb2l"]
+[ext_resource type="FontFile" uid="uid://dn1ys1ju2gq7m" path="res://assets/fonts/VT323-Regular.ttf" id="1_l50kk"]
+
+[sub_resource type="Animation" id="Animation_akb2l"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_u3n6a"]
+resource_name = "loading"
+length = 0.001
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/path = NodePath("ColorRect:color:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 1,
+"values": []
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_q2q5w"]
+_data = {
+&"RESET": SubResource("Animation_akb2l"),
+&"loading": SubResource("Animation_u3n6a")
+}
+
+[node name="LoadingUi" type="CanvasLayer" unique_id=1244506888]
+script = ExtResource("1_akb2l")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=555553918]
+offset_right = 1175.0
+offset_bottom = 675.0
+color = Color(0, 0, 0, 0)
+
+[node name="Label" type="Label" parent="." unique_id=1018238236]
+offset_left = 425.0
+offset_top = 321.0
+offset_right = 713.0
+offset_bottom = 351.0
+theme_override_fonts/font = ExtResource("1_l50kk")
+theme_override_font_sizes/font_size = 30
+text = "menyusun ulang kamar...."
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=644651087]
+libraries/ = SubResource("AnimationLibrary_q2q5w")
