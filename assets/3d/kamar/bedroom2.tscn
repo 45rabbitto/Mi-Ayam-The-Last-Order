@@ -1,4 +1,4 @@
-[gd_scene format=4 uid="uid://bkej8826difa1"]
+[gd_scene format=4 uid="uid://ckgwi74ulgpy4"]
 
 [ext_resource type="Texture2D" uid="uid://dsk7iqn683yfg" path="res://assets/3d/Habitacion Modelada en 3D_Paredes.png" id="1_q23e8"]
 [ext_resource type="Texture2D" uid="uid://c1o3853d6pfbm" path="res://assets/3d/Habitacion Modelada en 3D_Cama.png" id="2_djvgi"]
@@ -1298,10 +1298,10 @@ size = Vector3(7.1791153, 2.923935, 0.09765625)
 size = Vector3(0.13513184, 2.778595, 4.562027)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_renlo"]
-size = Vector3(6.617676, 0.1, 5.5453033)
+size = Vector3(6.617676, 0.1, 4.2251587)
 
 [node name="Habitacion Modelada en 3D" type="Node3D" unique_id=1948344516]
-transform = Transform3D(0.9996762, -0.025444156, 0, 0.025444156, 0.9996762, 0, 0, 0, 1, 3.0876045, -1.3215475, 1.3322196)
+transform = Transform3D(0.9996762, -0.025444156, 0, 0.025444156, 0.9996762, 0, 0, 0, 1, 4.1358347, -1.3215475, -2.9775078)
 
 [node name="Cama" type="MeshInstance3D" parent="." unique_id=183624287]
 transform = Transform3D(-0.18618822, -4.656613e-10, 0, 4.656613e-10, -0.18618822, 0, 0, 0, -0.18618822, 0.22788143, 0.6288495, 1.0602814)
@@ -1392,11 +1392,11 @@ transform = Transform3D(0.05941475, 0, 0.10670773, 0, 0.12213373, 0, -0.10670773
 mesh = SubResource("ArrayMesh_ar4lk")
 
 [node name="Escritorio en L" type="MeshInstance3D" parent="." unique_id=320823364]
-transform = Transform3D(0.2865144, -4.656613e-10, 0, 4.656613e-10, 0.2865144, 0, 0, 0, 0.28651446, -5.0916452, 0.82198995, 1.0261111)
+transform = Transform3D(0.2865143, -2.6077032e-08, -1.9594398e-05, -2.6542693e-08, 0.2865132, -0.0007698447, 1.9594401e-05, 0.00076984486, 0.28651333, -5.0916452, 0.82199013, 1.0261111)
 mesh = SubResource("ArrayMesh_b25eu")
 
 [node name="Monitor izq" type="MeshInstance3D" parent="." unique_id=1265662903]
-transform = Transform3D(0.058684316, 0, 0.066798955, 0, 0.08891541, 0, -0.066798955, 0, 0.058684316, -4.991278, 1.4566603, 0.32787293)
+transform = Transform3D(0.058684316, 0, 0.06679895, -1.1641532e-10, 0.0889154, 0, -0.066798955, 0, 0.058684316, -4.991278, 1.4566603, 0.327873)
 mesh = SubResource("ArrayMesh_u6cyg")
 
 [node name="Monitor Central" type="MeshInstance3D" parent="." unique_id=1114995231]
@@ -1408,7 +1408,7 @@ transform = Transform3D(0.08889253, 0, -0.002017252, 0, 0.08891541, 0, 0.0020172
 mesh = SubResource("ArrayMesh_84kf2")
 
 [node name="Maceta" type="MeshInstance3D" parent="." unique_id=324056646]
-transform = Transform3D(-0.09808148, 0, -0.030216437, 0, 0.10263045, 0, 0.030216437, 0, -0.09808148, -4.8605576, 1.3014619, 0.96790564)
+transform = Transform3D(-0.09808148, 0, -0.030216435, 0, 0.10263045, 5.820766e-11, 0.030216437, 0, -0.09808148, -4.8605576, 1.3014618, 0.8765681)
 mesh = SubResource("ArrayMesh_axtji")
 
 [node name="Mouse" type="MeshInstance3D" parent="." unique_id=89309475]
@@ -1420,7 +1420,7 @@ transform = Transform3D(0.08775234, 0, 0, 0, 0.08775234, 0, 0, 0, 0.08775234, -5
 mesh = SubResource("ArrayMesh_so1c4")
 
 [node name="Cilindro_001" type="MeshInstance3D" parent="." unique_id=1490544839]
-transform = Transform3D(0.056748122, 0, 0, 0, 0.056748122, 0, 0, 0, 0.056748122, -4.530791, 1.1652193, 0.98032045)
+transform = Transform3D(0.056748122, 0, 0, 0, 0.056748122, 0, 0, 0, 0.056748122, -4.7996287, 1.1610353, -0.8150816)
 mesh = SubResource("ArrayMesh_q82eb")
 
 [node name="PC" type="MeshInstance3D" parent="." unique_id=2098597277]
@@ -1452,14 +1452,17 @@ script = ExtResource("23_80574")
 object_name = "Poster I Love Mi Ayam"
 inspection_text = "Dari kemarin pengen mi ayam..."
 voice_key = "pengen_mi_ayam"
+is_pickupable = true
+item_id = "poster"
+chapter = 2
 highlight_material = ExtResource("28_80574")
 
 [node name="poster" type="Sprite3D" parent="poster" unique_id=615790091]
-transform = Transform3D(-1.3113417e-08, 0, 0.3, 0, 0.3, 0, -0.3, 0, -1.3113417e-08, -5.3552866, 1.5624852, -1.6736178)
+transform = Transform3D(-1.3113417e-08, 0, 0.3, 0, 0.3, 0, -0.3, 0, -1.3113417e-08, -5.355462, 1.5624895, -1.697315)
 texture = ExtResource("22_tfj8m")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="poster" unique_id=171542572]
-transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, -2.992714, 1.5093035, 1.7839648)
+transform = Transform3D(-4.80825e-08, -7.450581e-09, 1.0999994, 0, 1.0999992, 7.450581e-09, -1.0999998, 0, -4.8082526e-08, -5.654528, 1.5825381, -1.661576)
 shape = SubResource("BoxShape3D_81drg")
 
 [node name="korek" type="MeshInstance3D" parent="." unique_id=871064031]
@@ -1472,54 +1475,64 @@ script = ExtResource("23_80574")
 object_name = "rokok"
 inspection_text = "ini semua gue yang bikin juga si...."
 voice_key = "gue_bikin"
+is_pickupable = true
+item_id = "rokok"
+chapter = 2
 highlight_material = ExtResource("28_80574")
 
 [node name="rokok" type="MeshInstance3D" parent="rokok" unique_id=396328815]
 
 [node name="Sketchfab_Scene" parent="rokok/rokok" unique_id=79675445 instance=ExtResource("24_gcr7k")]
-transform = Transform3D(0.06320157, -0.07749556, 3.3874383e-09, 0, -4.371139e-09, -0.1, 0.07749556, 0.06320157, -2.7626283e-09, -4.7635336, 1.1504743, 0.48551834)
+transform = Transform3D(0.06320157, -0.0774955, 4.8894435e-09, -9.313226e-10, -5.122274e-09, -0.09999994, 0.07749556, 0.06320157, -2.7626283e-09, -4.6379557, 1.1472781, 0.10996008)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="rokok" unique_id=13432642]
-transform = Transform3D(0.06219271, 0, -0.07830752, 0, 0.1, 0, 0.07830752, 0, 0.06219271, -4.8032002, 1.0957961, 0.5144482)
+transform = Transform3D(0.093289025, -4.656613e-10, -0.117461294, -2.3283064e-10, 0.15, -9.313226e-10, 0.117461294, 6.4700795e-10, 0.09328905, -4.7068777, 1.0933444, 0.1372931)
 shape = SubResource("BoxShape3D_vj5d5")
 
 [node name="asbak" type="MeshInstance3D" parent="." unique_id=175528078]
 
 [node name="Sketchfab_Scene" parent="asbak" unique_id=970241004 instance=ExtResource("25_xhfuc")]
-transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, -4.8297153, 1.1210625, -0.83689666)
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, -4.8297153, 1.1210625, 0.3320795)
 
 [node name="headset" type="Area3D" parent="." unique_id=114443582 groups=["interactable"]]
 script = ExtResource("23_80574")
 object_name = "headset"
 inspection_text = "headset buat mabar..."
+is_pickupable = true
+item_id = "headset"
+chapter = 2
 highlight_material = ExtResource("28_80574")
 
 [node name="headset" type="MeshInstance3D" parent="headset" unique_id=1054376489]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9473913, 1.0336916, 1.1369445)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.8985274, 1.0523809, 0.17712641)
 
 [node name="Sketchfab_Scene" parent="headset/headset" unique_id=400541327 instance=ExtResource("26_mvrcn")]
-transform = Transform3D(0.048595928, -0.07496947, 0.0108634755, -0.0020547812, -0.014206467, -0.08884793, 0.0757246, 0.047725834, -0.00938247, -0.985157, 0.13508707, -0.27390152)
+transform = Transform3D(0.04859589, -0.07496947, 0.0108634755, -0.0020547812, -0.014206468, -0.08884793, 0.0757246, 0.047725834, -0.00938247, -0.515461, 0.1231322, 0.70516515)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="headset" unique_id=659164988]
-transform = Transform3D(0.3, -4.656613e-10, 0, 4.656613e-10, 0.3, 0, 0, 0, 0.3, -5.012019, 1.1088519, -0.0441792)
+transform = Transform3D(0.3, -4.656613e-10, 0, 4.656613e-10, 0.3, 0, 0, 0, 0.3, -4.5197444, 1.0963223, 0.92189884)
 shape = SubResource("BoxShape3D_6d0hp")
 
 [node name="laptop" type="Area3D" parent="." unique_id=839492394 groups=["interactable"]]
 script = ExtResource("23_80574")
 object_name = "laptop"
 inspection_text = "Skripsi belum kelar...."
+voice_key = "gue_bikin"
+is_pickupable = true
+item_id = "laptop"
+chapter = 2
 highlight_material = ExtResource("28_80574")
 
 [node name="laptop" type="MeshInstance3D" parent="laptop" unique_id=1383451692]
-transform = Transform3D(0.0011078065, 0.0006654634, 0.027222596, 0.00066546333, 0.027236285, -0.00069288036, -0.027222583, 0.0006928799, 0.0010908697, -0.06358647, 0.89476556, -0.43857765)
+transform = Transform3D(0.020511376, 0.00017159682, -0.017944187, 0.00017159694, 0.02724888, 0.00045672245, 0.017944187, -0.00045672257, 0.02050701, -3.848312, 1.2351351, 1.0017543)
 mesh = SubResource("ArrayMesh_02y8f")
 
 [node name="ss" type="Sprite3D" parent="laptop/laptop" unique_id=339078009]
-transform = Transform3D(-2.0181067, 7.4505806e-08, -1.5832484e-07, 0, 1.8215132, 0.8688176, 1.7642853e-07, 0.8688175, -1.821514, -3.9506378, 1.2200985, 7.0375214)
+transform = Transform3D(-2.0181067, 7.4505806e-08, -1.5832484e-07, 0, 1.8215132, 0.8688176, 1.7642853e-07, 0.8688175, -1.821514, -3.9506402, 1.220098, 7.037529)
 texture = ExtResource("28_pccvf")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="laptop" unique_id=823483571]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -4.242808, 1.1697326, 1.0489869)
+transform = Transform3D(0.35914823, 0.0035850136, -0.34785, 0.0035850145, 0.49990878, 0.008853614, 0.34784997, -0.008853615, 0.3590571, -4.02277, 1.1741416, 1.0489869)
 shape = SubResource("BoxShape3D_ua27e")
 
 [node name="indomie" type="MeshInstance3D" parent="." unique_id=767257292]
@@ -1606,7 +1619,7 @@ highlight_material = ExtResource("28_80574")
 material_override = SubResource("StandardMaterial3D_80574")
 
 [node name="Sketchfab_Scene" parent="cocacola/soda" unique_id=1922765648 instance=ExtResource("30_gcr7k")]
-transform = Transform3D(0.059999995, 0, 0, 0, 0.059999995, 0, 0, 0, 0.06, -2.3799498, 0.8304974, 0.24652791)
+transform = Transform3D(0.06, 0, 0, 0, 0.06, 0, 0, 0, 0.06, -2.3799498, 0.83049726, 0.24652797)
 
 [node name="soda3" type="MeshInstance3D" parent="cocacola" unique_id=664014846]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.14458156)
@@ -1643,7 +1656,7 @@ material_override = SubResource("StandardMaterial3D_kkueg")
 transform = Transform3D(0.05999999, 0, 0, 0, 0.05999999, 0, 0, 0, 0.06, -2.116263, 0.8307181, 0.24595106)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="cocacola" unique_id=459023155]
-transform = Transform3D(0.5, -5.5879354e-09, 0, 5.5879354e-09, 0.5, 0, 0, 0, 0.5, -2.2392783, 1.0943964, 0.3729334)
+transform = Transform3D(0.5, -5.5879354e-09, 0, 5.5879354e-09, 0.5, 0, 0, 0, 0.5, -2.2432165, 0.9396678, 0.38826942)
 shape = SubResource("BoxShape3D_kxaf6")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1740105838]
@@ -1686,5 +1699,5 @@ shape = SubResource("BoxShape3D_pqjy1")
 transform = Transform3D(-1, 0, -8.742277e-08, 0, 1, -2.220446e-16, 8.742278e-08, 0, -1, -4.877355, 0, -1.12726)
 
 [node name="CollisionShape3D5" type="CollisionShape3D" parent="StaticBody3D" unique_id=921269712]
-transform = Transform3D(-1, 0, -8.74225e-08, 0, 1, -7.1054274e-15, 8.7423814e-08, 3.2418512e-14, -1, -2.5685174, 1.7881393e-06, -0.5927372)
+transform = Transform3D(-1, 0, -8.742276e-08, 0, 1, -2.220446e-16, 8.7423814e-08, 3.2418512e-14, -1, -2.5685174, 1.3113022e-06, -0.44204903)
 shape = SubResource("BoxShape3D_renlo")

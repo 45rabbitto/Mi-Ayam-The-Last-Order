@@ -31,7 +31,7 @@ func _on_start_button_pressed():
 	button_press_effect($MenuPanel/StartButton)
 	await get_tree().create_timer(0.1).timeout
 	DirAccess.remove_absolute("user://savegame.save")
-	get_tree().change_scene_to_file("res://scenes/intro/IntroStory.tscn")
+	get_tree().change_scene_to_file("res://scenes/tutorial.tscn")
 
 func _on_continue_button_pressed():
 	

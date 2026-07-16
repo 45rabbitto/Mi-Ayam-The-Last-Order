@@ -46,27 +46,14 @@ text = "HP Mati"
 
 [node name="TurnOnButton" type="Button" parent="Panel" unique_id=1955366812]
 layout_mode = 0
-offset_left = 738.0
-offset_top = 286.0
-offset_right = 922.0
-offset_bottom = 334.0
+offset_left = 748.0
+offset_top = 313.0
+offset_right = 932.0
+offset_bottom = 361.0
 theme_override_fonts/font = ExtResource("3_h47c8")
 theme_override_font_sizes/font_size = 35
 action_mode = 0
 text = "Nyalakan HP"
 
-[node name="CloseButton" type="Button" parent="Panel" unique_id=1342456567]
-layout_mode = 0
-offset_left = 784.0
-offset_top = 354.0
-offset_right = 872.0
-offset_bottom = 402.0
-theme_override_fonts/font = ExtResource("3_h47c8")
-theme_override_font_sizes/font_size = 35
-action_mode = 0
-text = "Tutup"
-
-[connection signal="pressed" from="Panel/TurnOnButton" to="." method="_on_turn_on_button_pressed"]
 [connection signal="pressed" from="Panel/TurnOnButton" to="." method="_on_TurnOnButton_pressed"]
-[connection signal="pressed" from="Panel/CloseButton" to="." method="_on_close_button_pressed"]
-[connection signal="pressed" from="Panel/CloseButton" to="." method="_on_CloseButton_pressed"]
+[connection signal="pressed" from="Panel/TurnOnButton" to="." method="_on_turn_on_button_pressed"]

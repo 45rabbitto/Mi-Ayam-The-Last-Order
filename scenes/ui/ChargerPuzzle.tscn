@@ -86,18 +86,7 @@ texture_normal = ExtResource("6_xvjve")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="CloseButton" type="Button" parent="Panel" unique_id=456410968]
-layout_mode = 0
-offset_left = 1007.0
-offset_top = 47.0
-offset_right = 1085.0
-offset_bottom = 90.0
-theme_override_fonts/font = ExtResource("1_ee6se")
-theme_override_font_sizes/font_size = 35
-text = "Tutup"
-
 [connection signal="pressed" from="Panel/USBContainer/USB_A" to="." method="_on_usb_a_pressed"]
 [connection signal="pressed" from="Panel/USBContainer/USB_C" to="." method="_on_usb_c_pressed"]
 [connection signal="pressed" from="Panel/USBContainer/MICRO_USB" to="." method="_on_micro_usb_pressed"]
 [connection signal="pressed" from="Panel/USBContainer/USB_IP" to="." method="_on_usb_ip_pressed"]
-[connection signal="pressed" from="Panel/CloseButton" to="." method="_on_close_button_pressed"]
