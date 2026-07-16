@@ -1,10 +1,5 @@
 extends Node
 
-# =====================================================
-# LEVEL MANAGER
-# Mengatur perpindahan chapter dan checkpoint
-# =====================================================
-
 # -----------------------------------------------------
 # SCENE PATH
 # -----------------------------------------------------
@@ -145,7 +140,7 @@ func initialize_level():
 
 func setup_level_1():
 
-	GameManager.reset_level_data()
+	GameManager.reset_chapter(1)
 
 	ObjectiveManager.set_objective(
 		"Periksa seluruh kamar"
@@ -168,19 +163,34 @@ func setup_level_1():
 
 func setup_level_2():
 
-	GameManager.reset_chapter2()
+	print("================================")
+	print("LEVEL 2 READY")
+	print("================================")
+	
+	# Pastikan inventory dari Chapter 1 tetap ada
+	InventoryManager.ensure_chapter2_inventory()
+
+	print(
+		"INVENTORY CHAPTER 2 : ",
+		InventoryManager.get_items()
+	)
+
+	print(
+		"JUMLAH ITEM : ",
+		InventoryManager.get_item_count()
+	)
 
 	ObjectiveManager.set_objective(
 		"Kembalikan benda ke posisi awal"
 	)
 
-	UiManager.notify(
+	UiManager.show_notification(
 		"Kamar ini terasa berbeda..."
 	)
 
-	await get_tree().create_timer(2).timeout
+	await get_tree().create_timer(2.0).timeout
 
-	UiManager.notify(
+	UiManager.show_notification(
 		"Ingat posisi semua benda."
 	)
 

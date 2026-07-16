@@ -116,33 +116,42 @@ func _unhandled_input(event):
 		)
 
 
-	# -------------------------
-	# Inventory Slot (1-5)
-	# -------------------------
-	var inv = get_tree().get_first_node_in_group("inventory_ui")
+	# ==========================================================
+	# INVENTORY SLOT 1-5
+	# ==========================================================
 
-	if inv:
+	var inventory_ui = get_tree().get_first_node_in_group(
+		"inventory_ui"
+	)
+	if inventory_ui == null:
+		return
 
-		if event.is_action_pressed("slot1"):
-			InventoryManager.select_slot(0)
-			inv.use_selected_slot()
+	if event.is_action_pressed("slot1"):
+		inventory_ui.use_slot(0)
+		return
 
-		if event.is_action_pressed("slot2"):
-			InventoryManager.select_slot(1)
-			inv.use_selected_slot()
+	if event.is_action_pressed("slot2"):
+		inventory_ui.use_slot(1)
+		return
 
-		if event.is_action_pressed("slot3"):
-			InventoryManager.select_slot(2)
-			inv.use_selected_slot()
+	if event.is_action_pressed("slot3"):
+		inventory_ui.use_slot(2)
+		return
 
-		if event.is_action_pressed("slot4"):
-			InventoryManager.select_slot(3)
-			inv.use_selected_slot()
+	if event.is_action_pressed("slot4"):
+		inventory_ui.use_slot(3)
+		return
 
-		if event.is_action_pressed("slot5"):
-			InventoryManager.select_slot(4)
-			inv.use_selected_slot()
+	if event.is_action_pressed("slot5"):
+		inventory_ui.use_slot(4)
+		return
+	if event.is_action_pressed("slot6"):
+		inventory_ui.use_slot(5)
+		return
 
+	if event.is_action_pressed("slot7"):
+		inventory_ui.use_slot(6)
+		return
 	# -------------------------
 	# Interact (E)
 	# -------------------------

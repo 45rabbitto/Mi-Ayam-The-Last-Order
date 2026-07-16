@@ -1,7 +1,17 @@
 extends Node3D
 
+
+# ==========================================================
+# STATE
+# ==========================================================
+
 var hp_found := false
 var charger_found := false
+
+
+# ==========================================================
+# READY
+# ==========================================================
 
 func _ready():
 
@@ -9,10 +19,17 @@ func _ready():
 
 	ObjectiveManager.reset()
 
-	# Tambahkan semua objective dari awal
-	ObjectiveManager.add_objective("Jelajahi Kamar")
-	ObjectiveManager.add_objective("Ambil Charger")
-	ObjectiveManager.add_objective("Nyalakan HP")
+	ObjectiveManager.add_objective(
+		"Jelajahi Kamar"
+	)
+
+	ObjectiveManager.add_objective(
+		"Ambil Charger"
+	)
+
+	ObjectiveManager.add_objective(
+		"Nyalakan HP"
+	)
 
 	AudioManager.play_bgm("phone")
 
@@ -20,66 +37,139 @@ func _ready():
 
 	_connect_interactables()
 
-	print("Current Objective =", ObjectiveManager.get_current_objective())
+	print(
+		"Current Objective = ",
+		ObjectiveManager.get_current_objective()
+	)
 
-	# Voice opening
-	AudioManager.play_voice_key("kamar_berat", 1)
+	AudioManager.play_voice_key(
+		"kamar_berat",
+		1
+	)
 
+
+# ==========================================================
+# CONNECT INTERACTABLE
+# ==========================================================
 
 func _connect_interactables():
 
-	var objects = get_tree().get_nodes_in_group("interactable")
+	var objects = get_tree().get_nodes_in_group(
+		"interactable"
+	)
 
-	print("Found", objects.size(), "interactable objects")
+	print(
+		"Found ",
+		objects.size(),
+		" interactable objects"
+	)
 
 	for obj in objects:
 
-		if obj.interacted.is_connected(on_item_collected):
+		if obj.interacted.is_connected(
+			on_item_collected
+		):
+
 			continue
 
-		obj.interacted.connect(on_item_collected)
+		obj.interacted.connect(
+			on_item_collected
+		)
 
 
-func on_item_collected(item_id:String):
+# ==========================================================
+# ITEM COLLECTED
+# ==========================================================
+
+func on_item_collected(item_id: String):
+
+	print(
+		"ITEM INTERACTED : ",
+		item_id
+	)
 
 	match item_id:
 
-		"phone":
 
-			if hp_found:
-				return
-
-			hp_found = true
-
-			Global.show_notification("HP ditemukan")
-
-			# Selesaikan objective pertama
-			ObjectiveManager.complete_current()
-
-			print("Objective :", ObjectiveManager.get_current_objective())
-
+		# ==================================================
+		# CHARGER
+		# ==================================================
 
 		"charger":
 
 			if charger_found:
+
 				return
 
 			charger_found = true
 
-			Global.show_notification("Charger ditemukan")
+			print(
+				"CHARGER DITEMUKAN"
+			)
 
-			# Selesaikan objective kedua
+			InventoryManager.add_item(
+				"charger"
+			)
+
+			Global.show_notification(
+				"Charger ditemukan"
+			)
+
+			# Selesaikan objective Ambil Charger
 			ObjectiveManager.complete_current()
 
-			print("Objective :", ObjectiveManager.get_current_objective())
+			print(
+				"INVENTORY SEKARANG : ",
+				InventoryManager.get_items()
+			)
+
+			print(
+				"OBJECTIVE SEKARANG : ",
+				ObjectiveManager.get_current_objective()
+			)
 
 
-func level_complete():
+		# ==================================================
+		# PHONE
+		# ==================================================
 
-	Global.show_notification("Chapter 1 selesai!")
+		"phone":
 
-	await get_tree().create_timer(2.0).timeout
+			if hp_found:
 
-	get_tree().change_scene_to_file(
-		"res://scenes/level/level_02.tscn"
-	)
+				return
+
+			# HP hanya bisa ditemukan setelah charger ada
+			if not charger_found:
+
+				Global.show_notification(
+					"HP itu belum bisa digunakan..."
+				)
+
+				return
+
+			hp_found = true
+
+			print(
+				"PHONE DITEMUKAN"
+			)
+
+			InventoryManager.add_item(
+				"phone"
+			)
+
+			Global.show_notification(
+				"HP ditemukan"
+			)
+
+			# Jangan langsung pindah chapter
+			# Phone dibuka dari inventory
+
+			print(
+				"INVENTORY SEKARANG : ",
+				InventoryManager.get_items()
+			)
+
+			print(
+				"HP siap digunakan"
+			)

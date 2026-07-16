@@ -149,7 +149,28 @@ func all_objects_inspected() -> bool:
 
 func complete_chapter1():
 
+	print("================================")
+	print("CHAPTER 1 SELESAI")
+	print("MEMBERIKAN ITEM KE CHAPTER 2")
+	print("================================")
+
 	chapter1_completed = true
+
+	# ==========================================
+	# ITEM DIBAWA KE CHAPTER 2
+	# ==========================================
+
+	if !InventoryManager.has_item("phone"):
+
+		InventoryManager.add_item("phone")
+
+	if !InventoryManager.has_item("charger"):
+
+		InventoryManager.add_item("charger")
+
+	print("INVENTORY SEBELUM CHAPTER 2 : ",
+		InventoryManager.get_items()
+	)
 
 	next_chapter()
 
