@@ -293,48 +293,47 @@ func use_selected_slot() -> void:
 # ==========================================================
 # USE ITEM
 # ==========================================================
-
 func use_item(item: String) -> void:
 
 	print("USE ITEM : ", item)
 
+	# ==================================================
+	# CHAPTER 2
+	# ==================================================
+
+	if GameManager.current_chapter == 2:
+
+		var level2 = get_tree().current_scene
+
+		if level2.has_method("place_inventory_item"):
+
+			level2.place_inventory_item(item)
+
+		return
+
+
+	# ==================================================
+	# CHAPTER 1
+	# ==================================================
 
 	match item:
-
-
-		# ==================================================
-		# PHONE
-		# ==================================================
 
 		"phone":
 
 			print("HP DIKLIK")
 
-
 			var phone_ui := get_tree().get_first_node_in_group(
 				"phone_ui"
 			)
-
-
-			print(
-				"PhoneUI = ",
-				phone_ui
-			)
-
 
 			if phone_ui:
 
 				phone_ui.open()
 
 
-		# ==================================================
-		# CHARGER
-		# ==================================================
-
 		"charger":
 
 			print("CHARGER DIKLIK")
-
 
 			if UiManager:
 
@@ -342,10 +341,6 @@ func use_item(item: String) -> void:
 					"Charger dipilih"
 				)
 
-
-		# ==================================================
-		# ITEM LAIN
-		# ==================================================
 
 		_:
 

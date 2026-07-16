@@ -3,44 +3,91 @@ extends Node3D
 var collected := 0
 const TOTAL_ITEMS := 4
 
+var selected_inventory_item := ""
+var rearrange_mode := false
+
 func _ready():
 
 	print("===== MASUK LEVEL2 GLITCH =====")
 	print("Scene =", get_tree().current_scene.name)
 
-	print(get_tree().current_scene.get_tree_string_pretty())
+	print(
+		get_tree().current_scene.get_tree_string_pretty()
+	)
 
 	Global.current_level = 2
 
+
+	# ======================================================
+	# OBJECTIVE
+	# ======================================================
+
 	ObjectiveManager.reset()
 
-	ObjectiveManager.add_objective("Jelajahi Kamar")
-	ObjectiveManager.add_objective("Kumpulkan Barang")
-	ObjectiveManager.add_objective("Tata Ulang Kamar")
-	ObjectiveManager.add_objective("Buka HP")
+	ObjectiveManager.add_objective(
+		"Jelajahi Kamar"
+	)
+
+	ObjectiveManager.add_objective(
+		"Kumpulkan Barang"
+	)
+
+	ObjectiveManager.add_objective(
+		"Tata Ulang Kamar"
+	)
+
+	ObjectiveManager.add_objective(
+		"Buka HP"
+	)
 
 	ObjectiveManager.start()
-	
-	var hud = get_tree().current_scene.get_node("Hud")
 
-	print("HUD =", hud)
-	print("Children HUD = ", hud.get_children())
 
-	var level2ui = hud.get_node("level2ui")
+	# ======================================================
+	# UI LEVEL 2
+	# ======================================================
 
-	print("LEVEL2UI =", level2ui)
-	print("Children LEVEL2UI = ", level2ui.get_children())
+	var level2ui = get_tree().current_scene.get_node_or_null(
+		"Hud/level2ui"
+	)
 
-	var explore = level2ui.get_node_or_null("ButtonExplore")
-	print("Explore =", explore)
+	if level2ui == null:
 
-	var rearrange = get_node_or_null("Hud/level2ui/ButtonRearrange")
+		print("LEVEL2UI TIDAK DITEMUKAN")
+
+		return
+
+
+	var explore = level2ui.get_node_or_null(
+		"ButtonExplore"
+	)
+
+	var rearrange = level2ui.get_node_or_null(
+		"ButtonRearrange"
+	)
+
 
 	if explore:
+
 		explore.show()
 
+
 	if rearrange:
+
+		if !rearrange.pressed.is_connected(
+			start_rearrange_mode
+		):
+
+			rearrange.pressed.connect(
+				start_rearrange_mode
+			)
+
 		rearrange.hide()
+
+
+	# ======================================================
+	# CONNECT INTERACTABLE
+	# ======================================================
 
 	_connect_interactables()
 
@@ -86,3 +133,65 @@ func show_rearrange_button():
 	)
 	if world_label:
 		world_label.show()
+		
+		
+func start_rearrange_mode():
+
+	print("================================")
+	print("MODE TATA ULANG DIMULAI")
+	print(
+		"INVENTORY SEBELUM : ",
+		InventoryManager.get_items()
+	)
+	print("================================")
+
+	rearrange_mode = true
+	
+	# HAPUS ITEM CHAPTER 2
+	InventoryManager.remove_item("laptop")
+	InventoryManager.remove_item("headset")
+	InventoryManager.remove_item("rokok")
+	InventoryManager.remove_item("poster")
+
+
+	# RESET ITEM TERPILIH
+	selected_inventory_item = ""
+
+
+	print(
+		"INVENTORY SESUDAH : ",
+		InventoryManager.get_items()
+	)
+
+
+	# PINDAH KE OBJECTIVE TATA ULANG
+	ObjectiveManager.complete_current()
+
+	UiManager.show_notification(
+		"Klik tombol lanjut atau tekan tombol 1"
+	)
+
+func continue_to_level2_normal():
+
+	if !rearrange_mode:
+		return
+
+	print("LANJUT KE LEVEL 2 NORMAL")
+
+	rearrange_mode = false
+
+	get_tree().change_scene_to_file(
+		"res://scenes/level/Level_2_Normal.tscn"
+	)
+	
+func _unhandled_input(event):
+
+	if rearrange_mode:
+
+		if event.is_action_pressed("slot1"):
+
+			print("TOMBOL 1 DITEKAN")
+
+			continue_to_level2_normal()
+
+			return

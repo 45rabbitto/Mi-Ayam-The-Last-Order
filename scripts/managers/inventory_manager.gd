@@ -73,6 +73,7 @@ func add_item(item_id: String) -> bool:
 
 		return false
 
+	selected_slot = -1
 	items.append(item_id)
 
 
@@ -357,4 +358,30 @@ func ensure_chapter2_inventory() -> void:
 	print(
 		"SELECTED SLOT CHAPTER 2 : ",
 		selected_slot
+	)
+
+func setup_chapter2_inventory() -> void:
+
+	print("================================")
+	print("SETUP INVENTORY CHAPTER 2")
+	print("================================")
+
+
+	clear_inventory()
+
+
+	selected_slot = -1
+
+
+	add_item("laptop")
+	add_item("headset")
+	add_item("rokok")
+	add_item("poster")
+	add_item("charger")
+	add_item("phone")
+
+
+	print(
+		"INVENTORY CHAPTER 2 : ",
+		items
 	)

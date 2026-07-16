@@ -47,4 +47,4 @@ func open():
 func _on_lanjutch_3_pressed():
 	AudioManager.play_sfx("transition")
 	await Transition.fade_out()
-	get_tree().change_scene_to_file("res://scenes/storych3/storych3.tscn")
+	get_tree().change_scene_to_file("res://scenes/storych3.tscn")

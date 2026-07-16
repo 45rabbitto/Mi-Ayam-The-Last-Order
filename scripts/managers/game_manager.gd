@@ -67,6 +67,26 @@ var mabar_done := false
 var order_prompt := false
 var chapter3_completed := false
 
+var chapter3_selected_item: String = ""
+func select_chapter3_item(item_id: String) -> void:
+
+	chapter3_selected_item = item_id
+
+	print(
+		"CHAPTER 3 ITEM DIPILIH : ",
+		chapter3_selected_item
+	)
+
+
+func get_chapter3_selected_item() -> String:
+
+	return chapter3_selected_item
+
+
+func clear_chapter3_selected_item() -> void:
+
+	chapter3_selected_item = ""
+
 # ==========================================================
 # CHAPTER 4
 # ==========================================================
