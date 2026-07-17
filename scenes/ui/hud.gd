@@ -114,3 +114,9 @@ func _on_ButtonRearrange_pressed():
 		print("GAGAL PINDAH SCENE! Error code: ", err)
 	else:
 		print("Berhasil request pindah ke LoadingUI")
+
+
+func _on_button_next_level_3_pressed() -> void:
+	get_tree().change_scene_to_file(
+		"res://scenes/storych3.tscn"
+	)

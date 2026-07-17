@@ -365,8 +365,19 @@ theme_override_fonts/font = ExtResource("3_bo48s")
 theme_override_font_sizes/font_size = 25
 text = "Tata Ulang Kamar"
 
+[node name="ButtonNextLevel3" type="Button" parent="level2ui" unique_id=329059598]
+visible = false
+offset_left = 484.0
+offset_top = 375.0
+offset_right = 684.0
+offset_bottom = 413.0
+theme_override_fonts/font = ExtResource("3_bo48s")
+theme_override_font_sizes/font_size = 30
+text = "Lanjut Chapter 3"
+
 [connection signal="pressed" from="PauseMenu/menu/resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="PauseMenu/menu/main menu" to="." method="_on_main_menu_pressed"]
 [connection signal="pressed" from="PauseMenu/menu/quit button" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="level2ui/ButtonExplore" to="." method="_on_ButtonExplore_pressed"]
 [connection signal="pressed" from="level2ui/ButtonRearrange" to="." method="_on_ButtonRearrange_pressed"]
+[connection signal="pressed" from="level2ui/ButtonNextLevel3" to="." method="_on_button_next_level_3_pressed"]

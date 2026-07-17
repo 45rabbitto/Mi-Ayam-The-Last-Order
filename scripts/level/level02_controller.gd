@@ -17,7 +17,6 @@ func _ready():
 
 	Global.current_level = 2
 
-
 	# ======================================================
 	# OBJECTIVE
 	# ======================================================
@@ -40,8 +39,10 @@ func _ready():
 		"Buka HP"
 	)
 
+	print("PLAY BGM PHONE")
 	ObjectiveManager.start()
 
+	AudioManager.play_bgm("phone")
 
 	# ======================================================
 	# UI LEVEL 2
