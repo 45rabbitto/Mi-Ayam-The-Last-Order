@@ -85,6 +85,9 @@ func _connect_interactables():
 # =====================================================
 
 func on_item_collected(item_id: String):
+	
+	print("LEVEL3 TERIMA =", item_id)
+
 	match item_id:
 
 		"laptop_skripsi":
@@ -168,9 +171,12 @@ func _check_kopi_complete():
 		
 func start_make_coffee():
 
-	can_make_coffee = false
-
 	print("MULAI BUAT KOPI")
+	print("BUAT KOPI NODE =", buat_kopi)
+
+	if buat_kopi == null:
+		print("BUATKOPI NULL")
+		return
 
 	AudioManager.play_sfx("ch3_sendok_aduk")
 
@@ -183,6 +189,8 @@ func start_make_coffee():
 		2.5
 	)
 
+	print("SHOW MESSAGE SELESAI")
+
 	get_tree().paused = false
 
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -192,11 +200,6 @@ func start_make_coffee():
 	AudioManager.play_voice_key("raka_05",3)
 
 	ObjectiveManager.complete_current()
-
-	print(
-		"Objective : ",
-		ObjectiveManager.get_current_objective()
-	)
 	
 # =====================================================
 # HP CHAT

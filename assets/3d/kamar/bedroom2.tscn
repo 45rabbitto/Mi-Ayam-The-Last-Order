@@ -39,6 +39,8 @@
 [ext_resource type="PackedScene" uid="uid://ceffh0yy737br" path="res://assets/3d/clock.glb" id="37_mcgty"]
 [ext_resource type="Texture2D" uid="uid://31udqelf8ixo" path="res://assets/3d/kopi.jpeg" id="38_ua27e"]
 [ext_resource type="PackedScene" uid="uid://cl8nmbebcayft" path="res://assets/3d/spoon.glb" id="39_80574"]
+[ext_resource type="Texture2D" uid="uid://6ro0n144qk8g" path="res://assets/3d/Habitacion Modelada en 3D_Celular.png" id="40_bwvl4"]
+[ext_resource type="PackedScene" uid="uid://3l5cy7phf3or" path="res://assets/3d/phone_charger_low_poly.glb" id="41_l8xum"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_caomd"]
 resource_name = "Cama"
@@ -1300,6 +1302,50 @@ size = Vector3(0.13513184, 2.778595, 4.562027)
 [sub_resource type="BoxShape3D" id="BoxShape3D_renlo"]
 size = Vector3(6.617676, 0.1, 4.2251587)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_la40w"]
+resource_name = "Celular"
+cull_mode = 2
+albedo_texture = ExtResource("40_bwvl4")
+roughness = 0.5
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_ccgxo"]
+_surfaces = [{
+"aabb": AABB(-0.8326038, -0.612686, -0.27629995, 1.1102991, 0.095041096, 0.5525999),
+"format": 34359742465,
+"index_count": 132,
+"index_data": PackedByteArray("EAACABEAAgAKABEAEgAQABEACgATABEAEgARABMAEAASABQABgASABMAEgAGAAQAEgAEABQABQAEAAYAFAAEAAUABQAGAAcABgATAAcAFAAFABUABwAVAAUAEAAUABYAFgAUABUAAAAQABYAEAAAAAIAAAAWAAMAAAABAAIAAAADAAEAAwAWABcAAwAXAAEAFgAVABcAFwACAAEACAAVAAcAFwAVAAgACQACABcAFwAIAAkAAgAJAAoACQALAAoACAANAAkACQANAAsACAAOAA0ADQAPAAsACgALAA8ADQAOAA8ACgAPAAwADAAPAA4ADAAOAAgACAAHAAwACgAMABMADAAHABMA"),
+"lods": [0.0016526986, PackedByteArray("AAABAAIAAAADAAEAAAAEAAMAAwAFAAEAAwAEAAUAAAAGAAQABQAEAAYABgAAAAIABQAGAAcABgACAAcAAQAFAAgACAAFAAcACQACAAEAAQAIAAkAAgAJAAoACgAHAAIACQALAAoACAAHAAwACgAMAAcACAANAAkACQANAAsADAAOAAgACAAOAA0ACgAPAAwACgALAA8ADAAPAA4ADQAPAAsADQAOAA8A")],
+"name": "Celular",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("Q7JUv//XHL8wd42+MHeNPiqFBL8wd42+Q7JUvyqFBL8wd42+MHeNPv/XHL8wd42+MHeNPv/XHL8wd40+MHeNPiqFBL8wd40+Q7JUv//XHL8wd40+Q7JUvyqFBL8wd40+NQtxPmCEBL/ywng+YdBtPiiGBL+X/He+LStQvyiGBL+X/He+LStQvw/9B79k/He+eFxPv2CEBL/ywng+YdBtPg/9B79k/He+NQtxPkf7B78lw3g+eFxPv0f7B78lw3g+hiVVv/3YHL+X/He+hiVVvyiGBL+X/He+0VZUvzXXHL/ywng+0VZUv2CEBL/ywng+FC6OPjXXHL/ywng+FC6OPmCEBL/ywng+qpCMPv3YHL+X/He+qpCMPiiGBL+X/He+")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_wq35j"]
+resource_name = "Habitacion Modelada en 3D_Cubo_017"
+_surfaces = [{
+"aabb": AABB(-0.8326038, -0.612686, -0.27629995, 1.1102991, 0.095041096, 0.5525999),
+"attribute_data": PackedByteArray("BsI9P8wMDj/g2VQ/5untPuDZVD/MDA4/BsI9P+bp7T7g2VQ/NLq/PgbCPT+CipE+4NlUP4KKkT4Gwj0/NLq/Pr+7VT+8qsM+uPFrPzS6vz6nCWs/vKrDPqcJaz94nOk+4NlUPzS6vz648Ws/5untPuDZVD/m6e0+wLtVP3ic6T4Gwj0/pCQlP+DZVD/MDA4/4NlUP6QkJT8Gwj0/zAwOPwbCPT/m6e0+4NlUPzS6vz7g2VQ/5untPgbCPT80ur8+v7tVP7yqwz7Au1U/eJzpPsC7VT94nOk+v7tVP7yqwz7JMr89qpHyPmjipT4uaYk+auKlPqqR8j7BMr89LmmJPqcJaz+8qsM+v7tVP7yqwz6/u1U/vKrDPqcJaz+8qsM+pwlrP3ic6T6nCWs/vKrDPqcJaz+8qsM+pwlrP3ic6T7Au1U/eJzpPqcJaz94nOk+pwlrP3ic6T7Au1U/eJzpPi6qJj/m6e0+BsI9PzS6vz4Gwj0/5untPi6qJj80ur8+B8I9P4MzED/g2VQ/gzMQPwbCPT+8qsM+4NlUP7yqwz648Ws/vKrDPuDZVD+8qsM+4NlUP3ic6T4Hwj0/dpzpPgbCPT9hLCM/4NlUP4MzED/g2VQ/YSwjPwfCPT+DMxA/B8I9P3ac6T4uqiY/eJzpPi6qJj+8qsM+BsI9P7yqwz7g2VQ/eJzpPr+7VT+8qsM+wLtVP3ic6T7g2VQ/vKrDPuDZVD9hLCM/BsI9P2EsIz+nCWs/eJzpPrjxaz+8qsM+ufFrP3ic6T6nCWs/vKrDPgfCPT92nOk+4NlUP7yqwz7g2VQ/eJzpPgbCPT+8qsM+4NlUP3ic6T658Ws/eJzpPi6qJj94nOk+BsI9P7yqwz4Hwj0/dpzpPi6qJj+8qsM+"),
+"format": 34359742487,
+"index_count": 132,
+"index_data": PackedByteArray("MAARADEAMAATABEAAAABAAIAAAADAAEAMgAVADMAMgAXABUABAAFAAYABAAHAAUACgAJADQACAAJAAoACAA1AAkACQA1AAwAFAA2ABYAFAA3ADYAOAA5ADoAOAA7ADkALAA8AC4ALAA9ADwAPgAtAD8APgAvAC0AQABBAEIAQABDAEEAEABEABIAEABFAEQARgBHAEgARgBJAEcASgBLAEwASgBNAEsAGAAZABoAGAAbABkATgANAA4ADwANAE4ADQAPAAsADQALAE8AHAAdAB4AHAAfAB0AIAAhACIAIAAjACEAJAAlACYAJAAnACUAKAApACoAKAArACkAUABRAFIAUABTAFEA"),
+"lods": [0.0016526986, PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACwAKAAkACAAMAAkACwAJAA0ADgAMAAgADQAPAAsADgAIAA8ADwANAA4AEAARABIAEAATABEAFAAVABYAFAAXABUAGAAZABoAGAAbABkAHAAdAB4AHAAfAB0AIAAhACIAIAAjACEAJAAlACYAJAAnACUAKAApACoAKAArACkALAAtAC4ALAAvAC0A")],
+"material": SubResource("StandardMaterial3D_la40w"),
+"name": "Celular",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 84,
+"vertex_data": PackedByteArray("Q7JUv//XHL8wd42+MHeNPiqFBL8wd42+Q7JUvyqFBL8wd42+MHeNPv/XHL8wd42+MHeNPiqFBL8wd40+Q7JUv//XHL8wd40+Q7JUvyqFBL8wd40+MHeNPv/XHL8wd40+NQtxPmCEBL/ywng+Q7JUvyqFBL8wd40+eFxPv2CEBL/ywng+LStQvyiGBL+X/He+MHeNPiqFBL8wd40+Q7JUvyqFBL8wd42+MHeNPiqFBL8wd42+YdBtPiiGBL+X/He+Q7JUv//XHL8wd40+Q7JUvyqFBL8wd42+Q7JUvyqFBL8wd40+Q7JUv//XHL8wd42+MHeNPv/XHL8wd42+MHeNPiqFBL8wd40+MHeNPiqFBL8wd42+MHeNPv/XHL8wd40+NQtxPmCEBL/ywng+YdBtPg/9B79k/He+YdBtPiiGBL+X/He+NQtxPkf7B78lw3g+YdBtPg/9B79k/He+eFxPv0f7B78lw3g+LStQvw/9B79k/He+NQtxPkf7B78lw3g+eFxPv2CEBL/ywng+NQtxPkf7B78lw3g+NQtxPmCEBL/ywng+eFxPv0f7B78lw3g+LStQvyiGBL+X/He+eFxPv0f7B78lw3g+eFxPv2CEBL/ywng+LStQvw/9B79k/He+YdBtPiiGBL+X/He+LStQvw/9B79k/He+LStQvyiGBL+X/He+YdBtPg/9B79k/He+Q7JUv//XHL8wd42+MHeNPv/XHL8wd40+MHeNPv/XHL8wd42+Q7JUv//XHL8wd40+hiVVv/3YHL+X/He+hiVVvyiGBL+X/He+FC6OPjXXHL/ywng+FC6OPmCEBL/ywng+0VZUv2CEBL/ywng+FC6OPmCEBL/ywng+qpCMPiiGBL+X/He+qpCMPv3YHL+X/He+0VZUvzXXHL/ywng+hiVVvyiGBL+X/He+0VZUv2CEBL/ywng+hiVVv/3YHL+X/He+qpCMPv3YHL+X/He+hiVVv/3YHL+X/He+0VZUvzXXHL/ywng+FC6OPjXXHL/ywng+qpCMPiiGBL+X/He+NQtxPmCEBL/ywng+YdBtPiiGBL+X/He+FC6OPmCEBL/ywng+0VZUv2CEBL/ywng+0VZUvzXXHL/ywng+LStQvyiGBL+X/He+0VZUv2CEBL/ywng+hiVVvyiGBL+X/He+eFxPv2CEBL/ywng+qpCMPv3YHL+X/He+FC6OPmCEBL/ywng+qpCMPiiGBL+X/He+FC6OPjXXHL/ywng+qpCMPiiGBL+X/He+hiVVvyiGBL+X/He+hiVVv/3YHL+X/He+FC6OPjXXHL/ywng+qpCMPv3YHL+X/He+0VZUvzXXHL/ywng+//////9//////////3//////////f/////////9/////f/9//3////9//3//f////3//f/9/////f/9//3////9/8f8AAP+//3/x/wAA/7//f/H/AAD/v/9/8f8AAP+//3/x/wAA/7//f/H/AAD/v/9/8f8AAP+//3/x/wAA/78AACOF/3///wAARob/f///AAAjhf9///8AAEaG/3///7j5/3//f/7/2/r/f/9///+4+f9//3///9v6/3//f///0wD/f////z/TAP9/////P9MA/3////8/0wD/f////z8CgP//AAD/vwKA//8AAP+/AoD//wAA/78CgP//AAD/v/v/AAD///+/+/8AAP///7/7/wAA////v/v/AAD///+////TgP///7///9OA////v///04D///+////TgP///7//fwKA////P/9/AoD///8//38CgP///z//fwKA////PwyAAAD///+/DIAAAP///78MgAAA////vwyAAAD///+/AABGhv9///8AAEaG/3///9v6/3//f///2/r/f/9/////f/H/AAD/v/9/8f8AAP+/uPn/f/9//v+4+f9//3/+/9MA/3//f///0wD/f/9////TAP9//3///9MA/3//f///DIAAAP///78MgAAA////vwyAAAD///+/DIAAAP///78CgP//AAD/vwKA//8AAP+/AoD//wAA/78CgP//AAD/vwAAI4X/f///AAAjhf9///8CgP//AAD/vwKA//8AAP+/AoD//wAA/78CgP//AAD/v///04D/f/7////TgP9//v///9OA/3/+////04D/f////3/x/wAA/7//f/H/AAD/v/9/AwD///+//38DAP///7//fwMA////v/9/AwD///+/")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_ccgxo")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vtvyj"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gbys7"]
+
 [node name="Habitacion Modelada en 3D" type="Node3D" unique_id=1948344516]
 transform = Transform3D(0.9996762, -0.025444156, 0, 0.025444156, 0.9996762, 0, 0, 0, 1, 4.1358347, -1.3215475, -2.9775078)
 
@@ -1701,3 +1747,35 @@ transform = Transform3D(-1, 0, -8.742277e-08, 0, 1, -2.220446e-16, 8.742278e-08,
 [node name="CollisionShape3D5" type="CollisionShape3D" parent="StaticBody3D" unique_id=921269712]
 transform = Transform3D(-1, 0, -8.742276e-08, 0, 1, -2.220446e-16, 8.7423814e-08, 3.2418512e-14, -1, -2.5685174, 1.3113022e-06, -0.44204903)
 shape = SubResource("BoxShape3D_renlo")
+
+[node name="hp" type="Area3D" parent="." unique_id=454460698]
+script = ExtResource("23_80574")
+object_name = "phone"
+inspection_text = "Chat dari Beni: \"Rak, mabar?\""
+item_id = "hp_chat"
+chapter = 3
+
+[node name="hp" type="MeshInstance3D" parent="hp" unique_id=1523513766]
+transform = Transform3D(0.17861575, 0, 0, 0, 0.17861575, 0, 0, 0, 0.17861575, 0, 0.87543654, -0.1561169)
+mesh = SubResource("ArrayMesh_wq35j")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hp" unique_id=2076770492]
+transform = Transform3D(0.19999996, -9.313226e-10, 0, 9.313226e-10, 0.19999996, 0, 0, 0, 0.2, -0.080266476, 0.741096, -0.15447307)
+shape = SubResource("BoxShape3D_vtvyj")
+
+[node name="charger" type="Area3D" parent="." unique_id=96068448]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00020647049, 0.31268537, -0.7662208)
+script = ExtResource("23_80574")
+object_name = "Charger"
+inspection_text = "nah ketemu chargernya"
+voice_key = "cari_charger"
+is_pickupable = true
+item_id = "charger"
+highlight_material = ExtResource("28_80574")
+
+[node name="charger" parent="charger" unique_id=1080097908 instance=ExtResource("41_l8xum")]
+transform = Transform3D(0.014999999, 0, 0, 0, 0.014999999, 0, 0, 0, 0.015, 0.22934008, -0.12541056, 0.38242793)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="charger" unique_id=948943620]
+transform = Transform3D(0.39999995, -1.8626451e-09, 0, 1.8626451e-09, 0.39999995, 0, 0, 0, 0.4, 0.1589222, -0.09042466, 0.26359296)
+shape = SubResource("BoxShape3D_gbys7")

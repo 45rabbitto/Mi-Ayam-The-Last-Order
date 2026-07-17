@@ -40,9 +40,14 @@ func _ready():
 	)
 
 	print("PLAY BGM PHONE")
+	
 	ObjectiveManager.start()
 
 	AudioManager.play_bgm("phone")
+	
+	await get_tree().create_timer(0.5).timeout
+
+	AudioManager.play_voice_key("udah_ambil", 2)
 
 	# ======================================================
 	# UI LEVEL 2
