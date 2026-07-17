@@ -23,6 +23,13 @@ var mi_ayam_ordered := false
 var qte_context: String = ""
 
 # =====================================================
+# BUAT KOPI (black screen "sedang diseduh")
+# =====================================================
+
+@onready var buat_kopi = $BuatKopi
+
+
+# =====================================================
 # READY
 # =====================================================
 
@@ -88,8 +95,11 @@ func on_item_collected(item_id: String):
 			if air_panas_done:
 				return
 			air_panas_done = true
+
+			AudioManager.play_sfx("ch3_kopi_tuang")
+			await buat_kopi.show_message("Kopi sedang diseduh...", 2.0)
+
 			Global.show_notification("Air panas dituang")
-			AudioManager.play_sfx("ch3_kopi_tuang")  # suara tuang juga
 			_check_kopi_complete()
 
 		"sendok":

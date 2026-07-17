@@ -46,6 +46,7 @@
 [ext_resource type="PackedScene" uid="uid://78eigtpk74pi" path="res://scenes/Transition.tscn" id="44_2cqc7"]
 [ext_resource type="PackedScene" uid="uid://crkuelg6fyyas" path="res://scenes/ui/hud.tscn" id="45_2yfhq"]
 [ext_resource type="PackedScene" uid="uid://jftlj8222yye" path="res://qte_popup.tscn" id="46_3ekeh"]
+[ext_resource type="PackedScene" uid="uid://nkdm8feym7a1" path="res://scenes/buat_kopi.tscn" id="47_h3m5i"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_caomd"]
 resource_name = "Cama"
@@ -1792,3 +1793,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, 1, -1)
 [node name="Hud" parent="." unique_id=291386691 instance=ExtResource("45_2yfhq")]
 
 [node name="QTEPanel" parent="." unique_id=77831502 instance=ExtResource("46_3ekeh")]
+
+[node name="BuatKopi" parent="." unique_id=899549255 instance=ExtResource("47_h3m5i")]

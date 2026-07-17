@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://nkdm8feym7a1"]
+
+[ext_resource type="FontFile" uid="uid://dn1ys1ju2gq7m" path="res://assets/fonts/VT323-Regular.ttf" id="1_4svmm"]
+
+[node name="BuatKopi" type="CanvasLayer" unique_id=899549255]
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=184465782]
+offset_right = 1244.0
+offset_bottom = 669.0
+color = Color(0, 0, 0, 0.9019608)
+
+[node name="Label" type="Label" parent="ColorRect" unique_id=624336245]
+layout_mode = 0
+offset_left = 459.0
+offset_top = 281.0
+offset_right = 735.0
+offset_bottom = 311.0
+theme_override_fonts/font = ExtResource("1_4svmm")
+theme_override_font_sizes/font_size = 30
+text = "Kopi sedang di seduh..."
