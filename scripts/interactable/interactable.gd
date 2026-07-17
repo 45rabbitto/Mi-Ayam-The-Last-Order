@@ -23,22 +23,24 @@ func _ready():
 		original_material = mesh.material_override
 
 func interact():
-	if inspection_text != "":
-		UiManager.show_dialog(inspection_text)
 
-	if voice_key != "":
-		AudioManager.play_voice_key(voice_key, chapter)
+	print("INTERACT :", item_id)
 
 	if is_pickupable:
-		if InventoryManager.add_item(item_id):
+
+		var success = InventoryManager.add_item(item_id)
+
+		print("ADD ITEM =", success)
+
+		if success:
 			UiManager.show_notification(object_name + " diperoleh")
-			ObjectiveManager.complete_if_match(item_id)
 			interacted.emit(item_id)
 			queue_free()
 			return
 
-	interacted.emit(item_id)
+		print("GAGAL MASUK INVENTORY :", item_id)
 
+	interacted.emit(item_id)
 func show_highlight():
 	var mesh = get_node_or_null("MeshInstance3D")
 	if mesh == null:

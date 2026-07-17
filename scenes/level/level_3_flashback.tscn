@@ -1,6 +1,6 @@
-[gd_scene format=4 uid="uid://byrcx1ypp6idl"]
+[gd_scene format=4 uid="uid://sv3qlym6mtx5"]
 
-[ext_resource type="Script" uid="uid://dsfjksnikmtfn" path="res://scripts/level/level03_controller.gd" id="1_k3fi6"]
+[ext_resource type="Script" path="res://scripts/level/level03_controller.gd" id="1_k3fi6"]
 [ext_resource type="Texture2D" uid="uid://dsk7iqn683yfg" path="res://assets/3d/Habitacion Modelada en 3D_Paredes.png" id="1_q23e8"]
 [ext_resource type="Texture2D" uid="uid://c1o3853d6pfbm" path="res://assets/3d/Habitacion Modelada en 3D_Cama.png" id="2_djvgi"]
 [ext_resource type="Texture2D" uid="uid://lv1okkfqka6g" path="res://assets/3d/Habitacion Modelada en 3D_Cofre.png" id="3_7ajvu"]
@@ -45,8 +45,9 @@
 [ext_resource type="PackedScene" uid="uid://cs14om8wf1udr" path="res://scenes/player/player.tscn" id="42_yxfnf"]
 [ext_resource type="PackedScene" uid="uid://78eigtpk74pi" path="res://scenes/Transition.tscn" id="44_2cqc7"]
 [ext_resource type="PackedScene" uid="uid://crkuelg6fyyas" path="res://scenes/ui/hud.tscn" id="45_2yfhq"]
-[ext_resource type="PackedScene" uid="uid://jftlj8222yye" path="res://qte_popup.tscn" id="46_3ekeh"]
-[ext_resource type="PackedScene" uid="uid://nkdm8feym7a1" path="res://scenes/buat_kopi.tscn" id="47_h3m5i"]
+[ext_resource type="PackedScene" path="res://qte_popup.tscn" id="46_3ekeh"]
+[ext_resource type="PackedScene" path="res://scenes/buat_kopi.tscn" id="47_h3m5i"]
+[ext_resource type="Script" path="res://scripts/buat_kopi.gd" id="48_28ap2"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_caomd"]
 resource_name = "Cama"
@@ -1446,8 +1447,8 @@ mesh = SubResource("ArrayMesh_so1c4")
 [node name="Cilindro_001" type="Area3D" parent="." unique_id=201670605]
 transform = Transform3D(0.056748122, 0, 0, 0, 0.056748122, 0, 0, 0, 0.056748122, -4.7996287, 1.1610353, -0.8150816)
 script = ExtResource("23_80574")
-object_name = "Gelas"
-item_id = "gelas"
+object_name = "gelas_buat"
+item_id = "gelas_buat"
 chapter = 3
 metadata/_custom_type_script = "uid://cyng42bevcjqg"
 
@@ -1604,8 +1605,9 @@ transform = Transform3D(-3.934025e-08, 0, -0.9, 0, 0.9, 0, 0.9, 0, -3.934025e-08
 
 [node name="dispenser" type="Area3D" parent="." unique_id=205144635]
 script = ExtResource("23_80574")
-object_name = "Dispenser Air"
-item_id = "air_panas"
+object_name = "dispenser"
+is_pickupable = true
+item_id = "dispenser"
 chapter = 3
 metadata/_custom_type_script = "uid://cyng42bevcjqg"
 
@@ -1650,6 +1652,7 @@ texture = ExtResource("38_ua27e")
 transform = Transform3D(0.022587307, 0.076745115, 3.4924597e-09, 0, -3.4924597e-09, 0.08, 0.076745115, -0.022587307, -9.873224e-10, -2.5075853, 0.83475566, 0.57570165)
 script = ExtResource("23_80574")
 object_name = "Kopi Bubuk"
+is_pickupable = true
 item_id = "kopi_bubuk"
 chapter = 3
 metadata/_custom_type_script = "uid://cyng42bevcjqg"
@@ -1664,6 +1667,7 @@ texture = ExtResource("38_ua27e")
 transform = Transform3D(0.057, 0, 0, 0, 0.057, 0, 0, 0, 0.057, -4.6, 1.161, -0.815)
 script = ExtResource("23_80574")
 object_name = "sendok"
+is_pickupable = true
 item_id = "sendok"
 chapter = 3
 metadata/_custom_type_script = "uid://cyng42bevcjqg"
@@ -1795,3 +1799,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, 1, -1)
 [node name="QTEPanel" parent="." unique_id=77831502 instance=ExtResource("46_3ekeh")]
 
 [node name="BuatKopi" parent="." unique_id=899549255 instance=ExtResource("47_h3m5i")]
+script = ExtResource("48_28ap2")

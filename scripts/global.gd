@@ -20,6 +20,8 @@ var hint_panel: Control
 var notification_label: Label
 var notification_panel: Control
 
+var kopi_finished := false
+
 
 # ==========================
 # INIT UI BINDING
