@@ -132,9 +132,9 @@ vertical_alignment = 1
 [node name="AnimationPlayer" type="AnimationPlayer" parent="NotificationPanel" unique_id=1657116243]
 
 [node name="InventoryUI" type="HBoxContainer" parent="." unique_id=407913438]
-offset_left = 411.0
+offset_left = 331.0
 offset_top = 554.0
-offset_right = 747.0
+offset_right = 819.0
 offset_bottom = 618.0
 script = ExtResource("3_8qguk")
 
@@ -201,6 +201,34 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_bo48s")
 script = ExtResource("2_hqnrr")
 
 [node name="TextureRect" type="TextureRect" parent="InventoryUI/slot5" unique_id=1711885147]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 0
+offset_right = 62.0
+offset_bottom = 62.0
+expand_mode = 1
+stretch_mode = 5
+
+[node name="slot6" type="Panel" parent="InventoryUI" unique_id=1175107295]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bo48s")
+script = ExtResource("2_hqnrr")
+
+[node name="TextureRect" type="TextureRect" parent="InventoryUI/slot6" unique_id=1018836371]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 0
+offset_right = 62.0
+offset_bottom = 62.0
+expand_mode = 1
+stretch_mode = 5
+
+[node name="slot7" type="Panel" parent="InventoryUI" unique_id=72186861]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bo48s")
+script = ExtResource("2_hqnrr")
+
+[node name="TextureRect" type="TextureRect" parent="InventoryUI/slot7" unique_id=51188084]
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 0
 offset_right = 62.0
@@ -315,6 +343,41 @@ theme_override_fonts/font = ExtResource("3_bo48s")
 theme_override_font_sizes/font_size = 30
 text = "Objective :"
 
+[node name="level2ui" type="CanvasLayer" parent="." unique_id=102338988]
+
+[node name="ButtonExplore" type="Button" parent="level2ui" unique_id=206359829]
+visible = false
+offset_left = 506.0
+offset_top = 380.0
+offset_right = 664.0
+offset_bottom = 413.0
+theme_override_fonts/font = ExtResource("3_bo48s")
+theme_override_font_sizes/font_size = 25
+text = "Selesai Jelajah"
+
+[node name="ButtonRearrange" type="Button" parent="level2ui" unique_id=1701961129]
+visible = false
+offset_left = 484.0
+offset_top = 376.0
+offset_right = 684.0
+offset_bottom = 414.0
+theme_override_fonts/font = ExtResource("3_bo48s")
+theme_override_font_sizes/font_size = 25
+text = "Tata Ulang Kamar"
+
+[node name="ButtonNextLevel3" type="Button" parent="level2ui" unique_id=329059598]
+visible = false
+offset_left = 484.0
+offset_top = 375.0
+offset_right = 684.0
+offset_bottom = 413.0
+theme_override_fonts/font = ExtResource("3_bo48s")
+theme_override_font_sizes/font_size = 30
+text = "Lanjut Chapter 3"
+
 [connection signal="pressed" from="PauseMenu/menu/resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="PauseMenu/menu/main menu" to="." method="_on_main_menu_pressed"]
 [connection signal="pressed" from="PauseMenu/menu/quit button" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="level2ui/ButtonExplore" to="." method="_on_ButtonExplore_pressed"]
+[connection signal="pressed" from="level2ui/ButtonRearrange" to="." method="_on_ButtonRearrange_pressed"]
+[connection signal="pressed" from="level2ui/ButtonNextLevel3" to="." method="_on_button_next_level_3_pressed"]

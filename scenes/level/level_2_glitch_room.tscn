@@ -4,20 +4,16 @@
 [ext_resource type="PackedScene" uid="uid://ckgwi74ulgpy4" path="res://assets/3d/kamar/bedroom2.tscn" id="2_4ue62"]
 [ext_resource type="PackedScene" uid="uid://cs14om8wf1udr" path="res://scenes/player/player.tscn" id="3_twoe4"]
 [ext_resource type="PackedScene" uid="uid://crkuelg6fyyas" path="res://scenes/ui/hud.tscn" id="4_khqg5"]
-[ext_resource type="PackedScene" uid="uid://v74ay2xypcw0" path="res://scenes/events/node_3d.tscn" id="5_dgvfs"]
 
 [node name="Level2GlitchRoom" type="Node3D" unique_id=1646671966]
-script = ExtResource("1_4ue62")
-
-[node name="bedroom2" parent="." unique_id=1948344516 instance=ExtResource("2_4ue62")]
-transform = Transform3D(0.9996762, -0.025444156, 0, 0.025444156, 0.9996762, 0, 0, 0, 1, 4.1358347, -1.3215475, -0.70850635)
 
 [node name="Player" parent="." unique_id=187213136 instance=ExtResource("3_twoe4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.77698565, -0.14707005, -0.64537334)
+
+[node name="bedroom2" parent="." unique_id=1948344516 instance=ExtResource("2_4ue62")]
+transform = Transform3D(0.9996762, -0.025444156, 0, 0.025444156, 0.9996762, 0, 0, 0, 1, 4.1358347, -1.3215475, -0.70850635)
 
 [node name="Level2Controller" type="Node3D" parent="." unique_id=1898445587]
 script = ExtResource("1_4ue62")
 
 [node name="Hud" parent="." unique_id=291386691 instance=ExtResource("4_khqg5")]
-
-[node name="WorldEnvironment2" parent="." unique_id=23361280 instance=ExtResource("5_dgvfs")]

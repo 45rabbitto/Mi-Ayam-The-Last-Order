@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://dbvse6t1jpasx"]
+
+[ext_resource type="Script" uid="uid://b0rbe8hi3pv5q" path="res://scripts/level/level02normal.gd" id="1_lsyvr"]
+[ext_resource type="PackedScene" uid="uid://cs14om8wf1udr" path="res://scenes/player/player.tscn" id="2_l7n2f"]
+[ext_resource type="PackedScene" uid="uid://ba1146ravx4f5" path="res://assets/3d/kamar/bedroom_2_normal.tscn" id="3_yx3ek"]
+[ext_resource type="PackedScene" uid="uid://crkuelg6fyyas" path="res://scenes/ui/hud.tscn" id="4_ett8v"]
+
+[node name="Level2Normal" type="Node3D" unique_id=801159721]
+
+[node name="Player" parent="." unique_id=187213136 instance=ExtResource("2_l7n2f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8178296, 0.0464499, -2.8978605)
+
+[node name="bedroom_2_normal" parent="." unique_id=1948344516 instance=ExtResource("3_yx3ek")]
+
+[node name="Hud" parent="." unique_id=291386691 instance=ExtResource("4_ett8v")]
+
+[node name="level02normal" type="Node3D" parent="." unique_id=843629747]
+script = ExtResource("1_lsyvr")

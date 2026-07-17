@@ -2,11 +2,13 @@ extends Node
 
 signal inventory_changed(items: Array[String])
 
+
 # ==========================================================
 # ITEM DATABASE
 # ==========================================================
 
 const ITEM_DATABASE := {
+
 	"charger": {
 		"name": "Phone Charger",
 		"icon": preload("res://scenes/ui/items/charger.png")
@@ -15,8 +17,30 @@ const ITEM_DATABASE := {
 	"phone": {
 		"name": "Phone",
 		"icon": preload("res://scenes/ui/items/phone.png")
+	},
+
+	"laptop": {
+		"name": "Laptop",
+		"icon": preload("res://scenes/ui/items/laptop.png")
+	},
+
+	"headset": {
+		"name": "Headset",
+		"icon": preload("res://scenes/ui/items/headset.png")
+	},
+
+	"rokok": {
+		"name": "Rokok",
+		"icon": preload("res://scenes/ui/items/rokok.png")
+	},
+
+	"poster": {
+		"name": "Poster",
+		"icon": preload("res://scenes/ui/items/poster.png")
 	}
+
 }
+
 
 # ==========================================================
 # INVENTORY
@@ -24,35 +48,39 @@ const ITEM_DATABASE := {
 
 var items: Array[String] = []
 
-# slot yang sedang dipilih
 var selected_slot: int = -1
+
 
 # ==========================================================
 # ADD ITEM
 # ==========================================================
 
-func add_item(item_id:String) -> bool:
+func add_item(item_id: String) -> bool:
 
 	item_id = item_id.strip_edges().to_lower()
-
-	print("Mencoba menambah item :", item_id)
 
 	if item_id.is_empty():
 		return false
 
 	if has_item(item_id):
-		print("Item sudah ada")
 		return false
 
 	if !ITEM_DATABASE.has(item_id):
-		push_warning("Unknown item : " + item_id)
+
+		push_warning(
+			"Unknown item : " + item_id
+		)
+
 		return false
 
+	selected_slot = -1
 	items.append(item_id)
+
 
 	_emit_inventory_changed()
 
-	print("Inventory :", items)
+	print("ADD ITEM :", item_id)
+	print("INVENTORY :", items)
 
 	return true
 
@@ -61,26 +89,34 @@ func add_item(item_id:String) -> bool:
 # REMOVE ITEM
 # ==========================================================
 
-func remove_item(item_id:String) -> bool:
+func remove_item(item_id: String) -> bool:
 
-	item_id = item_id.to_lower()
+	item_id = item_id.strip_edges().to_lower()
 
 	if !has_item(item_id):
 		return false
 
 	var index := items.find(item_id)
 
-	items.remove_at(index)
+	items.erase(item_id)
 
 	if items.is_empty():
+
 		selected_slot = -1
 
 	elif selected_slot >= items.size():
+
 		selected_slot = items.size() - 1
 
-	_emit_inventory_changed()
+	elif selected_slot == index:
 
-	print("REMOVE :", item_id)
+		selected_slot = clamp(
+			index,
+			0,
+			items.size() - 1
+		)
+
+	_emit_inventory_changed()
 
 	return true
 
@@ -89,22 +125,29 @@ func remove_item(item_id:String) -> bool:
 # CLEAR INVENTORY
 # ==========================================================
 
-func clear_inventory():
-
+func clear_inventory() -> void:
+	print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+	print("CLEAR INVENTORY DIPANGGIL")
+	print("ITEM SEBELUM CLEAR : ", items)
+	print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
 	items.clear()
 
 	selected_slot = -1
 
 	_emit_inventory_changed()
 
+	print("INVENTORY CLEARED")
+
 
 # ==========================================================
 # CHECK ITEM
 # ==========================================================
 
-func has_item(item_id:String) -> bool:
+func has_item(item_id: String) -> bool:
 
-	return items.has(item_id.to_lower())
+	return items.has(
+		item_id.strip_edges().to_lower()
+	)
 
 
 # ==========================================================
@@ -122,46 +165,46 @@ func get_item_count() -> int:
 
 
 # ==========================================================
-# ITEM DATABASE
+# ITEM DATA
 # ==========================================================
 
-func has_item_data(item_id:String) -> bool:
+func has_item_data(item_id: String) -> bool:
 
 	return ITEM_DATABASE.has(item_id)
 
 
-func get_item_data(item_id:String) -> Dictionary:
+func get_item_data(item_id: String) -> Dictionary:
 
 	return ITEM_DATABASE.get(item_id, {})
 
 
-func get_item_name(item_id:String) -> String:
+func get_item_name(item_id: String) -> String:
 
 	if !ITEM_DATABASE.has(item_id):
+
 		return item_id
 
 	return ITEM_DATABASE[item_id]["name"]
 
 
-func get_item_icon(item_id:String) -> Texture2D:
+func get_item_icon(item_id: String) -> Texture2D:
 
 	if !ITEM_DATABASE.has(item_id):
+
 		return null
 
 	return ITEM_DATABASE[item_id]["icon"]
 
 
 # ==========================================================
-# SLOT SELECTION
+# SELECT SLOT
 # ==========================================================
 
-func select_slot(index: int):
+func select_slot(index: int) -> void:
 
 	if index < 0:
 
 		selected_slot = -1
-
-		_emit_inventory_changed()
 
 		return
 
@@ -174,49 +217,33 @@ func select_slot(index: int):
 	print("Selected Slot :", selected_slot)
 	print("Selected Item :", items[selected_slot])
 
-	_emit_inventory_changed()
+	_emit_selection_changed()
 
-func get_selected_slot() -> int:
 
-	return selected_slot
-
+# ==========================================================
+# GET SELECTED ITEM
+# ==========================================================
 
 func get_selected_item() -> String:
 
 	if selected_slot < 0:
+
 		return ""
 
 	if selected_slot >= items.size():
+
 		return ""
 
 	return items[selected_slot]
 
 
 # ==========================================================
-# USE SELECTED ITEM
-# Dipanggil oleh klik mouse maupun tombol 1-5
+# GET SELECTED SLOT
 # ==========================================================
 
-func use_selected_item():
+func get_selected_slot() -> int:
 
-	var item := get_selected_item()
-
-	if item == "":
-		return
-
-	match item:
-
-		"phone":
-
-			UiManager.show_dialog("Nyalakan HP?")
-
-		"charger":
-
-			UiManager.show_notification("Charger dipilih")
-
-		_:
-
-			print(item, " digunakan")
+	return selected_slot
 
 
 # ==========================================================
@@ -226,8 +253,11 @@ func use_selected_item():
 func get_save_data() -> Dictionary:
 
 	return {
+
 		"items": items.duplicate(),
+
 		"selected_slot": selected_slot
+
 	}
 
 
@@ -235,44 +265,123 @@ func get_save_data() -> Dictionary:
 # LOAD
 # ==========================================================
 
-func load_save_data(data:Dictionary):
+func load_save_data(data: Dictionary) -> void:
 
 	items.clear()
 
 	if data.has("items"):
-		items.assign(data["items"])
 
+		items.assign(
+			data["items"]
+		)
+
+	selected_slot = data.get(
+		"selected_slot",
+		-1
+	)
 
 	if selected_slot >= items.size():
+
 		selected_slot = -1
 
 	_emit_inventory_changed()
 
 
 # ==========================================================
-# SIGNAL
+# SIGNAL INVENTORY
 # ==========================================================
 
-func _emit_inventory_changed():
+func _emit_inventory_changed() -> void:
 
-	inventory_changed.emit(items.duplicate())
+	inventory_changed.emit(
+		items.duplicate()
+	)
 
 	if UiManager:
 
-		UiManager.update_inventory(items)
+		UiManager.update_inventory(
+			items
+		)
 
-		UiManager.select_inventory_slot(selected_slot)
+	_emit_selection_changed()
+
 
 # ==========================================================
-# RESET INVENTORY
+# SIGNAL SELECTION
 # ==========================================================
 
-func reset_inventory():
+func _emit_selection_changed() -> void:
 
-	items.clear()
+	if UiManager:
+
+		UiManager.select_inventory_slot(
+			selected_slot
+		)
+		
+# ==========================================================
+# ENSURE CHAPTER 2 ITEMS
+# ==========================================================
+
+func ensure_chapter2_inventory() -> void:
+
+	print("=== CHECK CHAPTER 2 INVENTORY ===")
+
+	# PASTIKAN TIDAK ADA SLOT YANG TERPILIH
+	selected_slot = -1
+
+
+	# PHONE
+	if !has_item("phone"):
+
+		print("PHONE BELUM ADA -> TAMBAHKAN")
+
+		items.append("phone")
+
+
+	# CHARGER
+	if !has_item("charger"):
+
+		print("CHARGER BELUM ADA -> TAMBAHKAN")
+
+		items.append("charger")
+
+
+	# UPDATE INVENTORY SEKALI SAJA
+	_emit_inventory_changed()
+
+
+	print(
+		"INVENTORY CHAPTER 2 : ",
+		items
+	)
+
+	print(
+		"SELECTED SLOT CHAPTER 2 : ",
+		selected_slot
+	)
+
+func setup_chapter2_inventory() -> void:
+
+	print("================================")
+	print("SETUP INVENTORY CHAPTER 2")
+	print("================================")
+
+
+	clear_inventory()
+
 
 	selected_slot = -1
 
-	_emit_inventory_changed()
 
-	print("INVENTORY RESET")
+	add_item("laptop")
+	add_item("headset")
+	add_item("rokok")
+	add_item("poster")
+	add_item("charger")
+	add_item("phone")
+
+
+	print(
+		"INVENTORY CHAPTER 2 : ",
+		items
+	)

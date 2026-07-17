@@ -38,5 +38,5 @@ func go_intro():
 	await get_tree().create_timer(0.3).timeout
 
 	get_tree().change_scene_to_file(
-		"res://scenes/intro/Intro.tscn"
+		"res://scenes/intro/IntroStory.tscn"
 	)

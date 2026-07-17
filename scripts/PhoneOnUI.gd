@@ -4,7 +4,7 @@ extends CanvasLayer
 @onready var charging_image = $Panel/ChargingImage
 @onready var home_screen = $Panel/HomeScreen
 @onready var continue_button = $Panel/ContinueButton
-@onready var close_button = $Panel/CloseButton
+
 
 func _ready():
 	
@@ -50,9 +50,6 @@ func open():
 func _on_continue_button_pressed():
 
 	AudioManager.play_sfx("transition")
-
-	# RESET INVENTORY CHAPTER 2
-	InventoryManager.reset_inventory()
 
 	await Transition.fade_out()
 

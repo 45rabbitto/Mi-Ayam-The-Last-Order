@@ -11,15 +11,15 @@ config_version=5
 [application]
 
 config/name="The Last Order: My Ayam"
-run/main_scene="uid://byrcx1ypp6idl"
+run/main_scene="uid://dlfd7yya67tyb"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
-
+F
 PhoneNotif="*uid://bm5ywihoy53u3"
 HorrorEvent="*uid://m8dcwak4m7mm"
-LevelManager="*uid://drimh4gcy4a3i"
+LevelManager="*uid://cwc53adrbe667"
 SaveLoad="*uid://d2milbl14chm4"
 InventoryManager="*uid://dmsto0d2yq1o3"
 SaveManager="*uid://4264q38orybu"
@@ -116,6 +116,16 @@ slot5={
 turn_on_phone={
 "deadzone": 0.2,
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":70,"key_label":0,"unicode":102,"location":0,"echo":false,"script":null)
+]
+}
+slot6={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":54,"key_label":0,"unicode":54,"location":0,"echo":false,"script":null)
+]
+}
+slot7={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":55,"key_label":0,"unicode":55,"location":0,"echo":false,"script":null)
 ]
 }
 

@@ -3,17 +3,20 @@ extends CanvasLayer
 @onready var label = $RichTextLabel
 
 var story := """
-Setelah berhasil menyalakan handphone, Raka merasa ada sesuatu yang tidak beres.
-Saat menoleh ke sekeliling, ia membeku.
 
-Jam di dinding berputar tidak beraturan.
 
-Raka memegang perutnya sesaat.
+kamar kembali rapi.
+Kamar juga terlihat sama. 
 
-Bukan karena sakit.
+Jam menunjukkan 23.00. 
 
-Melainkan karena sensasi panas itu...
-terasa sangat familiar.
+Laptop Raka terbuka dengan skripsi.
+
+Raka duduk di kursi, membentangkan jari di atas keyboard.
+
+
+
+
 """
 
 var speed := 0.04
@@ -39,10 +42,10 @@ func show_story():
 
 	await get_tree().create_timer(2.0).timeout
 
-	print("PINDAH KE LEVEL2 GLITCH")
+	print("PINDAH KE LEVEL3 FLASHBACK")
 
 	get_tree().change_scene_to_file(
-		"res://scenes/level/level_2_glitch_room.tscn"
+		"res://scenes/level/level_3_flashback.tscn"
 	)
 
 	print("SELESAI PINDAH")
