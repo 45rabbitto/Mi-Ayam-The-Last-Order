@@ -117,6 +117,7 @@ func _unhandled_input(event):
 
 		cursor_visible = !cursor_visible
 
+
 		if cursor_visible:
 
 			Input.set_mouse_mode(
@@ -159,64 +160,125 @@ func _unhandled_input(event):
 
 
 	# ==========================================================
-	# INVENTORY SLOT
+	# INVENTORY
 	# ==========================================================
 
 	var inventory_ui = get_tree().get_first_node_in_group(
 		"inventory_ui"
 	)
 
-	if inventory_ui != null:
 
-		if event.is_action_pressed("slot1"):
+	# ==========================================================
+	# SLOT 1
+	# ==========================================================
+
+	if event.is_action_pressed("slot1"):
+
+		var current_scene = get_tree().current_scene
+
+
+		if current_scene.has_method(
+			"open_phone_notif"
+		):
+
+			current_scene.open_phone_notif()
+
+			return
+
+
+		if inventory_ui != null:
 
 			inventory_ui.use_slot(0)
+
 			return
 
 
-		if event.is_action_pressed("slot2"):
+	# ==========================================================
+	# SLOT 2
+	# ==========================================================
+
+	if event.is_action_pressed("slot2"):
+
+		if inventory_ui != null:
 
 			inventory_ui.use_slot(1)
+
 			return
 
 
-		if event.is_action_pressed("slot3"):
+	# ==========================================================
+	# SLOT 3
+	# ==========================================================
+
+	if event.is_action_pressed("slot3"):
+
+		if inventory_ui != null:
 
 			inventory_ui.use_slot(2)
+
 			return
 
 
-		if event.is_action_pressed("slot4"):
+	# ==========================================================
+	# SLOT 4
+	# ==========================================================
+
+	if event.is_action_pressed("slot4"):
+
+		if inventory_ui != null:
 
 			inventory_ui.use_slot(3)
+
 			return
 
 
-		if event.is_action_pressed("slot5"):
+	# ==========================================================
+	# SLOT 5
+	# ==========================================================
+
+	if event.is_action_pressed("slot5"):
+
+		if inventory_ui != null:
 
 			inventory_ui.use_slot(4)
+
 			return
 
 
-		if event.is_action_pressed("slot6"):
+	# ==========================================================
+	# SLOT 6
+	# ==========================================================
+
+	if event.is_action_pressed("slot6"):
+
+		if inventory_ui != null:
 
 			inventory_ui.use_slot(5)
+
 			return
 
 
-		if event.is_action_pressed("slot7"):
+	# ==========================================================
+	# SLOT 7
+	# ==========================================================
+
+	if event.is_action_pressed("slot7"):
+
+		if inventory_ui != null:
 
 			inventory_ui.use_slot(6)
+
 			return
 
 
-	# ==========================================
+	# ==========================================================
 	# INTERACT (E)
-	# ==========================================
+	# ==========================================================
 
 	if event.is_action_pressed("interact"):
 
 		print("E ditekan")
+
 
 		if interaction_manager:
 
@@ -225,9 +287,9 @@ func _unhandled_input(event):
 		return
 
 
-	# ==========================================
+	# ==========================================================
 	# PAUSE
-	# ==========================================
+	# ==========================================================
 
 	if event.is_action_pressed("pause"):
 
