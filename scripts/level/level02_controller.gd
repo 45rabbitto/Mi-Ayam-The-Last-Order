@@ -136,63 +136,70 @@ func show_rearrange_button():
 		world_label.show()
 		
 		
-func start_rearrange_mode():
+func start_rearrange_mode() -> void:
 
-	print("================================")
-	print("MODE TATA ULANG DIMULAI")
+	print("!!!!!!!! TOMBOL TATA ULANG DIKLIK !!!!!!!!")
+
 	print(
-		"INVENTORY SEBELUM : ",
+		"INVENTORY SEBELUM CLEAR : ",
 		InventoryManager.get_items()
 	)
-	print("================================")
+
+
+	# ==================================================
+	# AKTIFKAN MODE TATA ULANG
+	# ==================================================
 
 	rearrange_mode = true
-	
-	# HAPUS ITEM CHAPTER 2
-	InventoryManager.remove_item("laptop")
-	InventoryManager.remove_item("headset")
-	InventoryManager.remove_item("rokok")
-	InventoryManager.remove_item("poster")
 
 
+	# ==================================================
+	# HAPUS ITEM INVENTORY CHAPTER 2
+	# ==================================================
+
+	InventoryManager.clear_inventory()
+
+
+	print(
+		"INVENTORY SESUDAH CLEAR : ",
+		InventoryManager.get_items()
+	)
+
+
+	# ==================================================
 	# RESET ITEM TERPILIH
+	# ==================================================
+
 	selected_inventory_item = ""
 
 
-	print(
-		"INVENTORY SESUDAH : ",
-		InventoryManager.get_items()
-	)
+	# ==================================================
+	# PINDAH OBJECTIVE
+	# ==================================================
 
-
-	# PINDAH KE OBJECTIVE TATA ULANG
 	ObjectiveManager.complete_current()
 
+
 	UiManager.show_notification(
-		"Klik tombol lanjut atau tekan tombol 1"
+		"Pilih barang dari inventory"
 	)
+	
+func continue_to_level_2_normal() -> void:
 
-func continue_to_level2_normal():
-
-	if !rearrange_mode:
-		return
-
+	print("================================")
 	print("LANJUT KE LEVEL 2 NORMAL")
+	print("================================")
+
 
 	rearrange_mode = false
+
+
+	AudioManager.play_sfx("transition")
+
+
+	await get_tree().create_timer(1.0).timeout
+
 
 	get_tree().change_scene_to_file(
 		"res://scenes/level/Level_2_Normal.tscn"
 	)
-	
-func _unhandled_input(event):
-
-	if rearrange_mode:
-
-		if event.is_action_pressed("slot1"):
-
-			print("TOMBOL 1 DITEKAN")
-
-			continue_to_level2_normal()
-
-			return
