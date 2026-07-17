@@ -9,7 +9,7 @@ func get_prompt() -> String:
 
 func interact(player):
 
-	print("=== LAPTOP INTERACT ===")"mesh"
+	print("=== LAPTOP INTERACT ===")
 
 	var mesh = find_child("MeshInstance3D", true, false)
 
