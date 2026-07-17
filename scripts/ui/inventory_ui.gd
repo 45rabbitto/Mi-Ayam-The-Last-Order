@@ -96,8 +96,8 @@ func select_inventory_slot(index:int):
 
 	for i in range(slots.size()):
 
-		if i == index:
-			slots[i].modulate = Color(1,1,0.4)
+		if index != -1 and i == index:
+			slots[i].modulate = Color(1, 1, 0.4)
 		else:
 			slots[i].modulate = Color.WHITE
 

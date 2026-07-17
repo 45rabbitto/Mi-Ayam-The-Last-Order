@@ -1,7 +1,20 @@
 extends Control
 
 func _ready():
-	var has_save = FileAccess.file_exists("user://savegame.save")
+
+	# RESET DATA GAME
+	InventoryManager.clear_inventory()
+
+	# RESET AUDIO
+	AudioManager.reset_audio()
+
+	# PLAY BGM MAIN MENU
+	AudioManager.play_bgm("main_menu")
+
+
+	var has_save = FileAccess.file_exists(
+		"user://savegame.save"
+	)
 	var continue_btn = $MenuPanel/ContinueButton
 	continue_btn.disabled = not has_save
 	continue_btn.modulate = Color(0.583, 0.583, 0.583, 0.8) if not has_save else Color.WHITE
@@ -18,7 +31,7 @@ func _on_start_button_pressed():
 	button_press_effect($MenuPanel/StartButton)
 	await get_tree().create_timer(0.1).timeout
 	DirAccess.remove_absolute("user://savegame.save")
-	get_tree().change_scene_to_file("res://scenes/intro/IntroStory.tscn")
+	get_tree().change_scene_to_file("res://scenes/tutorial.tscn")
 
 func _on_continue_button_pressed():
 	

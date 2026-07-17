@@ -58,24 +58,12 @@ stretch_mode = 5
 
 [node name="ContinueButton" type="Button" parent="Panel" unique_id=1376922909]
 layout_mode = 0
-offset_left = 769.0
-offset_top = 277.0
-offset_right = 1005.0
-offset_bottom = 315.0
+offset_left = 764.0
+offset_top = 301.0
+offset_right = 1000.0
+offset_bottom = 339.0
 theme_override_fonts/font = ExtResource("4_8myen")
 theme_override_font_sizes/font_size = 30
 text = "Lanjut ke Chapter 2"
 
-[node name="CloseButton" type="Button" parent="Panel" unique_id=485498634]
-layout_mode = 0
-offset_left = 856.0
-offset_top = 319.0
-offset_right = 924.0
-offset_bottom = 357.0
-theme_override_fonts/font = ExtResource("4_8myen")
-theme_override_font_sizes/font_size = 30
-text = "Tutup
-"
-
 [connection signal="pressed" from="Panel/ContinueButton" to="." method="_on_continue_button_pressed"]
-[connection signal="pressed" from="Panel/CloseButton" to="." method="_on_close_button_pressed"]

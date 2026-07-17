@@ -50,9 +50,6 @@ func add_item(item_id:String) -> bool:
 
 	items.append(item_id)
 
-	if selected_slot == -1:
-		selected_slot = 0
-
 	_emit_inventory_changed()
 
 	print("Inventory :", items)
@@ -158,13 +155,18 @@ func get_item_icon(item_id:String) -> Texture2D:
 # SLOT SELECTION
 # ==========================================================
 
-func select_slot(index:int):
+func select_slot(index: int):
 
 	if index < 0:
+
 		selected_slot = -1
+
+		_emit_inventory_changed()
+
 		return
 
 	if index >= items.size():
+
 		return
 
 	selected_slot = index
@@ -172,9 +174,7 @@ func select_slot(index:int):
 	print("Selected Slot :", selected_slot)
 	print("Selected Item :", items[selected_slot])
 
-	if UiManager:
-		UiManager.select_inventory_slot(selected_slot)
-
+	_emit_inventory_changed()
 
 func get_selected_slot() -> int:
 
@@ -242,7 +242,6 @@ func load_save_data(data:Dictionary):
 	if data.has("items"):
 		items.assign(data["items"])
 
-	selected_slot = data.get("selected_slot", -1)
 
 	if selected_slot >= items.size():
 		selected_slot = -1
@@ -262,5 +261,18 @@ func _emit_inventory_changed():
 
 		UiManager.update_inventory(items)
 
-		if selected_slot != -1:
-			UiManager.select_inventory_slot(selected_slot)
+		UiManager.select_inventory_slot(selected_slot)
+
+# ==========================================================
+# RESET INVENTORY
+# ==========================================================
+
+func reset_inventory():
+
+	items.clear()
+
+	selected_slot = -1
+
+	_emit_inventory_changed()
+
+	print("INVENTORY RESET")

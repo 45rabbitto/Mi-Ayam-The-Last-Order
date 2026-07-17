@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://dxrg5my31dja0"]
+
+[ext_resource type="Script" uid="uid://gd75nr1unx73" path="res://scripts/tutorial.gd" id="1_ph3nu"]
+[ext_resource type="Texture2D" uid="uid://p2rj1ppy3qj4" path="res://ui/tutorial.jpg" id="2_4kmhl"]
+[ext_resource type="FontFile" uid="uid://dn1ys1ju2gq7m" path="res://assets/fonts/VT323-Regular.ttf" id="3_cq4me"]
+
+[node name="Tutorial" type="CanvasLayer" unique_id=233492854]
+script = ExtResource("1_ph3nu")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=689210299]
+offset_left = -78.0
+offset_top = -75.0
+offset_right = 1202.0
+offset_bottom = 669.0
+texture = ExtResource("2_4kmhl")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Button" type="Button" parent="." unique_id=225326666]
+offset_left = -293.0
+offset_top = -38.0
+offset_right = 1417.0
+offset_bottom = 1185.0
+theme_override_fonts/font = ExtResource("3_cq4me")
+theme_override_font_sizes/font_size = 30
+text = "
+
+
+
+
+
+tekan dimanapun"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

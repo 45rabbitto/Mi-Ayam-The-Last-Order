@@ -1,59 +1,97 @@
-extends Control
+extends CanvasLayer
 
 signal qte_success
 signal qte_failed
 
-@onready var prompt_label: Label = $PromptLabel
-@onready var progress_bar: ProgressBar = $ProgressBar
+@onready var top_row: HBoxContainer = $TopRow
+@onready var bottom_row: HBoxContainer = $BottomRow
 
-var keys := ["E", "Q", "F", "R"]
-var current_key := ""
-var steps_required := 4
-var steps_done := 0
-var time_limit := 2.0
+const LETTER_POOL := "BCEFGHIJKLNOPQRTUVXYZ"
+const BOX_COUNT := 5
+
+var letters: Array[String] = []
+var current_index := 0
+
+var rounds_required := 3
+var rounds_done := 0
+
+var time_limit := 8.0
 var timer: Timer
+
 
 func _ready():
 	hide()
+	offset = get_viewport().get_visible_rect().size / 2
 	timer = Timer.new()
 	timer.one_shot = true
 	timer.timeout.connect(_on_time_out)
 	add_child(timer)
 
-func start_qte(required_steps: int = 4):
-	steps_required = required_steps
-	steps_done = 0
-	progress_bar.max_value = steps_required
-	progress_bar.value = 0
-	show()
-	_next_step()
 
-func _next_step():
-	current_key = keys[randi() % keys.size()]
-	prompt_label.text = "Tekan %s !" % current_key
+func start_qte(required_rounds: int = 4):
+	rounds_required = required_rounds
+	rounds_done = 0
+	show()
+	_start_round()
+
+
+func _start_round():
+	current_index = 0
+	letters.clear()
+
+	for i in BOX_COUNT:
+		letters.append(LETTER_POOL[randi() % LETTER_POOL.length()])
+
+	for i in top_row.get_child_count():
+		var lbl = top_row.get_child(i)
+		lbl.text = letters[i]
+		lbl.modulate = Color.WHITE
+
+	for i in bottom_row.get_child_count():
+		bottom_row.get_child(i).text = ""
+
 	timer.start(time_limit)
+
 
 func _unhandled_input(event):
 	if not visible:
 		return
-
 	if event is InputEventKey and event.pressed and not event.echo:
 		var key_pressed = OS.get_keycode_string(event.keycode)
 
-		if key_pressed == current_key:
-			timer.stop()
-			steps_done += 1
-			progress_bar.value = steps_done
+		if key_pressed.length() != 1:
+			return
 
-			if steps_done >= steps_required:
-				_finish(true)
-			else:
-				_next_step()
+		if key_pressed == letters[current_index]:
+			AudioManager.play_ui("click")   # <- tambah baris ini
+			bottom_row.get_child(current_index).text = key_pressed
+			top_row.get_child(current_index).modulate = Color.GREEN
+			current_index += 1
+
+			if current_index >= BOX_COUNT:
+				_finish_round(true)
+		else:
+			top_row.get_child(current_index).modulate = Color.RED
+
+func _finish_round(success: bool):
+	timer.stop()
+
+	if success:
+		rounds_done += 1
+		if rounds_done >= rounds_required:
+			_finish_all(true)
+		else:
+			await get_tree().create_timer(0.5).timeout
+			_start_round()
+	else:
+		_finish_all(false)
+
 
 func _on_time_out():
-	_finish(false)
+	_finish_round(false)
 
-func _finish(success: bool):
+
+func _finish_all(success: bool):
 	hide()
 	if success:
 		qte_success.emit()

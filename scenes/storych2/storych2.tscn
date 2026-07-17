@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://brg0sve6xt2uf"]
+
+[ext_resource type="Script" uid="uid://cfn851tffwi4n" path="res://scenes/storych2/storych2.gd" id="1_v3b6w"]
+[ext_resource type="FontFile" uid="uid://dn1ys1ju2gq7m" path="res://assets/fonts/VT323-Regular.ttf" id="2_hkqv8"]
+
+[node name="Storych2" type="CanvasLayer" unique_id=287730516]
+script = ExtResource("1_v3b6w")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=2021181054]
+offset_right = 1174.0
+offset_bottom = 666.0
+color = Color(0, 0, 0, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1058299855]
+offset_left = 91.0
+offset_top = 66.0
+offset_right = 1078.0
+offset_bottom = 585.0
+theme_override_fonts/normal_font = ExtResource("2_hkqv8")
+theme_override_font_sizes/normal_font_size = 25

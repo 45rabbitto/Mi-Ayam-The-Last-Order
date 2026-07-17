@@ -27,6 +27,38 @@ var voice_clips_ch1 = {
 
 }
 
+var voice_clips_ch2 = {
+	
+	"aneh": preload("res://assets/audio/Chapter2/voices/ch2_aneh.ogg"),
+
+	"jam_glitch": preload("res://assets/audio/Chapter2/voices/Ch2_jam_glitch.ogg"),
+
+	"kembali_awal": preload("res://assets/audio/Chapter2/voices/Ch2_kembali_awal.ogg"),
+
+	"sepi": preload("res://assets/audio/Chapter2/voices/ch2_sepi.ogg"),
+
+	"sunyi": preload("res://assets/audio/Chapter2/voices/ch2_sunyi.ogg"),
+
+	"udah_ambil": preload("res://assets/audio/Chapter2/voices/ch2_udah_ambil.ogg"),
+
+}
+
+var voice_clips_ch3 = {
+
+	"raka_01": preload("res://assets/audio/voices/ch3_raka_01.ogg"),
+	"raka_02": preload("res://assets/audio/voices/ch3_raka_02.ogg"),
+	"raka_03": preload("res://assets/audio/voices/ch3_raka_03.ogg"),
+	"raka_04": preload("res://assets/audio/voices/ch3_raka_04.ogg"),
+	"raka_05": preload("res://assets/audio/voices/ch3_raka_05.ogg"),
+	"raka_06": preload("res://assets/audio/voices/ch3_raka_06.ogg"),
+	"raka_07": preload("res://assets/audio/voices/ch3_raka_07.ogg"),
+	"raka_08": preload("res://assets/audio/voices/ch3_raka_08.ogg"),
+	"raka_09": preload("res://assets/audio/voices/ch3_raka_09.ogg"),
+	"beni_01": preload("res://assets/audio/voices/ch3_beni_01.ogg"),
+	"beni_02": preload("res://assets/audio/voices/ch3_beni_02.ogg"),
+
+}
+
 #==========================
 # BGM
 #==========================
@@ -49,7 +81,11 @@ var ui = {
 
 	"click": preload("res://assets/audio/Chapter1/ui/click.ogg"),
 
-	"inventory_open": preload("res://assets/audio/Chapter1/ui/inventory_open.mp3")
+	"inventory_open": preload("res://assets/audio/Chapter1/ui/inventory_open.mp3"),
+
+	"correct": preload("res://assets/audio/Chapter2/ui/correct.ogg"),
+	
+	"wrong": preload("res://assets/audio/Chapter2/ui/wrong.ogg")
 
 }
 
@@ -69,7 +105,24 @@ var sfx = {
 
 	"typing": preload("res://assets/audio/Chapter1/sfx/typewriter.mp3"),
 
-	"transition": preload("res://assets/audio/Chapter1/sfx/transition.mp3")
+	"transition": preload("res://assets/audio/Chapter1/sfx/transition.mp3"),
+	
+	"clock": preload("res://assets/audio/Chapter2/sfx/Clock_Tick.mp3"),
+
+	"glitch": preload("res://assets/audio/Chapter2/sfx/glitch.ogg"),
+	
+	"heartbeat": preload("res://assets/audio/Chapter2/sfx/heartbeat.mp3"),
+	
+	"notification": preload("res://assets/audio/Chapter2/sfx/notification.ogg"),
+
+	# --- Chapter 3 --- (ch3_sfx_join_game SENGAJA DILEWATI, belum konfirmasi ada fisiknya)
+	"ch3_keyboard": preload("res://assets/audio/ch3_sfx_keyboard.ogg"),
+	"ch3_notif_wa": preload("res://assets/audio/ch3_sfx_notif_wa.ogg"),
+	"ch3_mabar_ambient": preload("res://assets/audio/ch3_sfx_mabar_ambient.ogg"),
+	"ch3_napas_berat": preload("res://assets/audio/ch3_sfx_napas_berat.ogg"),
+	"ch3_glitch_audio": preload("res://assets/audio/ch3_sfx_glitch_audio.ogg"),
+	"ch3_kopi_tuang": preload("res://assets/audio/ch3_sfx_kopi_tuang.ogg"),
+	"ch3_sendok_aduk": preload("res://assets/audio/ch3_sfx_sendok_aduk.ogg"),
 
 }
 
@@ -199,6 +252,14 @@ func play_voice_key(key:String, chapter:int):
 		1:
 			if voice_clips_ch1.has(key):
 				play_voice(voice_clips_ch1[key])
+				
+		2:
+			if voice_clips_ch2.has(key):
+				play_voice(voice_clips_ch2[key])
+
+		3:
+			if voice_clips_ch3.has(key):
+				play_voice(voice_clips_ch3[key])
 
 #==========================
 # SIGNAL
@@ -207,3 +268,20 @@ func play_voice_key(key:String, chapter:int):
 func _on_voice_finished():
 
 	voice_finished.emit()
+
+#==========================
+#RESET
+#==========================
+func reset_audio():
+
+	bgm_player.stop()
+	sfx_player.stop()
+	voice_player.stop()
+	typing_player.stop()
+
+	bgm_player.stream = null
+	sfx_player.stream = null
+	voice_player.stream = null
+	typing_player.stream = null
+
+	typing_loop = false

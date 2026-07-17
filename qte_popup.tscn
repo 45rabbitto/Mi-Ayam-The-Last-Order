@@ -1,25 +1,151 @@
 [gd_scene format=3 uid="uid://jftlj8222yye"]
 
 [ext_resource type="Script" uid="uid://biruivsjau27w" path="res://qte_panel.gd" id="1_bub5b"]
+[ext_resource type="FontFile" uid="uid://dgs0rmdvyu72k" path="res://assets/fonts/PressStart2P-Regular.ttf" id="2_jpg2l"]
 
-[node name="QTEPanel" type="Control" unique_id=77831502]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bub5b"]
+bg_color = Color(0, 0, 0, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ruy7r"]
+bg_color = Color(0, 0, 0, 0)
+border_color = Color(1, 1, 1, 1)
+
+[node name="QTEPanel" type="CanvasLayer" unique_id=2090704717]
+layer = 3
 script = ExtResource("1_bub5b")
 
-[node name="PromptLabel" type="Label" parent="." unique_id=102210482]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-theme_override_font_sizes/font_size = 40
-text = "Tekan E!
-"
+[node name="TopRow" type="HBoxContainer" parent="." unique_id=1284585491]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -746.0
+offset_top = -324.0
+offset_right = -380.0
+offset_bottom = -254.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="ProgressBar" type="ProgressBar" parent="." unique_id=1920913541]
-layout_mode = 0
-offset_right = 4.0
-offset_bottom = 27.0
+[node name="Label" type="Label" parent="TopRow" unique_id=487884447]
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_jpg2l")
+theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = SubResource("StyleBoxFlat_bub5b")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="TopRow" unique_id=201990684]
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_jpg2l")
+theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = SubResource("StyleBoxFlat_bub5b")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label3" type="Label" parent="TopRow" unique_id=1172716499]
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_jpg2l")
+theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = SubResource("StyleBoxFlat_bub5b")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label4" type="Label" parent="TopRow" unique_id=1312000473]
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_jpg2l")
+theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = SubResource("StyleBoxFlat_bub5b")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label5" type="Label" parent="TopRow" unique_id=186229084]
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_jpg2l")
+theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = SubResource("StyleBoxFlat_bub5b")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BottomRow" type="HBoxContainer" parent="." unique_id=1953312694]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -746.0
+offset_top = -324.0
+offset_right = -380.0
+offset_bottom = -254.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="BottomRow" unique_id=2043261933]
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_jpg2l")
+theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = SubResource("StyleBoxFlat_ruy7r")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="BottomRow" unique_id=897866209]
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_jpg2l")
+theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = SubResource("StyleBoxFlat_ruy7r")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label3" type="Label" parent="BottomRow" unique_id=1641982647]
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_jpg2l")
+theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = SubResource("StyleBoxFlat_ruy7r")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label4" type="Label" parent="BottomRow" unique_id=1836583226]
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_jpg2l")
+theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = SubResource("StyleBoxFlat_ruy7r")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label5" type="Label" parent="BottomRow" unique_id=1219402560]
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_jpg2l")
+theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = SubResource("StyleBoxFlat_ruy7r")
+horizontal_alignment = 1
+vertical_alignment = 1

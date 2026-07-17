@@ -16,6 +16,13 @@ var chat_beni_shown := false      # trigger pertama: "Rak, mabar?"
 var mabar_done := false           # trigger kedua: setelah "ngobrol" / QTE mabar
 var mi_ayam_ordered := false      # akhir chapter
 
+# =====================================================
+# QTE
+# =====================================================
+
+@onready var qte_panel = $QTEPanel
+var qte_context: String = ""      # "skripsi" atau "mabar" -- nandain QTE mana yang lagi jalan
+
 
 # =====================================================
 # READY
@@ -37,6 +44,9 @@ func _ready():
 	ObjectiveManager.start()
 
 	_connect_interactables()
+
+	qte_panel.qte_success.connect(_on_qte_success)
+	qte_panel.qte_failed.connect(_on_qte_failed)
 
 	print("Current Objective =", ObjectiveManager.get_current_objective())
 
@@ -62,19 +72,13 @@ func on_item_collected(item_id: String):
 	match item_id:
 
 		# -------------------------------------------------
-		# STEP 1: SKRIPSI
+		# STEP 1: SKRIPSI -> sekarang trigger QTE dulu
 		# -------------------------------------------------
 		"laptop_skripsi":
 			if skripsi_done:
 				return
-			skripsi_done = true
-
-			Global.show_notification("Skripsi dikerjakan...")
-			AudioManager.play_voice_key("raka_02", 3)  # "Dikit lagi... ayo..."
-			AudioManager.play_sfx("ch3_keyboard")
-
-			ObjectiveManager.complete_current()
-			print("Objective:", ObjectiveManager.get_current_objective())
+			qte_context = "skripsi"
+			qte_panel.start_qte(4)
 
 		# -------------------------------------------------
 		# STEP 2: BIKIN KOPI (4 item, urutan bebas)
@@ -110,14 +114,14 @@ func on_item_collected(item_id: String):
 			_check_kopi_complete()
 
 		# -------------------------------------------------
-		# STEP 3 & 4: HP / CHAT BENI (diklik 2x, beda state)
+		# STEP 3 & 4: HP / CHAT BENI (diklik berkali-kali, beda state)
 		# -------------------------------------------------
 		"hp_chat":
 			_on_hp_chat_interact()
 
 	# -------------------------------------------------
 	# STEP 5: PESAN MI AYAM (dipanggil manual dari UI
-	# prompt "Pesan mi ayam?" setelah mabar_done true —
+	# prompt "Pesan mi ayam?" setelah mabar_done true --
 	# lihat fungsi order_mi_ayam() di bawah)
 	# -------------------------------------------------
 
@@ -131,10 +135,7 @@ func _check_kopi_complete():
 
 func _on_hp_chat_interact():
 
-	# Klik HP pertama kali: hanya boleh setelah kopi selesai
-	# (sesuai alur GDD: skripsi -> chat Beni muncul -> baru bikin kopi
-	# -> mabar. Sesuaikan urutan ini kalau beda dari rencana kamu.)
-
+	# Klik HP pertama kali: hanya boleh setelah skripsi selesai
 	if not chat_beni_shown:
 		if not skripsi_done:
 			Global.show_notification("Belum ada notif...")
@@ -153,19 +154,50 @@ func _on_hp_chat_interact():
 			Global.show_notification("Selesaikan kopi dulu...")
 			return
 
-		mabar_done = true
-		Global.show_notification('Beni: "Lu belum makan, kan?"')
-		AudioManager.play_voice_key("beni_02", 3)
-		AudioManager.play_sfx("ch3_mabar_ambient")
-
-		ObjectiveManager.complete_current()
-		print("Objective:", ObjectiveManager.get_current_objective())
-
-		AudioManager.play_voice_key("raka_09", 3)  # "Yaudah, pesen mi ayam aja..."
+		qte_context = "mabar"
+		qte_panel.start_qte(5)
 		return
 
 	if mabar_done and not mi_ayam_ordered:
 		order_mi_ayam()
+
+
+# =====================================================
+# QTE CALLBACKS
+# =====================================================
+
+func _on_qte_success():
+	match qte_context:
+		"skripsi":
+			skripsi_done = true
+			Global.show_notification("Skripsi dikerjakan...")
+			AudioManager.play_voice_key("raka_02", 3)  # "Dikit lagi... ayo..."
+		
+
+			ObjectiveManager.complete_current()
+			print("Objective:", ObjectiveManager.get_current_objective())
+
+		"mabar":
+			mabar_done = true
+			Global.show_notification('Beni: "Lu belum makan, kan?"')
+			AudioManager.play_voice_key("beni_02", 3)
+			AudioManager.play_sfx("ch3_mabar_ambient")
+
+			ObjectiveManager.complete_current()
+			print("Objective:", ObjectiveManager.get_current_objective())
+
+			AudioManager.play_voice_key("raka_09", 3)  # "Yaudah, pesen mi ayam aja..."
+
+	qte_context = ""
+
+
+func _on_qte_failed():
+	Global.show_notification("Gagal! Coba lagi...")
+	match qte_context:
+		"skripsi":
+			qte_panel.start_qte(4)
+		"mabar":
+			qte_panel.start_qte(5)
 
 
 # =====================================================
