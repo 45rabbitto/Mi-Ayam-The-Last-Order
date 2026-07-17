@@ -120,3 +120,12 @@ func _on_button_next_level_3_pressed() -> void:
 	get_tree().change_scene_to_file(
 		"res://scenes/storych3.tscn"
 	)
+
+
+func _on_button_next_chapter_5_pressed() -> void:
+
+	AudioManager.play_ui("click")
+
+	get_tree().change_scene_to_file(
+		"res://scenes/storych5.tscn"
+	)

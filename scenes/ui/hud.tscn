@@ -375,9 +375,16 @@ theme_override_fonts/font = ExtResource("3_bo48s")
 theme_override_font_sizes/font_size = 30
 text = "Lanjut Chapter 3"
 
+[node name="level4ui" type="CanvasLayer" parent="." unique_id=287930005]
+
+[node name="ButtonNextChapter5" type="Button" parent="level4ui" unique_id=1952719786]
+offset_right = 8.0
+offset_bottom = 8.0
+
 [connection signal="pressed" from="PauseMenu/menu/resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="PauseMenu/menu/main menu" to="." method="_on_main_menu_pressed"]
 [connection signal="pressed" from="PauseMenu/menu/quit button" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="level2ui/ButtonExplore" to="." method="_on_ButtonExplore_pressed"]
 [connection signal="pressed" from="level2ui/ButtonRearrange" to="." method="_on_ButtonRearrange_pressed"]
 [connection signal="pressed" from="level2ui/ButtonNextLevel3" to="." method="_on_button_next_level_3_pressed"]
+[connection signal="pressed" from="level4ui/ButtonNextChapter5" to="." method="_on_button_next_chapter_5_pressed"]
