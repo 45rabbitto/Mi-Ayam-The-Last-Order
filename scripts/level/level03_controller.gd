@@ -6,23 +6,21 @@ extends Node3D
 
 var skripsi_done := false
 
-# Sequence bikin kopi (disederhanakan: 4 item, urutan bebas)
 var gelas_done := false
 var kopi_bubuk_done := false
 var air_panas_done := false
 var sendok_done := false
 
-var chat_beni_shown := false      # trigger pertama: "Rak, mabar?"
-var mabar_done := false           # trigger kedua: setelah "ngobrol" / QTE mabar
-var mi_ayam_ordered := false      # akhir chapter
+var chat_beni_shown := false
+var mabar_done := false
+var mi_ayam_ordered := false
 
 # =====================================================
 # QTE
 # =====================================================
 
 @onready var qte_panel = $QTEPanel
-var qte_context: String = ""      # "skripsi" atau "mabar" -- nandain QTE mana yang lagi jalan
-
+var qte_context: String = ""
 
 # =====================================================
 # READY
@@ -32,37 +30,31 @@ func _ready():
 	print("=== LEVEL 3 (FLASHBACK) READY ===")
 
 	ObjectiveManager.reset()
-
 	ObjectiveManager.add_objective("Kerjakan Skripsi")
 	ObjectiveManager.add_objective("Buat Kopi")
 	ObjectiveManager.add_objective("Balas Chat Beni")
 	ObjectiveManager.add_objective("Mabar Bareng Beni")
 	ObjectiveManager.add_objective("Pesan Mi Ayam")
 
-	AudioManager.play_bgm("chapter1_room")  # ganti ke bgm chapter3 kalau sudah ada di AudioManager
+	AudioManager.play_bgm("chapter1_room")
 
 	ObjectiveManager.start()
-
 	_connect_interactables()
 
 	qte_panel.qte_success.connect(_on_qte_success)
 	qte_panel.qte_failed.connect(_on_qte_failed)
 
 	print("Current Objective =", ObjectiveManager.get_current_objective())
-
-	# Voice opening chapter 3
-	AudioManager.play_voice_key("raka_01", 3)  # "Oke fokus skripsi dulu..."
+	AudioManager.play_voice_key("raka_01", 3)
 
 
 func _connect_interactables():
 	var objects = get_tree().get_nodes_in_group("interactable")
 	print("Found", objects.size(), "interactable objects")
-
 	for obj in objects:
 		if obj.interacted.is_connected(on_item_collected):
 			continue
 		obj.interacted.connect(on_item_collected)
-
 
 # =====================================================
 # ITEM INTERACTION
@@ -71,18 +63,12 @@ func _connect_interactables():
 func on_item_collected(item_id: String):
 	match item_id:
 
-		# -------------------------------------------------
-		# STEP 1: SKRIPSI -> sekarang trigger QTE dulu
-		# -------------------------------------------------
 		"laptop_skripsi":
 			if skripsi_done:
 				return
 			qte_context = "skripsi"
 			qte_panel.start_qte(4)
 
-		# -------------------------------------------------
-		# STEP 2: BIKIN KOPI (4 item, urutan bebas)
-		# -------------------------------------------------
 		"gelas":
 			if gelas_done:
 				return
@@ -103,6 +89,7 @@ func on_item_collected(item_id: String):
 				return
 			air_panas_done = true
 			Global.show_notification("Air panas dituang")
+			AudioManager.play_sfx("ch3_kopi_tuang")  # suara tuang juga
 			_check_kopi_complete()
 
 		"sendok":
@@ -113,29 +100,32 @@ func on_item_collected(item_id: String):
 			AudioManager.play_sfx("ch3_sendok_aduk")
 			_check_kopi_complete()
 
-		# -------------------------------------------------
-		# STEP 3 & 4: HP / CHAT BENI (diklik berkali-kali, beda state)
-		# -------------------------------------------------
 		"hp_chat":
 			_on_hp_chat_interact()
 
-	# -------------------------------------------------
-	# STEP 5: PESAN MI AYAM (dipanggil manual dari UI
-	# prompt "Pesan mi ayam?" setelah mabar_done true --
-	# lihat fungsi order_mi_ayam() di bawah)
-	# -------------------------------------------------
-
+# =====================================================
+# CEK KOPI SELESAI
+# =====================================================
 
 func _check_kopi_complete():
+	print("Cek kopi: gelas=", gelas_done, " kopi=", kopi_bubuk_done, " air=", air_panas_done, " sendok=", sendok_done)
 	if gelas_done and kopi_bubuk_done and air_panas_done and sendok_done:
+		print("SEMUA KOPI SELESAI - FADE OUT")
+		Transition.fade_out()
+		await get_tree().create_timer(1.0).timeout
 		Global.show_notification("Kopi jadi!")
+		AudioManager.play_voice_key("raka_05", 3)
+		await get_tree().create_timer(2.0).timeout
+		Transition.fade_in()
+		await get_tree().create_timer(0.5).timeout
 		ObjectiveManager.complete_current()
 		print("Objective:", ObjectiveManager.get_current_objective())
 
+# =====================================================
+# HP CHAT
+# =====================================================
 
 func _on_hp_chat_interact():
-
-	# Klik HP pertama kali: hanya boleh setelah skripsi selesai
 	if not chat_beni_shown:
 		if not skripsi_done:
 			Global.show_notification("Belum ada notif...")
@@ -150,7 +140,7 @@ func _on_hp_chat_interact():
 		return
 
 	if chat_beni_shown and not mabar_done:
-		if not kopi_bubuk_done:  # pastikan kopi udah jadi sebelum mabar
+		if not kopi_bubuk_done:
 			Global.show_notification("Selesaikan kopi dulu...")
 			return
 
@@ -161,7 +151,6 @@ func _on_hp_chat_interact():
 	if mabar_done and not mi_ayam_ordered:
 		order_mi_ayam()
 
-
 # =====================================================
 # QTE CALLBACKS
 # =====================================================
@@ -171,8 +160,7 @@ func _on_qte_success():
 		"skripsi":
 			skripsi_done = true
 			Global.show_notification("Skripsi dikerjakan...")
-			AudioManager.play_voice_key("raka_02", 3)  # "Dikit lagi... ayo..."
-		
+			AudioManager.play_voice_key("raka_02", 3)
 
 			ObjectiveManager.complete_current()
 			print("Objective:", ObjectiveManager.get_current_objective())
@@ -186,7 +174,8 @@ func _on_qte_success():
 			ObjectiveManager.complete_current()
 			print("Objective:", ObjectiveManager.get_current_objective())
 
-			AudioManager.play_voice_key("raka_09", 3)  # "Yaudah, pesen mi ayam aja..."
+			await get_tree().create_timer(2.0).timeout
+			AudioManager.play_voice_key("raka_09", 3)
 
 	qte_context = ""
 
@@ -199,9 +188,8 @@ func _on_qte_failed():
 		"mabar":
 			qte_panel.start_qte(5)
 
-
 # =====================================================
-# STEP 5: PESAN MI AYAM (akhir chapter 3)
+# PESAN MI AYAM
 # =====================================================
 
 func order_mi_ayam():
@@ -214,14 +202,15 @@ func order_mi_ayam():
 
 	level_complete()
 
-
 # =====================================================
-# LEVEL COMPLETE -> LANJUT CHAPTER 4
+# LEVEL COMPLETE
 # =====================================================
 
 func level_complete():
 	Global.show_notification("Chapter 3 selesai!")
 	await get_tree().create_timer(2.0).timeout
+	Transition.fade_out()
+	await get_tree().create_timer(1.0).timeout
 	get_tree().change_scene_to_file(
-		"res://scenes/level/level_3_flashback.tscn"  # ganti ke scene chapter 4 kalau sudah dipisah
+		"res://scenes/level/level_4_order.tscn"
 	)

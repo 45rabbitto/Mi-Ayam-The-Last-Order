@@ -1540,7 +1540,6 @@ shape = SubResource("BoxShape3D_6d0hp")
 script = ExtResource("23_80574")
 object_name = "phone"
 inspection_text = "Chat dari Beni: \"Rak, mabar?\""
-is_pickupable = true
 item_id = "hp_chat"
 chapter = 3
 

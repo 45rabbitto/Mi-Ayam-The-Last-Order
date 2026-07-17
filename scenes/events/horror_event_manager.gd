@@ -8,6 +8,7 @@ var event_cooldown := 5.0
 var can_trigger := true
 
 var player = null
+var PhoneNotif = null
 
 # ==========================================================
 # READY
