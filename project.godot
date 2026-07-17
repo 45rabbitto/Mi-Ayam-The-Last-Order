@@ -16,7 +16,7 @@ config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
-F
+
 PhoneNotif="*uid://bm5ywihoy53u3"
 HorrorEvent="*uid://m8dcwak4m7mm"
 LevelManager="*uid://cwc53adrbe667"
