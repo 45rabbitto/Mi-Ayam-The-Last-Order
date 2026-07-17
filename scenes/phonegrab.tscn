@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://c1m108nspsrrt"]
+
+[ext_resource type="Script" uid="uid://dsum6hw71uici" path="res://scripts/PhoneGrab.gd" id="1_arhv6"]
+[ext_resource type="Texture2D" uid="uid://duyygae1lgnf6" path="res://scenes/ui/items/phone_on.png" id="2_8f37q"]
+[ext_resource type="Texture2D" uid="uid://cp56lsmn3dv8h" path="res://ui/grab.jpg" id="3_j51q5"]
+[ext_resource type="FontFile" uid="uid://dn1ys1ju2gq7m" path="res://assets/fonts/VT323-Regular.ttf" id="4_5p546"]
+
+[node name="Phonegrab" type="CanvasLayer" unique_id=1023260486]
+script = ExtResource("1_arhv6")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1558619960]
+offset_right = 1174.0
+offset_bottom = 669.0
+color = Color(0, 0, 0, 0.4)
+
+[node name="hp" type="TextureRect" parent="." unique_id=776063717]
+offset_left = 214.0
+offset_top = 35.0
+offset_right = 890.0
+offset_bottom = 612.0
+texture = ExtResource("2_8f37q")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="layarputih" type="ColorRect" parent="hp" unique_id=1336132867]
+layout_mode = 0
+offset_left = 204.0
+offset_top = 23.0
+offset_right = 484.0
+offset_bottom = 501.0
+
+[node name="grab" type="TextureRect" parent="hp" unique_id=1947496142]
+layout_mode = 0
+offset_left = 204.0
+offset_top = 20.0
+offset_right = 483.0
+offset_bottom = 497.0
+texture = ExtResource("3_j51q5")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ButtonPesan" type="Button" parent="." unique_id=1520311189]
+offset_left = 821.0
+offset_top = 296.0
+offset_right = 1021.0
+offset_bottom = 334.0
+theme_override_fonts/font = ExtResource("4_5p546")
+theme_override_font_sizes/font_size = 30
+text = "pesan mi ayam"
+
+[connection signal="pressed" from="ButtonPesan" to="." method="_on_ButtonPesan_pressed"]
