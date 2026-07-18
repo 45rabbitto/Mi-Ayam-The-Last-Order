@@ -37,6 +37,21 @@ const ITEM_DATABASE := {
 	"poster": {
 		"name": "Poster",
 		"icon": preload("res://scenes/ui/items/poster.png")
+	},
+	
+	"sendok": {
+		"name": "Sendok",
+		"icon": preload("res://scenes/ui/items/sendok.png")
+	},
+
+	"kopi_bubuk": {
+		"name": "Kopi Bubuk",
+		"icon": preload("res://scenes/ui/items/kopi_bubuk.jpeg")
+	},
+
+	"dispenser": {
+		"name": "Dispenser",
+		"icon": preload("res://scenes/ui/items/dispenser.png")
 	}
 
 }

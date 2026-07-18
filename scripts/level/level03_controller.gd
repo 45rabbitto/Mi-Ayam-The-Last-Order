@@ -8,8 +8,10 @@ var skripsi_done := false
 
 var gelas_done := false
 var kopi_bubuk_done := false
-var air_panas_done := false
+var dispenser_done := false
 var sendok_done := false
+
+var can_make_coffee := false
 
 var chat_beni_shown := false
 var mabar_done := false
@@ -28,30 +30,54 @@ var qte_context: String = ""
 
 @onready var buat_kopi = $BuatKopi
 
+# =====================================================
+# NEXT CHAPTER BUTTON
+# =====================================================
+
+@onready var next_chapter_button = $NextChapterButton
+
 
 # =====================================================
 # READY
 # =====================================================
 
 func _ready():
+	
 	print("=== LEVEL 3 (FLASHBACK) READY ===")
 
 	ObjectiveManager.reset()
+
 	ObjectiveManager.add_objective("Kerjakan Skripsi")
-	ObjectiveManager.add_objective("Buat Kopi")
+	ObjectiveManager.add_objective("Ambil Sendok")
+	ObjectiveManager.add_objective("Ambil Kopi Bubuk")
+	ObjectiveManager.add_objective("Ambil Dispenser")
+	ObjectiveManager.add_objective("Ambil gelas")
 	ObjectiveManager.add_objective("Balas Chat Beni")
 	ObjectiveManager.add_objective("Mabar Bareng Beni")
 	ObjectiveManager.add_objective("Pesan Mi Ayam")
-
+	
 	AudioManager.play_bgm("chapter1_room")
 
 	ObjectiveManager.start()
+	
+	if Global.kopi_finished:
+
+		Global.kopi_finished = false
+
+		Global.show_notification("Kopi jadi!")
+
+		ObjectiveManager.complete_current()
+	
 	_connect_interactables()
 
 	qte_panel.qte_success.connect(_on_qte_success)
 	qte_panel.qte_failed.connect(_on_qte_failed)
 
-	print("Current Objective =", ObjectiveManager.get_current_objective())
+	next_chapter_button.hide()
+	next_chapter_button.pressed.connect(_on_next_chapter_pressed)
+
+	print("Current Objective =",
+	ObjectiveManager.get_current_objective())
 	AudioManager.play_voice_key("raka_01", 3)
 
 
@@ -68,6 +94,9 @@ func _connect_interactables():
 # =====================================================
 
 func on_item_collected(item_id: String):
+	
+	print("LEVEL3 TERIMA =", item_id)
+
 	match item_id:
 
 		"laptop_skripsi":
@@ -75,41 +104,60 @@ func on_item_collected(item_id: String):
 				return
 			qte_context = "skripsi"
 			qte_panel.start_qte(4)
-
-		"gelas":
-			if gelas_done:
-				return
-			gelas_done = true
-			Global.show_notification("Gelas diambil")
-			_check_kopi_complete()
-
-		"kopi_bubuk":
-			if kopi_bubuk_done:
-				return
-			kopi_bubuk_done = true
-			Global.show_notification("Kopi bubuk dituang")
-			AudioManager.play_sfx("ch3_kopi_tuang")
-			_check_kopi_complete()
-
-		"air_panas":
-			if air_panas_done:
-				return
-			air_panas_done = true
-
-			AudioManager.play_sfx("ch3_kopi_tuang")
-			await buat_kopi.show_message("Kopi sedang diseduh...", 2.0)
-
-			Global.show_notification("Air panas dituang")
-			_check_kopi_complete()
-
+			
 		"sendok":
+
 			if sendok_done:
 				return
-			sendok_done = true
-			Global.show_notification("Kopi diaduk")
-			AudioManager.play_sfx("ch3_sendok_aduk")
-			_check_kopi_complete()
 
+			sendok_done = true
+
+			Global.show_notification("Sendok diambil")
+
+			ObjectiveManager.complete_current()
+
+		"kopi_bubuk":
+
+			if kopi_bubuk_done:
+				return
+
+			kopi_bubuk_done = true
+
+			Global.show_notification("Kopi bubuk diambil")
+
+			ObjectiveManager.complete_current()
+			
+		"dispenser":
+
+			if dispenser_done:
+				return
+
+			dispenser_done = true
+
+			Global.show_notification("Dispenser diambil")
+
+			ObjectiveManager.complete_current()
+
+			Global.show_notification(
+				"Sekarang buat kopi di gelas."
+			)
+			
+		"gelas_buat":
+
+			if ObjectiveManager.get_current_objective() != "Ambil gelas":
+				return
+
+			start_make_coffee()
+			
+		"gelas":
+
+			if gelas_done:
+				return
+
+			gelas_done = true
+
+			Global.show_notification("Gelas diambil")
+			
 		"hp_chat":
 			_on_hp_chat_interact()
 
@@ -118,19 +166,48 @@ func on_item_collected(item_id: String):
 # =====================================================
 
 func _check_kopi_complete():
-	print("Cek kopi: gelas=", gelas_done, " kopi=", kopi_bubuk_done, " air=", air_panas_done, " sendok=", sendok_done)
-	if gelas_done and kopi_bubuk_done and air_panas_done and sendok_done:
-		print("SEMUA KOPI SELESAI - FADE OUT")
-		Transition.fade_out()
-		await get_tree().create_timer(1.0).timeout
-		Global.show_notification("Kopi jadi!")
-		AudioManager.play_voice_key("raka_05", 3)
-		await get_tree().create_timer(2.0).timeout
-		Transition.fade_in()
-		await get_tree().create_timer(0.5).timeout
-		ObjectiveManager.complete_current()
-		print("Objective:", ObjectiveManager.get_current_objective())
 
+	if kopi_bubuk_done \
+	and dispenser_done \
+	and sendok_done:
+
+		can_make_coffee = true		
+		
+		Global.show_notification(
+			"Klik gelas untuk membuat kopi."
+		)
+		
+		
+func start_make_coffee():
+
+	print("MULAI BUAT KOPI")
+	print("BUAT KOPI NODE =", buat_kopi)
+
+	if buat_kopi == null:
+		print("BUATKOPI NULL")
+		return
+
+	AudioManager.play_sfx("ch3_sendok_aduk")
+
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+
+	await buat_kopi.show_message(
+		"Kopi sedang diseduh...",
+		2.5
+	)
+
+	AudioManager.stop_sfx()
+
+	print("SHOW MESSAGE SELESAI")
+
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
+	Global.show_notification("Kopi jadi!")
+
+	AudioManager.play_voice_key("raka_05",3)
+
+	ObjectiveManager.complete_current()
+	
 # =====================================================
 # HP CHAT
 # =====================================================
@@ -142,7 +219,7 @@ func _on_hp_chat_interact():
 			return
 
 		chat_beni_shown = true
-		Global.show_notification('Beni: "Rak, mabar?"')
+		Global.show_notification('Beni: "Rak, mabar? Bentar aja lah"')
 		AudioManager.play_voice_key("beni_01", 3)
 
 		ObjectiveManager.complete_current()
@@ -180,6 +257,13 @@ func _on_qte_success():
 			Global.show_notification('Beni: "Lu belum makan, kan?"')
 			AudioManager.play_voice_key("beni_02", 3)
 			AudioManager.play_sfx("ch3_mabar_ambient")
+
+			await get_tree().create_timer(2.0).timeout
+
+			Global.show_notification('Raka: "Iya sih, abis ini lah..."')
+			AudioManager.play_voice_key("raka_07", 3)
+
+			await get_tree().create_timer(2.0).timeout
 
 			ObjectiveManager.complete_current()
 			print("Objective:", ObjectiveManager.get_current_objective())
@@ -219,6 +303,11 @@ func order_mi_ayam():
 func level_complete():
 	Global.show_notification("Chapter 3 selesai!")
 	await get_tree().create_timer(2.0).timeout
+	next_chapter_button.show()
+
+
+func _on_next_chapter_pressed():
+	next_chapter_button.hide()
 	Transition.fade_out()
 	await get_tree().create_timer(1.0).timeout
 	get_tree().change_scene_to_file(

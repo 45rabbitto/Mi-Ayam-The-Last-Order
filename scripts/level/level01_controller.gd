@@ -138,10 +138,8 @@ func on_item_collected(item_id: String):
 		"phone":
 
 			if hp_found:
-
 				return
 
-			# HP hanya bisa ditemukan setelah charger ada
 			if not charger_found:
 
 				Global.show_notification(
@@ -152,26 +150,17 @@ func on_item_collected(item_id: String):
 
 			hp_found = true
 
-			print(
-				"PHONE DITEMUKAN"
-			)
+			print("PHONE DITEMUKAN")
 
-			InventoryManager.add_item(
-				"phone"
-			)
+			InventoryManager.add_item("phone")
 
-			Global.show_notification(
-				"HP ditemukan"
-			)
+			Global.show_notification("HP ditemukan")
 
-			# Jangan langsung pindah chapter
-			# Phone dibuka dari inventory
+			# PINDAH KE OBJECTIVE BERIKUTNYA
+			ObjectiveManager.complete_current()
 
-			print(
-				"INVENTORY SEKARANG : ",
-				InventoryManager.get_items()
-			)
+			print("OBJECTIVE SEKARANG : ", ObjectiveManager.get_current_objective())
 
-			print(
-				"HP siap digunakan"
-			)
+			print("INVENTORY SEKARANG : ", InventoryManager.get_items())
+
+			print("HP siap digunakan")
