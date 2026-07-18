@@ -9,11 +9,11 @@ border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color(1, 1, 1, 1)
+border_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ruy7r"]
 bg_color = Color(0, 0, 0, 0)
-border_color = Color(1, 1, 1, 1)
+border_color = Color(0, 0, 0, 1)
 
 [node name="QTEPanel" type="CanvasLayer" unique_id=2090704717]
 layer = 3
@@ -35,52 +35,52 @@ grow_vertical = 2
 [node name="Label" type="Label" parent="TopRow" unique_id=487884447]
 custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_jpg2l")
 theme_override_font_sizes/font_size = 36
 theme_override_styles/normal = SubResource("StyleBoxFlat_bub5b")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label2" type="Label" parent="TopRow" unique_id=201990684]
+[node name="Label2" type="Label" parent="TopRow" unique_id=443851531]
 custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_jpg2l")
 theme_override_font_sizes/font_size = 36
 theme_override_styles/normal = SubResource("StyleBoxFlat_bub5b")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label3" type="Label" parent="TopRow" unique_id=1172716499]
+[node name="Label3" type="Label" parent="TopRow" unique_id=2033190248]
 custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_jpg2l")
 theme_override_font_sizes/font_size = 36
 theme_override_styles/normal = SubResource("StyleBoxFlat_bub5b")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label4" type="Label" parent="TopRow" unique_id=1312000473]
+[node name="Label4" type="Label" parent="TopRow" unique_id=1703806117]
 custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_jpg2l")
 theme_override_font_sizes/font_size = 36
 theme_override_styles/normal = SubResource("StyleBoxFlat_bub5b")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label5" type="Label" parent="TopRow" unique_id=186229084]
+[node name="Label5" type="Label" parent="TopRow" unique_id=1431458277]
 custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_jpg2l")
 theme_override_font_sizes/font_size = 36
 theme_override_styles/normal = SubResource("StyleBoxFlat_bub5b")
@@ -103,47 +103,52 @@ grow_vertical = 2
 [node name="Label" type="Label" parent="BottomRow" unique_id=2043261933]
 custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_jpg2l")
 theme_override_font_sizes/font_size = 36
 theme_override_styles/normal = SubResource("StyleBoxFlat_ruy7r")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label2" type="Label" parent="BottomRow" unique_id=897866209]
+[node name="Label2" type="Label" parent="BottomRow" unique_id=384546349]
 custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_jpg2l")
 theme_override_font_sizes/font_size = 36
 theme_override_styles/normal = SubResource("StyleBoxFlat_ruy7r")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label3" type="Label" parent="BottomRow" unique_id=1641982647]
+[node name="Label3" type="Label" parent="BottomRow" unique_id=1249181769]
 custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_jpg2l")
 theme_override_font_sizes/font_size = 36
 theme_override_styles/normal = SubResource("StyleBoxFlat_ruy7r")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label4" type="Label" parent="BottomRow" unique_id=1836583226]
+[node name="Label4" type="Label" parent="BottomRow" unique_id=1866503174]
 custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_jpg2l")
 theme_override_font_sizes/font_size = 36
 theme_override_styles/normal = SubResource("StyleBoxFlat_ruy7r")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label5" type="Label" parent="BottomRow" unique_id=1219402560]
+[node name="Label5" type="Label" parent="BottomRow" unique_id=1221192451]
 custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_jpg2l")
 theme_override_font_sizes/font_size = 36
 theme_override_styles/normal = SubResource("StyleBoxFlat_ruy7r")

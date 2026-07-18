@@ -30,6 +30,12 @@ var qte_context: String = ""
 
 @onready var buat_kopi = $BuatKopi
 
+# =====================================================
+# NEXT CHAPTER BUTTON
+# =====================================================
+
+@onready var next_chapter_button = $NextChapterButton
+
 
 # =====================================================
 # READY
@@ -45,7 +51,7 @@ func _ready():
 	ObjectiveManager.add_objective("Ambil Sendok")
 	ObjectiveManager.add_objective("Ambil Kopi Bubuk")
 	ObjectiveManager.add_objective("Ambil Dispenser")
-	ObjectiveManager.add_objective("Buat Kopi")
+	ObjectiveManager.add_objective("Ambil gelas")
 	ObjectiveManager.add_objective("Balas Chat Beni")
 	ObjectiveManager.add_objective("Mabar Bareng Beni")
 	ObjectiveManager.add_objective("Pesan Mi Ayam")
@@ -66,6 +72,9 @@ func _ready():
 
 	qte_panel.qte_success.connect(_on_qte_success)
 	qte_panel.qte_failed.connect(_on_qte_failed)
+
+	next_chapter_button.hide()
+	next_chapter_button.pressed.connect(_on_next_chapter_pressed)
 
 	print("Current Objective =",
 	ObjectiveManager.get_current_objective())
@@ -135,7 +144,7 @@ func on_item_collected(item_id: String):
 			
 		"gelas_buat":
 
-			if ObjectiveManager.get_current_objective() != "Buat Kopi":
+			if ObjectiveManager.get_current_objective() != "Ambil gelas":
 				return
 
 			start_make_coffee()
@@ -182,16 +191,14 @@ func start_make_coffee():
 
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
-	get_tree().paused = true
-
 	await buat_kopi.show_message(
 		"Kopi sedang diseduh...",
 		2.5
 	)
 
-	print("SHOW MESSAGE SELESAI")
+	AudioManager.stop_sfx()
 
-	get_tree().paused = false
+	print("SHOW MESSAGE SELESAI")
 
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
@@ -212,7 +219,7 @@ func _on_hp_chat_interact():
 			return
 
 		chat_beni_shown = true
-		Global.show_notification('Beni: "Rak, mabar?"')
+		Global.show_notification('Beni: "Rak, mabar? Bentar aja lah"')
 		AudioManager.play_voice_key("beni_01", 3)
 
 		ObjectiveManager.complete_current()
@@ -250,6 +257,13 @@ func _on_qte_success():
 			Global.show_notification('Beni: "Lu belum makan, kan?"')
 			AudioManager.play_voice_key("beni_02", 3)
 			AudioManager.play_sfx("ch3_mabar_ambient")
+
+			await get_tree().create_timer(2.0).timeout
+
+			Global.show_notification('Raka: "Iya sih, abis ini lah..."')
+			AudioManager.play_voice_key("raka_07", 3)
+
+			await get_tree().create_timer(2.0).timeout
 
 			ObjectiveManager.complete_current()
 			print("Objective:", ObjectiveManager.get_current_objective())
@@ -289,6 +303,11 @@ func order_mi_ayam():
 func level_complete():
 	Global.show_notification("Chapter 3 selesai!")
 	await get_tree().create_timer(2.0).timeout
+	next_chapter_button.show()
+
+
+func _on_next_chapter_pressed():
+	next_chapter_button.hide()
 	Transition.fade_out()
 	await get_tree().create_timer(1.0).timeout
 	get_tree().change_scene_to_file(

@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://sv3qlym6mtx5"]
 
-[ext_resource type="Script" path="res://scripts/level/level03_controller.gd" id="1_k3fi6"]
+[ext_resource type="Script" uid="uid://dsfjksnikmtfn" path="res://scripts/level/level03_controller.gd" id="1_k3fi6"]
 [ext_resource type="Texture2D" uid="uid://dsk7iqn683yfg" path="res://assets/3d/Habitacion Modelada en 3D_Paredes.png" id="1_q23e8"]
 [ext_resource type="Texture2D" uid="uid://c1o3853d6pfbm" path="res://assets/3d/Habitacion Modelada en 3D_Cama.png" id="2_djvgi"]
 [ext_resource type="Texture2D" uid="uid://lv1okkfqka6g" path="res://assets/3d/Habitacion Modelada en 3D_Cofre.png" id="3_7ajvu"]
@@ -45,9 +45,9 @@
 [ext_resource type="PackedScene" uid="uid://cs14om8wf1udr" path="res://scenes/player/player.tscn" id="42_yxfnf"]
 [ext_resource type="PackedScene" uid="uid://78eigtpk74pi" path="res://scenes/Transition.tscn" id="44_2cqc7"]
 [ext_resource type="PackedScene" uid="uid://crkuelg6fyyas" path="res://scenes/ui/hud.tscn" id="45_2yfhq"]
-[ext_resource type="PackedScene" path="res://qte_popup.tscn" id="46_3ekeh"]
-[ext_resource type="PackedScene" path="res://scenes/buat_kopi.tscn" id="47_h3m5i"]
-[ext_resource type="Script" path="res://scripts/buat_kopi.gd" id="48_28ap2"]
+[ext_resource type="PackedScene" uid="uid://jftlj8222yye" path="res://qte_popup.tscn" id="46_3ekeh"]
+[ext_resource type="PackedScene" uid="uid://nkdm8feym7a1" path="res://scenes/buat_kopi.tscn" id="47_h3m5i"]
+[ext_resource type="Script" uid="uid://imwdvrnc513q" path="res://scripts/buat_kopi.gd" id="48_28ap2"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_caomd"]
 resource_name = "Cama"
@@ -1541,7 +1541,7 @@ shape = SubResource("BoxShape3D_6d0hp")
 [node name="hp" type="Area3D" parent="." unique_id=1795947470]
 script = ExtResource("23_80574")
 object_name = "phone"
-inspection_text = "Chat dari Beni: \"Rak, mabar?\""
+inspection_text = "Chat dari Beni: \"Rak, mabar? bentar aja lahhh\""
 item_id = "hp_chat"
 chapter = 3
 
@@ -1800,3 +1800,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, 1, -1)
 
 [node name="BuatKopi" parent="." unique_id=899549255 instance=ExtResource("47_h3m5i")]
 script = ExtResource("48_28ap2")
+
+[node name="NextChapterButton" type="Button" parent="." unique_id=1737247819]
+visible = false
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -160.0
+offset_top = -31.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Lanjut ke Chapter 4
+"
