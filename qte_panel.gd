@@ -22,6 +22,7 @@ var timer: Timer
 func _ready():
 	hide()
 	offset = get_viewport().get_visible_rect().size / 2
+
 	timer = Timer.new()
 	timer.one_shot = true
 	timer.timeout.connect(_on_time_out)
@@ -29,70 +30,102 @@ func _ready():
 
 
 func start_qte(required_rounds: int = 4):
+
 	rounds_required = required_rounds
 	rounds_done = 0
+
 	show()
+
 	_start_round()
 
 
 func _start_round():
+
 	current_index = 0
 	letters.clear()
 
 	for i in BOX_COUNT:
 		letters.append(LETTER_POOL[randi() % LETTER_POOL.length()])
 
-	for i in top_row.get_child_count():
-		var lbl = top_row.get_child(i)
+	for i in range(top_row.get_child_count()):
+		var lbl: Label = top_row.get_child(i)
 		lbl.text = letters[i]
 		lbl.modulate = Color.WHITE
 
-	for i in bottom_row.get_child_count():
-		bottom_row.get_child(i).text = ""
+	for i in range(bottom_row.get_child_count()):
+		var lbl: Label = bottom_row.get_child(i)
+		lbl.text = ""
+		lbl.modulate = Color.WHITE
 
 	timer.start(time_limit)
 
 
 func _unhandled_input(event):
-	if not visible:
+
+	if !visible:
 		return
-	if event is InputEventKey and event.pressed and not event.echo:
-		var key_pressed = OS.get_keycode_string(event.keycode)
+
+	if event is InputEventKey and event.pressed and !event.echo:
+
+		var key_pressed := OS.get_keycode_string(event.keycode)
 
 		if key_pressed.length() != 1:
 			return
 
 		if key_pressed == letters[current_index]:
-			AudioManager.play_ui("click")   # <- tambah baris ini
-			bottom_row.get_child(current_index).text = key_pressed
-			top_row.get_child(current_index).modulate = Color.GREEN
+
+			AudioManager.play_ui("click")
+
+			var top_label: Label = top_row.get_child(current_index)
+			var bottom_label: Label = bottom_row.get_child(current_index)
+
+			bottom_label.text = key_pressed
+			bottom_label.modulate = Color.GREEN
+
+			top_label.modulate = Color.GREEN
+
 			current_index += 1
 
 			if current_index >= BOX_COUNT:
 				_finish_round(true)
+
 		else:
-			top_row.get_child(current_index).modulate = Color.RED
+
+			var top_label: Label = top_row.get_child(current_index)
+			top_label.modulate = Color.RED
+
 
 func _finish_round(success: bool):
+
 	timer.stop()
 
 	if success:
+
 		rounds_done += 1
+
 		if rounds_done >= rounds_required:
+
 			_finish_all(true)
+
 		else:
+
 			await get_tree().create_timer(0.5).timeout
 			_start_round()
+
 	else:
+
 		_finish_all(false)
 
 
 func _on_time_out():
+
 	_finish_round(false)
 
 
 func _finish_all(success: bool):
+
 	hide()
+
 	if success:
 		qte_success.emit()
 	else:
