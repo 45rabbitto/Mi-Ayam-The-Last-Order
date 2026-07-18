@@ -3,7 +3,9 @@ extends Node3D
 var phone_opened := false
 var order_finished := false
 
-@onready var phonegrab = $"Phonegrab"
+@onready var phonegrab = get_tree().current_scene.get_node_or_null(
+	"Hud/Phonegrab"
+)
 
 func _ready():
 

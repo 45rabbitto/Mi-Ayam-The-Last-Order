@@ -11,6 +11,7 @@
 [node name="bedroom4" parent="." unique_id=1948344516 instance=ExtResource("1_xduup")]
 
 [node name="Player" parent="." unique_id=187213136 instance=ExtResource("2_etkwx")]
+transform = Transform3D(-0.9791094, 0, -0.20333414, 0, 1, 0, 0.20333414, 0, -0.9791094, 1.5975053, -0.86705387, -3.6458836)
 
 [node name="Hud" parent="." unique_id=291386691 instance=ExtResource("3_p4dnn")]
 
