@@ -3,7 +3,6 @@ extends Node3D
 var collected := 0
 const TOTAL_ITEMS := 4
 
-var selected_inventory_item := ""
 var rearrange_mode := false
 
 func _ready():
@@ -40,9 +39,14 @@ func _ready():
 	)
 
 	print("PLAY BGM PHONE")
+	
 	ObjectiveManager.start()
 
 	AudioManager.play_bgm("phone")
+	
+	await get_tree().create_timer(0.5).timeout
+
+	AudioManager.play_voice_key("udah_ambil", 2)
 
 	# ======================================================
 	# UI LEVEL 2
@@ -166,11 +170,7 @@ func start_rearrange_mode() -> void:
 	)
 
 
-	# ==================================================
-	# RESET ITEM TERPILIH
-	# ==================================================
-
-	selected_inventory_item = ""
+	
 
 
 	# ==================================================

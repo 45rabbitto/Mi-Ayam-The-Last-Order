@@ -51,6 +51,7 @@ var items: Array[String] = []
 var selected_slot: int = -1
 
 
+
 # ==========================================================
 # ADD ITEM
 # ==========================================================
@@ -317,71 +318,3 @@ func _emit_selection_changed() -> void:
 		UiManager.select_inventory_slot(
 			selected_slot
 		)
-		
-# ==========================================================
-# ENSURE CHAPTER 2 ITEMS
-# ==========================================================
-
-func ensure_chapter2_inventory() -> void:
-
-	print("=== CHECK CHAPTER 2 INVENTORY ===")
-
-	# PASTIKAN TIDAK ADA SLOT YANG TERPILIH
-	selected_slot = -1
-
-
-	# PHONE
-	if !has_item("phone"):
-
-		print("PHONE BELUM ADA -> TAMBAHKAN")
-
-		items.append("phone")
-
-
-	# CHARGER
-	if !has_item("charger"):
-
-		print("CHARGER BELUM ADA -> TAMBAHKAN")
-
-		items.append("charger")
-
-
-	# UPDATE INVENTORY SEKALI SAJA
-	_emit_inventory_changed()
-
-
-	print(
-		"INVENTORY CHAPTER 2 : ",
-		items
-	)
-
-	print(
-		"SELECTED SLOT CHAPTER 2 : ",
-		selected_slot
-	)
-
-func setup_chapter2_inventory() -> void:
-
-	print("================================")
-	print("SETUP INVENTORY CHAPTER 2")
-	print("================================")
-
-
-	clear_inventory()
-
-
-	selected_slot = -1
-
-
-	add_item("laptop")
-	add_item("headset")
-	add_item("rokok")
-	add_item("poster")
-	add_item("charger")
-	add_item("phone")
-
-
-	print(
-		"INVENTORY CHAPTER 2 : ",
-		items
-	)

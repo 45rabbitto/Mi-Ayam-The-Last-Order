@@ -160,20 +160,33 @@ func setup_level_1():
 # =====================================================
 # LEVEL 2
 # =====================================================
-
 func setup_level_2():
 
 	print("================================")
 	print("LEVEL 2 READY")
 	print("================================")
-	
-	# Pastikan inventory dari Chapter 1 tetap ada
-	InventoryManager.ensure_chapter2_inventory()
+
+	# =====================================================
+	# RESET INVENTORY CHAPTER 2
+	# =====================================================
 
 	print(
-		"INVENTORY CHAPTER 2 : ",
+		"INVENTORY SEBELUM RESET : ",
 		InventoryManager.get_items()
 	)
+
+	InventoryManager.clear_inventory()
+
+	print(
+		"INVENTORY SETELAH RESET : ",
+		InventoryManager.get_items()
+	)
+
+	# =====================================================
+	# RESET STATE CHAPTER 2
+	# =====================================================
+
+	GameManager.reset_chapter(2)
 
 	print(
 		"JUMLAH ITEM : ",

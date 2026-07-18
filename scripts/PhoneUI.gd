@@ -116,7 +116,6 @@ func _on_puzzle_finished():
 
 	phone_on_ui.open()
 
-	queue_free()
 
 
 func toggle_phone():
