@@ -5,6 +5,8 @@ const TOTAL_ITEMS := 4
 
 var rearrange_mode := false
 
+var can_collect_items := false
+
 func _ready():
 
 	print("===== MASUK LEVEL2 GLITCH =====")
@@ -76,7 +78,9 @@ func _ready():
 
 		explore.show()
 
-
+		if !explore.pressed.is_connected(_on_explore_pressed):
+			explore.pressed.connect(_on_explore_pressed)
+			
 	if rearrange:
 
 		if !rearrange.pressed.is_connected(
@@ -114,18 +118,19 @@ func on_item_collected(item_id:String):
 
 		"laptop", "headset", "rokok", "poster":
 
+			if !can_collect_items:
+				Global.show_notification("Jelajahi kamar dulu.")
+				return
+
 			collected += 1
 
 			print("Collected :", collected)
 
 			if collected >= TOTAL_ITEMS:
-
 				if ObjectiveManager.get_current_objective() == "Kumpulkan Barang":
-
 					ObjectiveManager.complete_current()
-
 					show_rearrange_button()
-
+							
 func show_rearrange_button():
 	var btn = get_tree().current_scene.get_node_or_null(
 		"Hud/level2ui/ButtonRearrange"
@@ -203,3 +208,16 @@ func continue_to_level_2_normal() -> void:
 	get_tree().change_scene_to_file(
 		"res://scenes/level/Level_2_Normal.tscn"
 	)
+	
+func _on_explore_pressed():
+
+	print("TOMBOL EXPLORE DITEKAN")
+	print("Objective =", ObjectiveManager.get_current_objective())
+
+	can_collect_items = true
+	print("can_collect_items =", can_collect_items)
+
+	if ObjectiveManager.get_current_objective() == "Jelajahi Kamar":
+		ObjectiveManager.complete_current()
+
+	Global.show_notification("Sekarang kumpulkan barang.")

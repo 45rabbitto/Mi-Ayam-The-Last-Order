@@ -17,7 +17,8 @@ func _ready():
 
 	Global.current_level = 1
 		
-	print("=== LEVEL 1 READY ===")
+	print("=== LEVEL 1 READY DARI SCRIPT BARU ===")
+	print("SCRIPT =", get_script().resource_path)
 
 	ObjectiveManager.reset()
 
@@ -56,27 +57,17 @@ func _ready():
 
 func _connect_interactables():
 
-	var objects = get_tree().get_nodes_in_group(
-		"interactable"
-	)
+	var objects = get_tree().get_nodes_in_group("interactable")
 
-	print(
-		"Found ",
-		objects.size(),
-		" interactable objects"
-	)
+	print("Found ", objects.size(), " interactable objects")
 
 	for obj in objects:
 
-		if obj.interacted.is_connected(
-			on_item_collected
-		):
+		print("CONNECT :", obj.item_id)
 
-			continue
+		if !obj.interacted.is_connected(on_item_collected):
 
-		obj.interacted.connect(
-			on_item_collected
-		)
+			obj.interacted.connect(on_item_collected)
 
 
 # ==========================================================
@@ -85,6 +76,7 @@ func _connect_interactables():
 
 func on_item_collected(item_id: String):
 
+	print("LEVEL1 RECEIVED =", item_id)
 	print(
 		"ITEM INTERACTED : ",
 		item_id
@@ -100,35 +92,17 @@ func on_item_collected(item_id: String):
 		"charger":
 
 			if charger_found:
-
 				return
 
 			charger_found = true
 
-			print(
-				"CHARGER DITEMUKAN"
-			)
+			InventoryManager.add_item("charger")
 
-			InventoryManager.add_item(
-				"charger"
-			)
+			Global.show_notification("Charger ditemukan")
 
-			Global.show_notification(
-				"Charger ditemukan"
-			)
-
-			# Selesaikan objective Ambil Charger
 			ObjectiveManager.complete_current()
 
-			print(
-				"INVENTORY SEKARANG : ",
-				InventoryManager.get_items()
-			)
-
-			print(
-				"OBJECTIVE SEKARANG : ",
-				ObjectiveManager.get_current_objective()
-			)
+			print("OBJECTIVE SEKARANG =", ObjectiveManager.get_current_objective())
 
 
 		# ==================================================
@@ -140,14 +114,6 @@ func on_item_collected(item_id: String):
 			if hp_found:
 				return
 
-			if not charger_found:
-
-				Global.show_notification(
-					"HP itu belum bisa digunakan..."
-				)
-
-				return
-
 			hp_found = true
 
 			print("PHONE DITEMUKAN")
@@ -156,11 +122,14 @@ func on_item_collected(item_id: String):
 
 			Global.show_notification("HP ditemukan")
 
-			# PINDAH KE OBJECTIVE BERIKUTNYA
 			ObjectiveManager.complete_current()
 
-			print("OBJECTIVE SEKARANG : ", ObjectiveManager.get_current_objective())
+			print("OBJECTIVE SEKARANG =", ObjectiveManager.get_current_objective())
 
+			print("SESUDAH COMPLETE = ", ObjectiveManager.get_current_objective())
+
+			print("OBJECTIVE SEKARANG = ", ObjectiveManager.get_current_objective())
+			
 			print("INVENTORY SEKARANG : ", InventoryManager.get_items())
 
 			print("HP siap digunakan")
