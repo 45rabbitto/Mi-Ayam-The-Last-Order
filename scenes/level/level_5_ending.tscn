@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b6ljl3qx06xsa"]
 
-[ext_resource type="PackedScene" uid="uid://d3p1u7jppj2v7" path="res://assets/3d/bedroom.tscn" id="1_xe1jl"]
+[ext_resource type="PackedScene" uid="uid://d3p1u7jppj2v7" path="res://assets/3d/kamar/bedroom.tscn" id="1_xe1jl"]
 [ext_resource type="PackedScene" uid="uid://cs14om8wf1udr" path="res://scenes/player/player.tscn" id="2_jri6p"]
 [ext_resource type="PackedScene" uid="uid://crkuelg6fyyas" path="res://scenes/ui/hud.tscn" id="3_fuvym"]
 [ext_resource type="PackedScene" uid="uid://78eigtpk74pi" path="res://scenes/Transition.tscn" id="4_0qfe1"]

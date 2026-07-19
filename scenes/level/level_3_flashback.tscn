@@ -46,8 +46,9 @@
 [ext_resource type="PackedScene" uid="uid://78eigtpk74pi" path="res://scenes/Transition.tscn" id="44_2cqc7"]
 [ext_resource type="PackedScene" uid="uid://crkuelg6fyyas" path="res://scenes/ui/hud.tscn" id="45_2yfhq"]
 [ext_resource type="PackedScene" uid="uid://bihhiab7ppsoq" path="res://qte_popup.tscn" id="46_3ekeh"]
-[ext_resource type="PackedScene" path="res://scenes/buat_kopi.tscn" id="47_h3m5i"]
+[ext_resource type="PackedScene" uid="uid://nkdm8feym7a1" path="res://scenes/buat_kopi.tscn" id="47_h3m5i"]
 [ext_resource type="Script" uid="uid://imwdvrnc513q" path="res://scripts/buat_kopi.gd" id="48_28ap2"]
+[ext_resource type="PackedScene" uid="uid://v74ay2xypcw0" path="res://scenes/events/node_3d.tscn" id="49_vllgp"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_caomd"]
 resource_name = "Cama"
@@ -1800,3 +1801,5 @@ transform = Transform3D(-0.9978956, 0.050754473, -0.04032787, 0.047047727, 0.995
 
 [node name="BuatKopi" parent="." unique_id=899549255 instance=ExtResource("47_h3m5i")]
 script = ExtResource("48_28ap2")
+
+[node name="WorldEnvironment" parent="." unique_id=23361280 instance=ExtResource("49_vllgp")]
