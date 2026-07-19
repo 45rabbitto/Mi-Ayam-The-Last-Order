@@ -74,7 +74,8 @@ func _ready():
 
 	print("Current Objective =",
 	ObjectiveManager.get_current_objective())
-	AudioManager.play_voice_key("raka_01", 3)
+
+	_say("raka_01", 'Raka: "Oke fokus skripsi dulu..."')
 
 	next_chapter_button.hide()
 	next_chapter_button.pressed.connect(_on_button_next_level_4_pressed)
@@ -84,7 +85,24 @@ func _ready():
 	if next_chapter_button == null:
 		print("BUTTON TIDAK DITEMUKAN!")
 		return
-	
+
+# =====================================================
+# HELPER - Voice + Popup dengan durasi sinkron
+# =====================================================
+func _say(key: String, text: String, extra_pause: float = 0.5) -> void:
+	AudioManager.play_voice_key(key, 3)
+
+	var duration := 2.0
+	if AudioManager.voice_player.stream:
+		duration = AudioManager.voice_player.stream.get_length()
+
+	if UiManager.dialog_timer:
+		UiManager.dialog_timer.wait_time = duration + extra_pause
+
+	UiManager.show_dialog(text)
+
+	await get_tree().create_timer(duration + extra_pause).timeout
+
 func _connect_interactables():
 	var objects = get_tree().get_nodes_in_group("interactable")
 	print("Found", objects.size(), "interactable objects")
@@ -206,9 +224,7 @@ func start_make_coffee():
 
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
-	Global.show_notification("Kopi jadi!")
-
-	AudioManager.play_voice_key("raka_05",3)
+	_say("raka_05", 'Raka: "Kopi dulu biar melek..."')
 
 	ObjectiveManager.complete_current()
 	
@@ -223,8 +239,7 @@ func _on_hp_chat_interact():
 			return
 
 		chat_beni_shown = true
-		Global.show_notification('Beni: "Rak, mabar? Bentar aja lah"')
-		AudioManager.play_voice_key("beni_01", 3)
+		_say("beni_01", 'Beni: "Rak, mabar? Bentar aja lah"')
 
 		ObjectiveManager.complete_current()
 		print("Objective:", ObjectiveManager.get_current_objective())
@@ -235,6 +250,7 @@ func _on_hp_chat_interact():
 			Global.show_notification("Selesaikan kopi dulu...")
 			return
 
+		AudioManager.play_sfx("ch3_mabar_ambient")
 		qte_context = "mabar"
 		qte_panel.start_qte(5, 10.0)
 		return
@@ -247,8 +263,7 @@ func _on_qte_success():
 	match qte_context:
 		"skripsi":
 			skripsi_done = true
-			Global.show_notification("Skripsi dikerjakan...")
-			AudioManager.play_voice_key("raka_02", 3)
+			_say("raka_02", 'Raka: "Dikit lagi... ayo..."')
 
 			ObjectiveManager.complete_current()
 			print("Objective:", ObjectiveManager.get_current_objective())
@@ -263,24 +278,13 @@ func _on_qte_success():
 			
 			mabar_done = true
 
-			Global.show_notification('Beni: "Lu belum makan, kan?"')
-			AudioManager.play_voice_key("beni_02", 3)
-			AudioManager.play_sfx("ch3_mabar_ambient")
+			await _say("beni_02", 'Beni: "Lu belum makan, kan?"')
 
-			await get_tree().create_timer(2.0).timeout
-
-			Global.show_notification('Raka: "Iya sih, abis ini lah..."')
-			AudioManager.play_voice_key("raka_07", 3)
-
-			await get_tree().create_timer(2.0).timeout
+			await _say("raka_07", 'Raka: "Iya sih, abis ini lah..."')
 
 			ObjectiveManager.complete_current() # Selesai "Mabar Bareng Beni"
 
-			await get_tree().create_timer(2.0).timeout
-
-			AudioManager.play_voice_key("raka_09", 3)
-
-			await get_tree().create_timer(2.0).timeout
+			await _say("raka_09", 'Raka: "Yaudah, pesen mi ayam aja..."')
 
 			level_complete()
 
