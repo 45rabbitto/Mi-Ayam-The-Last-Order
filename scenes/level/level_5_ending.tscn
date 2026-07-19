@@ -4,13 +4,68 @@
 [ext_resource type="PackedScene" uid="uid://cs14om8wf1udr" path="res://scenes/player/player.tscn" id="2_jri6p"]
 [ext_resource type="PackedScene" uid="uid://crkuelg6fyyas" path="res://scenes/ui/hud.tscn" id="3_fuvym"]
 [ext_resource type="PackedScene" uid="uid://78eigtpk74pi" path="res://scenes/Transition.tscn" id="4_0qfe1"]
+[ext_resource type="Script" uid="uid://cyng42bevcjqg" path="res://scripts/interactable/interactable.gd" id="5_fuvym"]
+[ext_resource type="PackedScene" uid="uid://yjlrqg46clc4" path="res://assets/3d/medicine_box.glb" id="6_0qfe1"]
+[ext_resource type="Script" uid="uid://c2ehtb65sde3o" path="res://scripts/level/level_5_controller_v2.gd" id="7_0qfe1"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0qfe1"]
+size = Vector3(1, 2.2, 0.3)
 
 [node name="Level5Ending" type="Node3D" unique_id=616683985]
 
 [node name="Level5Ending" parent="." unique_id=1948344516 instance=ExtResource("1_xe1jl")]
+transform = Transform3D(0.9996762, -0.025444156, 0, 0.025444156, 0.9996762, 0, 0, 0, 1, 4.1358347, -1.3066325, -2.9775078)
+
+[node name="hp" parent="Level5Ending" index="41" unique_id=1795947470]
+inspection_text = "10 panggilan tak terjawab"
+voice_key = "hp_ch5"
+chapter = 5
+
+[node name="laptop" parent="Level5Ending" index="42" unique_id=839492394]
+inspection_text = "Skripsinya... masih di situ. Menunggu yang gak akan datang."
+item_id = "laptop_ch5"
+chapter = 5
+
+[node name="Area3D" type="Area3D" parent="Level5Ending/pintu" parent_id_path=PackedInt32Array(1948344516, 21321462) index="0" unique_id=906525414]
+script = ExtResource("5_fuvym")
+object_name = "Pintu"
+item_id = "pintu_ch5"
+chapter = 5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level5Ending/pintu/Area3D" unique_id=1067230638]
+transform = Transform3D(0.99999344, 0, -4.1922021e-13, 6.1062266e-15, 1, 0, 1.4210855e-13, 0, 1, -0.27563477, 0.5571663, -0.19838119)
+shape = SubResource("BoxShape3D_0qfe1")
 
 [node name="Player" parent="Level5Ending" unique_id=187213136 instance=ExtResource("2_jri6p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4835968, 0.40750134, -0.59971094)
+
+[node name="SpotLight3D" parent="Level5Ending/Player/Head/Camera3D" parent_id_path=PackedInt32Array(187213136, 676415982) index="1" unique_id=222859333]
+light_color = Color(0.2901961, 0, 0, 1)
 
 [node name="Hud" parent="Level5Ending" unique_id=291386691 instance=ExtResource("3_fuvym")]
 
+[node name="ButtonNextLevel3" parent="Level5Ending/Hud/level2ui" parent_id_path=PackedInt32Array(291386691, 102338988) index="2" unique_id=329059598]
+visible = true
+
 [node name="Transition" parent="Level5Ending" unique_id=897795786 instance=ExtResource("4_0qfe1")]
+
+[node name="obat_gerd" type="Area3D" parent="Level5Ending" unique_id=1154350696]
+transform = Transform3D(0.03998705, 0.0010177662, 0, -0.0010177662, 0.03998705, 0, 0, 0, 0.04, -0.046074867, 0.7858526, -0.3812213)
+script = ExtResource("5_fuvym")
+object_name = "Obat GERD"
+inspection_text = "Obat sudah habis.."
+item_id = "obat"
+chapter = 5
+metadata/_custom_type_script = "uid://cyng42bevcjqg"
+
+[node name="Sketchfab_Scene" parent="Level5Ending/obat_gerd" unique_id=1242641634 instance=ExtResource("6_0qfe1")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level5Ending/obat_gerd" unique_id=1890376217]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.479746, 2.5730913, 0)
+
+[node name="Level5Controller" type="Node3D" parent="Level5Ending" unique_id=1271127299]
+script = ExtResource("7_0qfe1")
+
+[editable path="Level5Ending"]
+[editable path="Level5Ending/Player"]
+[editable path="Level5Ending/Hud"]

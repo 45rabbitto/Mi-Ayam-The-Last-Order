@@ -9,8 +9,10 @@ var hp_ringing := true
 # READY
 # =====================================================
 func _ready():
+	print("PAUSED STATUS: ", get_tree().paused)
 	print("=== LEVEL 5 (SETELAH SUNYI) READY ===")
 
+	# Hide UI yang gak relevan buat Chapter 5
 	_hide_irrelevant_ui()
 
 	ObjectiveManager.reset()
@@ -26,10 +28,14 @@ func _ready():
 # =====================================================
 func _hide_irrelevant_ui():
 	var scene = get_tree().current_scene
+	print("SCENE ROOT: ", scene.name)
 
 	var pause_menu = scene.find_child("PauseMenu", true, false)
+	print("PauseMenu ditemukan? ", pause_menu)
 	if pause_menu:
+		print("PauseMenu visible SEBELUM hide: ", pause_menu.visible)
 		pause_menu.hide()
+		print("PauseMenu visible SESUDAH hide: ", pause_menu.visible)
 
 	var level2ui = scene.find_child("level2ui", true, false)
 	if level2ui:
