@@ -46,6 +46,19 @@ func interact():
 	# ==========================
 	# ITEM PICKUP
 	# ==========================
+	
+	# Khusus Level 2
+	if Global.current_level == 2:
+		var controller = get_tree().current_scene.get_node("Level2Controller")
+
+		if controller != null:
+			
+			print("can_collect_items =", controller.can_collect_items)
+			
+			if !controller.can_collect_items:
+				UiManager.show_notification("Selesaikan jelajah kamar dulu.")
+				return
+		
 	if is_pickupable:
 
 		print("=== PICKUP ===")
