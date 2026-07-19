@@ -379,11 +379,13 @@ text = "Lanjut Chapter 3"
 
 [node name="ButtonNextLevel4" type="Button" parent="level3ui" unique_id=1483784932]
 visible = false
-offset_right = 8.0
-offset_bottom = 8.0
+offset_left = 481.0
+offset_top = 377.0
+offset_right = 681.0
+offset_bottom = 415.0
 theme_override_fonts/font = ExtResource("3_bo48s")
 theme_override_font_sizes/font_size = 30
-text = "Lanjut Level 4"
+text = "Lanjut Chapter 4"
 
 [node name="level4ui" type="CanvasLayer" parent="." unique_id=287930005]
 

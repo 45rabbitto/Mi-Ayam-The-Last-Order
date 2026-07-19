@@ -15,7 +15,6 @@ var can_make_coffee := false
 
 var chat_beni_shown := false
 var mabar_done := false
-var mi_ayam_ordered := false
 
 # =====================================================
 # QTE
@@ -53,7 +52,6 @@ func _ready():
 	ObjectiveManager.add_objective("Ambil gelas")
 	ObjectiveManager.add_objective("Balas Chat Beni")
 	ObjectiveManager.add_objective("Mabar Bareng Beni")
-	ObjectiveManager.add_objective("Pesan Mi Ayam")
 	ObjectiveManager.add_objective("Lanjut ke Level 4")
 	
 	AudioManager.play_bgm("chapter1_room")
@@ -241,9 +239,6 @@ func _on_hp_chat_interact():
 		qte_panel.start_qte(5, 10.0)
 		return
 
-	if mabar_done and not mi_ayam_ordered:
-		order_mi_ayam()
-
 # =====================================================
 # QTE CALLBACKS
 # =====================================================
@@ -259,7 +254,15 @@ func _on_qte_success():
 			print("Objective:", ObjectiveManager.get_current_objective())
 
 		"mabar":
+
+			print("SEBELUM COMPLETE:", ObjectiveManager.get_current_objective())
+
+			ObjectiveManager.complete_current()
+
+			print("SESUDAH COMPLETE:", ObjectiveManager.get_current_objective())
+			
 			mabar_done = true
+
 			Global.show_notification('Beni: "Lu belum makan, kan?"')
 			AudioManager.play_voice_key("beni_02", 3)
 			AudioManager.play_sfx("ch3_mabar_ambient")
@@ -271,13 +274,15 @@ func _on_qte_success():
 
 			await get_tree().create_timer(2.0).timeout
 
-			ObjectiveManager.complete_current()
-			print("Objective:", ObjectiveManager.get_current_objective())
+			ObjectiveManager.complete_current() # Selesai "Mabar Bareng Beni"
 
 			await get_tree().create_timer(2.0).timeout
+
 			AudioManager.play_voice_key("raka_09", 3)
 
-	qte_context = ""
+			await get_tree().create_timer(2.0).timeout
+
+			level_complete()
 
 
 func _on_qte_failed():
@@ -289,21 +294,6 @@ func _on_qte_failed():
 			qte_panel.start_qte(5)
 
 # =====================================================
-# PESAN MI AYAM
-# =====================================================
-
-func order_mi_ayam():
-	if mi_ayam_ordered:
-		return
-
-	mi_ayam_ordered = true
-
-	Global.show_notification("Mi ayam dipesan...")
-
-	ObjectiveManager.complete_current()
-
-	level_complete()
-# =====================================================
 # LEVEL COMPLETE
 # =====================================================
 
@@ -311,10 +301,7 @@ func level_complete():
 
 	Global.show_notification("Chapter 3 selesai!")
 
-	await get_tree().create_timer(2.0).timeout
-
 	next_chapter_button.show()
-
 func _on_button_next_level_4_pressed():
 
 	ObjectiveManager.complete_current()

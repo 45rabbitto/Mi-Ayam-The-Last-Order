@@ -6,7 +6,7 @@ signal qte_failed
 @onready var top_row: HBoxContainer = $TopRow
 @onready var bottom_row: HBoxContainer = $BottomRow
 
-const LETTER_POOL := "BCEFGHIJKLNOPQRTUVXYZ"
+const LETTER_POOL := "BCFGHIJKLNOPQRTUVXYZ"
 const BOX_COUNT := 5
 
 var letters: Array[String] = []
