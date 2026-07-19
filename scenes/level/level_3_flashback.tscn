@@ -1790,7 +1790,7 @@ transform = Transform3D(-1, 0, -8.742276e-08, 0, 1, -2.220446e-16, 8.7423814e-08
 shape = SubResource("BoxShape3D_renlo")
 
 [node name="Player" parent="." unique_id=187213136 instance=ExtResource("42_yxfnf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, 1, -1)
+transform = Transform3D(-0.46625468, 0.03731969, 0.88386273, 0.03731969, 0.9990499, -0.022496428, -0.88386285, 0.02249643, -0.4672047, -0.55270886, 1.0354652, -1)
 
 [node name="Transition" parent="." unique_id=897795786 instance=ExtResource("44_2cqc7")]
 

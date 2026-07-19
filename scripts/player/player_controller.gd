@@ -1,96 +1,303 @@
-extends Node3D
+extends CharacterBody3D
 
-# =====================================================
-# STATE FLAGS
-# =====================================================
-var hp_ringing := true
 
-# =====================================================
+# ==========================================================
+# MOVEMENT
+# ==========================================================
+
+@export var walk_speed := 3.0
+@export var sprint_speed := 5.0
+@export var mouse_sensitivity := 0.002
+
+
+# ==========================================================
+# NODE
+# ==========================================================
+
+@onready var head: Node3D = $Head
+
+@onready var camera: Camera3D = $Head/Camera3D
+
+@onready var raycast: RayCast3D = $Head/Camera3D/RayCast3D
+
+@onready var interaction_manager = $InteractionManager
+
+
+# ==========================================================
+# STATE
+# ==========================================================
+
+var current_speed := 0.0
+
+
+# ==========================================================
 # READY
-# =====================================================
-func _ready():
-	print("=== LEVEL 5 (SETELAH SUNYI) READY ===")
+# ==========================================================
 
-	_hide_irrelevant_ui()
+func _ready() -> void:
 
-	ObjectiveManager.reset()
-	ObjectiveManager.add_objective("Jawab telepon")
-	ObjectiveManager.add_objective("Pahami apa yang terjadi")
-	ObjectiveManager.start()
-	slow_down_player()
-	_connect_interactables()
-	play_hp_ringing_loop()
+	Input.set_mouse_mode(
+		Input.MOUSE_MODE_CAPTURED
+	)
 
-# =====================================================
-# HIDE IRRELEVANT UI
-# =====================================================
-func _hide_irrelevant_ui():
-	var scene = get_tree().current_scene
+	print("================================")
+	print("PLAYER CONTROLLER READY")
+	print("================================")
 
-	var pause_menu = scene.find_child("PauseMenu", true, false)
-	if pause_menu:
-		pause_menu.hide()
 
-	var level2ui = scene.find_child("level2ui", true, false)
-	if level2ui:
-		level2ui.hide()
+# ==========================================================
+# PHYSICS
+# ==========================================================
 
-	var level4ui = scene.find_child("level4ui", true, false)
-	if level4ui:
-		level4ui.hide()
+func _physics_process(
+	delta: float
+) -> void:
 
-	var inventory_ui = scene.find_child("InventoryUI", true, false)
-	if inventory_ui:
-		inventory_ui.hide()
+	handle_movement()
 
-# =====================================================
-# PLAYER SLOWDOWN
-# =====================================================
-func slow_down_player():
-	var player = get_tree().current_scene.get_node_or_null("Level5Ending/Player")
-	if player == null:
-		print("Player tidak ditemukan, cek path node")
+	handle_gravity(
+		delta
+	)
+
+	move_and_slide()
+
+
+# ==========================================================
+# MOVEMENT
+# ==========================================================
+
+func handle_movement() -> void:
+
+	var input_dir := Input.get_vector(
+		"move_left",
+		"move_right",
+		"move_forward",
+		"move_backward"
+	)
+
+
+	var direction := (
+		transform.basis
+		* Vector3(
+			input_dir.x,
+			0,
+			input_dir.y
+		)
+	)
+
+
+	# ======================================================
+	# SPRINT
+	# ======================================================
+
+	if Input.is_action_pressed(
+		"sprint"
+	):
+
+		current_speed = sprint_speed
+
+	else:
+
+		current_speed = walk_speed
+
+
+	if direction.length() > 0:
+
+		direction = direction.normalized()
+
+
+		velocity.x = direction.x * current_speed
+
+		velocity.z = direction.z * current_speed
+
+	else:
+
+		velocity.x = move_toward(
+			velocity.x,
+			0,
+			current_speed
+		)
+
+		velocity.z = move_toward(
+			velocity.z,
+			0,
+			current_speed
+		)
+
+
+# ==========================================================
+# GRAVITY
+# ==========================================================
+
+func handle_gravity(
+	delta: float
+) -> void:
+
+	if not is_on_floor():
+
+		velocity.y -= (
+			ProjectSettings
+			.get_setting(
+				"physics/3d/default_gravity"
+			)
+			* delta
+		)
+
+	else:
+
+		velocity.y = 0
+
+
+# ==========================================================
+# INPUT
+# ==========================================================
+
+func _unhandled_input(
+	event: InputEvent
+) -> void:
+
+
+	# ======================================================
+	# ALT - TOGGLE MOUSE
+	# ======================================================
+
+	if event is InputEventKey:
+
+		if event.keycode == KEY_ALT \
+		and event.pressed:
+
+			if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+
+				Input.set_mouse_mode(
+					Input.MOUSE_MODE_VISIBLE
+				)
+
+			else:
+
+				Input.set_mouse_mode(
+					Input.MOUSE_MODE_CAPTURED
+				)
+
+
+	# ======================================================
+	# MOUSE LOOK
+	# ======================================================
+
+	if event is InputEventMouseMotion:
+
+		if Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
+
+			return
+
+
+		rotate_y(
+			-event.relative.x
+			* mouse_sensitivity
+		)
+
+
+		head.rotate_x(
+			-event.relative.y
+			* mouse_sensitivity
+		)
+
+
+		head.rotation.x = clamp(
+			head.rotation.x,
+			deg_to_rad(-80),
+			deg_to_rad(80)
+		)
+
+
+	# ======================================================
+	# INVENTORY SLOT
+	# ======================================================
+
+	if event.is_action_pressed("slot1"):
+
+		use_inventory_slot(0)
+
+
+	elif event.is_action_pressed("slot2"):
+
+		use_inventory_slot(1)
+
+
+	elif event.is_action_pressed("slot3"):
+
+		use_inventory_slot(2)
+
+
+	elif event.is_action_pressed("slot4"):
+
+		use_inventory_slot(3)
+
+
+	elif event.is_action_pressed("slot5"):
+
+		use_inventory_slot(4)
+
+
+	elif event.is_action_pressed("slot6"):
+
+		use_inventory_slot(5)
+
+
+	elif event.is_action_pressed("slot7"):
+
+		use_inventory_slot(6)
+
+
+	# ======================================================
+	# INTERACTION
+	# ======================================================
+
+	if event.is_action_pressed("interact"):
+
+		if interaction_manager:
+
+			interaction_manager.try_interact()
+
+
+	# ======================================================
+	# PAUSE
+	# ======================================================
+
+	if event.is_action_pressed("pause"):
+
+		if UiManager:
+
+			UiManager.toggle_pause()
+
+
+# ==========================================================
+# INVENTORY
+# ==========================================================
+
+func use_inventory_slot(
+	index: int
+) -> void:
+
+	print(
+		"INVENTORY SLOT : ",
+		index + 1
+	)
+
+
+	var inventory_ui = get_tree().get_first_node_in_group(
+		"inventory_ui"
+	)
+
+
+	if inventory_ui == null:
+
+		print(
+			"INVENTORY UI TIDAK DITEMUKAN"
+		)
+
 		return
-	if "walk_speed" in player:
-		player.walk_speed *= 0.3
-	if "sprint_speed" in player:
-		player.sprint_speed *= 0.3
 
-# =====================================================
-# HP RINGING LOOP
-# =====================================================
-func play_hp_ringing_loop():
-	while hp_ringing and is_inside_tree():
-		AudioManager.play_sfx("notification")
-		await get_tree().create_timer(2.0).timeout
 
-func stop_hp_ringing():
-	hp_ringing = false
-	AudioManager.stop_sfx()
-
-# =====================================================
-# INTERACTABLE CONNECTION
-# =====================================================
-func _connect_interactables():
-	var objects = get_tree().get_nodes_in_group("interactable")
-	print("Level5 found", objects.size(), "interactable objects")
-	for obj in objects:
-		if obj.interacted.is_connected(_on_interacted):
-			continue
-		obj.interacted.connect(_on_interacted)
-
-func _on_interacted(item_id: String):
-	print("LEVEL5 TERIMA =", item_id)
-	match item_id:
-		"hp_ch5":
-			stop_hp_ringing()
-			UiManager.show_notification("...")
-			print("HP tidak merespon")
-		"obat":
-			UiManager.show_notification("Obat GERD... sudah lama habis.")
-		"laptop_ch5":
-			UiManager.show_notification("Skripsinya... masih di situ. Menunggu yang gak akan datang.")
-			print("Laptop diperiksa - Chapter 5")
-		"pintu_ch5":
-			UiManager.show_notification("Tangan menembus gagang pintu...")
-			print("Pintu dicoba - tangan menembus (Chapter 5)")
+	inventory_ui.use_slot(
+		index
+	)

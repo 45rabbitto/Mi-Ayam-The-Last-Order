@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b6ljl3qx06xsa"]
 
-[ext_resource type="PackedScene" uid="uid://d3p1u7jppj2v7" path="res://assets/3d/bedroom.tscn" id="1_xe1jl"]
+[ext_resource type="PackedScene" uid="uid://d3p1u7jppj2v7" path="res://assets/3d/kamar/bedroom.tscn" id="1_xe1jl"]
 [ext_resource type="PackedScene" uid="uid://cs14om8wf1udr" path="res://scenes/player/player.tscn" id="2_jri6p"]
 [ext_resource type="PackedScene" uid="uid://crkuelg6fyyas" path="res://scenes/ui/hud.tscn" id="3_fuvym"]
 [ext_resource type="PackedScene" uid="uid://78eigtpk74pi" path="res://scenes/Transition.tscn" id="4_0qfe1"]
@@ -9,7 +9,7 @@
 [ext_resource type="Script" uid="uid://c2ehtb65sde3o" path="res://scripts/level/level_5_controller_v2.gd" id="7_0qfe1"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0qfe1"]
-size = Vector3(1, 2.2, 0.3)
+size = Vector3(0.46679688, 0.60239255, 0.42177734)
 
 [node name="Level5Ending" type="Node3D" unique_id=616683985]
 
@@ -33,23 +33,13 @@ item_id = "pintu_ch5"
 chapter = 5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Level5Ending/pintu/Area3D" unique_id=1067230638]
-transform = Transform3D(0.99999344, 0, -4.1922021e-13, 6.1062266e-15, 1, 0, 1.4210855e-13, 0, 1, -0.27563477, 0.5571663, -0.19838119)
+transform = Transform3D(0.99993396, 0, -4.195755e-12, 4.5408122e-14, 1, 0, 3.4887648e-12, 0, 1, -0.13110256, 1.0228617, -0.2580974)
 shape = SubResource("BoxShape3D_0qfe1")
 
-[node name="Player" parent="Level5Ending" unique_id=187213136 instance=ExtResource("2_jri6p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4835968, 0.40750134, -0.59971094)
+[node name="Level5Controller" type="Node3D" parent="Level5Ending" unique_id=1271127299]
+script = ExtResource("7_0qfe1")
 
-[node name="SpotLight3D" parent="Level5Ending/Player/Head/Camera3D" parent_id_path=PackedInt32Array(187213136, 676415982) index="1" unique_id=222859333]
-light_color = Color(0.2901961, 0, 0, 1)
-
-[node name="Hud" parent="Level5Ending" unique_id=291386691 instance=ExtResource("3_fuvym")]
-
-[node name="ButtonNextLevel3" parent="Level5Ending/Hud/level2ui" parent_id_path=PackedInt32Array(291386691, 102338988) index="2" unique_id=329059598]
-visible = true
-
-[node name="Transition" parent="Level5Ending" unique_id=897795786 instance=ExtResource("4_0qfe1")]
-
-[node name="obat_gerd" type="Area3D" parent="Level5Ending" unique_id=1154350696]
+[node name="obat_gerd" type="Area3D" parent="Level5Ending" unique_id=1220571510]
 transform = Transform3D(0.03998705, 0.0010177662, 0, -0.0010177662, 0.03998705, 0, 0, 0, 0.04, -0.046074867, 0.7858526, -0.3812213)
 script = ExtResource("5_fuvym")
 object_name = "Obat GERD"
@@ -58,14 +48,28 @@ item_id = "obat"
 chapter = 5
 metadata/_custom_type_script = "uid://cyng42bevcjqg"
 
-[node name="Sketchfab_Scene" parent="Level5Ending/obat_gerd" unique_id=1242641634 instance=ExtResource("6_0qfe1")]
+[node name="Sketchfab_Scene" parent="Level5Ending/obat_gerd" unique_id=642246543 instance=ExtResource("6_0qfe1")]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Level5Ending/obat_gerd" unique_id=1890376217]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level5Ending/obat_gerd" unique_id=615303744]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.479746, 2.5730913, 0)
 
-[node name="Level5Controller" type="Node3D" parent="Level5Ending" unique_id=1271127299]
-script = ExtResource("7_0qfe1")
+[node name="Transition" parent="Level5Ending" unique_id=897795786 instance=ExtResource("4_0qfe1")]
+
+[node name="Player" parent="." unique_id=187213136 instance=ExtResource("2_jri6p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.3790793, -0.5720849, -4.370229)
+
+[node name="Camera3D" parent="Player/Head" parent_id_path=PackedInt32Array(187213136, 746067447) index="0" unique_id=676415982]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.1339662, -0.14090157)
+
+[node name="SpotLight3D" parent="Player/Head/Camera3D" index="1" unique_id=222859333]
+light_color = Color(0.2901961, 0, 0, 1)
+spot_angle = 40.0
+
+[node name="Hud" parent="." unique_id=291386691 instance=ExtResource("3_fuvym")]
+
+[node name="ButtonNextLevel3" parent="Hud/level2ui" parent_id_path=PackedInt32Array(291386691, 102338988) index="2" unique_id=329059598]
+visible = true
 
 [editable path="Level5Ending"]
-[editable path="Level5Ending/Player"]
-[editable path="Level5Ending/Hud"]
+[editable path="Player"]
+[editable path="Hud"]

@@ -1,7 +1,9 @@
 extends Area3D
 class_name Interactable
 
+
 signal interacted(item_id: String)
+
 
 @export var object_name: String = ""
 @export_multiline var inspection_text: String = ""
@@ -11,103 +13,183 @@ signal interacted(item_id: String)
 @export var chapter: int = 1
 @export var highlight_material: Material
 
+
 var original_material: Material
 
 
 func get_prompt() -> String:
+
 	return "Tekan E"
 
 
 func _ready():
+
 	add_to_group("interactable")
 
-	var mesh = get_node_or_null("MeshInstance3D")
+
+	var mesh = get_node_or_null(
+		"MeshInstance3D"
+	)
+
+
 	if mesh:
+
 		original_material = mesh.material_override
 
 
 func interact():
 
-	print("INTERACT =", item_id)
+	print(
+		"INTERACT = ",
+		item_id
+	)
 
-	# Charger belum boleh diambil
-	if item_id == "charger" and !InventoryManager.has_item("phone"):
-		UiManager.show_dialog("Cari HP dulu.")
+
+	# ======================================================
+	# CHARGER BELUM BOLEH DIAMBIL SEBELUM HP
+	# ======================================================
+
+	if item_id == "charger" \
+	and !InventoryManager.has_item("phone"):
+
+		UiManager.show_dialog(
+			"Cari HP dulu."
+		)
+
 		return
 
-	# Dialog
+
+	# ======================================================
+	# DIALOG
+	# ======================================================
+
 	if inspection_text != "":
-		UiManager.show_dialog(inspection_text)
 
-	# Voice
+		UiManager.show_dialog(
+			inspection_text
+		)
+
+
+	# ======================================================
+	# VOICE
+	# ======================================================
+
 	if voice_key != "":
-		AudioManager.play_voice_key(voice_key, chapter)
 
-	# ==========================
+		AudioManager.play_voice_key(
+			voice_key,
+			chapter
+		)
+
+
+	# ======================================================
 	# ITEM PICKUP
-	# ==========================
-	
-	# Khusus Level 2
-	if Global.current_level == 2:
-		var controller = get_tree().current_scene.get_node("Level2Controller")
+	# ======================================================
 
-		if controller != null:
-			
-			print("can_collect_items =", controller.can_collect_items)
-			
-			if !controller.can_collect_items:
-				UiManager.show_notification("Selesaikan jelajah kamar dulu.")
-				return
-		
 	if is_pickupable:
 
 		print("=== PICKUP ===")
-		print("Item ID :", item_id)
 
-		var success := InventoryManager.add_item(item_id)
+		print(
+			"Item ID : ",
+			item_id
+		)
 
-		print("Success :", success)
+
+		# MASUK INVENTORY
+		var success := InventoryManager.add_item(
+			item_id
+		)
+
+
+		print(
+			"Success : ",
+			success
+		)
+
 
 		if success:
 
-			AudioManager.play_sfx("pickup")
+			AudioManager.play_sfx(
+				"pickup"
+			)
 
-			UiManager.show_notification(object_name + " diperoleh")
 
-			print("EMIT =", item_id)
-			interacted.emit(item_id)
+			UiManager.show_notification(
+				object_name + " diperoleh"
+			)
 
+
+			print(
+				"EMIT = ",
+				item_id
+			)
+
+
+			interacted.emit(
+				item_id
+			)
+
+
+			# ITEM HILANG DARI KAMAR
 			queue_free()
+
+
 			return
+
 
 		else:
 
-			print("GAGAL MASUK INVENTORY")
+			print(
+				"GAGAL MASUK INVENTORY"
+			)
+
+
 			return
 
-	# ==========================
+
+	# ======================================================
 	# OBJECT NON PICKUP
-	# ==========================
-	print("EMIT =", item_id)
-	interacted.emit(item_id)
+	# ======================================================
+
+	print(
+		"EMIT = ",
+		item_id
+	)
+
+
+	interacted.emit(
+		item_id
+	)
 
 
 func show_highlight():
 
-	var mesh = get_node_or_null("MeshInstance3D")
+	var mesh = get_node_or_null(
+		"MeshInstance3D"
+	)
+
 
 	if mesh == null:
+
 		return
 
+
 	if highlight_material:
+
 		mesh.material_override = highlight_material
 
 
 func hide_highlight():
 
-	var mesh = get_node_or_null("MeshInstance3D")
+	var mesh = get_node_or_null(
+		"MeshInstance3D"
+	)
+
 
 	if mesh == null:
+
 		return
+
 
 	mesh.material_override = original_material
