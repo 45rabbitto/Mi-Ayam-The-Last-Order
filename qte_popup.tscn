@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bihhiab7ppsoq"]
 
-[ext_resource type="Script" path="res://qte_panel.gd" id="1_bub5b"]
+[ext_resource type="Script" uid="uid://biruivsjau27w" path="res://qte_panel.gd" id="1_bub5b"]
 [ext_resource type="FontFile" uid="uid://dgs0rmdvyu72k" path="res://assets/fonts/PressStart2P-Regular.ttf" id="2_jpg2l"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bub5b"]
