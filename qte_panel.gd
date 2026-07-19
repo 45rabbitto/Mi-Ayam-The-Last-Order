@@ -50,11 +50,14 @@ func _start_round():
 	for i in range(top_row.get_child_count()):
 		var lbl: Label = top_row.get_child(i)
 		lbl.text = letters[i]
-		lbl.add_theme_color_override("font_color", Color.BLACK)
+		lbl.add_theme_color_override("font_color", Color.WHITE)
 
 	for i in range(bottom_row.get_child_count()):
 		var lbl: Label = bottom_row.get_child(i)
 		lbl.text = ""
+		lbl.add_theme_color_override("font_color", Color.WHITE)
+
+	timer.start(time_limit)
 		
 		
 func _unhandled_input(event):
