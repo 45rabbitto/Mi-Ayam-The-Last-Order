@@ -62,7 +62,7 @@ func next_level():
 		GameManager.is_game_completed = true
 		GameManager.game_completed.emit()
 
-		UiManager.notify("Terima kasih telah bermain.")
+		UiManager.show_notification("Terima kasih telah bermain.")
 
 		return
 
@@ -146,13 +146,13 @@ func setup_level_1():
 		"Periksa seluruh kamar"
 	)
 
-	UiManager.notify(
+	UiManager.show_notification(
 		"HP mati..."
 	)
 
 	await get_tree().create_timer(2).timeout
 
-	UiManager.notify(
+	UiManager.show_notification(
 		"Cari tahu apa yang terjadi."
 	)
 
@@ -220,7 +220,7 @@ func setup_level_3():
 		"Selesaikan rutinitas malam"
 	)
 
-	UiManager.notify(
+	UiManager.show_notification(
 		"Ingat kembali malam terakhir..."
 	)
 
@@ -243,7 +243,7 @@ func setup_level_4():
 		"Pesan Mi Ayam"
 	)
 
-	UiManager.notify(
+	UiManager.show_notification(
 		"Pandangan mulai kabur..."
 	)
 
@@ -264,7 +264,7 @@ func setup_level_5():
 		"Jawab Telepon"
 	)
 
-	UiManager.notify(
+	UiManager.show_notification(
 		"Kenapa semuanya terasa sunyi?"
 	)
 

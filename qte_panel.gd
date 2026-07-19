@@ -50,16 +50,16 @@ func _start_round():
 	for i in range(top_row.get_child_count()):
 		var lbl: Label = top_row.get_child(i)
 		lbl.text = letters[i]
-		lbl.modulate = Color.WHITE
+		lbl.add_theme_color_override("font_color", Color.WHITE)
 
 	for i in range(bottom_row.get_child_count()):
 		var lbl: Label = bottom_row.get_child(i)
 		lbl.text = ""
-		lbl.modulate = Color.WHITE
+		lbl.add_theme_color_override("font_color", Color.WHITE)
 
 	timer.start(time_limit)
-
-
+		
+		
 func _unhandled_input(event):
 
 	if !visible:
@@ -72,17 +72,13 @@ func _unhandled_input(event):
 		if key_pressed.length() != 1:
 			return
 
+		var top_label: Label = top_row.get_child(current_index)
+
 		if key_pressed == letters[current_index]:
 
 			AudioManager.play_ui("click")
 
-			var top_label: Label = top_row.get_child(current_index)
-			var bottom_label: Label = bottom_row.get_child(current_index)
-
-			bottom_label.text = key_pressed
-			bottom_label.modulate = Color.GREEN
-
-			top_label.modulate = Color.GREEN
+			top_label.add_theme_color_override("font_color", Color.GREEN)
 
 			current_index += 1
 
@@ -91,10 +87,7 @@ func _unhandled_input(event):
 
 		else:
 
-			var top_label: Label = top_row.get_child(current_index)
-			top_label.modulate = Color.RED
-
-
+			top_label.add_theme_color_override("font_color", Color.RED)
 func _finish_round(success: bool):
 
 	timer.stop()
