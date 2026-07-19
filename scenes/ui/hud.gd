@@ -133,7 +133,10 @@ func _on_button_next_chapter_5_pressed() -> void:
 
 func _on_button_next_level_4_pressed() -> void:
 
-	var controller = get_tree().current_scene.get_node("Level3Controller")
+	Transition.fade_out()
 
-	if controller:
-		controller._on_next_chapter_pressed()
+	await get_tree().create_timer(1.0).timeout
+
+	get_tree().change_scene_to_file(
+		"res://scenes/level/level_5_ending.tscn"
+	)

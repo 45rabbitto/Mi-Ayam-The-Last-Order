@@ -33,8 +33,8 @@ func _ready():
 	add_child(timer)
 
 	glitch_timer = Timer.new()
-	
-	glitch_timer.wait_time = randf_range(1.5,3.0)
+	glitch_timer.one_shot = false
+	glitch_timer.wait_time = 1.0
 	glitch_timer.timeout.connect(_do_glitch)
 	add_child(glitch_timer)
 
@@ -44,6 +44,8 @@ func start_qte():
 	rounds_done = 0
 
 	show()
+
+	glitch_timer.start()
 
 	_start_round()
 
@@ -74,33 +76,36 @@ func _unhandled_input(event):
 	if !visible:
 		return
 
-	if event is InputEventKey and event.pressed and !event.echo:
+	if !(event is InputEventKey):
+		return
 
-		var key = OS.get_keycode_string(event.keycode)
+	if !event.pressed or event.echo:
+		return
 
-		if key == " ":
-			return
+	var key := OS.get_keycode_string(event.keycode)
 
-		if key == letters[current_index]:
+	if key == " ":
+		return
 
-			AudioManager.play_ui("click")
+	if current_index >= BOX_COUNT:
+		return
 
-			bottom_row.get_child(current_index).text = key
+	if key == letters[current_index]:
 
-			top_row.get_child(current_index).modulate = Color.GREEN
+		AudioManager.play_ui("click")
 
-			current_index += 1
+		bottom_row.get_child(current_index).text = key
+		top_row.get_child(current_index).modulate = Color.GREEN
 
-			if current_index >= BOX_COUNT:
+		current_index += 1
 
-				_finish_round(true)
+		if current_index >= BOX_COUNT:
+			_finish_round(true)
 
-		else:
+	else:
 
-			top_row.get_child(current_index).modulate = Color.RED
-
-			_finish_round(false)
-
+		top_row.get_child(current_index).modulate = Color.RED
+		_finish_round(false)
 
 func _finish_round(success):
 
@@ -129,14 +134,13 @@ func _finish_round(success):
 
 func _finish_all(success):
 
+	glitch_timer.stop()
+
 	hide()
 
 	if success:
-
 		qte_success.emit()
-
 	else:
-
 		qte_failed.emit()
 
 
@@ -148,19 +152,13 @@ func play_glitch():
 
 	AudioManager.play_sfx("glitch")
 
-	black_flash.color.a = 0.85
+	for i in range(4):
 
-	await get_tree().create_timer(0.05).timeout
+		black_flash.color.a = randf_range(0.5, 1.0)
+		await get_tree().create_timer(randf_range(0.04, 0.08)).timeout
 
-	black_flash.color.a = 0
-
-	await get_tree().create_timer(randf_range(0.02,0.08)).timeout
-
-	black_flash.color.a = 0.6
-
-	await get_tree().create_timer(0.03).timeout
-
-	black_flash.color.a = 0
+		black_flash.color.a = 0
+		await get_tree().create_timer(randf_range(0.03, 0.06)).timeout
 
 func _do_glitch():
 
@@ -172,9 +170,8 @@ func _do_glitch():
 
 		top_row.get_child(idx).text = RANDOM_CHAR[randi() % RANDOM_CHAR.length()]
 
-		await get_tree().create_timer(0.05).timeout
+		await get_tree().create_timer(0.08).timeout
 
 		top_row.get_child(idx).text = letters[idx]
 
-	glitch_timer.wait_time = randf_range(1.5, 3.5)
-	glitch_timer.start()
+	glitch_timer.wait_time = randf_range(0.8, 1.8)

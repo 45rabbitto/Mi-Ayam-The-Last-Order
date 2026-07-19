@@ -391,8 +391,13 @@ text = "Lanjut Chapter 4"
 
 [node name="ButtonNextChapter5" type="Button" parent="level4ui" unique_id=1952719786]
 visible = false
-offset_right = 8.0
-offset_bottom = 8.0
+offset_left = 483.0
+offset_top = 376.0
+offset_right = 683.0
+offset_bottom = 414.0
+theme_override_fonts/font = ExtResource("3_bo48s")
+theme_override_font_sizes/font_size = 30
+text = "Lanjut Chapter 5"
 
 [connection signal="pressed" from="PauseMenu/menu/resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="PauseMenu/menu/main menu" to="." method="_on_main_menu_pressed"]

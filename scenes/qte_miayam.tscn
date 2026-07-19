@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://c5eqgmi4xkd7p"]
 
 [ext_resource type="Script" uid="uid://bwa50ellmp45m" path="res://scripts/qteMiayam.gd" id="1_nehyo"]
+[ext_resource type="FontFile" uid="uid://dn1ys1ju2gq7m" path="res://assets/fonts/VT323-Regular.ttf" id="2_518oi"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bub5b"]
 bg_color = Color(0, 0, 0, 0)
@@ -17,6 +18,11 @@ border_color = Color(1, 1, 1, 1)
 [node name="qte_miayam" type="CanvasLayer" unique_id=2090704717]
 layer = 3
 script = ExtResource("1_nehyo")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=106459420]
+offset_right = 1209.0
+offset_bottom = 704.0
+color = Color(0, 0, 0, 0.79607844)
 
 [node name="BlackFlash" type="ColorRect" parent="." unique_id=2147399767]
 offset_right = 1199.0
@@ -163,3 +169,13 @@ theme_override_font_sizes/font_size = 36
 theme_override_styles/normal = SubResource("StyleBoxFlat_ruy7r")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Label" type="Label" parent="." unique_id=563253287]
+offset_left = 441.0
+offset_top = 399.0
+offset_right = 745.0
+offset_bottom = 439.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_518oi")
+theme_override_font_sizes/font_size = 40
+text = "ketik sesuai urutan"
