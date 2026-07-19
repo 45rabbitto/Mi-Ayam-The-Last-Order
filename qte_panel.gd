@@ -15,7 +15,7 @@ var current_index := 0
 var rounds_required := 3
 var rounds_done := 0
 
-var time_limit := 8.0
+var time_limit := 12.0
 var timer: Timer
 
 
@@ -29,17 +29,19 @@ func _ready():
 	add_child(timer)
 
 
-func start_qte(required_rounds: int = 4):
+func start_qte(required_rounds: int = 4, time: float = 8.0):
 
 	rounds_required = required_rounds
 	rounds_done = 0
+	time_limit = time
 
 	show()
 
 	_start_round()
 
-
 func _start_round():
+
+	print("SOAL BARU")
 
 	current_index = 0
 	letters.clear()
@@ -68,6 +70,9 @@ func _unhandled_input(event):
 	if event is InputEventKey and event.pressed and !event.echo:
 
 		var key_pressed := OS.get_keycode_string(event.keycode)
+		print("KEY =", key_pressed)
+		print("INDEX =", current_index)
+		print("TARGET =", letters[current_index])
 
 		if key_pressed.length() != 1:
 			return
@@ -83,6 +88,7 @@ func _unhandled_input(event):
 			current_index += 1
 
 			if current_index >= BOX_COUNT:
+				print("ROUND SELESAI")
 				_finish_round(true)
 
 		else:

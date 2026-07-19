@@ -34,8 +34,7 @@ var qte_context: String = ""
 # NEXT CHAPTER BUTTON
 # =====================================================
 
-@onready var next_chapter_button = $NextChapterButton
-
+@onready var next_chapter_button = $Hud/level3ui/ButtonNextLevel4
 
 # =====================================================
 # READY
@@ -55,6 +54,7 @@ func _ready():
 	ObjectiveManager.add_objective("Balas Chat Beni")
 	ObjectiveManager.add_objective("Mabar Bareng Beni")
 	ObjectiveManager.add_objective("Pesan Mi Ayam")
+	ObjectiveManager.add_objective("Lanjut ke Level 4")
 	
 	AudioManager.play_bgm("chapter1_room")
 
@@ -73,14 +73,20 @@ func _ready():
 	qte_panel.qte_success.connect(_on_qte_success)
 	qte_panel.qte_failed.connect(_on_qte_failed)
 
-	next_chapter_button.hide()
-	next_chapter_button.pressed.connect(_on_next_chapter_pressed)
 
 	print("Current Objective =",
 	ObjectiveManager.get_current_objective())
 	AudioManager.play_voice_key("raka_01", 3)
 
+	next_chapter_button.hide()
+	next_chapter_button.pressed.connect(_on_button_next_level_4_pressed)
 
+	print("Button =", next_chapter_button)
+
+	if next_chapter_button == null:
+		print("BUTTON TIDAK DITEMUKAN!")
+		return
+	
 func _connect_interactables():
 	var objects = get_tree().get_nodes_in_group("interactable")
 	print("Found", objects.size(), "interactable objects")
@@ -103,8 +109,8 @@ func on_item_collected(item_id: String):
 			if skripsi_done:
 				return
 			qte_context = "skripsi"
-			qte_panel.start_qte(4)
-			
+			qte_panel.start_qte(4, 12.0) # 12 detik
+					
 		"sendok":
 
 			if sendok_done:
@@ -232,7 +238,7 @@ func _on_hp_chat_interact():
 			return
 
 		qte_context = "mabar"
-		qte_panel.start_qte(5)
+		qte_panel.start_qte(5, 10.0)
 		return
 
 	if mabar_done and not mi_ayam_ordered:
@@ -289,27 +295,36 @@ func _on_qte_failed():
 func order_mi_ayam():
 	if mi_ayam_ordered:
 		return
+
 	mi_ayam_ordered = true
 
 	Global.show_notification("Mi ayam dipesan...")
+
 	ObjectiveManager.complete_current()
 
 	level_complete()
-
 # =====================================================
 # LEVEL COMPLETE
 # =====================================================
 
 func level_complete():
+
 	Global.show_notification("Chapter 3 selesai!")
+
 	await get_tree().create_timer(2.0).timeout
+
 	next_chapter_button.show()
 
+func _on_button_next_level_4_pressed():
 
-func _on_next_chapter_pressed():
+	ObjectiveManager.complete_current()
+
 	next_chapter_button.hide()
+
 	Transition.fade_out()
+
 	await get_tree().create_timer(1.0).timeout
+
 	get_tree().change_scene_to_file(
 		"res://scenes/level/level_4_order.tscn"
 	)
