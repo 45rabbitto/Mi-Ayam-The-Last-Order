@@ -7,6 +7,8 @@ var hp_ringing := true
 var has_tried_hp := false
 var has_tried_pintu := false
 var ending_triggered := false
+var flicker_active := true
+var ambient_active := true
 
 # =====================================================
 # READY
@@ -16,9 +18,6 @@ func _ready():
 
 	_hide_irrelevant_ui()
 
-	# Raka sudah tiada - kondisi fisik sudah tidak relevan lagi
-	UiManager.set_condition("Tiada")
-
 	ObjectiveManager.reset()
 	ObjectiveManager.add_objective("Jawab telepon")
 	ObjectiveManager.add_objective("Coba buka pintu")
@@ -26,6 +25,9 @@ func _ready():
 	slow_down_player()
 	_connect_interactables()
 	play_hp_ringing_loop()
+
+	start_light_flicker()
+	play_ambient_loop()
 
 # =====================================================
 # HIDE IRRELEVANT UI
@@ -80,6 +82,52 @@ func stop_hp_ringing():
 	AudioManager.stop_sfx()
 
 # =====================================================
+# HORROR GLITCH - Light Flicker
+# =====================================================
+func start_light_flicker():
+	var lights = get_tree().current_scene.find_children("*", "OmniLight3D", true, false)
+
+	while flicker_active and is_inside_tree():
+		for light in lights:
+			if is_instance_valid(light):
+				# Energy goyah antara redup dan nyaris mati
+				light.light_energy = randf_range(0.1, 0.6)
+
+				# Warna goyah antara merah gelap dan hampir hitam
+				var flicker_color = Color(
+					randf_range(0.15, 0.35),  # R - merah tetap ada tapi redup
+					0.0,                       # G - selalu 0
+					0.0,                       # B - selalu 0
+					1.0
+				)
+				light.light_color = flicker_color
+
+		await get_tree().create_timer(randf_range(0.1, 0.4)).timeout
+
+func stop_light_flicker():
+	flicker_active = false
+
+# =====================================================
+# HORROR GLITCH - Ambient Sound Loop
+# =====================================================
+func play_ambient_loop():
+	if not AudioManager.sfx.has("ch5_ambient_merah"):
+		print("Ambient ch5_ambient_merah tidak ditemukan, skip.")
+		return
+
+	while ambient_active and is_inside_tree():
+		AudioManager.play_sfx("ch5_ambient_merah")
+
+		var duration := 3.0
+		if AudioManager.sfx_player.stream:
+			duration = AudioManager.sfx_player.stream.get_length()
+
+		await get_tree().create_timer(duration).timeout
+
+func stop_ambient_loop():
+	ambient_active = false
+
+# =====================================================
 # INTERACTABLE CONNECTION
 # =====================================================
 func _connect_interactables():
@@ -118,7 +166,7 @@ func _check_ending_trigger():
 		return
 	if has_tried_hp and has_tried_pintu:
 		ending_triggered = true
-		await get_tree().create_timer(2.0).timeout  # kasih waktu baca popup pintu dulu
+		await get_tree().create_timer(2.0).timeout
 		_play_ending_cutscene()
 
 # =====================================================
@@ -131,7 +179,6 @@ func _say_voice(key: String, text: String, extra_pause: float = 0.5):
 	if AudioManager.voice_player.stream:
 		duration = AudioManager.voice_player.stream.get_length()
 
-	# Suntik durasi timer dialog langsung dari sini, tanpa edit UiManager.gd
 	if UiManager.dialog_timer:
 		UiManager.dialog_timer.wait_time = duration + extra_pause
 
@@ -156,6 +203,9 @@ func _play_sfx_and_wait(key: String, extra_pause: float = 0.3):
 # =====================================================
 func _play_ending_cutscene():
 	print("=== ENDING CUTSCENE START ===")
+
+	stop_light_flicker()
+	stop_ambient_loop()
 
 	var player = get_tree().current_scene.get_node_or_null("Level5Ending/Player")
 	if player and player.has_method("set_physics_process"):

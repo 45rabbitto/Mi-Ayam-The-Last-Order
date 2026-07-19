@@ -141,6 +141,7 @@ var sfx = {
 	"ch5_pintu_jebol": preload("res://assets/audio/ch5_sfx_pintu_jebol.ogg"),
 	"ch5_langkah_masuk": preload("res://assets/audio/ch5_sfx_langkah_masuk.ogg"),
 	"ch5_ending_music": preload("res://assets/audio/ch5_sfx_ending_music.ogg"),
+	"ch5_ambient_merah": preload("res://assets/audio/ch5_sfx_ambient_merah.ogg"),
 
 }
 
