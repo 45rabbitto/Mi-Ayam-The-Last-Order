@@ -312,10 +312,8 @@ func _on_button_next_level_4_pressed():
 
 	next_chapter_button.hide()
 
-	Transition.fade_out()
-
-	await get_tree().create_timer(1.0).timeout
-
+	await Transition.fade_out()
+	
 	get_tree().change_scene_to_file(
-		"res://scenes/level/level_4_order.tscn"
+		"res://scenes/storych4.tscn"
 	)

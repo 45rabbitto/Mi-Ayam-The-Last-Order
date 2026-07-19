@@ -53,31 +53,16 @@ func _on_continue_button_pressed():
 
 	await Transition.fade_out()
 
-	# ======================================================
-	# RESET INVENTORY SEBELUM CHAPTER 2
-	# ======================================================
-
 	print("================================")
-	print("PINDAH KE CHAPTER 2")
+	print("PINDAH KE STORY CHAPTER 2")
 	print("================================")
 
-	print(
-		"INVENTORY SEBELUM CLEAR : ",
-		InventoryManager.get_items()
-	)
+	print("INVENTORY SEBELUM CLEAR :", InventoryManager.get_items())
 
 	InventoryManager.clear_inventory()
 
-	print(
-		"INVENTORY SETELAH CLEAR : ",
-		InventoryManager.get_items()
-	)
-
-
-	# ======================================================
-	# LOAD CHAPTER 2
-	# ======================================================
+	print("INVENTORY SETELAH CLEAR :", InventoryManager.get_items())
 
 	GameManager.current_chapter = 2
 
-	LevelManager.load_level(2)
+	get_tree().change_scene_to_file("res://scenes/storych2/storych2.tscn")

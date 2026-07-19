@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://x24qon17517y"]
+
+[ext_resource type="Script" uid="uid://dvfg1t6hlksal" path="res://scripts/storych5.gd" id="1_36n7d"]
+[ext_resource type="FontFile" uid="uid://dn1ys1ju2gq7m" path="res://assets/fonts/VT323-Regular.ttf" id="2_wg5o1"]
+
+[node name="Storych5" type="CanvasLayer" unique_id=1631617094]
+script = ExtResource("1_36n7d")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1705937501]
+offset_right = 1181.0
+offset_bottom = 662.0
+color = Color(0, 0, 0, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=177672787]
+offset_left = 131.0
+offset_top = 58.0
+offset_right = 1047.0
+offset_bottom = 584.0
+theme_override_fonts/normal_font = ExtResource("2_wg5o1")
+theme_override_font_sizes/normal_font_size = 25

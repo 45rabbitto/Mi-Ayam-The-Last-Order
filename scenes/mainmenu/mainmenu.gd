@@ -77,17 +77,14 @@ func button_press_effect(button: Button):
 func _on_start_button_pressed():
 
 	AudioManager.play_ui("click")
-
-	button_press_effect(
-		$MenuPanel/StartButton
-	)
+	button_press_effect($MenuPanel/StartButton)
 
 	await get_tree().create_timer(0.1).timeout
 
 	print("===== START NEW GAME =====")
 
-	GameManager.new_game()
-
+	# Langsung pindah ke scene story chapter 1
+	get_tree().change_scene_to_file("res://scenes/intro/IntroStory.tscn")
 
 # ==========================================================
 # CONTINUE GAME

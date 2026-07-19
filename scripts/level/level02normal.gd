@@ -84,7 +84,6 @@ func open_phone_notif():
 
 		return
 
-
 	var phone_notif = get_tree().current_scene.get_node_or_null(
 		"Hud/PhoneNotif"
 	)

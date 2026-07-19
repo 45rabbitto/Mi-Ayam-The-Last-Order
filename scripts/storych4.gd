@@ -5,14 +5,9 @@ extends CanvasLayer
 var story := """
 
 
-kamar kembali rapi.
-Kamar juga terlihat sama. 
 
-Jam menunjukkan 23.00. 
 
-Laptop Raka terbuka dengan skripsi.
-
-Raka duduk di kursi, membentangkan jari di atas keyboard.
+Tak terasa waktu terus berlalu, hingga fajar hampir tiba. 
 
 
 
@@ -42,10 +37,10 @@ func show_story():
 
 	await get_tree().create_timer(2.0).timeout
 
-	print("PINDAH KE LEVEL 3 FLASHBACK")
+	print("PINDAH KE LEVEL4 PESAN MI AYAM")
 
 	get_tree().change_scene_to_file(
-		"res://scenes/level/level_3_flashback.tscn"
+		"res://scenes/level/level_4_order.tscn"
 	)
 
 	print("SELESAI PINDAH")
