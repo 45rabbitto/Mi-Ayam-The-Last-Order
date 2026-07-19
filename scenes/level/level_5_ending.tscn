@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b6ljl3qx06xsa"]
 
-[ext_resource type="PackedScene" uid="uid://d3p1u7jppj2v7" path="res://assets/3d/kamar/bedroom.tscn" id="1_xe1jl"]
+[ext_resource type="PackedScene" uid="uid://d3p1u7jppj2v7" path="res://assets/3d/bedroom.tscn" id="1_xe1jl"]
 [ext_resource type="PackedScene" uid="uid://cs14om8wf1udr" path="res://scenes/player/player.tscn" id="2_jri6p"]
 [ext_resource type="PackedScene" uid="uid://crkuelg6fyyas" path="res://scenes/ui/hud.tscn" id="3_fuvym"]
 [ext_resource type="PackedScene" uid="uid://78eigtpk74pi" path="res://scenes/Transition.tscn" id="4_0qfe1"]
@@ -11,6 +11,8 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_0qfe1"]
 size = Vector3(0.46679688, 0.60239255, 0.42177734)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_0jl0r"]
+
 [node name="Level5Ending" type="Node3D" unique_id=616683985]
 
 [node name="Level5Ending" parent="." unique_id=1948344516 instance=ExtResource("1_xe1jl")]
@@ -18,7 +20,9 @@ transform = Transform3D(0.9996762, -0.025444156, 0, 0.025444156, 0.9996762, 0, 0
 
 [node name="hp" parent="Level5Ending" index="41" unique_id=1795947470]
 inspection_text = "10 panggilan tak terjawab"
-voice_key = "hp_ch5"
+voice_key = ""
+is_pickupable = false
+item_id = "hp_ch5"
 chapter = 5
 
 [node name="laptop" parent="Level5Ending" index="42" unique_id=839492394]
@@ -26,13 +30,15 @@ inspection_text = "Skripsinya... masih di situ. Menunggu yang gak akan datang."
 item_id = "laptop_ch5"
 chapter = 5
 
-[node name="Area3D" type="Area3D" parent="Level5Ending/pintu" parent_id_path=PackedInt32Array(1948344516, 21321462) index="0" unique_id=906525414]
+[node name="Area3D" type="Area3D" parent="Level5Ending" unique_id=906525414]
+transform = Transform3D(-3.934025e-08, 0, 1.0063534, 0, 0.8396822, 0, -0.9, 0, -4.398911e-08, -0.48547745, 0.18567312, -2.454934)
 script = ExtResource("5_fuvym")
 object_name = "Pintu"
+inspection_text = "Tangan menembus gagang pintu..."
 item_id = "pintu_ch5"
 chapter = 5
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Level5Ending/pintu/Area3D" unique_id=1067230638]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level5Ending/Area3D" unique_id=1067230638]
 transform = Transform3D(0.99993396, 0, -4.195755e-12, 4.5408122e-14, 1, 0, 3.4887648e-12, 0, 1, -0.13110256, 1.0228617, -0.2580974)
 shape = SubResource("BoxShape3D_0qfe1")
 
@@ -51,7 +57,8 @@ metadata/_custom_type_script = "uid://cyng42bevcjqg"
 [node name="Sketchfab_Scene" parent="Level5Ending/obat_gerd" unique_id=642246543 instance=ExtResource("6_0qfe1")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Level5Ending/obat_gerd" unique_id=615303744]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.479746, 2.5730913, 0)
+transform = Transform3D(4.9999995, -3.5527137e-15, 0, 3.5527137e-15, 4.9999995, 0, 0, 0, 4.9999995, 1.7630234, 1.7738924, 0.12929535)
+shape = SubResource("BoxShape3D_0jl0r")
 
 [node name="Transition" parent="Level5Ending" unique_id=897795786 instance=ExtResource("4_0qfe1")]
 
