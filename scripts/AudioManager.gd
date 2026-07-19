@@ -59,6 +59,18 @@ var voice_clips_ch3 = {
 
 }
 
+var voice_clips_ch5 = {
+
+	"ojol_01": preload("res://assets/audio/voices/ch5_ojol_01.ogg"),
+	"ojol_02": preload("res://assets/audio/voices/ch5_ojol_02.ogg"),
+	"ojol_03": preload("res://assets/audio/voices/ch5_ojol_03.ogg"),
+	"bapakkos_01": preload("res://assets/audio/voices/ch5_bapakkos_01.ogg"),
+	"bapakkos_02": preload("res://assets/audio/voices/ch5_bapakkos_02.ogg"),
+	"bapakkos_03": preload("res://assets/audio/voices/ch5_bapakkos_03.ogg"),
+	"bapakkos_04": preload("res://assets/audio/voices/ch5_bapakkos_04.ogg"),
+
+}
+
 #==========================
 # BGM
 #==========================
@@ -123,6 +135,12 @@ var sfx = {
 	"ch3_glitch_audio": preload("res://assets/audio/ch3_sfx_glitch_audio.ogg"),
 	"ch3_kopi_tuang": preload("res://assets/audio/ch3_sfx_kopi_tuang.ogg"),
 	"ch3_sendok_aduk": preload("res://assets/audio/ch3_sfx_sendok_aduk.ogg"),
+
+	# --- Chapter 5 ---
+	"ch5_ketuk_pintu": preload("res://assets/audio/ch5_sfx_ketuk_pintu.ogg"),
+	"ch5_pintu_jebol": preload("res://assets/audio/ch5_sfx_pintu_jebol.ogg"),
+	"ch5_langkah_masuk": preload("res://assets/audio/ch5_sfx_langkah_masuk.ogg"),
+	"ch5_ending_music": preload("res://assets/audio/ch5_sfx_ending_music.ogg"),
 
 }
 
@@ -260,6 +278,10 @@ func play_voice_key(key:String, chapter:int):
 		3:
 			if voice_clips_ch3.has(key):
 				play_voice(voice_clips_ch3[key])
+
+		5:
+			if voice_clips_ch5.has(key):
+				play_voice(voice_clips_ch5[key])
 
 #==========================
 # SIGNAL
