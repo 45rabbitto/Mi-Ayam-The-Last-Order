@@ -1,13 +1,23 @@
 extends Node
 
+
 # ==========================================================
 # GAME MANAGER
 # Menyimpan seluruh state permainan
 # ==========================================================
 
-signal condition_changed(value:int)
-signal chapter_changed(chapter:int)
+
+signal condition_changed(value: int)
+signal chapter_changed(chapter: int)
 signal game_completed
+
+
+# ==========================================================
+# SAVE
+# ==========================================================
+
+const SAVE_PATH := "user://savegame.save"
+
 
 # ==========================================================
 # PLAYER
@@ -19,6 +29,7 @@ var raka_condition := 100
 var current_chapter := 1
 
 var is_game_completed := false
+
 
 # ==========================================================
 # CHAPTER 1
@@ -41,6 +52,7 @@ var charger_found := false
 var phone_charged := false
 var chapter1_completed := false
 
+
 # ==========================================================
 # CHAPTER 2
 # ==========================================================
@@ -56,6 +68,7 @@ var object_positions := {
 	"charger": false
 }
 
+
 # ==========================================================
 # CHAPTER 3
 # ==========================================================
@@ -68,6 +81,8 @@ var order_prompt := false
 var chapter3_completed := false
 
 var chapter3_selected_item: String = ""
+
+
 func select_chapter3_item(item_id: String) -> void:
 
 	chapter3_selected_item = item_id
@@ -87,6 +102,7 @@ func clear_chapter3_selected_item() -> void:
 
 	chapter3_selected_item = ""
 
+
 # ==========================================================
 # CHAPTER 4
 # ==========================================================
@@ -98,38 +114,47 @@ var order_success := false
 
 var chapter4_completed := false
 
+
 # ==========================================================
 # CONDITION
 # ==========================================================
 
-func set_condition(value:int):
+func set_condition(value: int):
 
 	raka_condition = clamp(value, 0, 100)
 
 	condition_changed.emit(raka_condition)
 
 
-func damage_condition(amount:int):
+func damage_condition(amount: int):
 
-	set_condition(raka_condition - amount)
+	set_condition(
+		raka_condition - amount
+	)
 
 
-func heal_condition(amount:int):
+func heal_condition(amount: int):
 
-	set_condition(raka_condition + amount)
+	set_condition(
+		raka_condition + amount
+	)
 
 
 # ==========================================================
 # CHAPTER
 # ==========================================================
 
-func load_chapter(chapter:int):
+func load_chapter(chapter: int):
 
 	current_chapter = chapter
 
-	chapter_changed.emit(current_chapter)
+	chapter_changed.emit(
+		current_chapter
+	)
 
-	LevelManager.load_level(current_chapter)
+	LevelManager.load_level(
+		current_chapter
+	)
 
 
 func next_chapter():
@@ -142,19 +167,24 @@ func next_chapter():
 
 		return
 
-	load_chapter(current_chapter + 1)
+	load_chapter(
+		current_chapter + 1
+	)
 
 
 # ==========================================================
 # CHAPTER 1
 # ==========================================================
 
-func register_inspection(object_name:String):
+func register_inspection(object_name: String):
 
 	if object_name in inspected_objects:
+
 		return
 
-	inspected_objects.append(object_name)
+	inspected_objects.append(
+		object_name
+	)
 
 
 func all_objects_inspected() -> bool:
@@ -162,6 +192,7 @@ func all_objects_inspected() -> bool:
 	for object_name in REQUIRED_OBJECTS:
 
 		if object_name not in inspected_objects:
+
 			return false
 
 	return true
@@ -174,8 +205,11 @@ func complete_chapter1():
 	print("================================")
 
 	chapter1_completed = true
+
 	InventoryManager.clear_inventory()
-	print("INVENTORY SEBELUM CHAPTER 2 : ",
+
+	print(
+		"INVENTORY SEBELUM CHAPTER 2 : ",
 		InventoryManager.get_items()
 	)
 
@@ -186,23 +220,27 @@ func complete_chapter1():
 # CHAPTER 2
 # ==========================================================
 
-func place_object(object_name:String):
+func place_object(object_name: String):
 
 	if object_positions.has(object_name):
 
 		object_positions[object_name] = true
 
 
-func is_object_positioned(object_name:String) -> bool:
+func is_object_positioned(object_name: String) -> bool:
 
-	return object_positions.get(object_name, false)
+	return object_positions.get(
+		object_name,
+		false
+	)
 
 
 func all_objects_positioned() -> bool:
 
 	for value in object_positions.values():
 
-		if !value:
+		if not value:
+
 			return false
 
 	return true
@@ -225,20 +263,27 @@ func complete_chapter2():
 # ==========================================================
 
 func finish_skripsi():
+
 	skripsi_done = true
 
 
 func finish_coffee():
+
 	coffee_done = true
 
 
 func finish_mabar():
+
 	mabar_done = true
 
 
 func is_chapter3_ready() -> bool:
 
-	return skripsi_done and coffee_done and mabar_done
+	return (
+		skripsi_done
+		and coffee_done
+		and mabar_done
+	)
 
 
 func complete_chapter3():
@@ -255,18 +300,22 @@ func complete_chapter3():
 # ==========================================================
 
 func open_food_app():
+
 	food_app_opened = true
 
 
 func add_spam_click():
+
 	spam_click_count += 1
 
 
 func finish_hold_confirm():
+
 	hold_confirm_done = true
 
 
 func complete_order():
+
 	order_success = true
 
 
@@ -281,11 +330,12 @@ func complete_chapter4():
 # RESET
 # ==========================================================
 
-func reset_chapter(chapter:int):
+func reset_chapter(chapter: int):
 
 	match chapter:
 
 		1:
+
 			inspected_objects.clear()
 
 			phone_taken = false
@@ -293,7 +343,9 @@ func reset_chapter(chapter:int):
 			phone_charged = false
 			chapter1_completed = false
 
+
 		2:
+
 			object_positions = {
 				"phone": false,
 				"headset": false,
@@ -305,14 +357,21 @@ func reset_chapter(chapter:int):
 			chapter2_fail_count = 0
 			chapter2_completed = false
 
+
 		3:
+
 			skripsi_done = false
 			coffee_done = false
 			mabar_done = false
+
 			order_prompt = false
 			chapter3_completed = false
 
+			chapter3_selected_item = ""
+
+
 		4:
+
 			food_app_opened = false
 			spam_click_count = 0
 			hold_confirm_done = false
@@ -323,6 +382,7 @@ func reset_chapter(chapter:int):
 func reset_all():
 
 	for chapter in range(1, 5):
+
 		reset_chapter(chapter)
 
 	raka_condition = 100
@@ -346,30 +406,202 @@ func new_game():
 
 
 # ==========================================================
-# SAVE
+# SAVE DATA
 # ==========================================================
 
 func get_save_data() -> Dictionary:
 
 	return {
+
 		"condition": raka_condition,
+
 		"chapter": current_chapter,
+
 		"chapter1_completed": chapter1_completed,
+
 		"chapter2_completed": chapter2_completed,
+
 		"chapter3_completed": chapter3_completed,
+
 		"chapter4_completed": chapter4_completed
+
 	}
 
 
-func load_save_data(data:Dictionary):
+func load_save_data(data: Dictionary):
 
-	raka_condition = data.get("condition", 100)
-	current_chapter = data.get("chapter", 1)
+	raka_condition = data.get(
+		"condition",
+		100
+	)
 
-	chapter1_completed = data.get("chapter1_completed", false)
-	chapter2_completed = data.get("chapter2_completed", false)
-	chapter3_completed = data.get("chapter3_completed", false)
-	chapter4_completed = data.get("chapter4_completed", false)
+	current_chapter = data.get(
+		"chapter",
+		1
+	)
 
-	condition_changed.emit(raka_condition)
-	chapter_changed.emit(current_chapter)
+	chapter1_completed = data.get(
+		"chapter1_completed",
+		false
+	)
+
+	chapter2_completed = data.get(
+		"chapter2_completed",
+		false
+	)
+
+	chapter3_completed = data.get(
+		"chapter3_completed",
+		false
+	)
+
+	chapter4_completed = data.get(
+		"chapter4_completed",
+		false
+	)
+
+	condition_changed.emit(
+		raka_condition
+	)
+
+	chapter_changed.emit(
+		current_chapter
+	)
+
+
+# ==========================================================
+# SAVE GAME
+# ==========================================================
+
+func save_game():
+
+	var save_data := {
+
+		"game": get_save_data(),
+
+		"inventory": InventoryManager.get_save_data()
+
+	}
+
+
+	var file := FileAccess.open(
+		SAVE_PATH,
+		FileAccess.WRITE
+	)
+
+
+	if file == null:
+
+		print("GAGAL MENYIMPAN GAME")
+
+		return
+
+
+	file.store_string(
+		JSON.stringify(save_data)
+	)
+
+	file.close()
+
+
+	print("==============================")
+	print("GAME BERHASIL DISIMPAN")
+	print("CHAPTER : ", current_chapter)
+	print("INVENTORY : ", InventoryManager.get_items())
+	print("==============================")
+
+
+# ==========================================================
+# CHECK SAVE
+# ==========================================================
+
+func has_save() -> bool:
+
+	return FileAccess.file_exists(
+		SAVE_PATH
+	)
+
+
+# ==========================================================
+# LOAD GAME
+# ==========================================================
+
+func load_game():
+
+	if not has_save():
+
+		print("SAVE TIDAK DITEMUKAN")
+
+		return
+
+
+	var file := FileAccess.open(
+		SAVE_PATH,
+		FileAccess.READ
+	)
+
+
+	if file == null:
+
+		print("GAGAL MEMBUKA SAVE")
+
+		return
+
+
+	var content := file.get_as_text()
+
+	file.close()
+
+
+	var data = JSON.parse_string(
+		content
+	)
+
+
+	if data == null:
+
+		print("SAVE RUSAK")
+
+		return
+
+
+	load_save_data(
+		data.get(
+			"game",
+			{}
+		)
+	)
+
+
+	InventoryManager.load_save_data(
+		data.get(
+			"inventory",
+			{}
+		)
+	)
+
+
+	print("==============================")
+	print("GAME BERHASIL DI-LOAD")
+	print("CHAPTER : ", current_chapter)
+	print("INVENTORY : ", InventoryManager.get_items())
+	print("==============================")
+
+
+	LevelManager.load_level(
+		current_chapter
+	)
+
+# ==========================================================
+# AUTO SAVE SAAT GAME DITUTUP
+# ==========================================================
+
+func _notification(what):
+
+	if what == NOTIFICATION_WM_CLOSE_REQUEST:
+
+		print("GAME DITUTUP - AUTO SAVE")
+
+		save_game()
+
+		get_tree().quit()
