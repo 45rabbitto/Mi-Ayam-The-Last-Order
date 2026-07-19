@@ -7,6 +7,7 @@ var qte = null
 
 
 func _ready():
+	process_mode = Node.PROCESS_MODE_WHEN_PAUSED
 	hide()
 
 	print("BTN =", btn_pesan)
