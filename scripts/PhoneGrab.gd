@@ -7,20 +7,27 @@ var qte = null
 
 
 func _ready():
-
 	hide()
 
-	btn_pesan.pressed.connect(_on_button_pesan_pressed)
+	print("BTN =", btn_pesan)
+	print("BTN PATH =", btn_pesan.get_path())
 
-
+	btn_pesan.pressed.connect(_on_ButtonPesan_pressed)
+	
 func open():
 
 	show()
 
-	get_tree().paused = true
+	btn_pesan.show()
+
+	print("VISIBLE =", btn_pesan.visible)
+	print("DISABLED =", btn_pesan.disabled)
+	print("GLOBAL RECT =", btn_pesan.get_global_rect())
+
+	# JANGAN PAUSE DULU
+	# get_tree().paused = true
 
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-
 
 func close():
 
@@ -30,9 +37,13 @@ func close():
 
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
+func _input(event):
+	if event is InputEventMouseButton and event.pressed:
+		print("MOUSE =", event.position)
 
+func _on_ButtonPesan_pressed():
 
-func _on_button_pesan_pressed():
+	print("BUTTON PESAN DIKLIK")
 
 	AudioManager.play_ui("click")
 
@@ -40,10 +51,11 @@ func _on_button_pesan_pressed():
 
 	qte = qte_scene.instantiate()
 
+	print("QTE =", qte)
+
 	add_child(qte)
 
 	qte.qte_success.connect(_on_qte_success)
-
 	qte.qte_failed.connect(_on_qte_failed)
 
 	qte.start_qte()
@@ -76,7 +88,3 @@ func _on_qte_failed():
 	UiManager.show_notification(
 		"Pesanan gagal. Coba lagi."
 	)
-
-
-func _on_ButtonPesan_pressed() -> void:
-	pass # Replace with function body.

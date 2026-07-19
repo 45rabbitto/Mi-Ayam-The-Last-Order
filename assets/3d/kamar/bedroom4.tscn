@@ -29,7 +29,6 @@
 [ext_resource type="PackedScene" uid="uid://bh6d3lwhni0j8" path="res://assets/3d/asbak_rokok_-_indonesia.glb" id="25_xhfuc"]
 [ext_resource type="PackedScene" uid="uid://cnkwrf2nc0xey" path="res://assets/3d/procaster_meow_headset.glb" id="26_mvrcn"]
 [ext_resource type="Material" uid="uid://du7u6ng8afpl7" path="res://assets/materials/highlight.tres" id="28_80574"]
-[ext_resource type="Script" uid="uid://chtanjivdf5pn" path="res://scripts/PhoneLevel4.gd" id="28_cy1jj"]
 [ext_resource type="Texture2D" uid="uid://d1wy8k1nb1dxv" path="res://icons/sslaptop.png" id="28_pccvf"]
 [ext_resource type="PackedScene" uid="uid://3l5cy7phf3or" path="res://assets/3d/phone_charger_low_poly.glb" id="29_4j4pb"]
 [ext_resource type="PackedScene" uid="uid://f0vvfwyxdab5" path="res://assets/3d/coca_cola_soda_can.glb" id="30_gcr7k"]
@@ -1552,7 +1551,10 @@ transform = Transform3D(0.3, -4.656613e-10, 0, 4.656613e-10, 0.3, 0, 0, 0, 0.3, 
 shape = SubResource("BoxShape3D_6d0hp")
 
 [node name="hp" type="Area3D" parent="." unique_id=1795947470 groups=["interactable"]]
-script = ExtResource("28_cy1jj")
+script = ExtResource("23_80574")
+object_name = "phone"
+item_id = "phone"
+chapter = 4
 
 [node name="hp" type="MeshInstance3D" parent="hp" unique_id=398048452]
 transform = Transform3D(0.17861575, 0, 0, 0, 0.17861575, 0, 0, 0, 0.17861575, 0, 0.87543654, -0.1561169)

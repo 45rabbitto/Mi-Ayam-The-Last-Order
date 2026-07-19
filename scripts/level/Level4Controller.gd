@@ -3,9 +3,7 @@ extends Node3D
 var phone_opened := false
 var order_finished := false
 
-@onready var phonegrab = get_tree().current_scene.get_node_or_null(
-	"Hud/Phonegrab"
-)
+@onready var phonegrab = $"../Phonegrab"
 
 func _ready():
 
@@ -45,18 +43,21 @@ func _connect_interactable():
 
 	var objects = get_tree().get_nodes_in_group("interactable")
 
+	print("Interactable ditemukan:", objects.size())
+
 	for obj in objects:
 
+		print("Objek =", obj.name)
+
 		if obj.interacted.is_connected(_on_interacted):
-			
 			continue
 
 		obj.interacted.connect(_on_interacted)
 		
+		
 func _on_interacted(item_id:String):
 
 	match item_id:
-
 		"phone":
 
 			if phone_opened:
@@ -67,10 +68,8 @@ func _on_interacted(item_id:String):
 			ObjectiveManager.complete_current()
 
 			open_phone()
-			
+						
 func open_phone():
-
-	print("BUKA PHONE")
 
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
