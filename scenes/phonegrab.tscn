@@ -11,12 +11,13 @@ script = ExtResource("1_arhv6")
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1558619960]
 offset_right = 1174.0
 offset_bottom = 669.0
+mouse_filter = 2
 color = Color(0, 0, 0, 0.4)
 
 [node name="hp" type="TextureRect" parent="." unique_id=776063717]
-offset_left = 214.0
+offset_left = 411.0
 offset_top = 35.0
-offset_right = 890.0
+offset_right = 780.0
 offset_bottom = 612.0
 texture = ExtResource("2_8f37q")
 expand_mode = 1
@@ -24,28 +25,30 @@ stretch_mode = 5
 
 [node name="layarputih" type="ColorRect" parent="hp" unique_id=1336132867]
 layout_mode = 0
-offset_left = 204.0
-offset_top = 23.0
-offset_right = 484.0
-offset_bottom = 501.0
+offset_left = 51.0
+offset_top = 21.0
+offset_right = 331.0
+offset_bottom = 499.0
+mouse_filter = 2
 
 [node name="grab" type="TextureRect" parent="hp" unique_id=1947496142]
 layout_mode = 0
-offset_left = 204.0
-offset_top = 20.0
-offset_right = 483.0
-offset_bottom = 497.0
+offset_left = 52.0
+offset_top = 12.0
+offset_right = 331.0
+offset_bottom = 489.0
+mouse_filter = 2
 texture = ExtResource("3_j51q5")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="ButtonPesan" type="Button" parent="." unique_id=1520311189]
-offset_left = 821.0
-offset_top = 296.0
-offset_right = 1021.0
-offset_bottom = 334.0
+[node name="ButtonPesan" type="Button" parent="." unique_id=1126471392]
+offset_left = 869.0
+offset_top = 317.0
+offset_right = 1033.0
+offset_bottom = 355.0
 theme_override_fonts/font = ExtResource("4_5p546")
 theme_override_font_sizes/font_size = 30
-text = "pesan mi ayam"
+text = "Pesan Mi Ayam"
 
-[connection signal="pressed" from="ButtonPesan" to="." method="_on_ButtonPesan_pressed"]
+[connection signal="pressed" from="ButtonPesan" to="." method="_on_button_pesan_pressed"]
