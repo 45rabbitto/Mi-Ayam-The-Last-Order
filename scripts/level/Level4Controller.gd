@@ -12,7 +12,7 @@ func _ready():
 	print("===== MASUK LEVEL 4 =====")
 
 	Global.current_level = 4
-
+	InventoryManager.clear_inventory()
 	# ===============================
 	# OBJECTIVE
 	# ===============================
