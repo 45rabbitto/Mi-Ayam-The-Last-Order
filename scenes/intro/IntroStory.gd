@@ -47,13 +47,13 @@ func show_text():
 
 	AudioManager.play_sfx("transition")
 
-	await Transition.fade_out()
+	#await Transition.fade_out()
 
 	get_tree().change_scene_to_file(
 		"res://scenes/level/Level_1_room.tscn"
 	)
 
-	await Transition.fade_in()
+	#await Transition.fade_in()
 
 
 func _input(event):

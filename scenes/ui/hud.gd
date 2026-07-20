@@ -128,7 +128,7 @@ func _on_button_next_chapter_5_pressed() -> void:
 
 	AudioManager.play_ui("click")
 
-	Transition.fade_out()
+	#Transition.fade_out()
 
 	await get_tree().create_timer(1.0).timeout
 
@@ -143,7 +143,7 @@ func _on_button_next_level_4_pressed() -> void:
 
 	AudioManager.play_ui("click")
 
-	Transition.fade_out()
+	#Transition.fade_out()
 
 	await get_tree().create_timer(1.0).timeout
 
