@@ -238,8 +238,8 @@ func _play_ending_cutscene():
 	# Musik ending + fade to black
 	AudioManager.play_sfx("ch5_ending_music")
 	var transition = get_tree().current_scene.find_child("Transition", true, false)
-	if transition and transition.has_method("fade_out"):
-		await transition.fade_out(3.0)
+	#if transition and transition.has_method("fade_out"):
+	#	await transition.fade_out(3.0)
 
 	# Tampilkan teks akhir - TIDAK pakai show_dialog biar tidak auto-hide
 	if UiManager.dialog_panel and UiManager.dialog_label:
