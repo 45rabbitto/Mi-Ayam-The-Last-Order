@@ -16,7 +16,9 @@ func _ready():
 		get_tree().current_scene.get_tree_string_pretty()
 	)
 
-	Global.current_level = 2
+	GameManager.current_chapter = 2
+	LevelManager.current_level = 2
+	
 
 	# ======================================================
 	# OBJECTIVE

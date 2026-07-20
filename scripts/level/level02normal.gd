@@ -11,7 +11,10 @@ func _ready():
 
 
 	Global.current_level = 2
-
+	GameManager.current_chapter = 2
+	LevelManager.current_level = 2
+	
+	GameManager.save_game()
 
 	ObjectiveManager.reset()
 

@@ -27,7 +27,10 @@ func _ready() -> void:
 	add_to_group("inventory_ui")
 
 	print("================================")
-	print("CHAPTER 2 INVENTORY")
+	print("INVENTORY UI READY")
+	print("CURRENT CHAPTER : ",
+		GameManager.current_chapter
+	)
 	print("INVENTORY SAAT MASUK : ",
 		InventoryManager.get_items()
 	)

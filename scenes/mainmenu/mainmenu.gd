@@ -5,28 +5,27 @@ extends Control
 # READY
 # ==========================================================
 
-func _ready():
+func _ready() -> void:
 
 	print("===== MAIN MENU =====")
 
-	# ======================================================
-	# RESET AUDIO
-	# ======================================================
 
 	AudioManager.reset_audio()
 
-	AudioManager.play_bgm("main_menu")
 
+	AudioManager.play_bgm(
+		"main_menu"
+	)
 
-	# ======================================================
-	# CONTINUE BUTTON
-	# ======================================================
 
 	var continue_btn: Button = $MenuPanel/ContinueButton
 
+
 	var has_save: bool = GameManager.has_save()
 
+
 	continue_btn.disabled = not has_save
+
 
 	if has_save:
 
@@ -41,6 +40,7 @@ func _ready():
 			0.8
 		)
 
+
 	print(
 		"ADA SAVE : ",
 		has_save
@@ -51,56 +51,89 @@ func _ready():
 # BUTTON EFFECT
 # ==========================================================
 
-func button_press_effect(button: Button):
+func button_press_effect(button: Button) -> void:
 
 	var tween := create_tween()
 
-	tween.tween_property(
-		button,
-		"scale",
-		Vector2(0.95, 0.95),
-		0.05
-	)
 
 	tween.tween_property(
 		button,
 		"scale",
-		Vector2(1.0, 1.0),
+		Vector2(
+			0.95,
+			0.95
+		),
+		0.05
+	)
+
+
+	tween.tween_property(
+		button,
+		"scale",
+		Vector2(
+			1.0,
+			1.0
+		),
 		0.1
 	)
 
 
 # ==========================================================
-# START GAME
+# START NEW GAME
 # ==========================================================
 
 func _on_start_button_pressed():
 
 	AudioManager.play_ui("click")
-	button_press_effect($MenuPanel/StartButton)
+
+	button_press_effect(
+		$MenuPanel/StartButton
+	)
 
 	await get_tree().create_timer(0.1).timeout
 
 	print("===== START NEW GAME =====")
 
-	# Langsung pindah ke scene story chapter 1
-	get_tree().change_scene_to_file("res://scenes/intro/IntroStory.tscn")
+	# RESET SEMUA DATA GAME
+	GameManager.new_game()
+
+	# RESET AUDIO
+	AudioManager.reset_audio()
+
+	# MULAI DARI CHAPTER 1
+	GameManager.current_chapter = 1
+
+	LevelManager.current_level = 1
+
+	# MASUK INTRO CHAPTER 1
+	get_tree().change_scene_to_file(
+		"res://scenes/intro/IntroStory.tscn"
+	)
+
 
 # ==========================================================
 # CONTINUE GAME
 # ==========================================================
 
-func _on_continue_button_pressed():
+func _on_continue_button_pressed() -> void:
 
-	AudioManager.play_ui("click")
+	AudioManager.play_ui(
+		"click"
+	)
+
 
 	button_press_effect(
 		$MenuPanel/ContinueButton
 	)
 
-	await get_tree().create_timer(0.1).timeout
+
+	await get_tree().create_timer(
+		0.1
+	).timeout
+
 
 	print("===== CONTINUE GAME =====")
+
 
 	GameManager.load_game()
 
@@ -109,15 +142,22 @@ func _on_continue_button_pressed():
 # CREDIT
 # ==========================================================
 
-func _on_credit_button_pressed():
+func _on_credit_button_pressed() -> void:
 
-	AudioManager.play_ui("click")
+	AudioManager.play_ui(
+		"click"
+	)
+
 
 	button_press_effect(
 		$MenuPanel/CreditButton
 	)
 
-	await get_tree().create_timer(0.1).timeout
+
+	await get_tree().create_timer(
+		0.1
+	).timeout
+
 
 	get_tree().change_scene_to_file(
 		"res://scenes/credit/credit_scene.tscn"
@@ -128,14 +168,24 @@ func _on_credit_button_pressed():
 # QUIT
 # ==========================================================
 
-func _on_quit_button_pressed():
-	GameManager.save_game()
-	AudioManager.play_ui("click")
+func _on_quit_button_pressed() -> void:
+
+	AudioManager.play_ui(
+		"click"
+	)
+
 
 	button_press_effect(
 		$MenuPanel/QuitButton
 	)
 
-	await get_tree().create_timer(0.1).timeout
+
+	await get_tree().create_timer(
+		0.1
+	).timeout
+
+
+	GameManager.save_game()
+
 
 	get_tree().quit()

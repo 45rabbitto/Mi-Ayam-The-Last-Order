@@ -14,9 +14,15 @@ const SAVE_PATH := "user://savegame.json"
 
 func has_save() -> bool:
 
-	return FileAccess.file_exists(
-		SAVE_PATH
-	)
+	var save_exists := FileAccess.file_exists(SAVE_PATH)
+
+	print("==============================")
+	print("CHECK SAVE")
+	print("SAVE PATH : ", SAVE_PATH)
+	print("SAVE ADA  : ", save_exists)
+	print("==============================")
+
+	return save_exists
 
 
 # ==========================================================

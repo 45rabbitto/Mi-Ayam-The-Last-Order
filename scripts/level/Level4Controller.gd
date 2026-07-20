@@ -8,8 +8,13 @@ var order_finished := false
 func _ready():
 
 	print("===== MASUK LEVEL 4 =====")
-
+	
 	Global.current_level = 4
+	GameManager.current_chapter = 4
+	LevelManager.current_level = 4
+	
+	GameManager.save_game()
+	
 	InventoryManager.clear_inventory()
 	# ===============================
 	# OBJECTIVE

@@ -15,7 +15,9 @@ var ambient_active := true
 # =====================================================
 func _ready():
 	print("=== LEVEL 5 (SETELAH SUNYI) READY ===")
-
+	Global.current_level = 5
+	GameManager.current_chapter = 5
+	LevelManager.current_level = 5
 	_hide_irrelevant_ui()
 
 	ObjectiveManager.reset()

@@ -14,12 +14,14 @@ var charger_found := false
 # ==========================================================
 
 func _ready():
-
-	Global.current_level = 1
 		
 	print("=== LEVEL 1 READY DARI SCRIPT BARU ===")
 	print("SCRIPT =", get_script().resource_path)
-
+	
+	Global.current_level = 1
+	GameManager.current_chapter = 1
+	LevelManager.current_level = 1
+	
 	ObjectiveManager.reset()
 
 	ObjectiveManager.add_objective(
