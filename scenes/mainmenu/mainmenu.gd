@@ -107,7 +107,7 @@ func _on_start_button_pressed():
 
 	# MASUK INTRO CHAPTER 1
 	get_tree().change_scene_to_file(
-		"res://scenes/intro/IntroStory.tscn"
+		"res://scenes/tutorial.tscn"
 	)
 
 
