@@ -1630,14 +1630,17 @@ mesh = ExtResource("34_6d0hp")
 
 [node name="sampah" type="Sprite3D" parent="." unique_id=791626778]
 transform = Transform3D(-0.40183496, -0.29753765, 1.3005783e-08, 0, -2.1855694e-08, -0.5, 0.29753765, -0.40183496, 1.7564766e-08, -4.9098725, 0.25258017, -1.6630256)
+shaded = true
 texture = ExtResource("35_mcgty")
 
 [node name="sampah2" type="Sprite3D" parent="." unique_id=596197624]
 transform = Transform3D(-0.160734, -0.11901505, 5.202313e-09, 0, -8.742278e-09, -0.2, 0.11901505, -0.160734, 7.0259065e-09, -3.081383, 0.25258017, 0.91996264)
+shaded = true
 texture = ExtResource("36_ua27e")
 
 [node name="sampah3" type="Sprite3D" parent="." unique_id=24203818]
 transform = Transform3D(-0.160734, -0.11901505, 5.202313e-09, 0, -8.742278e-09, -0.2, 0.11901505, -0.160734, 7.0259065e-09, -3.5532613, 0.25258017, 0.9164362)
+shaded = true
 texture = ExtResource("36_ua27e")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1949536879]
@@ -1647,14 +1650,17 @@ transform = Transform3D(-9.75217e-05, -0.08999987, -0.00012066202, -0.0004215412
 
 [node name="kopi" type="Sprite3D" parent="." unique_id=711406665]
 transform = Transform3D(0.022587307, 0.076745115, 3.3546357e-09, 0, -3.496911e-09, 0.08, 0.076745115, -0.022587307, -9.873224e-10, -2.450025, 0.83329064, 0.7203353)
+shaded = true
 texture = ExtResource("38_ua27e")
 
 [node name="kopi2" type="Sprite3D" parent="." unique_id=1668638600]
 transform = Transform3D(0.022587307, 0.076745115, 3.3546357e-09, 0, -3.496911e-09, 0.08, 0.076745115, -0.022587307, -9.873224e-10, -2.450025, 0.83329064, 0.6459735)
+shaded = true
 texture = ExtResource("38_ua27e")
 
 [node name="kopi3" type="Sprite3D" parent="." unique_id=1480134055]
 transform = Transform3D(0.022587307, 0.076745115, 3.4924597e-09, 0, -3.4924597e-09, 0.08, 0.076745115, -0.022587307, -9.873224e-10, -2.5075853, 0.83475566, 0.57570165)
+shaded = true
 texture = ExtResource("38_ua27e")
 
 [node name="sendok" type="MeshInstance3D" parent="." unique_id=695955029]

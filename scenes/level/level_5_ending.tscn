@@ -30,6 +30,24 @@ inspection_text = "Skripsinya... masih di situ. Menunggu yang gak akan datang."
 item_id = "laptop_ch5"
 chapter = 5
 
+[node name="sampah" parent="Level5Ending" index="51" unique_id=791626778]
+shaded = true
+
+[node name="sampah2" parent="Level5Ending" index="52" unique_id=596197624]
+shaded = true
+
+[node name="sampah3" parent="Level5Ending" index="53" unique_id=24203818]
+shaded = true
+
+[node name="kopi" parent="Level5Ending" index="55" unique_id=711406665]
+shaded = true
+
+[node name="kopi2" parent="Level5Ending" index="56" unique_id=1668638600]
+shaded = true
+
+[node name="kopi3" parent="Level5Ending" index="57" unique_id=1480134055]
+shaded = true
+
 [node name="Area3D" type="Area3D" parent="Level5Ending" unique_id=906525414]
 transform = Transform3D(-3.934025e-08, 0, 1.0063534, 0, 0.8396822, 0, -0.9, 0, -4.398911e-08, -0.48547745, 0.18567312, -2.454934)
 script = ExtResource("5_fuvym")
