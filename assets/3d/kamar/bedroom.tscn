@@ -1475,22 +1475,27 @@ mesh = SubResource("ArrayMesh_4eb4e")
 
 [node name="fotokecil" type="Sprite3D" parent="." unique_id=262972824]
 transform = Transform3D(-6.5567085e-09, 0, 0.15, 0, 0.15, 0, -0.15, 0, -6.5567085e-09, 0.4484229, 1.7175585, -1.5212086)
+shaded = true
 texture = ExtResource("18_mcgty")
 
 [node name="marin1" type="Sprite3D" parent="." unique_id=834466292]
 transform = Transform3D(-2.1855695e-09, 0, 0.05, 0, 0.05, 0, -0.05, 0, -2.1855695e-09, -5.3665867, 1.8988596, 0.83815914)
+shaded = true
 texture = ExtResource("19_ua27e")
 
 [node name="marin4" type="Sprite3D" parent="." unique_id=9279530]
 transform = Transform3D(-0.08, 0, 1.20796635e-08, 0, 0.08, 0, -1.20796635e-08, 0, -0.08, -4.422846, 1.8988596, 1.3158906)
+shaded = true
 texture = ExtResource("20_80574")
 
 [node name="marin2" type="Sprite3D" parent="." unique_id=287316220]
 transform = Transform3D(-2.1855695e-09, 0, 0.05, 0, 0.05, 0, -0.05, 0, -2.1855695e-09, -5.3665867, 1.8988596, 0.34863025)
+shaded = true
 texture = ExtResource("21_renlo")
 
 [node name="marin3" type="Sprite3D" parent="." unique_id=726236852]
 transform = Transform3D(-2.6226832e-09, 0, 0.06, 0, 0.06, 0, -0.06, 0, -2.6226832e-09, -5.3665867, 1.8988596, -0.13950807)
+shaded = true
 texture = ExtResource("22_kxaf6")
 
 [node name="poster" type="Area3D" parent="." unique_id=353275029 groups=["interactable"]]
@@ -1502,6 +1507,7 @@ highlight_material = ExtResource("28_80574")
 
 [node name="poster" type="Sprite3D" parent="poster" unique_id=615790091]
 transform = Transform3D(-0.3, 0, 4.5298744e-08, 0, 0.3, 0, -4.5298744e-08, 0, -0.3, -3.002031, 1.5025891, 1.3158906)
+shaded = true
 texture = ExtResource("22_tfj8m")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="poster" unique_id=171542572]
@@ -1582,6 +1588,7 @@ shape = SubResource("BoxShape3D_ua27e")
 
 [node name="ss" type="Sprite3D" parent="laptop" unique_id=339078009]
 transform = Transform3D(-0.05499998, 2.2118911e-09, -4.307367e-09, 0, 0.049642168, 0.023678109, 4.808252e-09, 0.023678105, -0.049642187, -4.2267537, 1.267194, 1.1935498)
+shaded = true
 texture = ExtResource("28_pccvf")
 
 [node name="indomie" type="MeshInstance3D" parent="." unique_id=767257292]
